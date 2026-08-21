@@ -155,14 +155,26 @@ public partial class SettingsViewModel : ObservableObject
     }
 
     // ── DepotBox API key ──────────────────────────────────────────────
-    [ObservableProperty] private bool _useApiKey;
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(ShowDepotBoxKeyInput))]
+    [NotifyPropertyChangedFor(nameof(ShowDepotBoxStats))]
+    [NotifyPropertyChangedFor(nameof(DepotBoxStatsPending))]
+    private bool _useApiKey;
 
     partial void OnUseApiKeyChanged(bool value)
     {
         _settings.UseApiKey = value;
-        DepotBoxIsKeyConfigured = !value || !string.IsNullOrEmpty(_settings.DepotBoxApiKey);
-        if (!value || !string.IsNullOrEmpty(_settings.DepotBoxApiKey)) { _depotBoxStatsTimer.Start(); RefreshDepotBoxStatsCommand.Execute(null); }
-        else _depotBoxStatsTimer.Stop();
+        DepotBoxIsKeyConfigured = ShouldShowDepotBoxStats(value, _settings.DepotBoxApiKey);
+        if (DepotBoxIsKeyConfigured)
+        {
+            _depotBoxStatsTimer.Start();
+            RefreshDepotBoxStatsCommand.Execute(null);
+        }
+        else
+        {
+            _depotBoxStatsTimer.Stop();
+            DepotBoxStats = null;
+        }
     }
 
     /// <summary>The key the user is typing/pasting. Starts blank. The saved key is never shown back.</summary>
@@ -175,6 +187,7 @@ public partial class SettingsViewModel : ObservableObject
     [ObservableProperty] private string _depotBoxKeyStatusColor = "#22c55e";
     /// <summary>True when a key is saved in settings (drives the "Clear" button + "configured" label).</summary>
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(ShowDepotBoxKeyInput))]
     [NotifyPropertyChangedFor(nameof(ShowDepotBoxStats))]
     [NotifyPropertyChangedFor(nameof(DepotBoxStatsPending))]
     [NotifyPropertyChangedFor(nameof(DepotBoxStatsText))]
@@ -209,10 +222,16 @@ public partial class SettingsViewModel : ObservableObject
     /// <summary>Show the usage card whenever a key is configured. It renders a loading state until stats
     /// arrive (never blank), so the section can't look broken while the fetch is in flight or after a
     /// transient failure (the key input is collapsed once configured, so this card is the only content).</summary>
-    public bool ShowDepotBoxStats => DepotBoxIsKeyConfigured;
+    public bool ShowDepotBoxStats => UseApiKey && DepotBoxIsKeyConfigured;
+
+    /// <summary>Show the custom-key editor only when the custom provider is selected and no key is saved.</summary>
+    public bool ShowDepotBoxKeyInput => UseApiKey && !DepotBoxIsKeyConfigured;
+
+    internal static bool ShouldShowDepotBoxStats(bool useApiKey, string? savedKey) =>
+        useApiKey && !string.IsNullOrWhiteSpace(savedKey);
 
     /// <summary>Stats not yet loaded for a configured key → show the "Loading…" placeholder + indeterminate bar.</summary>
-    public bool DepotBoxStatsPending => DepotBoxIsKeyConfigured && DepotBoxStats is null;
+    public bool DepotBoxStatsPending => ShowDepotBoxStats && DepotBoxStats is null;
 
     /// <summary>Placeholder text shown until real stats load.</summary>
     public string DepotBoxStatsText => DepotBoxStatsDisplay ?? Resources.Strings.Common_Loading;
@@ -245,7 +264,7 @@ public partial class SettingsViewModel : ObservableObject
         _startWithWindows = settings.StartWithWindows; // default OFF. Init without triggering the registry write
         _minimizeToTray = settings.MinimizeToTray;
         _useApiKey = settings.UseApiKey;
-        _depotBoxIsKeyConfigured = !settings.UseApiKey || !string.IsNullOrEmpty(settings.DepotBoxApiKey);
+        _depotBoxIsKeyConfigured = ShouldShowDepotBoxStats(settings.UseApiKey, settings.DepotBoxApiKey);
 
         // Select the saved language (or "System default") without firing the restart prompt.
         _suppressLanguagePrompt = true;

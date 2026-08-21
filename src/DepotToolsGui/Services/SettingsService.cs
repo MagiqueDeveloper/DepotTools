@@ -203,6 +203,7 @@ public class SettingsService
             && _settings.FixesPageSize is null
             && _settings.BuildsPageSize is null
             && _settings.Language is null
+            && _settings.UseApiKey is null
             && _settings.DepotBoxApiKey is null
             && _settings.StartWithWindows is null
             && _settings.MinimizeToTray is null

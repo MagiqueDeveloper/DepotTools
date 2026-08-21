@@ -169,7 +169,7 @@
   <data name="Mode_CloudRedirect_LaunchFailed" xml:space="preserve"><value>Couldn't download or launch CloudRedirect.</value></data>
   <data name="Mode_Desc_Ost" xml:space="preserve"><value>Nightly build of OpenSteamTools from the latest source. Newest fixes, but may be less stable.</value></data>
   <data name="Mode_Name_Custom" xml:space="preserve"><value>Custom Unlocker</value></data>
-  <data name="Mode_Desc_Custom" xml:space="preserve"><value>Use your own unlocking solution, we will not mess with it</value></data>
+  <data name="Mode_Desc_Custom" xml:space="preserve"><value>Use your own unlocking solution, we will not mess with it.</value></data>
   <data name="Mode_UserManaged" xml:space="preserve"><value>You're on your own</value></data>
   <data name="Mode_Experimental" xml:space="preserve"><value>EXPERIMENTAL</value></data>
   <data name="Mode_CloudRedirectSupport" xml:space="preserve"><value>CLOUDREDIRECT SUPPORT</value></data>

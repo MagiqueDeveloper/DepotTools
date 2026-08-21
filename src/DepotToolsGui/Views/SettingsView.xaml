@@ -58,7 +58,7 @@
                         <ui:ToggleSwitch Grid.Column="1" Margin="12,0,0,0" VerticalAlignment="Center" IsChecked="{Binding UseApiKey, Mode=TwoWay}" />
                     </Grid>
                     <!-- Active key: stats card -->
-                    <StackPanel Visibility="{Binding DepotBoxIsKeyConfigured, Converter={StaticResource BoolToVis}}">
+                    <StackPanel Visibility="{Binding ShowDepotBoxStats, Converter={StaticResource BoolToVis}}">
                         <!-- Active badge + Refresh -->
                         <Grid Margin="0,0,0,10">
                             <Grid.ColumnDefinitions>
@@ -101,7 +101,7 @@
                          usage card above are the whole story; "Clear" is how you swap keys (it resets
                          DepotBoxIsKeyConfigured, bringing this block back). The onboarding copy below reads
                          wrong when a key already exists, hence the collapse. -->
-                    <StackPanel Visibility="{Binding DepotBoxIsKeyConfigured, Converter={StaticResource InverseBoolToVis}}">
+                    <StackPanel Visibility="{Binding ShowDepotBoxKeyInput, Converter={StaticResource BoolToVis}}">
                         <TextBlock
                             FontSize="13"
                             FontWeight="Medium"
