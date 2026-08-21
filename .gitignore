@@ -10,6 +10,7 @@ Releases/
 
 # Local agent / editor config (contains machine-specific absolute paths)
 .claude/
+.hermes
 CLAUDE.md
 AGENTS.md
 .cursor/

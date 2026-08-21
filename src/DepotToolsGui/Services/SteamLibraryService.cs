@@ -49,6 +49,29 @@ public partial class SteamLibraryService(SteamService steam)
         return null;
     }
 
+    /// <summary>Enumerates installed Steam app IDs from every discovered library.</summary>
+    public IReadOnlyList<long> GetInstalledAppIds()
+    {
+        var ids = new HashSet<long>();
+        try
+        {
+            string? root = steam.EffectivePath;
+            if (root is null) return [];
+            foreach (string library in GetLibraryRoots(root))
+            {
+                string steamApps = Path.Combine(library, "steamapps");
+                if (!Directory.Exists(steamApps)) continue;
+                foreach (string file in Directory.EnumerateFiles(steamApps, "appmanifest_*.acf"))
+                {
+                    string name = Path.GetFileNameWithoutExtension(file);
+                    if (long.TryParse(name[12..], out long appId)) ids.Add(appId);
+                }
+            }
+        }
+        catch { /* A locked or malformed library is simply skipped. */ }
+        return ids.OrderBy(id => id).ToArray();
+    }
+
     /// <summary>Every Steam library root (the main install plus any added libraries).</summary>
     private static IEnumerable<string> GetLibraryRoots(string steamRoot)
     {

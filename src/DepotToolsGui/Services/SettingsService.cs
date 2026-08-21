@@ -49,6 +49,8 @@ public class AppSettings
     // When true, FastFetch auto-picks the first available source and downloads immediately.
     // Nullable so "never set" (→ default OFF) is distinguishable from an explicit choice.
     public bool? FastFetch { get; set; }
+
+    public bool? CloudSavesEnabled { get; set; }
 }
 
 public class SettingsService
@@ -149,6 +151,12 @@ public class SettingsService
         set { _settings.FastFetch = value; Save(); }
     }
 
+    public bool CloudSavesEnabled
+    {
+        get => _settings.CloudSavesEnabled ?? false;
+        set { _settings.CloudSavesEnabled = value; Save(); }
+    }
+
     private static readonly string TmpPath = FilePath + ".tmp";
     private static readonly string BakPath = FilePath + ".bak";
 
@@ -207,7 +215,8 @@ public class SettingsService
             && _settings.DepotBoxApiKey is null
             && _settings.StartWithWindows is null
             && _settings.MinimizeToTray is null
-            && _settings.FastFetch is null;
+            && _settings.FastFetch is null
+            && _settings.CloudSavesEnabled is null;
         if (empty)
         {
             foreach (var p in new[] { FilePath, BakPath, TmpPath })

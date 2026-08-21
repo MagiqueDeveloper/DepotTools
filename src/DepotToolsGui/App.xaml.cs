@@ -41,6 +41,8 @@ public partial class App : Application
                 services.AddSingleton<AuthService>();
                 services.AddSingleton<GithubProxy>();
                 services.AddSingleton<DepotBoxService>();
+                services.AddSingleton<HydraCloudService>();
+                services.AddSingleton<HydraCloudSyncService>();
                 services.AddSingleton<UpdateService>();
                 services.AddSingleton<DownloadViewModel>();
                 services.AddSingleton<SettingsViewModel>();
@@ -174,6 +176,7 @@ public partial class App : Application
         });
 
         await _host.StartAsync();
+        _host.Services.GetRequiredService<HydraCloudSyncService>().Start();
 
         // Rewrite any pre-3-mode SelectedMode BEFORE anything reads it. UnlockerService.SelectedMode
         // would otherwise parse a legacy value to null and quietly present an unconfigured app. Users
@@ -191,6 +194,14 @@ public partial class App : Application
         settingsVm.RequestRestart = RelaunchApp;
 
         var window = _host.Services.GetRequiredService<MainWindow>();
+
+        settingsVm.RequestHydraSignIn = async () =>
+        {
+            var auth = new HydraAuthWindow(_host.Services.GetRequiredService<HydraCloudService>())
+            { Owner = window };
+            auth.ShowDialog();
+            await Task.CompletedTask;
+        };
 
         // Turning off "Minimize to tray" while hidden in the tray → bring the window back.
         settingsVm.RequestShowWindow = () => Dispatcher.Invoke(window.RestoreFromTray);
@@ -370,6 +381,13 @@ public partial class App : Application
         // If an update was downloaded but not yet applied, stage it for after exit.
         if (Updates.HasStagedUpdate)
             Updates.ApplyOnExit();
+
+        try
+        {
+            Task.Run(() => _host.Services.GetRequiredService<HydraCloudSyncService>()
+                .StopAndSyncAsync()).GetAwaiter().GetResult();
+        }
+        catch { /* Shutdown must not be blocked by cloud availability. */ }
 
         await _host.StopAsync();
         _host.Dispose();

@@ -150,6 +150,45 @@
                 </StackPanel>
             </Border>
 
+            <!-- Hydra Cloud -->
+            <TextBlock Style="{StaticResource SectionHeader}" Text="{x:Static res:Strings.Settings_Section_HydraCloud}" />
+            <Border Style="{StaticResource SettingsCard}">
+                <StackPanel Margin="14,12">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel>
+                            <TextBlock FontSize="13" FontWeight="Medium" Text="{x:Static res:Strings.Settings_HydraCloud_Title}" />
+                            <TextBlock Margin="0,4,0,0" FontSize="12" Foreground="#6b7280"
+                                       Text="{x:Static res:Strings.Settings_HydraCloud_Hint}" TextWrapping="Wrap" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Margin="12,0,0,0" VerticalAlignment="Center" Orientation="Horizontal">
+                            <ui:Button Margin="8,0,0,0" Command="{Binding SignInHydraCommand}"
+                                       Content="{x:Static res:Strings.Settings_HydraCloud_SignIn}"
+                                       Visibility="{Binding HydraCloudSignedIn, Converter={StaticResource InverseBoolToVis}}" />
+                            <ui:Button Margin="8,0,0,0" Command="{Binding SignOutHydraCommand}"
+                                       Appearance="Danger"
+                                       Content="{x:Static res:Strings.Settings_HydraCloud_SignOut}"
+                                       Visibility="{Binding HydraCloudSignedIn, Converter={StaticResource BoolToVis}}" />
+                        </StackPanel>
+                    </Grid>
+                    <Border Margin="0,12,0,0" Style="{StaticResource RowDivider}" />
+                    <Grid Margin="0,12,0,0">
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                        <StackPanel>
+                            <TextBlock FontSize="13" FontWeight="Medium" Text="{x:Static res:Strings.Settings_HydraCloud_Automatic}" />
+                            <TextBlock Margin="0,4,0,0" FontSize="12" Foreground="#6b7280"
+                                       Text="{x:Static res:Strings.Settings_HydraCloud_Automatic_Hint}" TextWrapping="Wrap" />
+                        </StackPanel>
+                        <ui:ToggleSwitch Grid.Column="1" Margin="12,0,0,0" VerticalAlignment="Center"
+                                         IsEnabled="{Binding HydraCloudHasSubscription}"
+                                         IsChecked="{Binding CloudSavesEnabled, Mode=TwoWay}" />
+                    </Grid>
+                </StackPanel>
+            </Border>
+
             <!-- Install behavior -->
             <TextBlock Style="{StaticResource SectionHeader}" Text="{x:Static res:Strings.Settings_Section_Install}" />
             <Border Style="{StaticResource SettingsCard}">

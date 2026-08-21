@@ -57,6 +57,16 @@ public static class Strings
     public static string Settings_LoginRequired => Get(nameof(Settings_LoginRequired));
     public static string Settings_ManageKeyHintPrefix => Get(nameof(Settings_ManageKeyHintPrefix));
     public static string Settings_Section_DepotBox => Get(nameof(Settings_Section_DepotBox));
+    public static string Settings_Section_HydraCloud => Get(nameof(Settings_Section_HydraCloud));
+    public static string Settings_HydraCloud_Title => Get(nameof(Settings_HydraCloud_Title));
+    public static string Settings_HydraCloud_Hint => Get(nameof(Settings_HydraCloud_Hint));
+    public static string Settings_HydraCloud_SignIn => Get(nameof(Settings_HydraCloud_SignIn));
+    public static string Settings_HydraCloud_SignOut => Get(nameof(Settings_HydraCloud_SignOut));
+    public static string Settings_HydraCloud_Refresh => Get(nameof(Settings_HydraCloud_Refresh));
+    public static string Settings_HydraCloud_Automatic => Get(nameof(Settings_HydraCloud_Automatic));
+    public static string Settings_HydraCloud_Automatic_Hint => Get(nameof(Settings_HydraCloud_Automatic_Hint));
+    public static string Settings_HydraCloud_Ready => Get(nameof(Settings_HydraCloud_Ready));
+    public static string Settings_HydraCloud_SubscriptionRequired => Get(nameof(Settings_HydraCloud_SubscriptionRequired));
     public static string Settings_DepotBoxKey => Get(nameof(Settings_DepotBoxKey));
     public static string Settings_DepotBoxKey_Hint => Get(nameof(Settings_DepotBoxKey_Hint));
     public static string Settings_DepotBoxKeyPlaceholder => Get(nameof(Settings_DepotBoxKeyPlaceholder));

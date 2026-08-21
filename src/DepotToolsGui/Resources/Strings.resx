@@ -96,6 +96,16 @@
   <data name="Settings_LoginRequired" xml:space="preserve"><value>Login is required for this action.</value></data>
   <data name="Settings_ManageKeyHintPrefix" xml:space="preserve"><value>Manage your DepotBox API key and profile on</value></data>
   <data name="Settings_Section_DepotBox" xml:space="preserve"><value>DEPOTBOX</value></data>
+  <data name="Settings_Section_HydraCloud" xml:space="preserve"><value>CLOUD SAVES</value></data>
+  <data name="Settings_HydraCloud_Title" xml:space="preserve"><value>Hydra Cloud</value></data>
+  <data name="Settings_HydraCloud_Hint" xml:space="preserve"><value>Sync Steam game saves with Hydra Cloud. An active Hydra Cloud subscription is required.</value></data>
+  <data name="Settings_HydraCloud_SignIn" xml:space="preserve"><value>Sign in to Hydra</value></data>
+  <data name="Settings_HydraCloud_SignOut" xml:space="preserve"><value>Sign out</value></data>
+  <data name="Settings_HydraCloud_Refresh" xml:space="preserve"><value>Refresh</value></data>
+  <data name="Settings_HydraCloud_Automatic" xml:space="preserve"><value>Enable automatic cloud saves</value></data>
+  <data name="Settings_HydraCloud_Automatic_Hint" xml:space="preserve"><value>Sync installed Steam game saves when DepotTools starts and while it is running.</value></data>
+  <data name="Settings_HydraCloud_Ready" xml:space="preserve"><value>Hydra Cloud is ready.</value></data>
+  <data name="Settings_HydraCloud_SubscriptionRequired" xml:space="preserve"><value>An active Hydra Cloud subscription is required.</value></data>
   <data name="Settings_DepotBoxKey" xml:space="preserve"><value>DepotBox API key</value></data>
   <data name="Settings_DepotBoxKey_Hint" xml:space="preserve"><value>Paste your personal DepotBox API key to unlock DepotBox manifests. The app connects to DepotBox directly with your key.</value></data>
   <data name="Settings_DepotBoxKeyPlaceholder" xml:space="preserve"><value>Paste your API key (smm_…)</value></data>

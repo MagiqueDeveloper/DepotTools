@@ -18,6 +18,8 @@ public partial class SettingsViewModel : ObservableObject
     private readonly AuthService _auth;
     private readonly SteamService _steam;
     private readonly DepotBoxService _depotBox;
+    private readonly HydraCloudService _hydraCloud;
+    private readonly HydraCloudSyncService _hydraCloudSync;
     private readonly System.Windows.Threading.DispatcherTimer _depotBoxStatsTimer;
 
     [ObservableProperty] private string? _displayName;
@@ -236,6 +238,61 @@ public partial class SettingsViewModel : ObservableObject
     /// <summary>Placeholder text shown until real stats load.</summary>
     public string DepotBoxStatsText => DepotBoxStatsDisplay ?? Resources.Strings.Common_Loading;
 
+    // ── Hydra Cloud ──────────────────────────────────────────────────
+    [ObservableProperty] private bool _hydraCloudSignedIn;
+    [ObservableProperty] private bool _hydraCloudHasSubscription;
+    [ObservableProperty] private string? _hydraCloudAccountName;
+    [ObservableProperty] private string? _hydraCloudStatus;
+    [ObservableProperty] private bool _cloudSavesEnabled;
+
+    partial void OnCloudSavesEnabledChanged(bool value)
+    {
+        _settings.CloudSavesEnabled = value;
+        if (value) _ = _hydraCloudSync.SyncAllAsync("enabled");
+    }
+
+    public Func<Task>? RequestHydraSignIn { get; set; }
+
+    [RelayCommand]
+    private async Task SignInHydraAsync()
+    {
+        if (RequestHydraSignIn is not null) await RequestHydraSignIn();
+        RefreshHydraCloudState();
+        if (CloudSavesEnabled) _ = _hydraCloudSync.SyncAllAsync("signed-in");
+    }
+
+    [RelayCommand]
+    private async Task SignOutHydraAsync()
+    {
+        await _hydraCloud.SignOutAsync();
+        RefreshHydraCloudState();
+    }
+
+    [RelayCommand]
+    private async Task RefreshHydraCloudAsync()
+    {
+        try
+        {
+            await _hydraCloud.InitializeAsync();
+            await _hydraCloud.RefreshAccountAsync();
+            RefreshHydraCloudState();
+            HydraCloudStatus = HydraCloudHasSubscription
+                ? Resources.Strings.Settings_HydraCloud_Ready
+                : Resources.Strings.Settings_HydraCloud_SubscriptionRequired;
+        }
+        catch (Exception ex)
+        {
+            HydraCloudStatus = ex.Message;
+        }
+    }
+
+    private void RefreshHydraCloudState()
+    {
+        HydraCloudSignedIn = _hydraCloud.IsSignedIn;
+        HydraCloudHasSubscription = _hydraCloud.HasActiveSubscription;
+        HydraCloudAccountName = _hydraCloud.Account?.DisplayName;
+    }
+
     /// <summary>Set by App so the guest "Sign in" button can run the Discord flow.</summary>
     public Func<Task>? RequestSignIn { get; set; }
 
@@ -246,12 +303,18 @@ public partial class SettingsViewModel : ObservableObject
     /// App provides the toast + restart action.</summary>
     public Action? RequestRestartPrompt { get; set; }
 
-    public SettingsViewModel(SettingsService settings, AuthService auth, SteamService steam, DepotBoxService depotBox)
+    public SettingsViewModel(SettingsService settings, AuthService auth, SteamService steam,
+        DepotBoxService depotBox, HydraCloudService hydraCloud, HydraCloudSyncService hydraCloudSync)
     {
         _settings = settings;
         _auth = auth;
         _steam = steam;
         _depotBox = depotBox;
+        _hydraCloud = hydraCloud;
+        _hydraCloudSync = hydraCloudSync;
+        _cloudSavesEnabled = settings.CloudSavesEnabled;
+        _hydraCloud.StateChanged += RefreshHydraCloudState;
+        RefreshHydraCloudState();
         _depotBoxStatsTimer = new System.Windows.Threading.DispatcherTimer
         {
             Interval = TimeSpan.FromMinutes(1),
@@ -397,6 +460,7 @@ public partial class SettingsViewModel : ObservableObject
         // that only read the setting at construction). No-op if unchanged; a real change writes back the
         // same value, so no feedback loop.
         FastFetch = _settings.FastFetch;
+        _ = RefreshHydraCloudAsync();
     }
 
     /// <summary>Re-fetch usage stats for the saved key. Silent no-op if no key is saved.</summary>
