@@ -1,0 +1,530 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+
+  <!-- cs -->
+  <data name="Nav_Home" xml:space="preserve"><value>Domů</value></data>
+  <data name="Nav_Add" xml:space="preserve"><value>Přidat</value></data>
+  <data name="Nav_Manage" xml:space="preserve"><value>Spravovat</value></data>
+  <data name="Nav_Mode" xml:space="preserve"><value>Režim</value></data>
+  <data name="Nav_Fixes" xml:space="preserve"><value>Opravy</value></data>
+  <data name="Nav_RestartSteam" xml:space="preserve"><value>Restartovat Steam</value></data>
+  <data name="Nav_Settings" xml:space="preserve"><value>Nastavení</value></data>
+  <data name="Nav_SignInDiscord" xml:space="preserve"><value>Přihlásit se přes Discord</value></data>
+  <data name="Nav_WaitingForBrowser" xml:space="preserve"><value>Čekání na prohlížeč…</value></data>
+  <data name="Nav_Footer_Guest" xml:space="preserve"><value>Procházení jako host</value></data>
+  <data name="Nav_Footer_LoggedIn" xml:space="preserve"><value>Přihlášeno</value></data>
+  <data name="Main_RestartSteam_Ask" xml:space="preserve"><value>Restartovat Steam nyní? Tím se zavře Steam i všechny spuštěné hry a poté se znovu spustí.</value></data>
+  <data name="Settings_Title" xml:space="preserve"><value>Nastavení</value></data>
+  <data name="Settings_Section_Account" xml:space="preserve"><value>ÚČET</value></data>
+  <data name="Settings_Section_General" xml:space="preserve"><value>OBECNÉ</value></data>
+  <data name="Settings_Section_Steam" xml:space="preserve"><value>STEAM</value></data>
+  <data name="Settings_Section_Install" xml:space="preserve"><value>INSTALACE</value></data>
+  <data name="Settings_Section_Community" xml:space="preserve"><value>KOMUNITA</value></data>
+  <data name="Settings_SignOut" xml:space="preserve"><value>Odhlásit se</value></data>
+  <data name="Settings_BrowsingAsGuest" xml:space="preserve"><value>Procházení jako host</value></data>
+  <data name="Settings_GuestHint" xml:space="preserve"><value>Přihlaste se ke stažení manifestů a odemknutí DLC</value></data>
+  <data name="Settings_SignInDiscord" xml:space="preserve"><value>Přihlásit se přes Discord</value></data>
+  <data name="Settings_BotCode_Hint" xml:space="preserve"><value>Máte kód? Spusťte /login na Discordu a zadejte ho zde.</value></data>
+  <data name="Settings_BotCode_Placeholder" xml:space="preserve"><value>A3X9K2</value></data>
+  <data name="Settings_BotCode_Redeem" xml:space="preserve"><value>Uplatnit</value></data>
+  <data name="Settings_BotCode_Expired" xml:space="preserve"><value>Kód vypršel — spusťte /login znovu.</value></data>
+  <data name="Settings_BotCode_Invalid" xml:space="preserve"><value>Neplatný nebo neznámý kód.</value></data>
+  <data name="Settings_BotCode_ServerError" xml:space="preserve"><value>Chyba serveru — zkuste to znovu.</value></data>
+  <data name="Settings_BotLink_Title" xml:space="preserve"><value>Dokončete propojení účtu</value></data>
+  <data name="Settings_BotLink_Body" xml:space="preserve"><value>Jste přihlášeni dočasným účtem Discord. Přihlaste se na DepotBox, poté znovu spusťte /login a zadejte kód pro propojení svého plného účtu.</value></data>
+  <data name="Settings_BotLink_Dismiss" xml:space="preserve"><value>Zavřít</value></data>
+  <data name="Settings_LoginRequired" xml:space="preserve"><value>Pro tuto akci je vyžadováno přihlášení.</value></data>
+  <data name="Settings_ManageKeyHintPrefix" xml:space="preserve"><value>Spravujte svůj klíč API DepotBox a profil na</value></data>
+  <data name="Settings_Section_DepotBox" xml:space="preserve"><value>DEPOTBOX</value></data>
+  <data name="Settings_DepotBoxKey" xml:space="preserve"><value>Klíč API DepotBox</value></data>
+  <data name="Settings_DepotBoxKey_Hint" xml:space="preserve"><value>Vložte svůj osobní klíč API DepotBox pro odemčení manifestů DepotBox. Aplikace se připojuje k DepotBox přímo pomocí vašeho klíče.</value></data>
+  <data name="Settings_DepotBoxKeyPlaceholder" xml:space="preserve"><value>Vložte svůj klíč API (smm_…)</value></data>
+  <data name="Settings_DepotBoxValidate" xml:space="preserve"><value>Ověřit a uložit</value></data>
+  <data name="Settings_DepotBoxClear" xml:space="preserve"><value>Vymazat</value></data>
+  <data name="Settings_DepotBoxGetKey" xml:space="preserve"><value>Získejte klíč na</value></data>
+  <data name="Settings_DepotBoxKeyOk" xml:space="preserve"><value>{0}/{1} požadavků dnes</value></data>
+  <data name="Settings_DepotBoxKeyOkExpiry" xml:space="preserve"><value>{0}/{1} dnes · vyprší {2}</value></data>
+  <data name="Settings_DepotBoxKeyBad" xml:space="preserve"><value>Toto nevypadá jako platný klíč (smm_…).</value></data>
+  <data name="Settings_DepotBoxKeyError" xml:space="preserve"><value>Klíč se nepodařilo ověřit — může být neplatný, vypršel, nebo je DepotBox nedostupný.</value></data>
+  <data name="Settings_DepotBoxActive" xml:space="preserve"><value>Aktivní</value></data>
+  <data name="Settings_DepotBoxRefresh" xml:space="preserve"><value>Obnovit</value></data>
+  <data name="Settings_Language" xml:space="preserve"><value>Jazyk</value></data>
+  <data name="Settings_Language_Hint" xml:space="preserve"><value>Vyberte jazyk zobrazení aplikace. Použije se po restartu.</value></data>
+  <data name="Settings_Language_SystemDefault" xml:space="preserve"><value>Výchozí systému</value></data>
+  <data name="Settings_SteamLocation" xml:space="preserve"><value>Umístění Steamu</value></data>
+  <data name="Settings_Change" xml:space="preserve"><value>Změnit…</value></data>
+  <data name="Settings_Open" xml:space="preserve"><value>Otevřít</value></data>
+  <data name="Settings_ResetToAuto" xml:space="preserve"><value>Obnovit na automatické</value></data>
+  <data name="Settings_AutoUpdateApps" xml:space="preserve"><value>Automaticky aktualizovat hry (nezamykat manifesty)</value></data>
+  <data name="Settings_AutoUpdateApps_Hint" xml:space="preserve"><value>Instaluje bez připnutí verze, takže Steam udržuje hry aktuální. Vypněte pro uzamčení her na stažené verzi.</value></data>
+  <data name="Settings_DonateKeys" xml:space="preserve"><value>Darovat dešifrovací klíče</value></data>
+  <data name="Settings_DonateKeys_Hint" xml:space="preserve"><value>Sdílejte přebytečné dešifrovací klíče depotů Steamu, abyste rozšířili komunitní fond. Odesílají se pouze ověřené klíče — žádné údaje o účtu ani osobní data.</value></data>
+  <data name="Settings_SteamNotFound" xml:space="preserve"><value>Steam nenalezen</value></data>
+  <data name="Settings_SteamSource_Custom" xml:space="preserve"><value>Vlastní umístění</value></data>
+  <data name="Settings_SteamSource_NotFound" xml:space="preserve"><value>Nenalezeno</value></data>
+  <data name="Settings_SteamSource_Auto" xml:space="preserve"><value>Automaticky zjištěno z registru</value></data>
+  <data name="Settings_SteamWarning_NoExe" xml:space="preserve"><value>V této složce nebyl nalezen steam.exe.</value></data>
+  <data name="Settings_ChooseSteamFolder" xml:space="preserve"><value>Vyberte složku Steamu</value></data>
+  <data name="Lang_Changed_Title" xml:space="preserve"><value>Jazyk změněn</value></data>
+  <data name="Lang_Changed_Body" xml:space="preserve"><value>Restartujte aplikaci, aby se nový jazyk použil.</value></data>
+  <data name="Lang_Changed_Restart" xml:space="preserve"><value>Restartovat nyní</value></data>
+  <data name="Home_Welcome" xml:space="preserve"><value>Vítejte v DepotTools</value></data>
+  <data name="Home_LuasOnBoard" xml:space="preserve"><value>Lua na palubě</value></data>
+  <data name="Home_LastAdded" xml:space="preserve"><value>NAPOSLEDY PŘIDÁNO</value></data>
+  <data name="Home_PluginStatus" xml:space="preserve"><value>Stav pluginu</value></data>
+  <data name="Home_RecentlyAdded" xml:space="preserve"><value>Nedávno přidané</value></data>
+  <data name="Home_ViewDetails" xml:space="preserve"><value>Zobrazit podrobnosti</value></data>
+  <data name="Home_CheckingSteam" xml:space="preserve"><value>Kontrola Steamu…</value></data>
+  <data name="Home_SteamDetected" xml:space="preserve"><value>Steam zjištěn · {0}</value></data>
+  <data name="Home_SteamNotFound" xml:space="preserve"><value>Steam nenalezen — nastavte jeho umístění v Nastavení.</value></data>
+  <data name="Home_BrowsingAsGuest" xml:space="preserve"><value>Procházení jako host</value></data>
+  <data name="Home_SignedIn" xml:space="preserve"><value>Přihlášeno</value></data>
+  <data name="Home_SignedInAs" xml:space="preserve"><value>Přihlášeno jako {0}</value></data>
+  <data name="Home_NoModeSelected" xml:space="preserve"><value>Není vybrán žádný režim</value></data>
+  <data name="Home_ModeIs" xml:space="preserve"><value>Režim · {0}</value></data>
+  <data name="Mode_Title" xml:space="preserve"><value>Režim</value></data>
+  <data name="Mode_Subtitle" xml:space="preserve"><value>Přepněte backend používaný k odemykání her přidaných pomocí DepotTools — aktivní vždy jen jeden.</value></data>
+  <data name="Mode_CheckForUpdates" xml:space="preserve"><value>Zkontrolovat aktualizace</value></data>
+  <data name="Mode_Active" xml:space="preserve"><value>AKTIVNÍ</value></data>
+  <data name="Mode_Recommended" xml:space="preserve"><value>DOPORUČENO</value></data>
+  <data name="Mode_Confirm_Body" xml:space="preserve"><value>Steam bude zavřen, aby bylo možné změnit jeho soubory, a poté se automaticky restartuje. Všechny spuštěné hry nebo stahování se zastaví.</value></data>
+  <data name="Mode_Cancel" xml:space="preserve"><value>Zrušit</value></data>
+  <data name="Mode_CloseSteamContinue" xml:space="preserve"><value>Zavřít Steam a pokračovat</value></data>
+  <data name="Mode_Desc_Bst" xml:space="preserve"><value>Open source fork OpenSteamTools, který aktivně udržuje tým DepotTools. Přináší opravy a nové funkce!</value></data>
+  <data name="Mode_CloudRedirect_Manage" xml:space="preserve"><value>Spravovat</value></data>
+  <data name="Mode_CloudRedirect_LaunchFailed" xml:space="preserve"><value>Nepodařilo se stáhnout ani spustit CloudRedirect.</value></data>
+  <data name="Mode_Desc_Ost" xml:space="preserve"><value>Noční sestavení OpenSteamTools z nejnovějšího zdroje. Nejnovější opravy, ale může být méně stabilní.</value></data>
+  <data name="Mode_UserManaged" xml:space="preserve"><value>Teď je to na tobě</value></data>
+  <data name="Mode_Desc_Custom" xml:space="preserve"><value>Použij vlastní řešení odemykání, my do něj sahat nebudeme</value></data>
+  <data name="Mode_Name_Custom" xml:space="preserve"><value>Vlastní odemykač</value></data>
+  <data name="Mode_Experimental" xml:space="preserve"><value>EXPERIMENTÁLNÍ</value></data>
+  <data name="Mode_CloudRedirectSupport" xml:space="preserve"><value>PODPORA CLOUDREDIRECT</value></data>
+  <data name="Mode_CloudRedirect_AddonDesc" xml:space="preserve"><value>Vrací nativní podporu Steam Cloud přes poskytovatele úložišť třetích stran, jako jsou Google Drive / OneDrive / Cloudflare R2 a další. Zatím kompatibilní pouze s OpenSteamTools / BetterSteamTools. Nezapomeňte jej po zapnutí nastavit kliknutím na "Spravovat" a poté restartujte Steam!</value></data>
+  <data name="Mode_CloudRedirect_Locked" xml:space="preserve"><value>Vyberte OpenSteamTools / BetterSteamTools, abyste mohli použít CloudRedirect.</value></data>
+  <data name="Mode_CloudRedirect_Enable" xml:space="preserve"><value>Zapnout</value></data>
+  <data name="Mode_CloudRedirect_Disable" xml:space="preserve"><value>Vypnout</value></data>
+  <data name="Mode_CloudRedirect_Status_Enabled" xml:space="preserve"><value>Zapnuto.</value></data>
+  <data name="Mode_CloudRedirect_Status_Disabled" xml:space="preserve"><value>Nainstalováno, ale vypnuto.</value></data>
+  <data name="Mode_CloudRedirect_Status_NotInstalled" xml:space="preserve"><value>Zatím nenainstalováno.</value></data>
+  <data name="Mode_CloudRedirect_Status_UpdateAvailable" xml:space="preserve"><value>K dispozici je aktualizace.</value></data>
+  <data name="Mode_CloudRedirect_Toast_Enabled" xml:space="preserve"><value>Zapnuto — restartujte Steam pro použití.</value></data>
+  <data name="Mode_CloudRedirect_Toast_Disabled" xml:space="preserve"><value>Vypnuto — restartujte Steam pro použití.</value></data>
+  <data name="Mode_CloudRedirect_Toast_Updated" xml:space="preserve"><value>Aktualizováno — restartujte Steam pro použití.</value></data>
+  <data name="Onboarding_Title" xml:space="preserve"><value>Vítejte v aplikaci DepotTools!</value></data>
+  <data name="Onboarding_SignIn_Blurb" xml:space="preserve"><value>Přihlaste se a odemkněte přidávání her a oprav.</value></data>
+  <data name="Onboarding_SignedIn" xml:space="preserve"><value>Přihlášeno ✓</value></data>
+  <data name="Onboarding_Recommended_Title" xml:space="preserve"><value>Použít doporučená nastavení</value></data>
+  <data name="Onboarding_Recommended_Detail" xml:space="preserve"><value>Režim: BetterSteamTools · FastFetch zapnutý</value></data>
+  <data name="Onboarding_Plugin_Title" xml:space="preserve"><value>Nainstalovat náš slavný plugin</value></data>
+  <data name="Onboarding_Plugin_Detail" xml:space="preserve"><value>Přidá tlačítko „Add via DepotTools“ na stránky obchodu Steam.</value></data>
+  <data name="Onboarding_Yes" xml:space="preserve"><value>Ano, prosím</value></data>
+  <data name="Onboarding_No" xml:space="preserve"><value>Ne, děkuji</value></data>
+  <data name="Onboarding_Go" xml:space="preserve"><value>Jdeme na to!</value></data>
+  <data name="Onboarding_Applying" xml:space="preserve"><value>Nastavuji…</value></data>
+  <data name="Mode_Checking" xml:space="preserve"><value>Kontrola…</value></data>
+  <data name="Mode_StatusUnavailable" xml:space="preserve"><value>Stav nedostupný (offline?)</value></data>
+  <data name="Mode_NotActive" xml:space="preserve"><value>Neaktivní</value></data>
+  <data name="Mode_NotInstalled" xml:space="preserve"><value>Nenainstalováno</value></data>
+  <data name="Mode_UpToDate" xml:space="preserve"><value>Aktuální</value></data>
+  <data name="Mode_UpdateAvailable" xml:space="preserve"><value>Dostupná aktualizace</value></data>
+  <data name="Mode_Btn_Reinstall" xml:space="preserve"><value>Přeinstalovat</value></data>
+  <data name="Mode_Btn_Update" xml:space="preserve"><value>Aktualizovat</value></data>
+  <data name="Mode_Btn_Install" xml:space="preserve"><value>Nainstalovat</value></data>
+  <data name="Mode_Btn_Switch" xml:space="preserve"><value>Přepnout na tento</value></data>
+  <data name="Mode_Confirm_Reinstall" xml:space="preserve"><value>Přeinstalovat {0}?</value></data>
+  <data name="Mode_Confirm_Switch" xml:space="preserve"><value>Přepnout na {0}?</value></data>
+  <data name="Mode_Toast_Updated" xml:space="preserve"><value>Režim aktualizován</value></data>
+  <data name="Mode_Toast_Updated_Restarting" xml:space="preserve"><value>{0} je nainstalován — Steam se restartuje.</value></data>
+  <data name="Mode_Toast_Updated_Start" xml:space="preserve"><value>{0} je nainstalován. Spusťte Steam, abyste jej mohli používat.</value></data>
+  <data name="Mode_Toast_InstallFailed" xml:space="preserve"><value>Instalace se nezdařila</value></data>
+  <data name="Mode_Toast_InstallFailed_Body" xml:space="preserve"><value>Něco se pokazilo.</value></data>
+  <data name="Drop_Title" xml:space="preserve"><value>Sem přetáhněte soubory .lua, .manifest nebo .zip</value></data>
+  <data name="Drop_BrowseFiles" xml:space="preserve"><value>Procházet soubory…</value></data>
+  <data name="Drop_Picker_Title" xml:space="preserve"><value>Vyberte soubory .lua / .manifest / .zip</value></data>
+  <data name="Drop_Picker_Filter" xml:space="preserve"><value>Lua / manifest / zip|*.lua;*.manifest;*.zip|Všechny soubory|*.*</value></data>
+  <data name="Drop_Nothing" xml:space="preserve"><value>Není co instalovat — přetáhněte soubory .lua, .manifest nebo .zip.</value></data>
+  <data name="Drop_Confirm_Replace" xml:space="preserve"><value>Nahradit „{0}“?</value></data>
+  <data name="Drop_Confirm_NoChanges" xml:space="preserve"><value>Žádné změny depotu/DLC — stejný obsah.</value></data>
+  <data name="Drop_NothingInstalled" xml:space="preserve"><value>Nic nenainstalováno (zrušeno nebo nerozpoznané názvy souborů).</value></data>
+  <data name="Drop_Count_Luas" xml:space="preserve"><value>{0} lua</value></data>
+  <data name="Drop_Count_Manifests" xml:space="preserve"><value>{0} manifest(ů)</value></data>
+  <data name="Drop_Result_Installed" xml:space="preserve"><value>{0} nainstalováno do Steamu.</value></data>
+  <data name="Drop_Result_Failed" xml:space="preserve"><value> {0} soubor(ů) selhalo — zavřete Steam a zkuste to znovu.</value></data>
+  <data name="Drop_Result_RestartApply" xml:space="preserve"><value> Restartujte Steam, aby se změny použily.</value></data>
+  <data name="Common_SearchPlaceholder" xml:space="preserve"><value>Hledat podle názvu nebo App ID...</value></data>
+  <data name="Common_Loading" xml:space="preserve"><value>Načítání…</value></data>
+  <data name="Common_AppId" xml:space="preserve"><value>App ID: {0}</value></data>
+  <data name="Common_AppFallback" xml:space="preserve"><value>Aplikace {0}</value></data>
+  <data name="Manage_Title" xml:space="preserve"><value>Spravovat</value></data>
+  <data name="Manage_Refresh" xml:space="preserve"><value>Obnovit</value></data>
+  <data name="Manage_Filters" xml:space="preserve"><value>Filtry</value></data>
+  <data name="Manage_Filter_Type" xml:space="preserve"><value>Typ</value></data>
+  <data name="Manage_Filter_Genre" xml:space="preserve"><value>Žánr</value></data>
+  <data name="Manage_Filter_Year" xml:space="preserve"><value>Rok</value></data>
+  <data name="Manage_Filter_Price" xml:space="preserve"><value>Cena</value></data>
+  <data name="Manage_Filter_Content" xml:space="preserve"><value>Obsah</value></data>
+  <data name="Manage_Content_HideAdult" xml:space="preserve"><value>Skrýt obsah pro dospělé (18+)</value></data>
+  <data name="Manage_Content_AdultOnly" xml:space="preserve"><value>Pouze pro dospělé</value></data>
+  <data name="Manage_Filter_SortBy" xml:space="preserve"><value>Seřadit podle</value></data>
+  <data name="Manage_ClearFilters" xml:space="preserve"><value>Vymazat filtry</value></data>
+  <data name="Manage_Select" xml:space="preserve"><value>Vybrat</value></data>
+  <data name="Manage_DeleteThisLua" xml:space="preserve"><value>Smazat tento lua</value></data>
+  <data name="Manage_ResultsPerPage" xml:space="preserve"><value>Výsledků na stránku</value></data>
+  <data name="Manage_Action_ViewDetails" xml:space="preserve"><value>Zobrazit podrobnosti</value></data>
+  <data name="Manage_Action_Update" xml:space="preserve"><value>Aktualizovat / stáhnout znovu</value></data>
+  <data name="Manage_Action_OpenStore" xml:space="preserve"><value>Otevřít stránku obchodu</value></data>
+  <data name="Manage_Action_OpenInSteam" xml:space="preserve"><value>Otevřít ve Steamu</value></data>
+  <data name="Manage_Action_Reveal" xml:space="preserve"><value>Zobrazit .lua</value></data>
+  <data name="Manage_Action_CopyAppId" xml:space="preserve"><value>Kopírovat App ID</value></data>
+  <data name="Manage_Action_RemoveDrm" xml:space="preserve"><value>Odebrat Steam DRM</value></data>
+  <data name="Manage_ActionsHeader" xml:space="preserve"><value>Akce</value></data>
+  <data name="Manage_Steamless_Confirm_Title" xml:space="preserve"><value>Odebrat Steam DRM?</value></data>
+  <data name="Manage_Steamless_Confirm_Body" xml:space="preserve"><value>Tímto se na spustitelném souboru hry spustí Steamless, aby odstranil DRM SteamStub. Původní .exe se nejprve zazálohuje jako .bak. Některé hry mohou poté vyžadovat ověření souborů ve Steamu. Pokračovat?</value></data>
+  <data name="Manage_Steamless_Working" xml:space="preserve"><value>Odebírání Steam DRM…</value></data>
+  <data name="Manage_Toast_Steamless_Done" xml:space="preserve"><value>{0} upraveno, {1} beze změny.</value></data>
+  <data name="Manage_Steamless_NoInstall" xml:space="preserve"><value>Složka hry nenalezena — je nainstalovaná?</value></data>
+  <data name="Manage_Steamless_Failed" xml:space="preserve"><value>DRM se nepodařilo odebrat. {0}</value></data>
+  <data name="Manage_CopyAppIdTip" xml:space="preserve"><value>Kliknutím zkopírujte App ID</value></data>
+  <data name="Manage_LoadingDepotInfo" xml:space="preserve"><value>Načítání informací o depotu…</value></data>
+  <data name="Manage_MissingHint" xml:space="preserve"><value>Na Steamu, ale ne ve vašem lua (často cenzurované nebo na černé listině depoty)</value></data>
+  <data name="Manage_UnknownHint" xml:space="preserve"><value>Poškozené, nevydané nebo sdílené redistribuovatelné depoty — obvykle není čeho se obávat</value></data>
+  <data name="Manage_Clear" xml:space="preserve"><value>Vymazat</value></data>
+  <data name="Manage_DeleteSelected" xml:space="preserve"><value>Smazat vybrané</value></data>
+  <data name="Manage_LoadingGames" xml:space="preserve"><value>Načítání vašich her…</value></data>
+  <data name="Manage_Opt_Any" xml:space="preserve"><value>Libovolný</value></data>
+  <data name="Manage_Opt_Free" xml:space="preserve"><value>Zdarma</value></data>
+  <data name="Manage_Opt_Paid" xml:space="preserve"><value>Placené</value></data>
+  <data name="Manage_Sort_RecentlyAdded" xml:space="preserve"><value>Nedávno přidané</value></data>
+  <data name="Manage_Sort_NameAZ" xml:space="preserve"><value>Název (A–Z)</value></data>
+  <data name="Manage_Sort_ReleaseNewest" xml:space="preserve"><value>Datum vydání (nejnovější)</value></data>
+  <data name="Manage_Sort_Metacritic" xml:space="preserve"><value>Metacritic</value></data>
+  <data name="Manage_Sort_MostReviewed" xml:space="preserve"><value>Nejvíce recenzí</value></data>
+  <data name="Manage_PageSize_All" xml:space="preserve"><value>Vše</value></data>
+  <data name="Manage_PageLabel" xml:space="preserve"><value>Stránka {0} z {1}</value></data>
+  <data name="Manage_SelectionLabel" xml:space="preserve"><value>Vybráno: {0}</value></data>
+  <data name="Manage_FetchingDetails" xml:space="preserve"><value>Načítání podrobností pro {0} aplikací</value></data>
+  <data name="Manage_Empty_NoMatch" xml:space="preserve"><value>Žádné hry neodpovídají vašim filtrům.</value></data>
+  <data name="Manage_Empty_NoLuas" xml:space="preserve"><value>Zatím nebyly nalezeny žádné soubory lua. Přidejte hru na kartě Přidat.</value></data>
+  <data name="Manage_Empty_NoSteam" xml:space="preserve"><value>Umístění Steamu nenalezeno — nastavte jej v Nastavení.</value></data>
+  <data name="Manage_Toast_NotFound_Title" xml:space="preserve"><value>Nenalezeno</value></data>
+  <data name="Manage_Toast_NotFound_Body" xml:space="preserve"><value>Tato hra už není ve vaší knihovně.</value></data>
+  <data name="Manage_Toast_Refreshed_Title" xml:space="preserve"><value>Knihovna obnovena</value></data>
+  <data name="Manage_Toast_Refreshed_Body" xml:space="preserve"><value>{0} her na palubě.</value></data>
+  <data name="Manage_DepotError" xml:space="preserve"><value>Nepodařilo se načíst informace o depotu (offline nebo neznámá aplikace).</value></data>
+  <data name="Manage_Toggle_InLua" xml:space="preserve"><value>V lua</value></data>
+  <data name="Manage_Toggle_Missing" xml:space="preserve"><value>Chybějící depoty / DLC</value></data>
+  <data name="Manage_Toggle_Unknown" xml:space="preserve"><value>Neznámé věci</value></data>
+  <data name="Manage_Depot" xml:space="preserve"><value>Depot</value></data>
+  <data name="Manage_SharedDepot" xml:space="preserve"><value>Sdílený depot</value></data>
+  <data name="Manage_DlcName" xml:space="preserve"><value>DLC {0}</value></data>
+  <data name="Manage_Delete_Title" xml:space="preserve"><value>Odebrat soubor lua</value></data>
+  <data name="Manage_Delete_Body" xml:space="preserve"><value>Odebrat „{0}“ (App ID {1})?
+
+Tím se smaže jeho soubor .lua ze Steam\config\stplug-in. Poté restartujte Steam, aby se změna projevila.</value></data>
+  <data name="Manage_DeleteMany_Title" xml:space="preserve"><value>Odebrat soubory lua</value></data>
+  <data name="Manage_DeleteMany_Body" xml:space="preserve"><value>Odebrat {0} souborů lua?
+
+Tím se smažou soubory .lua ze Steam\config\stplug-in. Poté restartujte Steam, aby se změny projevily.</value></data>
+  <data name="Manage_RemoveFailed_Title" xml:space="preserve"><value>Odebrání se nezdařilo</value></data>
+  <data name="Manage_RemoveFailed_File" xml:space="preserve"><value>Soubor se nepodařilo smazat:
+{0}</value></data>
+  <data name="Manage_RemoveFailed_Named" xml:space="preserve"><value>„{0}“ se nepodařilo smazat:
+{1}</value></data>
+  <data name="Manage_RemoveFailed_Count" xml:space="preserve"><value>{0} souborů se nepodařilo smazat.</value></data>
+  <data name="Manage_RestartSteam_Title" xml:space="preserve"><value>Restartovat Steam</value></data>
+  <data name="Manage_RestartSteam_Ask" xml:space="preserve"><value>Restartovat Steam nyní, aby se změny projevily?</value></data>
+  <data name="Manage_RestartSteam_Failed" xml:space="preserve"><value>Steam se nepodařilo najít ani spustit. Nastavte jeho umístění v Nastavení.</value></data>
+  <data name="Fixes_Title" xml:space="preserve"><value>Opravy</value></data>
+  <data name="Fixes_Loading" xml:space="preserve"><value>Načítání oprav…</value></data>
+  <data name="Fixes_Build" xml:space="preserve"><value>Sestavení {0}</value></data>
+  <data name="Fixes_Manifest" xml:space="preserve"><value>Manifest</value></data>
+  <data name="Fixes_Fix" xml:space="preserve"><value>Oprava</value></data>
+  <data name="Fixes_Count" xml:space="preserve"><value>{0} oprav</value></data>
+  <data name="Fixes_Err_Load" xml:space="preserve"><value>Opravy se nepodařilo načíst — zkontrolujte připojení.</value></data>
+  <data name="Fixes_Empty_None" xml:space="preserve"><value>Zatím nejsou k dispozici žádné opravy.</value></data>
+  <data name="Fixes_SignIn" xml:space="preserve"><value>Pro stahování oprav se přihlaste přes Discord.</value></data>
+  <data name="Fixes_SignInRequired" xml:space="preserve"><value>Vyžadováno přihlášení</value></data>
+  <data name="Fixes_Toast_DownloadFailed" xml:space="preserve"><value>Stahování se nezdařilo</value></data>
+  <data name="Fixes_Toast_DownloadFailed_Body" xml:space="preserve"><value>Něco se pokazilo — zkuste to znovu.</value></data>
+  <data name="Fixes_Toast_InstallFailed" xml:space="preserve"><value>Instalace se nezdařila</value></data>
+  <data name="Fixes_Toast_InstallFailed_Body" xml:space="preserve"><value>Nepodařilo se nainstalovat — zavřete Steam (nebo jej restartujte) a zkuste to znovu.</value></data>
+  <data name="Fixes_Toast_FixInstalled" xml:space="preserve"><value>Oprava nainstalována</value></data>
+  <data name="Fixes_Toast_FixInstalled_Restarting" xml:space="preserve"><value>Manifest {0} nainstalován — Steam se restartuje.</value></data>
+  <data name="Fixes_Toast_FixInstalled_Restart" xml:space="preserve"><value>Manifest {0} nainstalován. Restartujte Steam, aby se použil.</value></data>
+  <data name="Fixes_Toast_GameNotFound" xml:space="preserve"><value>Hra nenalezena</value></data>
+  <data name="Fixes_Toast_GameNotFound_Body" xml:space="preserve"><value>Nejprve nainstalujte {0} do Steamu a poté použijte opravu.</value></data>
+  <data name="Fixes_Toast_PartiallyApplied" xml:space="preserve"><value>Oprava použita částečně</value></data>
+  <data name="Fixes_Toast_PartiallyApplied_Body" xml:space="preserve"><value>{0} soubor(ů) se nepodařilo zapsat — zavřete hru a zkuste to znovu.</value></data>
+  <data name="Fixes_Toast_FixApplied" xml:space="preserve"><value>Oprava použita</value></data>
+  <data name="Fixes_Toast_FixApplied_Body" xml:space="preserve"><value>Oprava {0} rozbalena do složky hry.</value></data>
+  <data name="Fixes_Toast_CouldntApply" xml:space="preserve"><value>Opravu se nepodařilo použít</value></data>
+  <data name="Fixes_Toast_Refreshed_Title" xml:space="preserve"><value>Obnoveno</value></data>
+  <data name="Fixes_Toast_Refreshed_Body" xml:space="preserve"><value>{0} her s fixy.</value></data>
+  <data name="Add_Title" xml:space="preserve"><value>Jdeme na Lua™!</value></data>
+  <data name="Add_Subtitle" xml:space="preserve"><value>Zadejte App ID, vložte odkaz Steam nebo vyhledejte podle názvu hry</value></data>
+  <data name="Add_SearchPlaceholder" xml:space="preserve"><value>Zadejte App ID nebo vyhledejte hry...</value></data>
+  <data name="Add_Featured_TopSellers" xml:space="preserve"><value>Nejprodávanější</value></data>
+  <data name="Add_Featured_NewReleases" xml:space="preserve"><value>Nově vydané</value></data>
+  <data name="Add_Released" xml:space="preserve"><value>Vydáno {0}</value></data>
+  <data name="Add_Fetch" xml:space="preserve"><value>Načíst</value></data>
+  <data name="Add_Checking" xml:space="preserve"><value>Kontrola…</value></data>
+  <data name="Add_Reveal" xml:space="preserve"><value>Zobrazit</value></data>
+  <data name="Add_Supporter" xml:space="preserve"><value>Supporter</value></data>
+  <data name="Add_Unlimited" xml:space="preserve"><value>Neomezeno</value></data>
+  <data name="Add_RequiresOwnKey" xml:space="preserve"><value>Vyžaduje váš vlastní klíč API</value></data>
+  <data name="Add_Discord" xml:space="preserve"><value>Discord</value></data>
+  <data name="Add_JoinDiscord" xml:space="preserve"><value>Připojte se k Discordu tohoto zdroje</value></data>
+  <data name="Add_Download" xml:space="preserve"><value>Stáhnout</value></data>
+  <data name="Add_NeedsDepotBoxKey" xml:space="preserve"><value>Vyžaduje klíč DepotBox</value></data>
+  <data name="Add_NeedsDepotBoxKey_Tip" xml:space="preserve"><value>Nastavte svůj klíč API DepotBox v Nastavení pro odemčení tohoto zdroje</value></data>
+  <data name="Add_Depots" xml:space="preserve"><value>DEPOTY</value></data>
+  <data name="Add_Available" xml:space="preserve"><value>DOSTUPNÉ</value></data>
+  <data name="Add_Missing" xml:space="preserve"><value>CHYBÍ</value></data>
+  <data name="Add_NoKey" xml:space="preserve"><value>BEZ KLÍČE</value></data>
+  <data name="Add_DownloadLua" xml:space="preserve"><value>Stáhnout .lua</value></data>
+  <data name="Add_Generating" xml:space="preserve"><value>Generování…</value></data>
+  <data name="Add_DlcHint" xml:space="preserve"><value>Umístěte soubor .lua do steam\config\stplug-in — ujistěte se, že je přidána i základní hra. Započítává se do vašeho denního limitu (25/den).</value></data>
+  <data name="Add_AlreadyHaveFiles" xml:space="preserve"><value>Už soubory máte?</value></data>
+  <data name="Add_SignIn_Dlc" xml:space="preserve"><value>Pro zobrazení odemknutí DLC se přihlaste přes Discord.</value></data>
+  <data name="Add_SignIn_Download" xml:space="preserve"><value>Pro stahování se přihlaste přes Discord.</value></data>
+  <data name="Add_Err_BaseGame" xml:space="preserve"><value>Nepodařilo se určit základní hru pro toto DLC</value></data>
+  <data name="Add_Err_Generic" xml:space="preserve"><value>Něco se pokazilo — zkontrolujte připojení a zkuste to znovu.</value></data>
+  <data name="Add_Err_Download" xml:space="preserve"><value>Stahování se nezdařilo — zkontrolujte připojení a zkuste to znovu.</value></data>
+  <data name="Add_Err_Generate" xml:space="preserve"><value>Generování se nezdařilo — zkontrolujte připojení a zkuste to znovu.</value></data>
+  <data name="Add_Confirm_Replace" xml:space="preserve"><value>Nahradit „{0}“?</value></data>
+  <data name="Add_Confirm_NoChanges" xml:space="preserve"><value>Žádné změny depotu/DLC — stejný obsah.</value></data>
+  <data name="Add_Status_Cancelled" xml:space="preserve"><value>Instalace zrušena — stávající soubory zůstaly beze změny.</value></data>
+  <data name="Add_Status_InstallFailed" xml:space="preserve"><value>Nepodařilo se nainstalovat {0} soubor(ů) — zavřete Steam (nebo použijte Restartovat Steam) a zkuste to znovu.</value></data>
+  <data name="Add_Status_AddedManifests" xml:space="preserve"><value>{0} přidáno — lua + {1} manifest(ů). Restartujte Steam, aby se použil.</value></data>
+  <data name="Add_Status_AddedFetch" xml:space="preserve"><value>{0} přidáno — Steam načte manifesty. Restartujte Steam, aby se použil.</value></data>
+  <data name="Confirm_OpenSteamDb" xml:space="preserve"><value>Otevřít na SteamDB</value></data>
+  <data name="Confirm_Shared" xml:space="preserve"><value>SDÍLENÝ</value></data>
+  <data name="Confirm_ReviewChanges" xml:space="preserve"><value>Tím se nahradí nainstalovaný lua. Zkontrolujte, co se mění:</value></data>
+  <data name="Confirm_Adding" xml:space="preserve"><value>Přidávání ({0})</value></data>
+  <data name="Confirm_Removing" xml:space="preserve"><value>Odebírání ({0})</value></data>
+  <data name="Confirm_Skip" xml:space="preserve"><value>Přeskočit</value></data>
+  <data name="Confirm_Replace" xml:space="preserve"><value>Nahradit</value></data>
+  <data name="Settings_Section_Startup" xml:space="preserve"><value>SPUŠTĚNÍ</value></data>
+  <data name="Settings_StartWithWindows" xml:space="preserve"><value>Spustit se systémem Windows</value></data>
+  <data name="Settings_StartWithWindows_Hint" xml:space="preserve"><value>Automaticky spustit DepotTools při startu systému Windows.</value></data>
+  <data name="Settings_MinimizeToTray" xml:space="preserve"><value>Minimalizovat do oznamovací oblasti</value></data>
+  <data name="Settings_MinimizeToTray_Hint" xml:space="preserve"><value>Při zavření okna nechat DepotTools běžet v oznamovací oblasti místo ukončení. Dvojklikem na ikonu obnovíte okno.</value></data>
+  <data name="Tray_Open" xml:space="preserve"><value>Otevřít DepotTools</value></data>
+  <data name="Tray_Exit" xml:space="preserve"><value>Ukončit</value></data>
+
+  <data name="Add_FastFetch" xml:space="preserve"><value>FastFetch™️</value></data>
+  <data name="Add_FastFetch_Hint" xml:space="preserve"><value>Automatické stažení z prvního dostupného zdroje</value></data>
+  <data name="Add_FastFetch_NoSource" xml:space="preserve"><value>Pro tuto hru nebyly nalezeny žádné dostupné zdroje</value></data>
+  <data name="Add_FastFetch_Via" xml:space="preserve"><value>· přes {0}</value></data>
+  <data name="Plugin_Title" xml:space="preserve"><value>Plugin DepotTools</value></data>
+  <data name="Plugin_Subtitle" xml:space="preserve"><value>Plugin DepotTools pro Steam! — Nyní používá LuaLoader místo Shittenium</value></data>
+  <data name="Plugin_CardTitle" xml:space="preserve"><value>Stav</value></data>
+  <data name="Plugin_Badge_UpdateAvailable" xml:space="preserve"><value>Dostupná aktualizace</value></data>
+  <data name="Plugin_Row_InstalledVersion" xml:space="preserve"><value>Nainstalovaná verze</value></data>
+  <data name="Plugin_Row_LatestVersion" xml:space="preserve"><value>Nejnovější verze</value></data>
+  <data name="Plugin_Row_Frontend" xml:space="preserve"><value>Frontend</value></data>
+  <data name="Plugin_Row_Loader" xml:space="preserve"><value>Zavaděč (winmm.dll)</value></data>
+  <data name="Plugin_Millennium_Coexisting" xml:space="preserve"><value>Zjištěn Millennium — DepotTools běží vedle něj. Instalace zakáže vlastní kopii tohoto pluginu v Millenniu, takže vkládá pouze LuaLoader.</value></data>
+  <data name="Plugin_Footer" xml:space="preserve"><value>LuaLoader se nainstaluje do složky Steam. Tato aplikace funguje jako backend — pokud ji zavřete z oznamovací oblasti, plugin přestane fungovat!</value></data>
+  <data name="Plugin_Btn_Install" xml:space="preserve"><value>Instalovat</value></data>
+  <data name="Plugin_Btn_Update" xml:space="preserve"><value>Aktualizovat</value></data>
+  <data name="Plugin_Btn_Reinstall" xml:space="preserve"><value>Přeinstalovat</value></data>
+  <data name="Plugin_Btn_Uninstall" xml:space="preserve"><value>Odinstalovat</value></data>
+  <data name="Plugin_Btn_CheckForUpdates" xml:space="preserve"><value>Zkontrolovat aktualizace</value></data>
+  <data name="Plugin_Checking" xml:space="preserve"><value>Kontrola…</value></data>
+  <data name="Plugin_Status_Installed" xml:space="preserve"><value>Nainstalováno</value></data>
+  <data name="Plugin_Status_NotInstalled" xml:space="preserve"><value>Nenainstalováno</value></data>
+  <data name="Plugin_Status_UpToDate" xml:space="preserve"><value>Aktuální</value></data>
+  <data name="Plugin_Status_OutOfDate" xml:space="preserve"><value>Zastaralé</value></data>
+  <data name="Plugin_Version_Unknown" xml:space="preserve"><value>neznámá</value></data>
+  <data name="Plugin_Version_Offline" xml:space="preserve"><value>offline</value></data>
+  <data name="Plugin_Status_OfflineCheck" xml:space="preserve"><value>GitHub není dostupný pro kontrolu aktualizací.</value></data>
+  <data name="Plugin_Status_Port8080Busy" xml:space="preserve"><value>Port 8080 už používá jiný program — prohlížečový most pluginu nemusí fungovat. Zavřete cokoli, co tento port používá, a znovu nainstalujte nebo restartujte Steam.</value></data>
+  <data name="Plugin_Confirm_RestartBody" xml:space="preserve"><value>Tímto se Steam zavře a restartuje, aby se zavaděč projevil. Pokračovat?</value></data>
+  <data name="Plugin_Confirm_RestartCaption" xml:space="preserve"><value>Restartovat Steam</value></data>
+  <data name="Plugin_Toast_Title" xml:space="preserve"><value>Plugin</value></data>
+  <data name="Plugin_Toast_Installed" xml:space="preserve"><value>Plugin nainstalován. Steam se restartuje, aby jej načetl.</value></data>
+  <data name="Plugin_Toast_InstallFailed" xml:space="preserve"><value>Instalace selhala: {0}</value></data>
+  <data name="Plugin_Toast_Removed" xml:space="preserve"><value>Plugin odebrán. Steam se restartuje.</value></data>
+  <data name="Plugin_Toast_UninstallFailed" xml:space="preserve"><value>Odinstalace selhala: {0}</value></data>
+  <data name="Plugin_Toast_UpdateAvailable" xml:space="preserve"><value>Je dostupná aktualizace.</value></data>
+  <data name="Plugin_Toast_UpToDate" xml:space="preserve"><value>Máte nejnovější verzi.</value></data>
+  <data name="Plugin_Err_SteamNotFound" xml:space="preserve"><value>Instalace Steamu nebyla nalezena.</value></data>
+  <data name="Plugin_Err_GithubUnreachable" xml:space="preserve"><value>GitHub není dostupný pro stažení nejnovější verze.</value></data>
+  <data name="Plugin_Err_MissingAssets" xml:space="preserve"><value>Ve vydání {0} chybí {1} nebo {2}.</value></data>
+  <data name="Plugin_Err_VerifyFailed" xml:space="preserve"><value>Ověření hashe {0} selhalo.</value></data>
+  <data name="Plugin_Err_NoDepotToolsJs" xml:space="preserve"><value>plugin.zip neobsahoval public/depottools.js.</value></data>
+  <data name="Plugin_About_Header" xml:space="preserve"><value>Hlavní funkce</value></data>
+  <data name="Plugin_Feature_StoreButton" xml:space="preserve"><value>Přidá tlačítko „Add via DepotTools“ na stránky obchodu Steam</value></data>
+  <data name="Plugin_Feature_AutoUpdate" xml:space="preserve"><value>Automaticky se aktualizuje</value></data>
+  <data name="Plugin_Feature_Millennium" xml:space="preserve"><value>Funguje s Millennium i bez něj</value></data>
+  <data name="Drop_LinkHint" xml:space="preserve"><value>…nebo sem přetáhněte odkaz ze SteamDB / obchodu Steam a hru tím přidejte.</value></data>
+  <data name="Manage_Action_ManageBuild" xml:space="preserve"><value>Spravovat depoty</value></data>
+  <data name="Manage_AboutHeader" xml:space="preserve"><value>O hře</value></data>
+  <data name="Manage_Info_Developer" xml:space="preserve"><value>Vývojář</value></data>
+  <data name="Manage_Info_Publisher" xml:space="preserve"><value>Vydavatel</value></data>
+  <data name="Nav_Builds" xml:space="preserve"><value>Depoty</value></data>
+  <data name="Builds_Title" xml:space="preserve"><value>Depoty</value></data>
+  <data name="Builds_Subtitle" xml:space="preserve"><value>Uchovávejte více verzí souboru lua dané hry a vybírejte, kterou Steam používá.</value></data>
+  <data name="Builds_NoSelection" xml:space="preserve"><value>Vyberte hru vlevo a zobrazí se její předvolby.</value></data>
+  <data name="Builds_ActiveBuild" xml:space="preserve"><value>Aktivní předvolba</value></data>
+  <data name="Builds_Active" xml:space="preserve"><value>AKTIVNÍ</value></data>
+  <data name="Builds_Variant_Default" xml:space="preserve"><value>Výchozí</value></data>
+  <data name="Builds_Variant_Build" xml:space="preserve"><value>Sestavení {0}</value></data>
+  <data name="Builds_Variant_Preset" xml:space="preserve"><value>Uloženo · {0}</value></data>
+  <data name="Builds_Pinned" xml:space="preserve"><value>Připnuto</value></data>
+  <data name="Builds_AutoUpdating" xml:space="preserve"><value>Automatické aktualizace</value></data>
+  <data name="Builds_LatestBuild" xml:space="preserve"><value>Nejnovější sestavení na Steamu: {0}</value></data>
+  <data name="Builds_Manifest" xml:space="preserve"><value>manifest {0}</value></data>
+  <data name="Builds_ManifestLatest" xml:space="preserve"><value>nejnovější je {0}</value></data>
+  <data name="Builds_PinDisabled" xml:space="preserve"><value>připnutí vypnuto (automatická aktualizace)</value></data>
+  <data name="Builds_Meta_Depots" xml:space="preserve"><value>{0} depotů · {1} DLC</value></data>
+  <data name="Builds_Meta_Unsaved" xml:space="preserve"><value>neuloženo</value></data>
+  <data name="Builds_Source" xml:space="preserve"><value>z {0}</value></data>
+  <data name="Builds_Action_Apply" xml:space="preserve"><value>Použít</value></data>
+  <data name="Builds_Action_Rename" xml:space="preserve"><value>Přejmenovat</value></data>
+  <data name="Builds_Action_Edit" xml:space="preserve"><value>Upravit</value></data>
+  <data name="Builds_Action_Delete" xml:space="preserve"><value>Smazat</value></data>
+  <data name="Builds_Action_Save" xml:space="preserve"><value>Uložit</value></data>
+  <data name="Builds_Action_SaveAsPreset" xml:space="preserve"><value>Uložit jako předvolbu</value></data>
+  <data name="Builds_Action_Cancel" xml:space="preserve"><value>Zrušit</value></data>
+  <data name="Builds_RenamePlaceholder" xml:space="preserve"><value>Pojmenujte tuto předvolbu…</value></data>
+  <data name="Builds_Editor_Title" xml:space="preserve"><value>Úprava souboru lua, který Steam používá</value></data>
+  <data name="Builds_Delete_Title" xml:space="preserve"><value>Smazat tuto předvolbu?</value></data>
+  <data name="Builds_Delete_Body" xml:space="preserve"><value>„{0}“ bude odebrána z uložených předvoleb. Na samotnou hru to nemá vliv.</value></data>
+  <data name="Builds_Delete_ActiveTip" xml:space="preserve"><value>Předvolbu, která se právě používá, nelze smazat.</value></data>
+  <data name="Builds_Apply_Done" xml:space="preserve"><value>Nyní se používá „{0}“. Restartujte Steam, aby se změna projevila.</value></data>
+  <data name="Builds_Apply_Failed" xml:space="preserve"><value>Předvolbu se nepodařilo přepnout — soubor lua může být používán.</value></data>
+  <data name="Builds_Save_Done" xml:space="preserve"><value>Uloženo. Restartujte Steam, aby se změna projevila.</value></data>
+  <data name="Builds_Save_Failed" xml:space="preserve"><value>Nepodařilo se uložit — soubor lua může být používán.</value></data>
+  <data name="Builds_Preset_Saved" xml:space="preserve"><value>Uloženo jako předvolba.</value></data>
+  <data name="Builds_Action_SaveTo" xml:space="preserve"><value>Uložit do „{0}“</value></data>
+  <data name="Builds_Action_SaveAsNew" xml:space="preserve"><value>Uložit jako nové</value></data>
+  <data name="Builds_Save_Updated" xml:space="preserve"><value>„{0}“ aktualizováno.</value></data>
+  <data name="Builds_Depot_Lock" xml:space="preserve"><value>Zamknout</value></data>
+  <data name="Builds_Depot_LockTip" xml:space="preserve"><value>Zamčeno: tento depot zůstává na manifestu výše. Odemčeno: Steam jej aktualizuje na nejnovější verzi. (Zakomentuje nebo odkomentuje řádek setManifestid.)</value></data>
+  <data name="Builds_Depot_EnableTip" xml:space="preserve"><value>Zapnuto: použije se dešifrovací klíč tohoto depotu. Vypnuto: depot se vůbec neodemkne. (Zakomentuje nebo odkomentuje řádek addappid.)</value></data>
+  <data name="Builds_Depot_Search" xml:space="preserve"><value>Hledat depoty podle názvu, ID nebo typu…</value></data>
+  <data name="Builds_Depot_NoMatch" xml:space="preserve"><value>Vašemu hledání neodpovídá žádný depot.</value></data>
+  <data name="Builds_Depot_InactiveNote" xml:space="preserve"><value>Upravujete předvolbu, která není použitá — změny se ukládají přímo do ní a Steam dál používá použitou předvolbu, dokud nekliknete na Použít.</value></data>
+  <data name="Manage_Action_LaunchOptions" xml:space="preserve"><value>Možnosti spuštění…</value></data>
+  <data name="Launch_Title" xml:space="preserve"><value>Možnosti spuštění</value></data>
+  <data name="Launch_Loading" xml:space="preserve"><value>Načítání mezipaměti aplikací Steamu…</value></data>
+  <data name="Launch_NotFound" xml:space="preserve"><value>Steam zatím nemá o této hře uložené informace. Spusťte jednou Steam a zkuste to znovu.</value></data>
+  <data name="Launch_UnsupportedFormat" xml:space="preserve"><value>Mezipaměť aplikací Steamu je ve formátu, kterému tato verze nerozumí ({0}). Aktualizujte DepotTools.</value></data>
+  <data name="Launch_ReadFailed" xml:space="preserve"><value>Nepodařilo se načíst mezipaměť aplikací Steamu. {0}</value></data>
+  <data name="Launch_ExecutableRequired" xml:space="preserve"><value>Každá možnost spuštění potřebuje spustitelný soubor.</value></data>
+  <data name="Launch_Add" xml:space="preserve"><value>Přidat</value></data>
+  <data name="Launch_Delete" xml:space="preserve"><value>Smazat</value></data>
+  <data name="Launch_Field_Executable" xml:space="preserve"><value>Spustitelný soubor</value></data>
+  <data name="Launch_Field_Arguments" xml:space="preserve"><value>Argumenty</value></data>
+  <data name="Launch_Field_WorkingDir" xml:space="preserve"><value>Pracovní adresář</value></data>
+  <data name="Launch_Field_Description" xml:space="preserve"><value>Popisek (zobrazuje se v nabídce hraní na Steamu)</value></data>
+  <data name="Launch_Field_Os" xml:space="preserve"><value>Operační systém</value></data>
+  <data name="Launch_Field_Type" xml:space="preserve"><value>Typ</value></data>
+  <data name="Launch_Field_BetaKey" xml:space="preserve"><value>Jen ve větvi</value></data>
+  <data name="Launch_Field_BetaKey_Tip" xml:space="preserve"><value>Název větve, na kterou je tato možnost omezena — například beta, default, development. Ponechte prázdné, aby se zobrazovala ve všech větvích.</value></data>
+  <data name="Launch_Field_OwnsDlc" xml:space="preserve"><value>Jen při vlastnictví DLC (App ID)</value></data>
+  <data name="Launch_InstallPath" xml:space="preserve"><value>Cesta instalace: {0}</value></data>
+  <data name="Launch_SteamRestartNote" xml:space="preserve"><value>Použití změn zavře a znovu otevře Steam.</value></data>
+  <data name="Launch_Restore" xml:space="preserve"><value>Obnovit původní</value></data>
+  <data name="Launch_Restore_Tip" xml:space="preserve"><value>Vrátí možnosti spuštění, se kterými Steam přišel, před jejich změnou v DepotTools.</value></data>
+  <data name="Launch_Restore_Title" xml:space="preserve"><value>Obnovit původní možnosti spuštění?</value></data>
+  <data name="Launch_Restore_Body" xml:space="preserve"><value>Tím se možnosti spuštění vrátí do stavu, v jakém je měl Steam, a vaše změny se zahodí. Steam bude zavřen a znovu otevřen. Pokračovat?</value></data>
+  <data name="Launch_NothingToRestore" xml:space="preserve"><value>Tato hra nebyla změněna, takže není co obnovovat.</value></data>
+  <data name="Launch_ApplyNow_Title" xml:space="preserve"><value>Použít ve Steamu hned?</value></data>
+  <data name="Launch_ApplyNow_Body" xml:space="preserve"><value>Vaše změny jsou uložené. Jejich zápis do Steamu vyžaduje zavřít a znovu otevřít Steam — udělat to teď? Zvolte Zrušit, chcete-li je použít později.</value></data>
+  <data name="Launch_Staged" xml:space="preserve"><value>Uloženo. Použijte je z tohoto okna, až budete moci restartovat Steam.</value></data>
+  <data name="Launch_Applied" xml:space="preserve"><value>Možnosti spuštění byly použity.</value></data>
+  <data name="Launch_Applied_Restarted" xml:space="preserve"><value>Možnosti spuštění byly použity. Steam byl restartován.</value></data>
+  <data name="Launch_ApplyFailed" xml:space="preserve"><value>Možnosti spuštění se nepodařilo použít. {0}</value></data>
+  <data name="Launch_Drift_Title" xml:space="preserve"><value>Možnosti spuštění byly resetovány</value></data>
+  <data name="Launch_Drift_Body" xml:space="preserve"><value>Steam přepsal vaše možnosti spuštění u {0} her. Opětovné použití zavře a znovu otevře Steam.</value></data>
+  <data name="Launch_Drift_Action" xml:space="preserve"><value>Použít znovu</value></data>
+  <data name="Err_SteamNotFound" xml:space="preserve"><value>Umístění Steamu nenalezeno. Nastav ho v Nastavení.</value></data>
+  <data name="Err_GithubUnreachable" xml:space="preserve"><value>Nepodařilo se spojit s GitHubem. Zkontroluj připojení a zkus to znovu.</value></data>
+  <data name="Err_UpdateServerUnreachable" xml:space="preserve"><value>Nepodařilo se spojit s aktualizačním serverem. Zkontroluj připojení a zkus to znovu.</value></data>
+  <data name="Err_Cancelled" xml:space="preserve"><value>Zrušeno.</value></data>
+  <data name="Err_CancelledByUser" xml:space="preserve"><value>Zrušeno uživatelem</value></data>
+  <data name="Err_ReleaseMissingDownload" xml:space="preserve"><value>V releasu chybí očekávaný soubor ke stažení.</value></data>
+  <data name="Err_ReleaseMissingFile" xml:space="preserve"><value>V releasu chybí {0}.</value></data>
+  <data name="Err_VerifyFailed" xml:space="preserve"><value>Stažený soubor neprošel ověřením (nesouhlasí sha256).</value></data>
+  <data name="Err_VerifyFailedFile" xml:space="preserve"><value>{0} neprošel ověřením (nesouhlasí sha256).</value></data>
+  <data name="Err_DownloadMissingFiles" xml:space="preserve"><value>Ve stažených souborech chybí: {0}.</value></data>
+  <data name="Err_WriteFailedCount" xml:space="preserve"><value>Nepodařilo se zapsat {0} soubor(ů). Zavři Steam a zkus to znovu.</value></data>
+  <data name="Err_WriteFailedFile" xml:space="preserve"><value>Nepodařilo se zapsat {0}. Zavři Steam a zkus to znovu.</value></data>
+  <data name="Err_OpenDownloadFailed" xml:space="preserve"><value>Nepodařilo se otevřít stažený soubor: {0}</value></data>
+  <data name="Err_NoSourceAvailable" xml:space="preserve"><value>Pro tuto hru není dostupný žádný zdroj.</value></data>
+  <data name="Auth_Err_Timeout" xml:space="preserve"><value>Vypršel časový limit přihlášení. Prohlížeč neodpověděl.</value></data>
+  <data name="Auth_Err_TokenExchangeFailed" xml:space="preserve"><value>Výměna tokenu selhala ({0}): {1}</value></data>
+  <data name="Auth_Err_TokenExchangeEmpty" xml:space="preserve"><value>Výměna tokenu vrátila prázdnou relaci.</value></data>
+  <data name="Auth_Err_NotSignedIn" xml:space="preserve"><value>Nejsi přihlášen.</value></data>
+  <data name="Auth_Err_RefreshFailed" xml:space="preserve"><value>Obnovení relace selhalo ({0}).</value></data>
+  <data name="Auth_Err_RefreshEmpty" xml:space="preserve"><value>Obnovení relace vrátilo prázdnou relaci.</value></data>
+  <data name="Api_Err_EmptyDownloadLink" xml:space="preserve"><value>Odkaz ke stažení byl prázdný. Zkus to znovu.</value></data>
+  <data name="Api_Err_DownloadFailed" xml:space="preserve"><value>Stahování selhalo ({0}).</value></data>
+  <data name="Api_Err_RequestFailed" xml:space="preserve"><value>Požadavek selhal ({0})</value></data>
+  <data name="Api_Err_SessionExpired" xml:space="preserve"><value>Relace vypršela. Přihlas se znovu.</value></data>
+  <data name="DepotBox_Err_InvalidKey" xml:space="preserve"><value>Tvůj klíč DepotBox je neplatný nebo vypršel.</value></data>
+  <data name="DepotBox_Err_LimitReached" xml:space="preserve"><value>Dosáhl jsi denního limitu DepotBox.</value></data>
+  <data name="DepotBox_Err_NoManifest" xml:space="preserve"><value>Pro tuto aplikaci není dostupný žádný manifest DepotBox.</value></data>
+  <data name="DepotBox_Err_DownloadFailed" xml:space="preserve"><value>Stahování z DepotBox selhalo ({0}).</value></data>
+</root>

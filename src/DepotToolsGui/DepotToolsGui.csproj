@@ -1,0 +1,64 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <AssemblyName>DepotTools</AssemblyName>
+    <AssemblyTitle>DepotTools</AssemblyTitle>
+    <Product>DepotTools</Product>
+    <Version>1.1.6</Version>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+    <!-- Velopack needs a custom Main (Program.Main) that runs before WPF -->
+    <StartupObject>DepotToolsGui.Program</StartupObject>
+  </PropertyGroup>
+
+  <!-- UseWindowsForms (for the tray NotifyIcon) injects WinForms into the implicit global usings, which
+       collides with WPF types (Application, UserControl, DragEventArgs…). We reference WinForms fully
+       qualified, so strip those implicit usings to keep WPF unambiguous. -->
+  <ItemGroup>
+    <Using Remove="System.Windows.Forms" />
+    <Using Remove="System.Drawing" />
+  </ItemGroup>
+
+  <!-- Let the test project reach internal members (e.g. Program.MatchOsLanguage). -->
+  <ItemGroup>
+    <InternalsVisibleTo Include="DepotTools.Tests" />
+  </ItemGroup>
+
+  <!-- Make App.xaml a Page so the SDK doesn't auto-generate a Main that conflicts with Program.Main -->
+  <ItemGroup>
+    <ApplicationDefinition Remove="App.xaml" />
+    <Page Include="App.xaml" />
+  </ItemGroup>
+
+  <!-- Embed icon.ico as a resource so the Window Icon="icon.ico" can resolve it at runtime -->
+  <ItemGroup>
+    <Resource Include="icon.ico" />
+  </ItemGroup>
+
+  <!-- Public source tree. No plugin frontend, injected browser code, or downloaded executable assets are bundled. -->
+
+
+  <!-- Localization RESX. We hand-maintain Strings.Designer.cs (works under dotnet watch), so disable the
+       SDK's auto-generated designer to avoid a duplicate Strings class. zh-Hans builds a satellite asm. -->
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\Strings*.resx">
+      <Generator></Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
+    <PackageReference Include="Markdig.Wpf" Version="0.5.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.9" />
+    <PackageReference Include="System.Security.Cryptography.ProtectedData" Version="10.0.9" />
+    <PackageReference Include="Velopack" Version="1.2.0" />
+    <PackageReference Include="VirtualizingWrapPanel" Version="2.5.1" />
+    <PackageReference Include="WPF-UI" Version="4.3.0" />
+  </ItemGroup>
+
+</Project>

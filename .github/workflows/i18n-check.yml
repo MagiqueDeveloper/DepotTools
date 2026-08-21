@@ -1,0 +1,29 @@
+name: i18n check
+
+# Validates the localization RESX files on every PR/push that touches them:
+# same key set as English, valid XML, consistent {0}/{1} placeholders.
+# This guards against community translation PRs that drop keys or break interpolation.
+on:
+  pull_request:
+    paths:
+      - 'src/DepotToolsGui/Resources/Strings*.resx'
+      - 'scripts/check-i18n.py'
+  push:
+    branches: [master, main]
+    paths:
+      - 'src/DepotToolsGui/Resources/Strings*.resx'
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Validate translations
+        run: python scripts/check-i18n.py

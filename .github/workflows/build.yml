@@ -1,0 +1,91 @@
+name: Build DepotTools
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build and test
+    runs-on: windows-latest
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Install .NET 8 SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore dependencies
+        run: dotnet restore DepotToolsGui.sln
+
+      - name: Build Release
+        run: dotnet build DepotToolsGui.sln --configuration Release --no-restore
+
+      - name: Run tests
+        run: dotnet test DepotToolsGui.sln --configuration Release --no-build --no-restore --verbosity normal
+
+      - name: Publish Windows build
+        run: >-
+          dotnet publish src/DepotToolsGui/DepotToolsGui.csproj
+          --configuration Release
+          --framework net8.0-windows
+          --runtime win-x64
+          --self-contained false
+          --output ${{ runner.temp }}/DepotTools-publish
+
+      - name: Upload Windows build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: DepotTools-win-x64
+          path: ${{ runner.temp }}/DepotTools-publish
+          if-no-files-found: error
+
+      - name: Install Velopack CLI
+        if: github.event_name == 'release'
+        run: dotnet tool install --global vpk --version 1.2.0
+
+      - name: Build portable ZIP and setup installer
+        if: github.event_name == 'release'
+        shell: pwsh
+        run: |
+          $version = "${{ github.event.release.tag_name }}".TrimStart('v')
+          $output = "${{ runner.temp }}/DepotTools-release"
+          New-Item -ItemType Directory -Force -Path $output | Out-Null
+          & "$env:USERPROFILE/.dotnet/tools/vpk.exe" pack `
+            --packId DepotTools `
+            --packVersion $version `
+            --packDir "${{ runner.temp }}/DepotTools-publish" `
+            --mainExe DepotTools.exe `
+            --packTitle DepotTools `
+            --packAuthors "DepotTools contributors" `
+            --runtime win-x64 `
+            --framework net8-x64-desktop `
+            --outputDir $output
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          Get-ChildItem -Path $output -File | Select-Object Name, Length
+
+      - name: Attach portable ZIP and setup installer to GitHub Release
+        if: github.event_name == 'release'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: pwsh
+        run: |
+          $release = "${{ github.event.release.tag_name }}"
+          $repo = "${{ github.repository }}"
+          $output = "${{ runner.temp }}/DepotTools-release"
+          $portable = Join-Path $output "DepotTools-win-Portable.zip"
+          $setup = Join-Path $output "DepotTools-win-Setup.exe"
+          if (-not (Test-Path $portable)) { throw "Portable ZIP was not created: $portable" }
+          if (-not (Test-Path $setup)) { throw "Setup installer was not created: $setup" }
+          gh release upload $release $portable $setup --clobber --repo $repo
