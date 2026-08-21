@@ -527,4 +527,14 @@
   <data name="DepotBox_Err_LimitReached" xml:space="preserve"><value>คุณใช้ DepotBox ครบตามขีดจำกัดรายวันแล้ว</value></data>
   <data name="DepotBox_Err_NoManifest" xml:space="preserve"><value>ไม่มี manifest ของ DepotBox สำหรับแอปนี้</value></data>
   <data name="DepotBox_Err_DownloadFailed" xml:space="preserve"><value>ดาวน์โหลดจาก DepotBox ไม่สำเร็จ ({0})</value></data>
+  <data name="Settings_Section_HydraCloud" xml:space="preserve"><value>CLOUD SAVES</value></data>
+  <data name="Settings_HydraCloud_Title" xml:space="preserve"><value>Hydra Cloud</value></data>
+  <data name="Settings_HydraCloud_Hint" xml:space="preserve"><value>Sync Steam game saves with Hydra Cloud. An active Hydra Cloud subscription is required.</value></data>
+  <data name="Settings_HydraCloud_SignIn" xml:space="preserve"><value>Sign in to Hydra</value></data>
+  <data name="Settings_HydraCloud_SignOut" xml:space="preserve"><value>Sign out</value></data>
+  <data name="Settings_HydraCloud_Refresh" xml:space="preserve"><value>Refresh</value></data>
+  <data name="Settings_HydraCloud_Automatic" xml:space="preserve"><value>Enable automatic cloud saves</value></data>
+  <data name="Settings_HydraCloud_Automatic_Hint" xml:space="preserve"><value>Sync installed Steam game saves when DepotTools starts and while it is running.</value></data>
+  <data name="Settings_HydraCloud_Ready" xml:space="preserve"><value>Hydra Cloud is ready.</value></data>
+  <data name="Settings_HydraCloud_SubscriptionRequired" xml:space="preserve"><value>An active Hydra Cloud subscription is required.</value></data>
 </root>
