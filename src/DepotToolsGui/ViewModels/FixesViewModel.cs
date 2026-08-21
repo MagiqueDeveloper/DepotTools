@@ -295,7 +295,7 @@ public partial class FixesViewModel : PagedListViewModel<FixGameCardVm>
     private async Task RunDownload(FixItemVm fix, string slot)
     {
         if (IsBusy) return;
-        if (string.IsNullOrWhiteSpace(settings.DepotBoxApiKey))
+        if (settings.UseApiKey && string.IsNullOrWhiteSpace(settings.DepotBoxApiKey))
         {
             toast.Show(Resources.Strings.Fixes_Toast_DownloadFailed,
                 Resources.Strings.Settings_DepotBoxKeyError, error: true);

@@ -33,8 +33,9 @@ public class AppSettings
     // UI language as a BCP-47 tag ("en", "zh-Hans"). Null = follow the Windows display language.
     public string? Language { get; set; }
 
-    // The user's own DepotBox (depotboxmanifest.com) API key ("smm_…"). Null = not configured; key-gated
-    // sources stay locked until set. Stored locally. The app calls DepotBox directly with it.
+    public bool? UseApiKey { get; set; }
+
+    // The user's own DepotBox API key. Null = not configured; it is not needed in broker mode.
     public string? DepotBoxApiKey { get; set; }
 
     // When true, register the app to launch on Windows sign-in (HKCU …\Run). Nullable so "never set"
@@ -114,7 +115,13 @@ public class SettingsService
         set { _settings.Language = string.IsNullOrWhiteSpace(value) ? null : value; Save(); }
     }
 
-    /// <summary>The user's DepotBox API key ("smm_…"), or null if not configured.</summary>
+    public bool UseApiKey
+    {
+        get => _settings.UseApiKey ?? false;
+        set { _settings.UseApiKey = value; Save(); }
+    }
+
+    /// <summary>The user's DepotBox API key, or null when broker mode is selected.</summary>
     public string? DepotBoxApiKey
     {
         get => _settings.DepotBoxApiKey;

@@ -67,14 +67,15 @@ public class DepotBoxService(SettingsService settings, CoverCache covers)
 
     public async Task<List<SteamSearchResult>> SearchAsync(string query, CancellationToken ct = default)
     {
-        if (string.IsNullOrWhiteSpace(settings.DepotBoxApiKey)) return [];
-        using var req = new HttpRequestMessage(HttpMethod.Post, "/api/search-games")
+        if (settings.UseApiKey && string.IsNullOrWhiteSpace(settings.DepotBoxApiKey)) return [];
+        using var req = new HttpRequestMessage(HttpMethod.Post, Endpoint("/api/search-games"))
         {
             Content = new StringContent(
                 JsonSerializer.Serialize(new { searchTerm = query, limit = 8, filter_dlc = "exclude", filter_availability = true }),
                 System.Text.Encoding.UTF8, "application/json"),
         };
-        req.Headers.TryAddWithoutValidation("X-API-Key", settings.DepotBoxApiKey);
+        if (settings.UseApiKey && !string.IsNullOrWhiteSpace(settings.DepotBoxApiKey))
+            req.Headers.TryAddWithoutValidation("X-API-Key", settings.DepotBoxApiKey);
         CountApiRequest();
         using var res = await _http.SendAsync(req, ct);
         if (!res.IsSuccessStatusCode) return [];
@@ -119,7 +120,7 @@ public class DepotBoxService(SettingsService settings, CoverCache covers)
     /// DLC / fast / plugin add), so this is also where the header image gets warmed into covers\.</summary>
     public async Task<GameDetails?> GetDetailsAsync(string appid, CancellationToken ct = default)
     {
-        if (!long.TryParse(appid, out long id) || string.IsNullOrWhiteSpace(settings.DepotBoxApiKey)) return null;
+        if (!long.TryParse(appid, out long id) || settings.UseApiKey && string.IsNullOrWhiteSpace(settings.DepotBoxApiKey)) return null;
         using var res = await SendApiAsync(HttpMethod.Get, $"/api/games/{id}", ct);
         if (!res.IsSuccessStatusCode) return null;
         var envelope = await ReadJsonAsync<DepotBoxGameDetailsResponse>(res, ct);
@@ -140,7 +141,7 @@ public class DepotBoxService(SettingsService settings, CoverCache covers)
     /// <summary>Source name → "available" | "unavailable" | other status.</summary>
     public async Task<Dictionary<string, string>> CheckSourcesAsync(string appid, CancellationToken ct = default)
     {
-        if (string.IsNullOrWhiteSpace(settings.DepotBoxApiKey)) return [];
+        if (settings.UseApiKey && string.IsNullOrWhiteSpace(settings.DepotBoxApiKey)) return [];
         using var res = await SendApiAsync(HttpMethod.Get, $"/api/games/{Uri.EscapeDataString(appid)}/availability", ct);
         if (!res.IsSuccessStatusCode) return [];
         var data = await ReadJsonAsync<DepotBoxAvailabilityResponse>(res, ct);
@@ -151,8 +152,8 @@ public class DepotBoxService(SettingsService settings, CoverCache covers)
 
     public async Task<DepotBoxUsageRecord?> GetStatsAsync(string key, CancellationToken ct = default)
     {
-        if (string.IsNullOrWhiteSpace(key)) return null;
-        using var res = await SendApiAsync(HttpMethod.Get, "/api/usage/stats", ct, key);
+        if (settings.UseApiKey && string.IsNullOrWhiteSpace(key)) return null;
+        using var res = await SendApiAsync(HttpMethod.Get, "/api/usage/stats", ct, settings.UseApiKey ? key : null);
         if (!res.IsSuccessStatusCode) return null;
         return new DepotBoxUsageRecord
         {
@@ -164,8 +165,8 @@ public class DepotBoxService(SettingsService settings, CoverCache covers)
 
     public async Task<DepotBoxManifestStatus?> CheckStatusAsync(string key, string appid, CancellationToken ct = default)
     {
-        if (string.IsNullOrWhiteSpace(key)) return null;
-        using var res = await SendApiAsync(HttpMethod.Get, $"/api/games/{Uri.EscapeDataString(appid)}/availability", ct, key);
+        if (settings.UseApiKey && string.IsNullOrWhiteSpace(key)) return null;
+        using var res = await SendApiAsync(HttpMethod.Get, $"/api/games/{Uri.EscapeDataString(appid)}/availability", ct, settings.UseApiKey ? key : null);
         if (!res.IsSuccessStatusCode) return null;
         var data = await ReadJsonAsync<DepotBoxAvailabilityResponse>(res, ct);
         return new DepotBoxManifestStatus { ManifestFileExists = data?.Sources?.Values.Any(v => v) == true };
@@ -174,8 +175,8 @@ public class DepotBoxService(SettingsService settings, CoverCache covers)
     /// <summary>DepotBox availability is the source list used by the download picker.</summary>
     private async Task<HttpResponseMessage> SendApiAsync(HttpMethod method, string url, CancellationToken ct, string? key = null)
     {
-        using var req = new HttpRequestMessage(method, url);
-        var apiKey = key ?? settings.DepotBoxApiKey;
+        using var req = new HttpRequestMessage(method, Endpoint(url));
+        var apiKey = settings.UseApiKey ? key ?? settings.DepotBoxApiKey : null;
         if (!string.IsNullOrWhiteSpace(apiKey)) req.Headers.TryAddWithoutValidation("X-API-Key", apiKey);
         CountApiRequest();
         return await _http.SendAsync(req, ct);
@@ -225,7 +226,7 @@ public class DepotBoxService(SettingsService settings, CoverCache covers)
     // ── DepotBox game fixes ──────────────────────────────────────────
     public async Task<DenuvoListingsResponse?> GetDenuvoListingsAsync(CancellationToken ct = default)
     {
-        if (string.IsNullOrWhiteSpace(settings.DepotBoxApiKey)) return null;
+        if (settings.UseApiKey && string.IsNullOrWhiteSpace(settings.DepotBoxApiKey)) return null;
         using var res = await SendAsync(HttpMethod.Get, "/api/game-fixes?tag=online,bypass,hypervisor", ct);
         if (!res.IsSuccessStatusCode) return null;
         return await ReadJsonAsync<DenuvoListingsResponse>(res, ct);
@@ -233,7 +234,7 @@ public class DepotBoxService(SettingsService settings, CoverCache covers)
 
     public async Task<DenuvoFixesResponse?> GetDenuvoFixesAsync(string appid, CancellationToken ct = default)
     {
-        if (string.IsNullOrWhiteSpace(settings.DepotBoxApiKey)) return null;
+        if (settings.UseApiKey && string.IsNullOrWhiteSpace(settings.DepotBoxApiKey)) return null;
         using var res = await SendAsync(HttpMethod.Get, $"/api/game-fixes?q={Uri.EscapeDataString(appid)}", ct);
         if (!res.IsSuccessStatusCode) return null;
         var list = await ReadJsonAsync<DenuvoListingsResponse>(res, ct);
@@ -256,12 +257,18 @@ public class DepotBoxService(SettingsService settings, CoverCache covers)
 
     // ── Plumbing ────────────────────────────────────────────────────
 
+    private Uri Endpoint(string path)
+    {
+        var baseUrl = settings.UseApiKey ? AppConfig.DepotBoxBaseUrl : AppConfig.DepotToolsApiBaseUrl;
+        return new Uri(new Uri(baseUrl), path);
+    }
+
     private async Task<HttpResponseMessage> SendAsync(
         HttpMethod method, string url, CancellationToken ct,
         HttpCompletionOption completion = HttpCompletionOption.ResponseContentRead)
     {
-        var req = new HttpRequestMessage(method, url);
-        if (!string.IsNullOrWhiteSpace(settings.DepotBoxApiKey))
+        var req = new HttpRequestMessage(method, Endpoint(url));
+        if (settings.UseApiKey && !string.IsNullOrWhiteSpace(settings.DepotBoxApiKey))
             req.Headers.TryAddWithoutValidation("X-API-Key", settings.DepotBoxApiKey);
         CountApiRequest();
 

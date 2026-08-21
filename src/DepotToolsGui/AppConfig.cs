@@ -6,8 +6,8 @@ namespace DepotToolsGui;
 /// </summary>
 public static class AppConfig
 {
-    // DepotBox is the sole remote API used for search, details, availability, fixes, and downloads.
     public const string DepotBoxBaseUrl = "https://depotbox.org";
+    public const string DepotToolsApiBaseUrl = "https://depot.magique.dev";
 
     // The standard DepotBox daily download cap (DepotBox-keyed downloads are exempt). Hardcoded here
     // because the web app enforces it inline with no API field exposing it; change in one place if it moves.

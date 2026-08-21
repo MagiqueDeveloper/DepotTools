@@ -53,12 +53,21 @@ dotnet publish src/DepotToolsGui/DepotToolsGui.csproj \
 
 ## DepotBox setup
 
+DepotTools supports two modes:
+
+- **Use API Key enabled:** the user enters their own DepotBox key in Settings and the app connects directly to `https://depotbox.org`.
+- **Use API Key disabled (default):** the app connects to `https://depot.magique.dev` without sending a DepotBox key from the client.
+
+The broker project is maintained separately from the desktop app. It must be deployed behind HTTPS at `https://depot.magique.dev` before the default DepotTools API mode can be used by public users.
+
+For Use API Key mode:
+
 1. Open **Settings**.
 2. Enter your own DepotBox API key.
 3. Validate and save the key.
 4. Use Search, Add, and Fixes with the configured key.
 
-DepotTools does not contain a built-in API key. Never commit a key to source control, issue reports, workflow files, or screenshots.
+DepotTools does not contain a built-in DepotBox API key. Never commit a key to source control, issue reports, workflow files, or screenshots.
 
 ## Relationship to LuaTools
 

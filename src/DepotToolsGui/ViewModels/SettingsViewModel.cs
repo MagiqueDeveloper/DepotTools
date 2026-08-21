@@ -155,6 +155,16 @@ public partial class SettingsViewModel : ObservableObject
     }
 
     // ── DepotBox API key ──────────────────────────────────────────────
+    [ObservableProperty] private bool _useApiKey;
+
+    partial void OnUseApiKeyChanged(bool value)
+    {
+        _settings.UseApiKey = value;
+        DepotBoxIsKeyConfigured = !value || !string.IsNullOrEmpty(_settings.DepotBoxApiKey);
+        if (!value || !string.IsNullOrEmpty(_settings.DepotBoxApiKey)) { _depotBoxStatsTimer.Start(); RefreshDepotBoxStatsCommand.Execute(null); }
+        else _depotBoxStatsTimer.Stop();
+    }
+
     /// <summary>The key the user is typing/pasting. Starts blank. The saved key is never shown back.</summary>
     [ObservableProperty] private string _depotBoxKeyInput = "";
 
@@ -234,7 +244,8 @@ public partial class SettingsViewModel : ObservableObject
         _fastFetch = settings.FastFetch;
         _startWithWindows = settings.StartWithWindows; // default OFF. Init without triggering the registry write
         _minimizeToTray = settings.MinimizeToTray;
-        _depotBoxIsKeyConfigured = !string.IsNullOrEmpty(settings.DepotBoxApiKey);
+        _useApiKey = settings.UseApiKey;
+        _depotBoxIsKeyConfigured = !settings.UseApiKey || !string.IsNullOrEmpty(settings.DepotBoxApiKey);
 
         // Select the saved language (or "System default") without firing the restart prompt.
         _suppressLanguagePrompt = true;

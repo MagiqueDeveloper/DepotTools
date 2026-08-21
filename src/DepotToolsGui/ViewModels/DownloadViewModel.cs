@@ -324,7 +324,7 @@ public partial class DownloadViewModel : ObservableObject
     }
 
     /// <summary>DepotBox key is required for all API-backed downloads.</summary>
-    private bool HasDepotBoxKey => !string.IsNullOrWhiteSpace(_settings.DepotBoxApiKey);
+    private bool HasDepotBoxKey => !_settings.UseApiKey || !string.IsNullOrWhiteSpace(_settings.DepotBoxApiKey);
 
     // ── Search ──────────────────────────────────────────────────────
 
@@ -544,7 +544,7 @@ public partial class DownloadViewModel : ObservableObject
     private async Task AddDepotBoxSourceAsync(Dictionary<string, string> statuses, string appid)
     {
         string? key = _settings.DepotBoxApiKey;
-        if (string.IsNullOrEmpty(key))
+        if (string.IsNullOrEmpty(key) && _settings.UseApiKey)
         {
             // No key → we genuinely can't check (the status endpoint needs the key). Mark it "unknown"
             // so the row shows up locked with the "needs a key" hint and NO misleading availability badge.
@@ -552,7 +552,7 @@ public partial class DownloadViewModel : ObservableObject
             return;
         }
 
-        var status = await _depotBox.CheckStatusAsync(key, appid);
+        var status = await _depotBox.CheckStatusAsync(key ?? "", appid);
         statuses[DepotBoxSourceName] = status?.ManifestFileExists == true ? "available" : "unavailable";
     }
 
@@ -563,13 +563,13 @@ public partial class DownloadViewModel : ObservableObject
 
         // No key configured → lock the premium rows (the row shows the "needs DepotBox key" hint).
         string? key = _settings.DepotBoxApiKey;
-        if (string.IsNullOrEmpty(key))
+        if (string.IsNullOrEmpty(key) && _settings.UseApiKey)
         {
             foreach (var row in keyRows) row.IsLocked = true;
             return;
         }
 
-        var stats = await _depotBox.GetStatsAsync(key);
+        var stats = await _depotBox.GetStatsAsync(key ?? "");
         foreach (var row in keyRows)
         {
             row.IsLocked = stats?.CanMakeRequests != true;
