@@ -1,4 +1,7 @@
-<h1><img src="assets/depottools-icon.png" alt="DepotTools icon" width="48" height="48" /> DepotTools</h1>
+<h1>
+  <img src="assets/depottools-icon.png" alt="DepotTools icon" width="48" height="48" align="absmiddle" />
+  DepotTools
+</h1>
 
 A Windows desktop client for managing Steam manifests, Lua files, fixes, and game save backups.
 
@@ -7,17 +10,15 @@ DepotTools can search Steam games through DepotBox, manage local manifest and Lu
 ## Requirements
 
 - Windows 10/11
-- [.NET 8 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/8.0) (the released installer checks for it; building from source requires the full SDK)
-- A local Steam installation for Steam file-management features
-- A DepotBox API key when using direct DepotBox API mode
+- [.NET 8 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/8.0)
+- A local Steam installation
+- A DepotBox API key (only when using an API Key)
 - Microsoft Edge WebView2 Runtime for Hydra Cloud sign-in
 - An active Hydra Cloud subscription for Hydra Cloud sync
 
 ## Installation
 
-Download the latest build from the [releases](https://github.com/MagiqueDeveloper/DepotTools/releases/latest) page.
-
-The release includes a setup installer and a portable ZIP. Test builds are unsigned and may trigger a Windows SmartScreen warning.
+Download the latest build from the [releases](https://github.com/MagiqueDeveloper/DepotTools/releases/latest) page. The release includes a setup installer and a portable ZIP.
 
 ## Features
 
@@ -28,7 +29,6 @@ The release includes a setup installer and a portable ZIP. Test builds are unsig
 - Sync supported Steam game saves with Hydra Cloud using Ludusavi
 - Drag and drop supported files into the app
 - 29-language UI
-- Velopack updates and Windows installer
 
 ## Credits / Adjacent software
 
@@ -36,7 +36,7 @@ The release includes a setup installer and a portable ZIP. Test builds are unsig
 - [DepotBox](https://depotbox.org/): external service for Steam game data, manifests, availability, and fixes
 - [Hydra Launcher](https://github.com/hydralauncher/hydra): Hydra Cloud client integration reference
 
-DepotTools is not affiliated with DepotBox or Hydra.
+DepotTools is not affiliated with LuaTools, DepotBox, or Hydra.
 
 ## Licence
 
