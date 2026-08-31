@@ -75,7 +75,7 @@ jobs:
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           Get-ChildItem -Path $output -File | Select-Object Name, Length
 
-      - name: Attach portable ZIP and setup installer to GitHub Release
+      - name: Attach release artifacts to GitHub Release
         if: github.event_name == 'release'
         env:
           GH_TOKEN: ${{ github.token }}
@@ -84,8 +84,8 @@ jobs:
           $release = "${{ github.event.release.tag_name }}"
           $repo = "${{ github.repository }}"
           $output = "${{ runner.temp }}/DepotTools-release"
-          $portable = Join-Path $output "DepotTools-win-Portable.zip"
-          $setup = Join-Path $output "DepotTools-win-Setup.exe"
-          if (-not (Test-Path $portable)) { throw "Portable ZIP was not created: $portable" }
-          if (-not (Test-Path $setup)) { throw "Setup installer was not created: $setup" }
-          gh release upload $release $portable $setup --clobber --repo $repo
+          $assets = Get-ChildItem -Path $output -File
+          if ($assets.Count -eq 0) { throw "No release artifacts produced in $output" }
+          # Velopack auto-update reads releases.win.json (and the .nupkg packages it references),
+          # so the index and packages must be uploaded too — not just the portable zip / setup exe.
+          gh release upload $release $assets.FullName --clobber --repo $repo
