@@ -69,19 +69,41 @@
                                                 FontSize="15"
                                                 FontWeight="SemiBold"
                                                 Text="{Binding Title}" />
-                                            <!-- Recommended: green badge to steer users to the best option. -->
+                                            <!-- Active: green badge with a checkmark, always first. -->
                                             <Border
                                                 Margin="10,0,0,0"
                                                 Padding="7,2"
                                                 VerticalAlignment="Center"
                                                 Background="#2022c55e"
                                                 CornerRadius="4"
+                                                Visibility="{Binding IsActive, Converter={StaticResource BoolToVis}}">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <ui:SymbolIcon VerticalAlignment="Center" Foreground="#4ade80" Symbol="Checkmark24" />
+                                                    <TextBlock
+                                                        Margin="6,0,0,0"
+                                                        FontSize="10.5"
+                                                        FontWeight="SemiBold"
+                                                        Foreground="#4ade80"
+                                                        Text="{x:Static res:Strings.Mode_Active}" />
+                                                </StackPanel>
+                                            </Border>
+                                            <!-- Recommended: blue badge with a star. -->
+                                            <Border
+                                                Margin="10,0,0,0"
+                                                Padding="7,2"
+                                                VerticalAlignment="Center"
+                                                Background="#202563eb"
+                                                CornerRadius="4"
                                                 Visibility="{Binding IsRecommended, Converter={StaticResource BoolToVis}}">
-                                                <TextBlock
-                                                    FontSize="10.5"
-                                                    FontWeight="SemiBold"
-                                                    Foreground="#4ade80"
-                                                    Text="{x:Static res:Strings.Mode_Recommended}" />
+                                                <StackPanel Orientation="Horizontal">
+                                                    <ui:SymbolIcon VerticalAlignment="Center" Foreground="#60a5fa" Symbol="Star24" />
+                                                    <TextBlock
+                                                        Margin="6,0,0,0"
+                                                        FontSize="10.5"
+                                                        FontWeight="SemiBold"
+                                                        Foreground="#60a5fa"
+                                                        Text="{x:Static res:Strings.Mode_Recommended}" />
+                                                </StackPanel>
                                             </Border>
                                             <!-- Nightly: amber "Experimental" badge. -->
                                             <Border
@@ -96,19 +118,6 @@
                                                     FontWeight="SemiBold"
                                                     Foreground="#fbbf24"
                                                     Text="{x:Static res:Strings.Mode_Experimental}" />
-                                            </Border>
-                                            <Border
-                                                Margin="6,0,0,0"
-                                                Padding="7,2"
-                                                VerticalAlignment="Center"
-                                                Background="#207c3aed"
-                                                CornerRadius="4"
-                                                Visibility="{Binding IsActive, Converter={StaticResource BoolToVis}}">
-                                                <TextBlock
-                                                    FontSize="10.5"
-                                                    FontWeight="SemiBold"
-                                                    Foreground="#c4b5fd"
-                                                    Text="{x:Static res:Strings.Mode_Active}" />
                                             </Border>
                                         </StackPanel>
                                         <TextBlock

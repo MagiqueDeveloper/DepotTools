@@ -77,6 +77,7 @@ public sealed class GithubAsset
     [JsonPropertyName("name")] public string Name { get; set; } = "";
     [JsonPropertyName("browser_download_url")] public string DownloadUrl { get; set; } = "";
     [JsonPropertyName("digest")] public string? Digest { get; set; } // "sha256:<hex>"
+    [JsonPropertyName("size")] public long Size { get; set; }
 }
 
 /// <summary>Queried state for one mode. What a Mode-page card binds to.</summary>

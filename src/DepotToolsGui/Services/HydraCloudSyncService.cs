@@ -22,17 +22,22 @@ public sealed class HydraCloudSyncService : IDisposable
     private readonly SemaphoreSlim _gate = new(1, 1);
     private readonly System.Threading.Timer _timer;
     private readonly string _ludusaviPath;
+    private readonly LudusaviService _ludusavi;
     private readonly string _statePath;
     private bool _started;
 
     public event Action<string>? StatusChanged;
 
-    public HydraCloudSyncService(HydraCloudService cloud, SteamLibraryService steamLibrary, SettingsService settings)
+    public HydraCloudSyncService(HydraCloudService cloud, SteamLibraryService steamLibrary,
+        SettingsService settings, LudusaviService ludusavi)
     {
         _cloud = cloud;
         _steamLibrary = steamLibrary;
         _settings = settings;
-        _ludusaviPath = Path.Combine(AppContext.BaseDirectory, "ludusavi", "ludusavi.exe");
+        _ludusavi = ludusavi;
+        _ludusaviPath = Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+            "DepotToolsGui", "ludusavi", "ludusavi.exe");
         _statePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DepotToolsGui", "hydra-cloud-sync.json");
         _timer = new System.Threading.Timer(_ => _ = SyncAllAsync("periodic"), null, Timeout.Infinite, Timeout.Infinite);
     }
@@ -47,8 +52,8 @@ public sealed class HydraCloudSyncService : IDisposable
 
     public async Task<IReadOnlyList<HydraCloudSyncResult>> SyncAllAsync(string trigger, CancellationToken ct = default)
     {
-        if (!_settings.CloudSavesEnabled || !_cloud.HasActiveSubscription || !File.Exists(_ludusaviPath))
-            return [];
+        if (!_settings.CloudSavesEnabled || !_cloud.HasActiveSubscription) return [];
+        if (await _ludusavi.EnsureAsync(null, ct) is null) return [];
         if (!await _gate.WaitAsync(0, ct)) return [];
         try
         {

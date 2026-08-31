@@ -44,6 +44,14 @@ public partial class App : Application
                 services.AddSingleton<HydraCloudService>();
                 services.AddSingleton<HydraCloudSyncService>();
                 services.AddSingleton<UpdateService>();
+                services.AddSingleton<SteamAutoCrackService>();
+                services.AddSingleton<DepotDownloaderService>();
+                services.AddSingleton<LudusaviService>();
+                // Central download queue: one instance shared by every entry point. The hosted lifetime
+                // runs the scheduler pump; view models resolve the same instance to enqueue and observe.
+                services.AddSingleton<Services.Downloads.DownloadQueue>();
+                services.AddHostedService(sp => sp.GetRequiredService<Services.Downloads.DownloadQueue>());
+                services.AddSingleton<Services.Downloads.ManifestJobFactory>();
                 services.AddSingleton<DownloadViewModel>();
                 services.AddSingleton<SettingsViewModel>();
                 services.AddSingleton<ManageViewModel>();
@@ -52,6 +60,7 @@ public partial class App : Application
                 services.AddSingleton<HomeViewModel>();
                 services.AddSingleton<ModeViewModel>();
                 services.AddSingleton<FixesViewModel>();
+                services.AddSingleton<DownloadsViewModel>();
                 services.AddSingleton<OnboardingViewModel>();
                 services.AddSingleton<MainViewModel>();
                 // Pages resolved by NavigationView via the DI service provider.
@@ -59,6 +68,7 @@ public partial class App : Application
                 services.AddSingleton<DownloadView>();
                 services.AddSingleton<ManageView>();
                 services.AddSingleton<BuildsView>();
+                services.AddSingleton<DownloadsView>();
                 services.AddSingleton<ModeView>();
                 services.AddSingleton<FixesView>();
                 services.AddSingleton<SettingsView>();
@@ -268,6 +278,9 @@ public partial class App : Application
         var builds = _host.Services.GetRequiredService<BuildsViewModel>();
         manage.NavigateToBuilds = appId =>
             Dispatcher.Invoke(() => { window.NavigateToBuilds(); _ = builds.SelectAppAsync(appId); });
+
+        // Builds "Download" → navigate to Downloads once a depot job is queued.
+        builds.RequestShowDownloads = () => Dispatcher.Invoke(window.NavigateToDownloads);
 
         // Manage flyout "Launch options…" → modal editor over Steam's appinfo cache.
         manage.OpenLaunchOptions = (appId, name) => Dispatcher.Invoke(() =>

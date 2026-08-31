@@ -28,7 +28,7 @@ public static class AppConfig
     // Public GitHub repos used only for signed application updates. No plugin or loader assets are fetched.
     public static readonly string[] GithubReleasesRepos =
     [
-        "https://github.com/madoiscool/DepotTools",
+        "https://github.com/MagiqueDeveloper/DepotTools",
     ];
 
     /// <summary>The primary releases repo.</summary>
@@ -55,4 +55,19 @@ public static class AppConfig
         "https://ghfast.top/",     // download-only
         "https://gh.ddlc.top/",    // download-only
     ];
+
+    // ── Fetched third-party tools (downloaded+cached at runtime, never bundled) ─────────────
+    // DepotDownloaderMod pulls raw depot content from Steam's CDN. This is the re-pack repo (a
+    // self-contained win-x64 flat zip with DepotDownloaderMod.exe at the archive root), NOT the upstream
+    // SteamAutoCracks/DepotDownloaderMod repo, whose assets are a `Release.rar` System.IO.Compression
+    // can't read and whose build is framework-dependent net9.0.
+    public const string DepotDownloaderRepo = "mendy-tools/DepotDownloaderMod";
+
+    // SteamAutoCrack: the Downloads page fetches this release and launches its GUI. Framework-dependent
+    // net10.0-windows, so SteamAutoCrackService installs the .NET 10 Desktop runtime on demand.
+    public const string SteamAutoCrackRepo = "SteamAutoCracks/Steam-auto-crack";
+
+    // Ludusavi: the save-backup engine behind Hydra Cloud sync. Fetch a pinned release — its CLI and
+    // `simple` output format are not API-stable across releases, so bump deliberately, never via /latest.
+    public const string LudusaviRepo = "mtkennerly/ludusavi";
 }
