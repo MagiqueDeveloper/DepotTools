@@ -64,6 +64,7 @@
   <data name="Nav_Add" xml:space="preserve"><value>Tilføj</value></data>
   <data name="Nav_Manage" xml:space="preserve"><value>Administrer</value></data>
   <data name="Nav_Mode" xml:space="preserve"><value>Tilstand</value></data>
+  <data name="Nav_Downloads" xml:space="preserve"><value>Downloads</value></data>
   <data name="Nav_Fixes" xml:space="preserve"><value>Rettelser</value></data>
   <data name="Nav_RestartSteam" xml:space="preserve"><value>Genstart Steam</value></data>
   <data name="Nav_Settings" xml:space="preserve"><value>Indstillinger</value></data>
@@ -197,6 +198,66 @@
   <data name="Mode_Toast_InstallFailed" xml:space="preserve"><value>Installation mislykkedes</value></data>
   <data name="Mode_Toast_InstallFailed_Body" xml:space="preserve"><value>Noget gik galt.</value></data>
   <data name="Drop_Title" xml:space="preserve"><value>Slip .lua-, .manifest- eller .zip-filer her</value></data>
+  <data name="Depot_Cancel_Body" xml:space="preserve"><value>Der er allerede skrevet {0} til:
+{1}
+
+Ja - stop og slet filerne
+Nej - stop, men behold dem
+Annuller - fortsæt download</value></data>
+  <data name="Depot_Cancel_DeleteFailed" xml:space="preserve"><value>Kunne ikke slette de hentede filer. De ligger stadig i {0}.</value></data>
+  <data name="Depot_Cancel_Title" xml:space="preserve"><value>Annuller download</value></data>
+  <data name="Depot_Err_BadKey" xml:space="preserve"><value>Dekrypteringsnøglen til depot {0} er forkert.</value></data>
+  <data name="Depot_Err_Failed" xml:space="preserve"><value>Depot {0} fejlede: {1}</value></data>
+  <data name="Depot_Err_NoKeyFor" xml:space="preserve"><value>Ingen dekrypteringsnøgle i Lua til depot {0}.</value></data>
+  <data name="Depot_Err_NoKeys" xml:space="preserve"><value>Ingen dekrypteringsnøgler fundet til dette spil.</value></data>
+  <data name="Depot_Err_NoManifest" xml:space="preserve"><value>Kunne ikke hente dette depots manifest.</value></data>
+  <data name="Depot_Err_NoSpace" xml:space="preserve"><value>Ikke nok diskplads: kræver {0}, kun {1} ledig.</value></data>
+  <data name="Depot_Err_Tool" xml:space="preserve"><value>Kunne ikke hente depot-downloaderen.</value></data>
+  <data name="Depot_Status_Done" xml:space="preserve"><value>Hentede {0} depoter til {1}.</value></data>
+  <data name="Downloads_ActionRequired" xml:space="preserve"><value>Handling kræves</value></data>
+  <data name="Downloads_Action_Cancel" xml:space="preserve"><value>Annuller</value></data>
+  <data name="Downloads_Action_ClearHistory" xml:space="preserve"><value>Ryd historik</value></data>
+  <data name="Downloads_Action_MoveDown" xml:space="preserve"><value>Flyt ned</value></data>
+  <data name="Downloads_Action_MoveUp" xml:space="preserve"><value>Flyt op</value></data>
+  <data name="Downloads_Action_Pause" xml:space="preserve"><value>Pause</value></data>
+  <data name="Downloads_Action_Remove" xml:space="preserve"><value>Fjern</value></data>
+  <data name="Downloads_Action_Resume" xml:space="preserve"><value>Genoptag</value></data>
+  <data name="Downloads_Action_Retry" xml:space="preserve"><value>Prøv igen</value></data>
+  <data name="Downloads_Action_Review" xml:space="preserve"><value>Gennemse</value></data>
+  <data name="Downloads_ClearHistory_Confirm" xml:space="preserve"><value>Fjern alle {0} poster fra downloadhistorikken? Hentede filer påvirkes ikke.</value></data>
+  <data name="Downloads_Depot_FetchingManifest" xml:space="preserve"><value>henter manifest</value></data>
+  <data name="Downloads_Depot_PreAllocating" xml:space="preserve"><value>tildeler filer</value></data>
+  <data name="Downloads_Depot_Validating" xml:space="preserve"><value>kontrollerer eksisterende filer</value></data>
+  <data name="Downloads_Depots_GettingTool" xml:space="preserve"><value>Henter downloaderen</value></data>
+  <data name="Downloads_Depots_Preparing" xml:space="preserve"><value>Forbereder · {0} af {1}</value></data>
+  <data name="Downloads_Depots_Progress" xml:space="preserve"><value>Depoter · {0} af {1}</value></data>
+  <data name="Downloads_Empty" xml:space="preserve"><value>Ingen downloads lige nu. Kom i gang – hent noget!</value></data>
+  <data name="Downloads_Err_Interrupted" xml:space="preserve"><value>Afbrudt da appen blev lukket.</value></data>
+  <data name="Downloads_Eta" xml:space="preserve"><value>{0} tilbage</value></data>
+  <data name="Downloads_Kind_Depot" xml:space="preserve"><value>Depotfiler</value></data>
+  <data name="Downloads_Kind_Dlc" xml:space="preserve"><value>DLC-oplåsning</value></data>
+  <data name="Downloads_Kind_Tool" xml:space="preserve"><value>Værktøj</value></data>
+  <data name="Downloads_Of" xml:space="preserve"><value>{0} af {1}</value></data>
+  <data name="Downloads_SAC_Err_Launch" xml:space="preserve"><value>Kunne ikke starte SteamAutoCrack.</value></data>
+  <data name="Downloads_SAC_Err_Restart" xml:space="preserve"><value>.NET-runtime blev installeret, men Windows skal genstartes, før SteamAutoCrack kan køre.</value></data>
+  <data name="Downloads_SAC_Err_Runtime" xml:space="preserve"><value>Kunne ikke installere den .NET-runtime, SteamAutoCrack kræver.</value></data>
+  <data name="Downloads_SAC_Err_Tool" xml:space="preserve"><value>Kunne ikke hente SteamAutoCrack.</value></data>
+  <data name="Downloads_SAC_GettingRuntime" xml:space="preserve"><value>Kontrollerer .NET-runtime</value></data>
+  <data name="Downloads_SAC_GettingTool" xml:space="preserve"><value>Henter SteamAutoCrack</value></data>
+  <data name="Downloads_SAC_Launched" xml:space="preserve"><value>SteamAutoCrack er åbnet.</value></data>
+  <data name="Downloads_SAC_Updated" xml:space="preserve"><value>SteamAutoCrack er opdateret.</value></data>
+  <data name="Downloads_Section_Active" xml:space="preserve"><value>Kø</value></data>
+  <data name="Downloads_Section_History" xml:space="preserve"><value>Historik</value></data>
+  <data name="Downloads_Status_AwaitingConfirm" xml:space="preserve"><value>Venter på dig</value></data>
+  <data name="Downloads_Status_Cancelled" xml:space="preserve"><value>Annulleret</value></data>
+  <data name="Downloads_Status_Completed" xml:space="preserve"><value>Færdig</value></data>
+  <data name="Downloads_Status_Downloading" xml:space="preserve"><value>Downloader</value></data>
+  <data name="Downloads_Status_Failed" xml:space="preserve"><value>Mislykkedes</value></data>
+  <data name="Downloads_Status_Installing" xml:space="preserve"><value>Installerer</value></data>
+  <data name="Downloads_Status_Paused" xml:space="preserve"><value>Sat på pause</value></data>
+  <data name="Downloads_Status_Queued" xml:space="preserve"><value>I kø</value></data>
+  <data name="Downloads_Status_Verifying" xml:space="preserve"><value>Verificerer…</value></data>
+  <data name="Downloads_Title" xml:space="preserve"><value>Downloads</value></data>
   <data name="Drop_BrowseFiles" xml:space="preserve"><value>Gennemse filer…</value></data>
   <data name="Drop_Picker_Title" xml:space="preserve"><value>Vælg .lua- / .manifest- / .zip-filer</value></data>
   <data name="Drop_Picker_Filter" xml:space="preserve"><value>Lua / manifest / zip|*.lua;*.manifest;*.zip|Alle filer|*.*</value></data>
@@ -210,6 +271,7 @@
   <data name="Drop_Result_Failed" xml:space="preserve"><value> {0} fil(er) mislykkedes — luk Steam og prøv igen.</value></data>
   <data name="Drop_Result_RestartApply" xml:space="preserve"><value> Genstart Steam for at anvende.</value></data>
   <data name="Common_SearchPlaceholder" xml:space="preserve"><value>Søg efter navn eller App ID...</value></data>
+  <data name="Common_CopyAppId" xml:space="preserve"><value>Kopiér App ID</value></data>
   <data name="Common_Loading" xml:space="preserve"><value>Indlæser…</value></data>
   <data name="Common_AppId" xml:space="preserve"><value>App ID: {0}</value></data>
   <data name="Common_AppFallback" xml:space="preserve"><value>App {0}</value></data>
@@ -358,6 +420,7 @@ Dette sletter .lua-filerne fra Steam\config\stplug-in. Genstart Steam bagefter, 
   <data name="Confirm_OpenSteamDb" xml:space="preserve"><value>Åbn på SteamDB</value></data>
   <data name="Confirm_Shared" xml:space="preserve"><value>DELT</value></data>
   <data name="Confirm_ReviewChanges" xml:space="preserve"><value>Dette erstatter den installerede lua. Gennemgå, hvad der ændres:</value></data>
+  <data name="Common_ShowInFolder" xml:space="preserve"><value>Vis i mappe</value></data>
   <data name="Confirm_Adding" xml:space="preserve"><value>Tilføjer ({0})</value></data>
   <data name="Confirm_Removing" xml:space="preserve"><value>Fjerner ({0})</value></data>
   <data name="Confirm_Skip" xml:space="preserve"><value>Spring over</value></data>
@@ -438,9 +501,20 @@ Dette sletter .lua-filerne fra Steam\config\stplug-in. Genstart Steam bagefter, 
   <data name="Builds_PinDisabled" xml:space="preserve"><value>fastlåsning slået fra (auto-opdatering)</value></data>
   <data name="Builds_Meta_Depots" xml:space="preserve"><value>{0} depoter · {1} DLC</value></data>
   <data name="Builds_Meta_Unsaved" xml:space="preserve"><value>ikke gemt</value></data>
+  <data name="Builds_Select_All" xml:space="preserve"><value>Vælg alle</value></data>
+  <data name="Builds_Select_ChooseFolder" xml:space="preserve"><value>Vælg, hvor depotfilerne skal gemmes</value></data>
+  <data name="Builds_Select_Confirm" xml:space="preserve"><value>Hent {0} depoter ({1})</value></data>
+  <data name="Builds_Select_NoKey" xml:space="preserve"><value>Ingen dekrypteringsnøgle i Lua til denne depot.</value></data>
+  <data name="Builds_Select_NoManifest" xml:space="preserve"><value>Dette depot angiver ingen version at hente.</value></data>
+  <data name="Builds_Select_None" xml:space="preserve"><value>Ingen depoter valgt</value></data>
+  <data name="Builds_Select_SaveTo" xml:space="preserve"><value>Gem i</value></data>
+  <data name="Builds_Select_SharedHint" xml:space="preserve"><value>Delt runtime — normalt allerede installeret. Sæt flueben for at hente alligevel.</value></data>
+  <data name="Builds_Select_Space" xml:space="preserve"><value>Kræver {0} · {1} ledig på {2}</value></data>
+  <data name="Builds_Select_Title" xml:space="preserve"><value>Vælg depoter, der skal hentes</value></data>
   <data name="Builds_Source" xml:space="preserve"><value>fra {0}</value></data>
   <data name="Builds_Action_Apply" xml:space="preserve"><value>Anvend</value></data>
   <data name="Builds_Action_Rename" xml:space="preserve"><value>Omdøb</value></data>
+  <data name="Builds_Action_Download" xml:space="preserve"><value>Hent</value></data>
   <data name="Builds_Action_Edit" xml:space="preserve"><value>Rediger</value></data>
   <data name="Builds_Action_Delete" xml:space="preserve"><value>Slet</value></data>
   <data name="Builds_Action_Save" xml:space="preserve"><value>Gem</value></data>
@@ -504,10 +578,12 @@ Dette sletter .lua-filerne fra Steam\config\stplug-in. Genstart Steam bagefter, 
   <data name="Err_UpdateServerUnreachable" xml:space="preserve"><value>Kunne ikke nå opdateringsserveren. Tjek din forbindelse, og prøv igen.</value></data>
   <data name="Err_Cancelled" xml:space="preserve"><value>Annulleret.</value></data>
   <data name="Err_CancelledByUser" xml:space="preserve"><value>Annulleret af brugeren</value></data>
+  <data name="Err_PathMissing" xml:space="preserve"><value>Kunne ikke åbne {0} — den er måske flyttet eller slettet.</value></data>
   <data name="Err_ReleaseMissingDownload" xml:space="preserve"><value>Den forventede download mangler i udgivelsen.</value></data>
   <data name="Err_ReleaseMissingFile" xml:space="preserve"><value>{0} mangler i udgivelsen.</value></data>
   <data name="Err_VerifyFailed" xml:space="preserve"><value>Downloaden bestod ikke verificeringen (sha256 stemmer ikke).</value></data>
   <data name="Err_VerifyFailedFile" xml:space="preserve"><value>{0} bestod ikke verificeringen (sha256 stemmer ikke).</value></data>
+  <data name="Err_ClipboardBusy" xml:space="preserve"><value>Kunne ikke kopiere — en anden app bruger udklipsholderen.</value></data>
   <data name="Err_DownloadMissingFiles" xml:space="preserve"><value>Mangler i downloaden: {0}.</value></data>
   <data name="Err_WriteFailedCount" xml:space="preserve"><value>Kunne ikke skrive {0} fil(er). Luk Steam, og prøv igen.</value></data>
   <data name="Err_WriteFailedFile" xml:space="preserve"><value>Kunne ikke skrive {0}. Luk Steam, og prøv igen.</value></data>

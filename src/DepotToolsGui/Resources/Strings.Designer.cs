@@ -24,6 +24,7 @@ public static class Strings
     public static string Nav_Add => Get(nameof(Nav_Add));
     public static string Nav_Manage => Get(nameof(Nav_Manage));
     public static string Nav_Builds => Get(nameof(Nav_Builds));
+    public static string Nav_Downloads => Get(nameof(Nav_Downloads));
     public static string Nav_Mode => Get(nameof(Nav_Mode));
     public static string Nav_Fixes => Get(nameof(Nav_Fixes));
     public static string Nav_RestartSteam => Get(nameof(Nav_RestartSteam));
@@ -204,6 +205,8 @@ public static class Strings
     public static string Common_Loading => Get(nameof(Common_Loading));
     public static string Common_AppId => Get(nameof(Common_AppId));
     public static string Common_AppFallback => Get(nameof(Common_AppFallback));
+    public static string Common_CopyAppId => Get(nameof(Common_CopyAppId));
+    public static string Common_ShowInFolder => Get(nameof(Common_ShowInFolder));
 
     // ── Manage ──
     public static string Manage_Title => Get(nameof(Manage_Title));
@@ -452,6 +455,18 @@ public static class Strings
     public static string Builds_Depot_Search => Get(nameof(Builds_Depot_Search));
     public static string Builds_Depot_NoMatch => Get(nameof(Builds_Depot_NoMatch));
     public static string Builds_Depot_InactiveNote => Get(nameof(Builds_Depot_InactiveNote));
+    // ── Builds downloads / selection ──
+    public static string Builds_Select_Title => Get(nameof(Builds_Select_Title));
+    public static string Builds_Select_Confirm => Get(nameof(Builds_Select_Confirm));
+    public static string Builds_Select_NoManifest => Get(nameof(Builds_Select_NoManifest));
+    public static string Builds_Select_NoKey => Get(nameof(Builds_Select_NoKey));
+    public static string Builds_Select_All => Get(nameof(Builds_Select_All));
+    public static string Builds_Select_None => Get(nameof(Builds_Select_None));
+    public static string Builds_Select_ChooseFolder => Get(nameof(Builds_Select_ChooseFolder));
+    public static string Builds_Select_SaveTo => Get(nameof(Builds_Select_SaveTo));
+    public static string Builds_Select_Space => Get(nameof(Builds_Select_Space));
+    public static string Builds_Select_SharedHint => Get(nameof(Builds_Select_SharedHint));
+    public static string Builds_Action_Download => Get(nameof(Builds_Action_Download));
 
     // ── Launch options ── (English-only for now)
     public static string Manage_Action_LaunchOptions => Get(nameof(Manage_Action_LaunchOptions));
@@ -489,12 +504,71 @@ public static class Strings
     public static string Launch_Drift_Body => Get(nameof(Launch_Drift_Body));
     public static string Launch_Drift_Action => Get(nameof(Launch_Drift_Action));
 
+    // ── Downloads (download manager) ──
+    public static string Depot_Cancel_Body => Get(nameof(Depot_Cancel_Body));
+    public static string Depot_Cancel_DeleteFailed => Get(nameof(Depot_Cancel_DeleteFailed));
+    public static string Depot_Cancel_Title => Get(nameof(Depot_Cancel_Title));
+    public static string Depot_Err_BadKey => Get(nameof(Depot_Err_BadKey));
+    public static string Depot_Err_Failed => Get(nameof(Depot_Err_Failed));
+    public static string Depot_Err_NoKeyFor => Get(nameof(Depot_Err_NoKeyFor));
+    public static string Depot_Err_NoKeys => Get(nameof(Depot_Err_NoKeys));
+    public static string Depot_Err_NoManifest => Get(nameof(Depot_Err_NoManifest));
+    public static string Depot_Err_NoSpace => Get(nameof(Depot_Err_NoSpace));
+    public static string Depot_Err_Tool => Get(nameof(Depot_Err_Tool));
+    public static string Depot_Status_Done => Get(nameof(Depot_Status_Done));
+    public static string Downloads_ActionRequired => Get(nameof(Downloads_ActionRequired));
+    public static string Downloads_Action_Cancel => Get(nameof(Downloads_Action_Cancel));
+    public static string Downloads_Action_ClearHistory => Get(nameof(Downloads_Action_ClearHistory));
+    public static string Downloads_Action_MoveDown => Get(nameof(Downloads_Action_MoveDown));
+    public static string Downloads_Action_MoveUp => Get(nameof(Downloads_Action_MoveUp));
+    public static string Downloads_Action_Pause => Get(nameof(Downloads_Action_Pause));
+    public static string Downloads_Action_Remove => Get(nameof(Downloads_Action_Remove));
+    public static string Downloads_Action_Resume => Get(nameof(Downloads_Action_Resume));
+    public static string Downloads_Action_Retry => Get(nameof(Downloads_Action_Retry));
+    public static string Downloads_Action_Review => Get(nameof(Downloads_Action_Review));
+    public static string Downloads_ClearHistory_Confirm => Get(nameof(Downloads_ClearHistory_Confirm));
+    public static string Downloads_Depot_FetchingManifest => Get(nameof(Downloads_Depot_FetchingManifest));
+    public static string Downloads_Depot_PreAllocating => Get(nameof(Downloads_Depot_PreAllocating));
+    public static string Downloads_Depot_Validating => Get(nameof(Downloads_Depot_Validating));
+    public static string Downloads_Depots_GettingTool => Get(nameof(Downloads_Depots_GettingTool));
+    public static string Downloads_Depots_Preparing => Get(nameof(Downloads_Depots_Preparing));
+    public static string Downloads_Depots_Progress => Get(nameof(Downloads_Depots_Progress));
+    public static string Downloads_Empty => Get(nameof(Downloads_Empty));
+    public static string Downloads_Err_Interrupted => Get(nameof(Downloads_Err_Interrupted));
+    public static string Downloads_Eta => Get(nameof(Downloads_Eta));
+    public static string Downloads_Kind_Depot => Get(nameof(Downloads_Kind_Depot));
+    public static string Downloads_Kind_Dlc => Get(nameof(Downloads_Kind_Dlc));
+    public static string Downloads_Kind_Tool => Get(nameof(Downloads_Kind_Tool));
+    public static string Downloads_Of => Get(nameof(Downloads_Of));
+    public static string Downloads_SAC_Err_Launch => Get(nameof(Downloads_SAC_Err_Launch));
+    public static string Downloads_SAC_Err_Restart => Get(nameof(Downloads_SAC_Err_Restart));
+    public static string Downloads_SAC_Err_Runtime => Get(nameof(Downloads_SAC_Err_Runtime));
+    public static string Downloads_SAC_Err_Tool => Get(nameof(Downloads_SAC_Err_Tool));
+    public static string Downloads_SAC_GettingRuntime => Get(nameof(Downloads_SAC_GettingRuntime));
+    public static string Downloads_SAC_GettingTool => Get(nameof(Downloads_SAC_GettingTool));
+    public static string Downloads_SAC_Launched => Get(nameof(Downloads_SAC_Launched));
+    public static string Downloads_SAC_Updated => Get(nameof(Downloads_SAC_Updated));
+    public static string Downloads_Section_Active => Get(nameof(Downloads_Section_Active));
+    public static string Downloads_Section_History => Get(nameof(Downloads_Section_History));
+    public static string Downloads_Status_AwaitingConfirm => Get(nameof(Downloads_Status_AwaitingConfirm));
+    public static string Downloads_Status_Cancelled => Get(nameof(Downloads_Status_Cancelled));
+    public static string Downloads_Status_Completed => Get(nameof(Downloads_Status_Completed));
+    public static string Downloads_Status_Downloading => Get(nameof(Downloads_Status_Downloading));
+    public static string Downloads_Status_Failed => Get(nameof(Downloads_Status_Failed));
+    public static string Downloads_Status_Installing => Get(nameof(Downloads_Status_Installing));
+    public static string Downloads_Status_Paused => Get(nameof(Downloads_Status_Paused));
+    public static string Downloads_Status_Queued => Get(nameof(Downloads_Status_Queued));
+    public static string Downloads_Status_Verifying => Get(nameof(Downloads_Status_Verifying));
+    public static string Downloads_Title => Get(nameof(Downloads_Title));
+
     // Service error messages, surfaced to the user via toasts / MessageBox.
     public static string Err_SteamNotFound => Get(nameof(Err_SteamNotFound));
     public static string Err_GithubUnreachable => Get(nameof(Err_GithubUnreachable));
     public static string Err_UpdateServerUnreachable => Get(nameof(Err_UpdateServerUnreachable));
     public static string Err_Cancelled => Get(nameof(Err_Cancelled));
     public static string Err_CancelledByUser => Get(nameof(Err_CancelledByUser));
+    public static string Err_ClipboardBusy => Get(nameof(Err_ClipboardBusy));
+    public static string Err_PathMissing => Get(nameof(Err_PathMissing));
     public static string Err_ReleaseMissingDownload => Get(nameof(Err_ReleaseMissingDownload));
     public static string Err_ReleaseMissingFile => Get(nameof(Err_ReleaseMissingFile));
     public static string Err_VerifyFailed => Get(nameof(Err_VerifyFailed));

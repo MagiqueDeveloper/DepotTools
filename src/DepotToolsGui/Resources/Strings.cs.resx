@@ -64,6 +64,7 @@
   <data name="Nav_Add" xml:space="preserve"><value>Přidat</value></data>
   <data name="Nav_Manage" xml:space="preserve"><value>Spravovat</value></data>
   <data name="Nav_Mode" xml:space="preserve"><value>Režim</value></data>
+  <data name="Nav_Downloads" xml:space="preserve"><value>Stahování</value></data>
   <data name="Nav_Fixes" xml:space="preserve"><value>Opravy</value></data>
   <data name="Nav_RestartSteam" xml:space="preserve"><value>Restartovat Steam</value></data>
   <data name="Nav_Settings" xml:space="preserve"><value>Nastavení</value></data>
@@ -197,6 +198,66 @@
   <data name="Mode_Toast_InstallFailed" xml:space="preserve"><value>Instalace se nezdařila</value></data>
   <data name="Mode_Toast_InstallFailed_Body" xml:space="preserve"><value>Něco se pokazilo.</value></data>
   <data name="Drop_Title" xml:space="preserve"><value>Sem přetáhněte soubory .lua, .manifest nebo .zip</value></data>
+  <data name="Depot_Cancel_Body" xml:space="preserve"><value>Již bylo zapsáno {0} do:
+{1}
+
+Ano - zastavit a smazat tyto soubory
+Ne - zastavit, ale ponechat
+Zrušit - pokračovat ve stahování</value></data>
+  <data name="Depot_Cancel_DeleteFailed" xml:space="preserve"><value>Stažené soubory se nepodařilo smazat. Zůstávají v {0}.</value></data>
+  <data name="Depot_Cancel_Title" xml:space="preserve"><value>Zrušit stahování</value></data>
+  <data name="Depot_Err_BadKey" xml:space="preserve"><value>Dešifrovací klíč pro depot {0} je nesprávný.</value></data>
+  <data name="Depot_Err_Failed" xml:space="preserve"><value>Depot {0} selhal: {1}</value></data>
+  <data name="Depot_Err_NoKeyFor" xml:space="preserve"><value>V Lua není dešifrovací klíč pro depot {0}.</value></data>
+  <data name="Depot_Err_NoKeys" xml:space="preserve"><value>Pro tuto hru nebyly nalezeny žádné dešifrovací klíče.</value></data>
+  <data name="Depot_Err_NoManifest" xml:space="preserve"><value>Nepodařilo se získat manifest tohoto depotu.</value></data>
+  <data name="Depot_Err_NoSpace" xml:space="preserve"><value>Nedostatek místa na disku: potřeba {0}, volných jen {1}.</value></data>
+  <data name="Depot_Err_Tool" xml:space="preserve"><value>Nepodařilo se získat stahovač depotů.</value></data>
+  <data name="Depot_Status_Done" xml:space="preserve"><value>Staženo {0} depotů do {1}.</value></data>
+  <data name="Downloads_ActionRequired" xml:space="preserve"><value>Vyžaduje akci</value></data>
+  <data name="Downloads_Action_Cancel" xml:space="preserve"><value>Zrušit</value></data>
+  <data name="Downloads_Action_ClearHistory" xml:space="preserve"><value>Vymazat historii</value></data>
+  <data name="Downloads_Action_MoveDown" xml:space="preserve"><value>Dolů</value></data>
+  <data name="Downloads_Action_MoveUp" xml:space="preserve"><value>Nahoru</value></data>
+  <data name="Downloads_Action_Pause" xml:space="preserve"><value>Pozastavit</value></data>
+  <data name="Downloads_Action_Remove" xml:space="preserve"><value>Odebrat</value></data>
+  <data name="Downloads_Action_Resume" xml:space="preserve"><value>Pokračovat</value></data>
+  <data name="Downloads_Action_Retry" xml:space="preserve"><value>Zkusit znovu</value></data>
+  <data name="Downloads_Action_Review" xml:space="preserve"><value>Zkontrolovat</value></data>
+  <data name="Downloads_ClearHistory_Confirm" xml:space="preserve"><value>Odstranit všech {0} záznamů z historie stahování? Stažené soubory zůstanou zachovány.</value></data>
+  <data name="Downloads_Depot_FetchingManifest" xml:space="preserve"><value>načítání manifestu</value></data>
+  <data name="Downloads_Depot_PreAllocating" xml:space="preserve"><value>alokace souborů</value></data>
+  <data name="Downloads_Depot_Validating" xml:space="preserve"><value>kontrola existujících souborů</value></data>
+  <data name="Downloads_Depots_GettingTool" xml:space="preserve"><value>Získávání nástroje</value></data>
+  <data name="Downloads_Depots_Preparing" xml:space="preserve"><value>Příprava · {0} z {1}</value></data>
+  <data name="Downloads_Depots_Progress" xml:space="preserve"><value>Depoty · {0} z {1}</value></data>
+  <data name="Downloads_Empty" xml:space="preserve"><value>Nic se právě nestahuje. Tak si něco stáhni!</value></data>
+  <data name="Downloads_Err_Interrupted" xml:space="preserve"><value>Přerušeno při zavření aplikace.</value></data>
+  <data name="Downloads_Eta" xml:space="preserve"><value>Zbývá {0}</value></data>
+  <data name="Downloads_Kind_Depot" xml:space="preserve"><value>Soubory depotu</value></data>
+  <data name="Downloads_Kind_Dlc" xml:space="preserve"><value>Odemknutí DLC</value></data>
+  <data name="Downloads_Kind_Tool" xml:space="preserve"><value>Nástroj</value></data>
+  <data name="Downloads_Of" xml:space="preserve"><value>{0} z {1}</value></data>
+  <data name="Downloads_SAC_Err_Launch" xml:space="preserve"><value>Nepodařilo se spustit SteamAutoCrack.</value></data>
+  <data name="Downloads_SAC_Err_Restart" xml:space="preserve"><value>Běhové prostředí .NET bylo nainstalováno, ale Windows je nutné restartovat, než půjde SteamAutoCrack spustit.</value></data>
+  <data name="Downloads_SAC_Err_Runtime" xml:space="preserve"><value>Nepodařilo se nainstalovat běhové prostředí .NET, které SteamAutoCrack potřebuje.</value></data>
+  <data name="Downloads_SAC_Err_Tool" xml:space="preserve"><value>Nepodařilo se stáhnout SteamAutoCrack.</value></data>
+  <data name="Downloads_SAC_GettingRuntime" xml:space="preserve"><value>Kontrola běhového prostředí .NET</value></data>
+  <data name="Downloads_SAC_GettingTool" xml:space="preserve"><value>Získávání SteamAutoCrack</value></data>
+  <data name="Downloads_SAC_Launched" xml:space="preserve"><value>SteamAutoCrack otevřen.</value></data>
+  <data name="Downloads_SAC_Updated" xml:space="preserve"><value>SteamAutoCrack aktualizován.</value></data>
+  <data name="Downloads_Section_Active" xml:space="preserve"><value>Fronta</value></data>
+  <data name="Downloads_Section_History" xml:space="preserve"><value>Historie</value></data>
+  <data name="Downloads_Status_AwaitingConfirm" xml:space="preserve"><value>Čeká na tebe</value></data>
+  <data name="Downloads_Status_Cancelled" xml:space="preserve"><value>Zrušeno</value></data>
+  <data name="Downloads_Status_Completed" xml:space="preserve"><value>Hotovo</value></data>
+  <data name="Downloads_Status_Downloading" xml:space="preserve"><value>Stahuje se</value></data>
+  <data name="Downloads_Status_Failed" xml:space="preserve"><value>Selhalo</value></data>
+  <data name="Downloads_Status_Installing" xml:space="preserve"><value>Instaluje se</value></data>
+  <data name="Downloads_Status_Paused" xml:space="preserve"><value>Pozastaveno</value></data>
+  <data name="Downloads_Status_Queued" xml:space="preserve"><value>Ve frontě</value></data>
+  <data name="Downloads_Status_Verifying" xml:space="preserve"><value>Ověřování…</value></data>
+  <data name="Downloads_Title" xml:space="preserve"><value>Stahování</value></data>
   <data name="Drop_BrowseFiles" xml:space="preserve"><value>Procházet soubory…</value></data>
   <data name="Drop_Picker_Title" xml:space="preserve"><value>Vyberte soubory .lua / .manifest / .zip</value></data>
   <data name="Drop_Picker_Filter" xml:space="preserve"><value>Lua / manifest / zip|*.lua;*.manifest;*.zip|Všechny soubory|*.*</value></data>
@@ -210,6 +271,7 @@
   <data name="Drop_Result_Failed" xml:space="preserve"><value> {0} soubor(ů) selhalo — zavřete Steam a zkuste to znovu.</value></data>
   <data name="Drop_Result_RestartApply" xml:space="preserve"><value> Restartujte Steam, aby se změny použily.</value></data>
   <data name="Common_SearchPlaceholder" xml:space="preserve"><value>Hledat podle názvu nebo App ID...</value></data>
+  <data name="Common_CopyAppId" xml:space="preserve"><value>Kopírovat App ID</value></data>
   <data name="Common_Loading" xml:space="preserve"><value>Načítání…</value></data>
   <data name="Common_AppId" xml:space="preserve"><value>App ID: {0}</value></data>
   <data name="Common_AppFallback" xml:space="preserve"><value>Aplikace {0}</value></data>
@@ -358,6 +420,7 @@ Tím se smažou soubory .lua ze Steam\config\stplug-in. Poté restartujte Steam,
   <data name="Confirm_OpenSteamDb" xml:space="preserve"><value>Otevřít na SteamDB</value></data>
   <data name="Confirm_Shared" xml:space="preserve"><value>SDÍLENÝ</value></data>
   <data name="Confirm_ReviewChanges" xml:space="preserve"><value>Tím se nahradí nainstalovaný lua. Zkontrolujte, co se mění:</value></data>
+  <data name="Common_ShowInFolder" xml:space="preserve"><value>Zobrazit ve složce</value></data>
   <data name="Confirm_Adding" xml:space="preserve"><value>Přidávání ({0})</value></data>
   <data name="Confirm_Removing" xml:space="preserve"><value>Odebírání ({0})</value></data>
   <data name="Confirm_Skip" xml:space="preserve"><value>Přeskočit</value></data>
@@ -438,9 +501,20 @@ Tím se smažou soubory .lua ze Steam\config\stplug-in. Poté restartujte Steam,
   <data name="Builds_PinDisabled" xml:space="preserve"><value>připnutí vypnuto (automatická aktualizace)</value></data>
   <data name="Builds_Meta_Depots" xml:space="preserve"><value>{0} depotů · {1} DLC</value></data>
   <data name="Builds_Meta_Unsaved" xml:space="preserve"><value>neuloženo</value></data>
+  <data name="Builds_Select_All" xml:space="preserve"><value>Vybrat vše</value></data>
+  <data name="Builds_Select_ChooseFolder" xml:space="preserve"><value>Vyber, kam uložit soubory depotu</value></data>
+  <data name="Builds_Select_Confirm" xml:space="preserve"><value>Stáhnout {0} depotů ({1})</value></data>
+  <data name="Builds_Select_NoKey" xml:space="preserve"><value>V Lua není dešifrovací klíč pro tento depot.</value></data>
+  <data name="Builds_Select_NoManifest" xml:space="preserve"><value>Tento depot neuvádí žádnou verzi ke stažení.</value></data>
+  <data name="Builds_Select_None" xml:space="preserve"><value>Nevybrány žádné depoty</value></data>
+  <data name="Builds_Select_SaveTo" xml:space="preserve"><value>Uložit do</value></data>
+  <data name="Builds_Select_SharedHint" xml:space="preserve"><value>Sdílený runtime — obvykle již nainstalován. Zaškrtnutím jej přesto stáhnete.</value></data>
+  <data name="Builds_Select_Space" xml:space="preserve"><value>Potřeba {0} · volných {1} na {2}</value></data>
+  <data name="Builds_Select_Title" xml:space="preserve"><value>Vyber depoty ke stažení</value></data>
   <data name="Builds_Source" xml:space="preserve"><value>z {0}</value></data>
   <data name="Builds_Action_Apply" xml:space="preserve"><value>Použít</value></data>
   <data name="Builds_Action_Rename" xml:space="preserve"><value>Přejmenovat</value></data>
+  <data name="Builds_Action_Download" xml:space="preserve"><value>Stáhnout</value></data>
   <data name="Builds_Action_Edit" xml:space="preserve"><value>Upravit</value></data>
   <data name="Builds_Action_Delete" xml:space="preserve"><value>Smazat</value></data>
   <data name="Builds_Action_Save" xml:space="preserve"><value>Uložit</value></data>
@@ -504,10 +578,12 @@ Tím se smažou soubory .lua ze Steam\config\stplug-in. Poté restartujte Steam,
   <data name="Err_UpdateServerUnreachable" xml:space="preserve"><value>Nepodařilo se spojit s aktualizačním serverem. Zkontroluj připojení a zkus to znovu.</value></data>
   <data name="Err_Cancelled" xml:space="preserve"><value>Zrušeno.</value></data>
   <data name="Err_CancelledByUser" xml:space="preserve"><value>Zrušeno uživatelem</value></data>
+  <data name="Err_PathMissing" xml:space="preserve"><value>Nelze otevřít {0} — možná byl přesunut nebo smazán.</value></data>
   <data name="Err_ReleaseMissingDownload" xml:space="preserve"><value>V releasu chybí očekávaný soubor ke stažení.</value></data>
   <data name="Err_ReleaseMissingFile" xml:space="preserve"><value>V releasu chybí {0}.</value></data>
   <data name="Err_VerifyFailed" xml:space="preserve"><value>Stažený soubor neprošel ověřením (nesouhlasí sha256).</value></data>
   <data name="Err_VerifyFailedFile" xml:space="preserve"><value>{0} neprošel ověřením (nesouhlasí sha256).</value></data>
+  <data name="Err_ClipboardBusy" xml:space="preserve"><value>Nelze zkopírovat — schránku používá jiná aplikace.</value></data>
   <data name="Err_DownloadMissingFiles" xml:space="preserve"><value>Ve stažených souborech chybí: {0}.</value></data>
   <data name="Err_WriteFailedCount" xml:space="preserve"><value>Nepodařilo se zapsat {0} soubor(ů). Zavři Steam a zkus to znovu.</value></data>
   <data name="Err_WriteFailedFile" xml:space="preserve"><value>Nepodařilo se zapsat {0}. Zavři Steam a zkus to znovu.</value></data>

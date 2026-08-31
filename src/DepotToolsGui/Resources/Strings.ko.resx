@@ -64,6 +64,7 @@
   <data name="Nav_Add" xml:space="preserve"><value>추가</value></data>
   <data name="Nav_Manage" xml:space="preserve"><value>관리</value></data>
   <data name="Nav_Mode" xml:space="preserve"><value>모드</value></data>
+  <data name="Nav_Downloads" xml:space="preserve"><value>다운로드</value></data>
   <data name="Nav_Fixes" xml:space="preserve"><value>수정</value></data>
   <data name="Nav_RestartSteam" xml:space="preserve"><value>Steam 재시작</value></data>
   <data name="Nav_Settings" xml:space="preserve"><value>설정</value></data>
@@ -197,6 +198,66 @@
   <data name="Mode_Toast_InstallFailed" xml:space="preserve"><value>설치 실패</value></data>
   <data name="Mode_Toast_InstallFailed_Body" xml:space="preserve"><value>문제가 발생했습니다.</value></data>
   <data name="Drop_Title" xml:space="preserve"><value>.lua, .manifest 또는 .zip 파일을 여기에 끌어다 놓으세요</value></data>
+  <data name="Depot_Cancel_Body" xml:space="preserve"><value>이미 {0}이(가) 다음 위치에 기록되었습니다:
+{1}
+
+예 - 중지하고 파일 삭제
+아니요 - 중지하되 파일 유지
+취소 - 계속 다운로드</value></data>
+  <data name="Depot_Cancel_DeleteFailed" xml:space="preserve"><value>다운로드한 파일을 삭제하지 못했습니다. {0}에 그대로 있습니다.</value></data>
+  <data name="Depot_Cancel_Title" xml:space="preserve"><value>다운로드 취소</value></data>
+  <data name="Depot_Err_BadKey" xml:space="preserve"><value>depot {0}의 복호화 키가 잘못되었습니다.</value></data>
+  <data name="Depot_Err_Failed" xml:space="preserve"><value>디포 {0} 실패: {1}</value></data>
+  <data name="Depot_Err_NoKeyFor" xml:space="preserve"><value>Lua에 depot {0}의 복호화 키가 없습니다.</value></data>
+  <data name="Depot_Err_NoKeys" xml:space="preserve"><value>이 게임의 복호화 키를 찾을 수 없습니다.</value></data>
+  <data name="Depot_Err_NoManifest" xml:space="preserve"><value>이 디포의 manifest를 가져오지 못했습니다.</value></data>
+  <data name="Depot_Err_NoSpace" xml:space="preserve"><value>디스크 공간이 부족합니다: {0} 필요, 여유 공간은 {1}뿐입니다.</value></data>
+  <data name="Depot_Err_Tool" xml:space="preserve"><value>디포 다운로더를 가져오지 못했습니다.</value></data>
+  <data name="Depot_Status_Done" xml:space="preserve"><value>디포 {0}개를 {1}에 다운로드했습니다.</value></data>
+  <data name="Downloads_ActionRequired" xml:space="preserve"><value>조치 필요</value></data>
+  <data name="Downloads_Action_Cancel" xml:space="preserve"><value>취소</value></data>
+  <data name="Downloads_Action_ClearHistory" xml:space="preserve"><value>기록 지우기</value></data>
+  <data name="Downloads_Action_MoveDown" xml:space="preserve"><value>아래로</value></data>
+  <data name="Downloads_Action_MoveUp" xml:space="preserve"><value>위로</value></data>
+  <data name="Downloads_Action_Pause" xml:space="preserve"><value>일시중지</value></data>
+  <data name="Downloads_Action_Remove" xml:space="preserve"><value>제거</value></data>
+  <data name="Downloads_Action_Resume" xml:space="preserve"><value>재개</value></data>
+  <data name="Downloads_Action_Retry" xml:space="preserve"><value>다시 시도</value></data>
+  <data name="Downloads_Action_Review" xml:space="preserve"><value>확인</value></data>
+  <data name="Downloads_ClearHistory_Confirm" xml:space="preserve"><value>다운로드 기록에서 {0}개 항목을 모두 제거할까요? 내려받은 파일은 영향을 받지 않습니다.</value></data>
+  <data name="Downloads_Depot_FetchingManifest" xml:space="preserve"><value>manifest 가져오는 중</value></data>
+  <data name="Downloads_Depot_PreAllocating" xml:space="preserve"><value>파일 할당 중</value></data>
+  <data name="Downloads_Depot_Validating" xml:space="preserve"><value>기존 파일 확인 중</value></data>
+  <data name="Downloads_Depots_GettingTool" xml:space="preserve"><value>다운로더 가져오는 중</value></data>
+  <data name="Downloads_Depots_Preparing" xml:space="preserve"><value>준비 중 · {0} / {1}</value></data>
+  <data name="Downloads_Depots_Progress" xml:space="preserve"><value>디포 · {1}개 중 {0}개</value></data>
+  <data name="Downloads_Empty" xml:space="preserve"><value>현재 다운로드가 없습니다. 뭐라도 다운로드해 보세요!</value></data>
+  <data name="Downloads_Err_Interrupted" xml:space="preserve"><value>앱이 종료되어 중단되었습니다.</value></data>
+  <data name="Downloads_Eta" xml:space="preserve"><value>{0} 남음</value></data>
+  <data name="Downloads_Kind_Depot" xml:space="preserve"><value>디포 파일</value></data>
+  <data name="Downloads_Kind_Dlc" xml:space="preserve"><value>DLC 잠금 해제</value></data>
+  <data name="Downloads_Kind_Tool" xml:space="preserve"><value>도구</value></data>
+  <data name="Downloads_Of" xml:space="preserve"><value>{0} / {1}</value></data>
+  <data name="Downloads_SAC_Err_Launch" xml:space="preserve"><value>SteamAutoCrack을 시작하지 못했습니다.</value></data>
+  <data name="Downloads_SAC_Err_Restart" xml:space="preserve"><value>.NET 런타임이 설치되었지만 SteamAutoCrack을 실행하려면 Windows를 다시 시작해야 합니다.</value></data>
+  <data name="Downloads_SAC_Err_Runtime" xml:space="preserve"><value>SteamAutoCrack에 필요한 .NET 런타임을 설치하지 못했습니다.</value></data>
+  <data name="Downloads_SAC_Err_Tool" xml:space="preserve"><value>SteamAutoCrack을 다운로드하지 못했습니다.</value></data>
+  <data name="Downloads_SAC_GettingRuntime" xml:space="preserve"><value>.NET 런타임 확인 중</value></data>
+  <data name="Downloads_SAC_GettingTool" xml:space="preserve"><value>SteamAutoCrack 가져오는 중</value></data>
+  <data name="Downloads_SAC_Launched" xml:space="preserve"><value>SteamAutoCrack을 열었습니다.</value></data>
+  <data name="Downloads_SAC_Updated" xml:space="preserve"><value>SteamAutoCrack이 업데이트되었습니다.</value></data>
+  <data name="Downloads_Section_Active" xml:space="preserve"><value>대기열</value></data>
+  <data name="Downloads_Section_History" xml:space="preserve"><value>기록</value></data>
+  <data name="Downloads_Status_AwaitingConfirm" xml:space="preserve"><value>확인 대기 중</value></data>
+  <data name="Downloads_Status_Cancelled" xml:space="preserve"><value>취소됨</value></data>
+  <data name="Downloads_Status_Completed" xml:space="preserve"><value>완료</value></data>
+  <data name="Downloads_Status_Downloading" xml:space="preserve"><value>다운로드 중</value></data>
+  <data name="Downloads_Status_Failed" xml:space="preserve"><value>실패</value></data>
+  <data name="Downloads_Status_Installing" xml:space="preserve"><value>설치 중</value></data>
+  <data name="Downloads_Status_Paused" xml:space="preserve"><value>일시중지됨</value></data>
+  <data name="Downloads_Status_Queued" xml:space="preserve"><value>대기 중</value></data>
+  <data name="Downloads_Status_Verifying" xml:space="preserve"><value>확인 중…</value></data>
+  <data name="Downloads_Title" xml:space="preserve"><value>다운로드</value></data>
   <data name="Drop_BrowseFiles" xml:space="preserve"><value>파일 찾아보기…</value></data>
   <data name="Drop_Picker_Title" xml:space="preserve"><value>.lua / .manifest / .zip 파일 선택</value></data>
   <data name="Drop_Picker_Filter" xml:space="preserve"><value>Lua / manifest / zip|*.lua;*.manifest;*.zip|모든 파일|*.*</value></data>
@@ -210,6 +271,7 @@
   <data name="Drop_Result_Failed" xml:space="preserve"><value> {0}개 파일 실패 — Steam을 닫고 다시 시도하세요.</value></data>
   <data name="Drop_Result_RestartApply" xml:space="preserve"><value> 적용하려면 Steam을 재시작하세요.</value></data>
   <data name="Common_SearchPlaceholder" xml:space="preserve"><value>이름 또는 App ID로 검색...</value></data>
+  <data name="Common_CopyAppId" xml:space="preserve"><value>App ID 복사</value></data>
   <data name="Common_Loading" xml:space="preserve"><value>로드 중…</value></data>
   <data name="Common_AppId" xml:space="preserve"><value>App ID: {0}</value></data>
   <data name="Common_AppFallback" xml:space="preserve"><value>앱 {0}</value></data>
@@ -358,6 +420,7 @@
   <data name="Confirm_OpenSteamDb" xml:space="preserve"><value>SteamDB에서 열기</value></data>
   <data name="Confirm_Shared" xml:space="preserve"><value>공유됨</value></data>
   <data name="Confirm_ReviewChanges" xml:space="preserve"><value>설치된 lua를 교체합니다. 변경 사항을 검토하세요:</value></data>
+  <data name="Common_ShowInFolder" xml:space="preserve"><value>폴더에서 보기</value></data>
   <data name="Confirm_Adding" xml:space="preserve"><value>추가 중 ({0})</value></data>
   <data name="Confirm_Removing" xml:space="preserve"><value>제거 중 ({0})</value></data>
   <data name="Confirm_Skip" xml:space="preserve"><value>건너뛰기</value></data>
@@ -438,9 +501,20 @@
   <data name="Builds_PinDisabled" xml:space="preserve"><value>고정 해제됨(자동 업데이트)</value></data>
   <data name="Builds_Meta_Depots" xml:space="preserve"><value>디포 {0}개 · DLC {1}개</value></data>
   <data name="Builds_Meta_Unsaved" xml:space="preserve"><value>저장 안 됨</value></data>
+  <data name="Builds_Select_All" xml:space="preserve"><value>전체 선택</value></data>
+  <data name="Builds_Select_ChooseFolder" xml:space="preserve"><value>디포 파일을 저장할 위치 선택</value></data>
+  <data name="Builds_Select_Confirm" xml:space="preserve"><value>디포 {0}개 다운로드 ({1})</value></data>
+  <data name="Builds_Select_NoKey" xml:space="preserve"><value>Lua에 이 depot의 복호화 키가 없습니다.</value></data>
+  <data name="Builds_Select_NoManifest" xml:space="preserve"><value>이 디포에는 다운로드할 버전이 없습니다.</value></data>
+  <data name="Builds_Select_None" xml:space="preserve"><value>선택된 디포 없음</value></data>
+  <data name="Builds_Select_SaveTo" xml:space="preserve"><value>저장 위치</value></data>
+  <data name="Builds_Select_SharedHint" xml:space="preserve"><value>공유 런타임 — 대개 이미 설치되어 있습니다. 그래도 받으려면 선택하세요.</value></data>
+  <data name="Builds_Select_Space" xml:space="preserve"><value>{0} 필요 · {2} 여유 공간 {1}</value></data>
+  <data name="Builds_Select_Title" xml:space="preserve"><value>다운로드할 디포 선택</value></data>
   <data name="Builds_Source" xml:space="preserve"><value>출처: {0}</value></data>
   <data name="Builds_Action_Apply" xml:space="preserve"><value>적용</value></data>
   <data name="Builds_Action_Rename" xml:space="preserve"><value>이름 바꾸기</value></data>
+  <data name="Builds_Action_Download" xml:space="preserve"><value>다운로드</value></data>
   <data name="Builds_Action_Edit" xml:space="preserve"><value>편집</value></data>
   <data name="Builds_Action_Delete" xml:space="preserve"><value>삭제</value></data>
   <data name="Builds_Action_Save" xml:space="preserve"><value>저장</value></data>
@@ -504,10 +578,12 @@
   <data name="Err_UpdateServerUnreachable" xml:space="preserve"><value>업데이트 서버에 연결할 수 없습니다. 연결을 확인하고 다시 시도하세요.</value></data>
   <data name="Err_Cancelled" xml:space="preserve"><value>취소되었습니다.</value></data>
   <data name="Err_CancelledByUser" xml:space="preserve"><value>사용자가 취소함</value></data>
+  <data name="Err_PathMissing" xml:space="preserve"><value>{0}을(를) 열 수 없습니다 — 이동되었거나 삭제된 것 같습니다.</value></data>
   <data name="Err_ReleaseMissingDownload" xml:space="preserve"><value>릴리스에 필요한 다운로드 파일이 없습니다.</value></data>
   <data name="Err_ReleaseMissingFile" xml:space="preserve"><value>릴리스에 {0}이(가) 없습니다.</value></data>
   <data name="Err_VerifyFailed" xml:space="preserve"><value>다운로드가 검증에 실패했습니다 (sha256 불일치).</value></data>
   <data name="Err_VerifyFailedFile" xml:space="preserve"><value>{0}이(가) 검증에 실패했습니다 (sha256 불일치).</value></data>
+  <data name="Err_ClipboardBusy" xml:space="preserve"><value>복사할 수 없습니다 — 다른 앱이 클립보드를 사용 중입니다.</value></data>
   <data name="Err_DownloadMissingFiles" xml:space="preserve"><value>다운로드에 누락됨: {0}.</value></data>
   <data name="Err_WriteFailedCount" xml:space="preserve"><value>{0}개 파일을 쓰지 못했습니다. Steam을 종료하고 다시 시도하세요.</value></data>
   <data name="Err_WriteFailedFile" xml:space="preserve"><value>{0}을(를) 쓰지 못했습니다. Steam을 종료하고 다시 시도하세요.</value></data>

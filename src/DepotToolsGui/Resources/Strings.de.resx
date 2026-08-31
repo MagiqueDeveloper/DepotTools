@@ -64,6 +64,7 @@
   <data name="Nav_Add" xml:space="preserve"><value>Hinzufügen</value></data>
   <data name="Nav_Manage" xml:space="preserve"><value>Verwalten</value></data>
   <data name="Nav_Mode" xml:space="preserve"><value>Modus</value></data>
+  <data name="Nav_Downloads" xml:space="preserve"><value>Downloads</value></data>
   <data name="Nav_Fixes" xml:space="preserve"><value>Fixes</value></data>
   <data name="Nav_RestartSteam" xml:space="preserve"><value>Steam neu starten</value></data>
   <data name="Nav_Settings" xml:space="preserve"><value>Einstellungen</value></data>
@@ -197,6 +198,66 @@
   <data name="Mode_Toast_InstallFailed" xml:space="preserve"><value>Installation fehlgeschlagen</value></data>
   <data name="Mode_Toast_InstallFailed_Body" xml:space="preserve"><value>Etwas ist schiefgelaufen.</value></data>
   <data name="Drop_Title" xml:space="preserve"><value>.lua-, .manifest- oder .zip-Dateien hierher ziehen</value></data>
+  <data name="Depot_Cancel_Body" xml:space="preserve"><value>{0} wurden bereits geschrieben nach:
+{1}
+
+Ja - anhalten und diese Dateien löschen
+Nein - anhalten, Dateien behalten
+Abbrechen - weiter herunterladen</value></data>
+  <data name="Depot_Cancel_DeleteFailed" xml:space="preserve"><value>Die heruntergeladenen Dateien konnten nicht gelöscht werden. Sie liegen weiterhin in {0}.</value></data>
+  <data name="Depot_Cancel_Title" xml:space="preserve"><value>Download abbrechen</value></data>
+  <data name="Depot_Err_BadKey" xml:space="preserve"><value>Der Entschlüsselungsschlüssel für Depot {0} ist falsch.</value></data>
+  <data name="Depot_Err_Failed" xml:space="preserve"><value>Depot {0} fehlgeschlagen: {1}</value></data>
+  <data name="Depot_Err_NoKeyFor" xml:space="preserve"><value>Kein Entschlüsselungsschlüssel im Lua für Depot {0}.</value></data>
+  <data name="Depot_Err_NoKeys" xml:space="preserve"><value>Keine Entschlüsselungsschlüssel für dieses Spiel gefunden.</value></data>
+  <data name="Depot_Err_NoManifest" xml:space="preserve"><value>Das Manifest dieses Depots konnte nicht geladen werden.</value></data>
+  <data name="Depot_Err_NoSpace" xml:space="preserve"><value>Nicht genug Speicherplatz: benötigt {0}, nur {1} frei.</value></data>
+  <data name="Depot_Err_Tool" xml:space="preserve"><value>Der Depot-Downloader konnte nicht geladen werden.</value></data>
+  <data name="Depot_Status_Done" xml:space="preserve"><value>{0} Depots nach {1} heruntergeladen.</value></data>
+  <data name="Downloads_ActionRequired" xml:space="preserve"><value>Aktion erforderlich</value></data>
+  <data name="Downloads_Action_Cancel" xml:space="preserve"><value>Abbrechen</value></data>
+  <data name="Downloads_Action_ClearHistory" xml:space="preserve"><value>Verlauf löschen</value></data>
+  <data name="Downloads_Action_MoveDown" xml:space="preserve"><value>Nach unten</value></data>
+  <data name="Downloads_Action_MoveUp" xml:space="preserve"><value>Nach oben</value></data>
+  <data name="Downloads_Action_Pause" xml:space="preserve"><value>Pause</value></data>
+  <data name="Downloads_Action_Remove" xml:space="preserve"><value>Entfernen</value></data>
+  <data name="Downloads_Action_Resume" xml:space="preserve"><value>Fortsetzen</value></data>
+  <data name="Downloads_Action_Retry" xml:space="preserve"><value>Wiederholen</value></data>
+  <data name="Downloads_Action_Review" xml:space="preserve"><value>Ansehen</value></data>
+  <data name="Downloads_ClearHistory_Confirm" xml:space="preserve"><value>Alle {0} Einträge aus dem Download-Verlauf entfernen? Heruntergeladene Dateien bleiben erhalten.</value></data>
+  <data name="Downloads_Depot_FetchingManifest" xml:space="preserve"><value>Manifest wird geholt</value></data>
+  <data name="Downloads_Depot_PreAllocating" xml:space="preserve"><value>Dateien werden reserviert</value></data>
+  <data name="Downloads_Depot_Validating" xml:space="preserve"><value>vorhandene Dateien werden geprüft</value></data>
+  <data name="Downloads_Depots_GettingTool" xml:space="preserve"><value>Downloader wird geholt</value></data>
+  <data name="Downloads_Depots_Preparing" xml:space="preserve"><value>Vorbereiten · {0} von {1}</value></data>
+  <data name="Downloads_Depots_Progress" xml:space="preserve"><value>Depots · {0} von {1}</value></data>
+  <data name="Downloads_Empty" xml:space="preserve"><value>Derzeit keine Downloads. Lad dir was runter!</value></data>
+  <data name="Downloads_Err_Interrupted" xml:space="preserve"><value>Beim Schließen der App unterbrochen.</value></data>
+  <data name="Downloads_Eta" xml:space="preserve"><value>Noch {0}</value></data>
+  <data name="Downloads_Kind_Depot" xml:space="preserve"><value>Depot-Dateien</value></data>
+  <data name="Downloads_Kind_Dlc" xml:space="preserve"><value>DLC-Freischaltung</value></data>
+  <data name="Downloads_Kind_Tool" xml:space="preserve"><value>Werkzeug</value></data>
+  <data name="Downloads_Of" xml:space="preserve"><value>{0} von {1}</value></data>
+  <data name="Downloads_SAC_Err_Launch" xml:space="preserve"><value>SteamAutoCrack konnte nicht gestartet werden.</value></data>
+  <data name="Downloads_SAC_Err_Restart" xml:space="preserve"><value>Die .NET-Runtime wurde installiert, aber Windows muss neu gestartet werden, bevor SteamAutoCrack läuft.</value></data>
+  <data name="Downloads_SAC_Err_Runtime" xml:space="preserve"><value>Die von SteamAutoCrack benötigte .NET-Runtime konnte nicht installiert werden.</value></data>
+  <data name="Downloads_SAC_Err_Tool" xml:space="preserve"><value>SteamAutoCrack konnte nicht heruntergeladen werden.</value></data>
+  <data name="Downloads_SAC_GettingRuntime" xml:space="preserve"><value>.NET-Runtime wird geprüft</value></data>
+  <data name="Downloads_SAC_GettingTool" xml:space="preserve"><value>SteamAutoCrack wird geholt</value></data>
+  <data name="Downloads_SAC_Launched" xml:space="preserve"><value>SteamAutoCrack geöffnet.</value></data>
+  <data name="Downloads_SAC_Updated" xml:space="preserve"><value>SteamAutoCrack aktualisiert.</value></data>
+  <data name="Downloads_Section_Active" xml:space="preserve"><value>Warteschlange</value></data>
+  <data name="Downloads_Section_History" xml:space="preserve"><value>Verlauf</value></data>
+  <data name="Downloads_Status_AwaitingConfirm" xml:space="preserve"><value>Wartet auf dich</value></data>
+  <data name="Downloads_Status_Cancelled" xml:space="preserve"><value>Abgebrochen</value></data>
+  <data name="Downloads_Status_Completed" xml:space="preserve"><value>Fertig</value></data>
+  <data name="Downloads_Status_Downloading" xml:space="preserve"><value>Wird geladen</value></data>
+  <data name="Downloads_Status_Failed" xml:space="preserve"><value>Fehlgeschlagen</value></data>
+  <data name="Downloads_Status_Installing" xml:space="preserve"><value>Wird installiert</value></data>
+  <data name="Downloads_Status_Paused" xml:space="preserve"><value>Pausiert</value></data>
+  <data name="Downloads_Status_Queued" xml:space="preserve"><value>In Warteschlange</value></data>
+  <data name="Downloads_Status_Verifying" xml:space="preserve"><value>Wird geprüft…</value></data>
+  <data name="Downloads_Title" xml:space="preserve"><value>Downloads</value></data>
   <data name="Drop_BrowseFiles" xml:space="preserve"><value>Dateien durchsuchen…</value></data>
   <data name="Drop_Picker_Title" xml:space="preserve"><value>.lua- / .manifest- / .zip-Dateien auswählen</value></data>
   <data name="Drop_Picker_Filter" xml:space="preserve"><value>Lua / Manifest / Zip|*.lua;*.manifest;*.zip|Alle Dateien|*.*</value></data>
@@ -210,6 +271,7 @@
   <data name="Drop_Result_Failed" xml:space="preserve"><value> {0} Datei(en) fehlgeschlagen — schließe Steam und versuche es erneut.</value></data>
   <data name="Drop_Result_RestartApply" xml:space="preserve"><value> Starte Steam neu, um die Änderungen zu übernehmen.</value></data>
   <data name="Common_SearchPlaceholder" xml:space="preserve"><value>Nach Name oder App-ID suchen...</value></data>
+  <data name="Common_CopyAppId" xml:space="preserve"><value>App-ID kopieren</value></data>
   <data name="Common_Loading" xml:space="preserve"><value>Wird geladen…</value></data>
   <data name="Common_AppId" xml:space="preserve"><value>App-ID: {0}</value></data>
   <data name="Common_AppFallback" xml:space="preserve"><value>App {0}</value></data>
@@ -358,6 +420,7 @@ Dadurch werden die .lua-Dateien aus Steam\config\stplug-in gelöscht. Starte Ste
   <data name="Confirm_OpenSteamDb" xml:space="preserve"><value>Auf SteamDB öffnen</value></data>
   <data name="Confirm_Shared" xml:space="preserve"><value>GETEILT</value></data>
   <data name="Confirm_ReviewChanges" xml:space="preserve"><value>Dies ersetzt das installierte Lua. Überprüfe, was sich ändert:</value></data>
+  <data name="Common_ShowInFolder" xml:space="preserve"><value>Im Ordner anzeigen</value></data>
   <data name="Confirm_Adding" xml:space="preserve"><value>Hinzufügen ({0})</value></data>
   <data name="Confirm_Removing" xml:space="preserve"><value>Entfernen ({0})</value></data>
   <data name="Confirm_Skip" xml:space="preserve"><value>Überspringen</value></data>
@@ -438,9 +501,20 @@ Dadurch werden die .lua-Dateien aus Steam\config\stplug-in gelöscht. Starte Ste
   <data name="Builds_PinDisabled" xml:space="preserve"><value>Fixierung aus (Auto-Update)</value></data>
   <data name="Builds_Meta_Depots" xml:space="preserve"><value>{0} Depots · {1} DLC</value></data>
   <data name="Builds_Meta_Unsaved" xml:space="preserve"><value>nicht gespeichert</value></data>
+  <data name="Builds_Select_All" xml:space="preserve"><value>Alle auswählen</value></data>
+  <data name="Builds_Select_ChooseFolder" xml:space="preserve"><value>Speicherort für die Depot-Dateien wählen</value></data>
+  <data name="Builds_Select_Confirm" xml:space="preserve"><value>{0} Depots herunterladen ({1})</value></data>
+  <data name="Builds_Select_NoKey" xml:space="preserve"><value>Kein Entschlüsselungsschlüssel im Lua für dieses Depot.</value></data>
+  <data name="Builds_Select_NoManifest" xml:space="preserve"><value>Dieses Depot gibt keine herunterladbare Version an.</value></data>
+  <data name="Builds_Select_None" xml:space="preserve"><value>Keine Depots ausgewählt</value></data>
+  <data name="Builds_Select_SaveTo" xml:space="preserve"><value>Speichern in</value></data>
+  <data name="Builds_Select_SharedHint" xml:space="preserve"><value>Gemeinsame Laufzeit — meist bereits installiert. Zum Herunterladen trotzdem ankreuzen.</value></data>
+  <data name="Builds_Select_Space" xml:space="preserve"><value>Benötigt {0} · {1} frei auf {2}</value></data>
+  <data name="Builds_Select_Title" xml:space="preserve"><value>Depots zum Herunterladen auswählen</value></data>
   <data name="Builds_Source" xml:space="preserve"><value>von {0}</value></data>
   <data name="Builds_Action_Apply" xml:space="preserve"><value>Anwenden</value></data>
   <data name="Builds_Action_Rename" xml:space="preserve"><value>Umbenennen</value></data>
+  <data name="Builds_Action_Download" xml:space="preserve"><value>Herunterladen</value></data>
   <data name="Builds_Action_Edit" xml:space="preserve"><value>Bearbeiten</value></data>
   <data name="Builds_Action_Delete" xml:space="preserve"><value>Löschen</value></data>
   <data name="Builds_Action_Save" xml:space="preserve"><value>Speichern</value></data>
@@ -504,10 +578,12 @@ Dadurch werden die .lua-Dateien aus Steam\config\stplug-in gelöscht. Starte Ste
   <data name="Err_UpdateServerUnreachable" xml:space="preserve"><value>Der Update-Server war nicht erreichbar. Prüfe deine Verbindung und versuche es erneut.</value></data>
   <data name="Err_Cancelled" xml:space="preserve"><value>Abgebrochen.</value></data>
   <data name="Err_CancelledByUser" xml:space="preserve"><value>Vom Benutzer abgebrochen</value></data>
+  <data name="Err_PathMissing" xml:space="preserve"><value>{0} konnte nicht geöffnet werden — möglicherweise verschoben oder gelöscht.</value></data>
   <data name="Err_ReleaseMissingDownload" xml:space="preserve"><value>Im Release fehlt der erwartete Download.</value></data>
   <data name="Err_ReleaseMissingFile" xml:space="preserve"><value>Im Release fehlt {0}.</value></data>
   <data name="Err_VerifyFailed" xml:space="preserve"><value>Der Download hat die Überprüfung nicht bestanden (sha256 stimmt nicht).</value></data>
   <data name="Err_VerifyFailedFile" xml:space="preserve"><value>{0} hat die Überprüfung nicht bestanden (sha256 stimmt nicht).</value></data>
+  <data name="Err_ClipboardBusy" xml:space="preserve"><value>Kopieren fehlgeschlagen — eine andere App blockiert die Zwischenablage.</value></data>
   <data name="Err_DownloadMissingFiles" xml:space="preserve"><value>Im Download fehlt: {0}.</value></data>
   <data name="Err_WriteFailedCount" xml:space="preserve"><value>{0} Datei(en) konnten nicht geschrieben werden. Schließe Steam und versuche es erneut.</value></data>
   <data name="Err_WriteFailedFile" xml:space="preserve"><value>{0} konnte nicht geschrieben werden. Schließe Steam und versuche es erneut.</value></data>

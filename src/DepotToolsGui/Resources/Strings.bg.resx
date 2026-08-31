@@ -64,6 +64,7 @@
   <data name="Nav_Add" xml:space="preserve"><value>Добавяне</value></data>
   <data name="Nav_Manage" xml:space="preserve"><value>Управление</value></data>
   <data name="Nav_Mode" xml:space="preserve"><value>Режим</value></data>
+  <data name="Nav_Downloads" xml:space="preserve"><value>Изтегляния</value></data>
   <data name="Nav_Fixes" xml:space="preserve"><value>Корекции</value></data>
   <data name="Nav_RestartSteam" xml:space="preserve"><value>Рестартиране на Steam</value></data>
   <data name="Nav_Settings" xml:space="preserve"><value>Настройки</value></data>
@@ -197,6 +198,66 @@
   <data name="Mode_Toast_InstallFailed" xml:space="preserve"><value>Инсталирането е неуспешно</value></data>
   <data name="Mode_Toast_InstallFailed_Body" xml:space="preserve"><value>Нещо се обърка.</value></data>
   <data name="Drop_Title" xml:space="preserve"><value>Пуснете тук файлове .lua, .manifest или .zip</value></data>
+  <data name="Depot_Cancel_Body" xml:space="preserve"><value>Вече са записани {0} в:
+{1}
+
+Да - спри и изтрий тези файлове
+Не - спри, но ги запази
+Отказ - продължи изтеглянето</value></data>
+  <data name="Depot_Cancel_DeleteFailed" xml:space="preserve"><value>Изтеглените файлове не можаха да бъдат изтрити. Още са в {0}.</value></data>
+  <data name="Depot_Cancel_Title" xml:space="preserve"><value>Отказ на изтеглянето</value></data>
+  <data name="Depot_Err_BadKey" xml:space="preserve"><value>Ключът за дешифриране за depot {0} е грешен.</value></data>
+  <data name="Depot_Err_Failed" xml:space="preserve"><value>Депо {0} се провали: {1}</value></data>
+  <data name="Depot_Err_NoKeyFor" xml:space="preserve"><value>В Lua няма ключ за дешифриране за depot {0}.</value></data>
+  <data name="Depot_Err_NoKeys" xml:space="preserve"><value>Не са намерени ключове за дешифриране за тази игра.</value></data>
+  <data name="Depot_Err_NoManifest" xml:space="preserve"><value>Manifest файлът за това депо не можа да бъде получен.</value></data>
+  <data name="Depot_Err_NoSpace" xml:space="preserve"><value>Няма достатъчно място на диска: нужни са {0}, свободни са само {1}.</value></data>
+  <data name="Depot_Err_Tool" xml:space="preserve"><value>Изтеглячът на депота не можа да бъде получен.</value></data>
+  <data name="Depot_Status_Done" xml:space="preserve"><value>Изтеглени са {0} депота в {1}.</value></data>
+  <data name="Downloads_ActionRequired" xml:space="preserve"><value>Изисква действие</value></data>
+  <data name="Downloads_Action_Cancel" xml:space="preserve"><value>Отказ</value></data>
+  <data name="Downloads_Action_ClearHistory" xml:space="preserve"><value>Изчисти историята</value></data>
+  <data name="Downloads_Action_MoveDown" xml:space="preserve"><value>Надолу</value></data>
+  <data name="Downloads_Action_MoveUp" xml:space="preserve"><value>Нагоре</value></data>
+  <data name="Downloads_Action_Pause" xml:space="preserve"><value>Пауза</value></data>
+  <data name="Downloads_Action_Remove" xml:space="preserve"><value>Премахни</value></data>
+  <data name="Downloads_Action_Resume" xml:space="preserve"><value>Възобнови</value></data>
+  <data name="Downloads_Action_Retry" xml:space="preserve"><value>Опитай пак</value></data>
+  <data name="Downloads_Action_Review" xml:space="preserve"><value>Прегледай</value></data>
+  <data name="Downloads_ClearHistory_Confirm" xml:space="preserve"><value>Да се премахнат ли всички {0} записа от историята на изтеглянията? Изтеглените файлове не се засягат.</value></data>
+  <data name="Downloads_Depot_FetchingManifest" xml:space="preserve"><value>зарежда manifest</value></data>
+  <data name="Downloads_Depot_PreAllocating" xml:space="preserve"><value>заделяне на файлове</value></data>
+  <data name="Downloads_Depot_Validating" xml:space="preserve"><value>проверка на съществуващите файлове</value></data>
+  <data name="Downloads_Depots_GettingTool" xml:space="preserve"><value>Изтегляне на инструмента</value></data>
+  <data name="Downloads_Depots_Preparing" xml:space="preserve"><value>Подготовка · {0} от {1}</value></data>
+  <data name="Downloads_Depots_Progress" xml:space="preserve"><value>Депота · {0} от {1}</value></data>
+  <data name="Downloads_Empty" xml:space="preserve"><value>В момента няма изтегляния. Хайде, свали нещо!</value></data>
+  <data name="Downloads_Err_Interrupted" xml:space="preserve"><value>Прекъснато при затваряне на приложението.</value></data>
+  <data name="Downloads_Eta" xml:space="preserve"><value>Остават {0}</value></data>
+  <data name="Downloads_Kind_Depot" xml:space="preserve"><value>Файлове на депото</value></data>
+  <data name="Downloads_Kind_Dlc" xml:space="preserve"><value>Отключване на DLC</value></data>
+  <data name="Downloads_Kind_Tool" xml:space="preserve"><value>Инструмент</value></data>
+  <data name="Downloads_Of" xml:space="preserve"><value>{0} от {1}</value></data>
+  <data name="Downloads_SAC_Err_Launch" xml:space="preserve"><value>SteamAutoCrack не можа да се стартира.</value></data>
+  <data name="Downloads_SAC_Err_Restart" xml:space="preserve"><value>.NET средата е инсталирана, но Windows трябва да се рестартира, преди SteamAutoCrack да може да работи.</value></data>
+  <data name="Downloads_SAC_Err_Runtime" xml:space="preserve"><value>Не можа да се инсталира .NET средата, необходима на SteamAutoCrack.</value></data>
+  <data name="Downloads_SAC_Err_Tool" xml:space="preserve"><value>SteamAutoCrack не можа да се изтегли.</value></data>
+  <data name="Downloads_SAC_GettingRuntime" xml:space="preserve"><value>Проверка на .NET средата</value></data>
+  <data name="Downloads_SAC_GettingTool" xml:space="preserve"><value>Изтегляне на SteamAutoCrack</value></data>
+  <data name="Downloads_SAC_Launched" xml:space="preserve"><value>SteamAutoCrack е отворен.</value></data>
+  <data name="Downloads_SAC_Updated" xml:space="preserve"><value>SteamAutoCrack е обновен.</value></data>
+  <data name="Downloads_Section_Active" xml:space="preserve"><value>Опашка</value></data>
+  <data name="Downloads_Section_History" xml:space="preserve"><value>История</value></data>
+  <data name="Downloads_Status_AwaitingConfirm" xml:space="preserve"><value>Чака теб</value></data>
+  <data name="Downloads_Status_Cancelled" xml:space="preserve"><value>Отказано</value></data>
+  <data name="Downloads_Status_Completed" xml:space="preserve"><value>Готово</value></data>
+  <data name="Downloads_Status_Downloading" xml:space="preserve"><value>Изтегляне</value></data>
+  <data name="Downloads_Status_Failed" xml:space="preserve"><value>Неуспешно</value></data>
+  <data name="Downloads_Status_Installing" xml:space="preserve"><value>Инсталиране</value></data>
+  <data name="Downloads_Status_Paused" xml:space="preserve"><value>На пауза</value></data>
+  <data name="Downloads_Status_Queued" xml:space="preserve"><value>На опашка</value></data>
+  <data name="Downloads_Status_Verifying" xml:space="preserve"><value>Проверка…</value></data>
+  <data name="Downloads_Title" xml:space="preserve"><value>Изтегляния</value></data>
   <data name="Drop_BrowseFiles" xml:space="preserve"><value>Преглед на файлове…</value></data>
   <data name="Drop_Picker_Title" xml:space="preserve"><value>Изберете файлове .lua / .manifest / .zip</value></data>
   <data name="Drop_Picker_Filter" xml:space="preserve"><value>Lua / manifest / zip|*.lua;*.manifest;*.zip|Всички файлове|*.*</value></data>
@@ -210,6 +271,7 @@
   <data name="Drop_Result_Failed" xml:space="preserve"><value> {0} файл(а) са неуспешни — затворете Steam и опитайте отново.</value></data>
   <data name="Drop_Result_RestartApply" xml:space="preserve"><value> Рестартирайте Steam, за да приложите.</value></data>
   <data name="Common_SearchPlaceholder" xml:space="preserve"><value>Търсене по име или App ID...</value></data>
+  <data name="Common_CopyAppId" xml:space="preserve"><value>Копиране на App ID</value></data>
   <data name="Common_Loading" xml:space="preserve"><value>Зареждане…</value></data>
   <data name="Common_AppId" xml:space="preserve"><value>App ID: {0}</value></data>
   <data name="Common_AppFallback" xml:space="preserve"><value>Приложение {0}</value></data>
@@ -358,6 +420,7 @@
   <data name="Confirm_OpenSteamDb" xml:space="preserve"><value>Отваряне в SteamDB</value></data>
   <data name="Confirm_Shared" xml:space="preserve"><value>СПОДЕЛЕНО</value></data>
   <data name="Confirm_ReviewChanges" xml:space="preserve"><value>Това замества инсталирания lua. Прегледайте какво се променя:</value></data>
+  <data name="Common_ShowInFolder" xml:space="preserve"><value>Показване в папката</value></data>
   <data name="Confirm_Adding" xml:space="preserve"><value>Добавяне ({0})</value></data>
   <data name="Confirm_Removing" xml:space="preserve"><value>Премахване ({0})</value></data>
   <data name="Confirm_Skip" xml:space="preserve"><value>Пропускане</value></data>
@@ -438,9 +501,20 @@
   <data name="Builds_PinDisabled" xml:space="preserve"><value>закрепването е изключено (автообновяване)</value></data>
   <data name="Builds_Meta_Depots" xml:space="preserve"><value>{0} депота · {1} DLC</value></data>
   <data name="Builds_Meta_Unsaved" xml:space="preserve"><value>незапазена</value></data>
+  <data name="Builds_Select_All" xml:space="preserve"><value>Избери всички</value></data>
+  <data name="Builds_Select_ChooseFolder" xml:space="preserve"><value>Избери къде да се запишат файловете на депото</value></data>
+  <data name="Builds_Select_Confirm" xml:space="preserve"><value>Изтегли {0} депота ({1})</value></data>
+  <data name="Builds_Select_NoKey" xml:space="preserve"><value>В Lua няма ключ за дешифриране за този depot.</value></data>
+  <data name="Builds_Select_NoManifest" xml:space="preserve"><value>Това депо не обявява версия за изтегляне.</value></data>
+  <data name="Builds_Select_None" xml:space="preserve"><value>Няма избрани депота</value></data>
+  <data name="Builds_Select_SaveTo" xml:space="preserve"><value>Запази в</value></data>
+  <data name="Builds_Select_SharedHint" xml:space="preserve"><value>Споделена среда за изпълнение — обикновено вече е инсталирана. Отметнете, за да я изтеглите.</value></data>
+  <data name="Builds_Select_Space" xml:space="preserve"><value>Нужни {0} · свободни {1} на {2}</value></data>
+  <data name="Builds_Select_Title" xml:space="preserve"><value>Избери депота за изтегляне</value></data>
   <data name="Builds_Source" xml:space="preserve"><value>от {0}</value></data>
   <data name="Builds_Action_Apply" xml:space="preserve"><value>Приложи</value></data>
   <data name="Builds_Action_Rename" xml:space="preserve"><value>Преименувай</value></data>
+  <data name="Builds_Action_Download" xml:space="preserve"><value>Изтегли</value></data>
   <data name="Builds_Action_Edit" xml:space="preserve"><value>Редактирай</value></data>
   <data name="Builds_Action_Delete" xml:space="preserve"><value>Изтрий</value></data>
   <data name="Builds_Action_Save" xml:space="preserve"><value>Запази</value></data>
@@ -504,10 +578,12 @@
   <data name="Err_UpdateServerUnreachable" xml:space="preserve"><value>Сървърът за обновления е недостъпен. Провери връзката си и опитай отново.</value></data>
   <data name="Err_Cancelled" xml:space="preserve"><value>Отменено.</value></data>
   <data name="Err_CancelledByUser" xml:space="preserve"><value>Отменено от потребителя</value></data>
+  <data name="Err_PathMissing" xml:space="preserve"><value>{0} не може да се отвори — може да е преместен или изтрит.</value></data>
   <data name="Err_ReleaseMissingDownload" xml:space="preserve"><value>В изданието липсва очакваният файл за изтегляне.</value></data>
   <data name="Err_ReleaseMissingFile" xml:space="preserve"><value>В изданието липсва {0}.</value></data>
   <data name="Err_VerifyFailed" xml:space="preserve"><value>Изтеглянето не премина проверката (несъответствие на sha256).</value></data>
   <data name="Err_VerifyFailedFile" xml:space="preserve"><value>{0} не премина проверката (несъответствие на sha256).</value></data>
+  <data name="Err_ClipboardBusy" xml:space="preserve"><value>Копирането е неуспешно — друго приложение използва клипборда.</value></data>
   <data name="Err_DownloadMissingFiles" xml:space="preserve"><value>В изтеглянето липсва: {0}.</value></data>
   <data name="Err_WriteFailedCount" xml:space="preserve"><value>Не бяха записани {0} файл(а). Затвори Steam и опитай отново.</value></data>
   <data name="Err_WriteFailedFile" xml:space="preserve"><value>{0} не беше записан. Затвори Steam и опитай отново.</value></data>
