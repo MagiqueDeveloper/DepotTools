@@ -6,7 +6,7 @@ using CommunityToolkit.Mvvm.Input;
 using DepotToolsGui.Services;
 using System.Text.RegularExpressions;
 using DepotToolsGui.Services.Downloads;
-using Wpf.Ui.Controls;
+using Microsoft.Win32;
 
 namespace DepotToolsGui.ViewModels;
 
