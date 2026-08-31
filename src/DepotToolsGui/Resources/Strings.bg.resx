@@ -381,11 +381,14 @@
   <data name="Fixes_Toast_CouldntApply" xml:space="preserve"><value>Корекцията не можа да бъде приложена</value></data>
   <data name="Fixes_Toast_Refreshed_Title" xml:space="preserve"><value>Обновено</value></data>
   <data name="Fixes_Toast_Refreshed_Body" xml:space="preserve"><value>{0} игри с фиксове.</value></data>
-  <data name="Add_Title" xml:space="preserve"><value>Хайде да хванем малко Lua™!</value></data>
+  <data name="Add_Title" xml:space="preserve"><value>Добави игра</value></data>
   <data name="Add_Subtitle" xml:space="preserve"><value>Въведете App ID, поставете връзка от Steam или търсете по име на играта</value></data>
   <data name="Add_SearchPlaceholder" xml:space="preserve"><value>Въведете App ID или търсете игри...</value></data>
   <data name="Add_Featured_TopSellers" xml:space="preserve"><value>Най-продавани</value></data>
   <data name="Add_Featured_NewReleases" xml:space="preserve"><value>Нови издания</value></data>
+  <data name="Add_Fix_Available" xml:space="preserve"><value>Тази игра има налични корекции: {0}.</value></data>
+  <data name="Add_Fix_Available_Tags" xml:space="preserve"><value>Тази игра има налични корекции: {0} ({1}).</value></data>
+  <data name="Add_Fix_Open" xml:space="preserve"><value>Виж корекциите</value></data>
   <data name="Add_Released" xml:space="preserve"><value>Издадено на {0}</value></data>
   <data name="Add_Fetch" xml:space="preserve"><value>Извличане</value></data>
   <data name="Add_Checking" xml:space="preserve"><value>Проверка…</value></data>

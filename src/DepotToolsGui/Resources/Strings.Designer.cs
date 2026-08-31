@@ -321,6 +321,9 @@ public static class Strings
     public static string Add_SearchPlaceholder => Get(nameof(Add_SearchPlaceholder));
     public static string Add_Featured_TopSellers => Get(nameof(Add_Featured_TopSellers));
     public static string Add_Featured_NewReleases => Get(nameof(Add_Featured_NewReleases));
+    public static string Add_Fix_Available => Get(nameof(Add_Fix_Available));
+    public static string Add_Fix_Available_Tags => Get(nameof(Add_Fix_Available_Tags));
+    public static string Add_Fix_Open => Get(nameof(Add_Fix_Open));
     public static string Add_Released => Get(nameof(Add_Released));
     public static string Add_Fetch => Get(nameof(Add_Fetch));
     public static string Add_Checking => Get(nameof(Add_Checking));

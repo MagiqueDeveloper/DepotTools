@@ -381,11 +381,14 @@ Detta tar bort .lua-filerna från Steam\config\stplug-in. Starta om Steam efter�
   <data name="Fixes_Toast_CouldntApply" xml:space="preserve"><value>Det gick inte att tillämpa fixen</value></data>
   <data name="Fixes_Toast_Refreshed_Title" xml:space="preserve"><value>Uppdaterad</value></data>
   <data name="Fixes_Toast_Refreshed_Body" xml:space="preserve"><value>{0} spel med fixar.</value></data>
-  <data name="Add_Title" xml:space="preserve"><value>Dags att hämta Lua™!</value></data>
+  <data name="Add_Title" xml:space="preserve"><value>Lägg till ett spel</value></data>
   <data name="Add_Subtitle" xml:space="preserve"><value>Ange ett App ID, klistra in en Steam-länk eller sök efter spelnamn</value></data>
   <data name="Add_SearchPlaceholder" xml:space="preserve"><value>Ange App ID eller sök spel...</value></data>
   <data name="Add_Featured_TopSellers" xml:space="preserve"><value>Storsäljare</value></data>
   <data name="Add_Featured_NewReleases" xml:space="preserve"><value>Nya släpp</value></data>
+  <data name="Add_Fix_Available" xml:space="preserve"><value>Det här spelet har {0} fixar tillgängliga.</value></data>
+  <data name="Add_Fix_Available_Tags" xml:space="preserve"><value>Det här spelet har {0} fixar tillgängliga: {1}.</value></data>
+  <data name="Add_Fix_Open" xml:space="preserve"><value>Visa fixar</value></data>
   <data name="Add_Released" xml:space="preserve"><value>Släppt {0}</value></data>
   <data name="Add_Fetch" xml:space="preserve"><value>Hämta</value></data>
   <data name="Add_Checking" xml:space="preserve"><value>Kontrollerar…</value></data>

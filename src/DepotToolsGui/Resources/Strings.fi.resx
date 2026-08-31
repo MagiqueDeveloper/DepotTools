@@ -381,11 +381,14 @@ Tämä poistaa .lua-tiedostot sijainnista Steam\config\stplug-in. Käynnistä St
   <data name="Fixes_Toast_CouldntApply" xml:space="preserve"><value>Korjausta ei voitu käyttää</value></data>
   <data name="Fixes_Toast_Refreshed_Title" xml:space="preserve"><value>Päivitetty</value></data>
   <data name="Fixes_Toast_Refreshed_Body" xml:space="preserve"><value>{0} peliä, joissa on fix.</value></data>
-  <data name="Add_Title" xml:space="preserve"><value>Haetaan Luaa™!</value></data>
+  <data name="Add_Title" xml:space="preserve"><value>Lisää peli</value></data>
   <data name="Add_Subtitle" xml:space="preserve"><value>Syötä App ID, liitä Steam-linkki tai hae pelin nimellä</value></data>
   <data name="Add_SearchPlaceholder" xml:space="preserve"><value>Syötä App ID tai hae pelejä...</value></data>
   <data name="Add_Featured_TopSellers" xml:space="preserve"><value>Myydyimmät</value></data>
   <data name="Add_Featured_NewReleases" xml:space="preserve"><value>Uutuudet</value></data>
+  <data name="Add_Fix_Available" xml:space="preserve"><value>Tälle pelille on saatavilla {0} korjausta.</value></data>
+  <data name="Add_Fix_Available_Tags" xml:space="preserve"><value>Tälle pelille on saatavilla {0} korjausta: {1}.</value></data>
+  <data name="Add_Fix_Open" xml:space="preserve"><value>Näytä korjaukset</value></data>
   <data name="Add_Released" xml:space="preserve"><value>Julkaistu {0}</value></data>
   <data name="Add_Fetch" xml:space="preserve"><value>Hae</value></data>
   <data name="Add_Checking" xml:space="preserve"><value>Tarkistetaan…</value></data>

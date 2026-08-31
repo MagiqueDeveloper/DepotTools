@@ -381,11 +381,14 @@ Aceasta șterge fișierele .lua din Steam\config\stplug-in. Repornește Steam du
   <data name="Fixes_Toast_CouldntApply" xml:space="preserve"><value>Remedierea nu a putut fi aplicată</value></data>
   <data name="Fixes_Toast_Refreshed_Title" xml:space="preserve"><value>Actualizat</value></data>
   <data name="Fixes_Toast_Refreshed_Body" xml:space="preserve"><value>{0} jocuri cu fixuri.</value></data>
-  <data name="Add_Title" xml:space="preserve"><value>Hai să luăm niște Lua™!</value></data>
+  <data name="Add_Title" xml:space="preserve"><value>Adaugă un joc</value></data>
   <data name="Add_Subtitle" xml:space="preserve"><value>Introdu un App ID, lipește un link Steam sau caută după numele jocului</value></data>
   <data name="Add_SearchPlaceholder" xml:space="preserve"><value>Introdu un App ID sau caută jocuri...</value></data>
   <data name="Add_Featured_TopSellers" xml:space="preserve"><value>Cele mai vândute</value></data>
   <data name="Add_Featured_NewReleases" xml:space="preserve"><value>Lansări noi</value></data>
+  <data name="Add_Fix_Available" xml:space="preserve"><value>Acest joc are {0} remedieri disponibile.</value></data>
+  <data name="Add_Fix_Available_Tags" xml:space="preserve"><value>Acest joc are {0} remedieri disponibile: {1}.</value></data>
+  <data name="Add_Fix_Open" xml:space="preserve"><value>Vezi remedierile</value></data>
   <data name="Add_Released" xml:space="preserve"><value>Lansat la {0}</value></data>
   <data name="Add_Fetch" xml:space="preserve"><value>Preia</value></data>
   <data name="Add_Checking" xml:space="preserve"><value>Se verifică…</value></data>

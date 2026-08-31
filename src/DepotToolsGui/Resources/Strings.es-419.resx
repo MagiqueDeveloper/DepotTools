@@ -381,11 +381,14 @@ Esto borra los archivos .lua de Steam\config\stplug-in. Reinicia Steam después 
   <data name="Fixes_Toast_CouldntApply" xml:space="preserve"><value>No se pudo aplicar el parche</value></data>
   <data name="Fixes_Toast_Refreshed_Title" xml:space="preserve"><value>Actualizado</value></data>
   <data name="Fixes_Toast_Refreshed_Body" xml:space="preserve"><value>{0} juegos con fixes.</value></data>
-  <data name="Add_Title" xml:space="preserve"><value>¡A por los Luas™!</value></data>
+  <data name="Add_Title" xml:space="preserve"><value>Añadir un juego</value></data>
   <data name="Add_Subtitle" xml:space="preserve"><value>Introduce un App ID, pega un enlace de Steam o busca por nombre de juego</value></data>
   <data name="Add_SearchPlaceholder" xml:space="preserve"><value>Introduce un App ID o busca juegos...</value></data>
   <data name="Add_Featured_TopSellers" xml:space="preserve"><value>Más vendidos</value></data>
   <data name="Add_Featured_NewReleases" xml:space="preserve"><value>Novedades</value></data>
+  <data name="Add_Fix_Available" xml:space="preserve"><value>Este juego tiene {0} parche(s) disponible(s).</value></data>
+  <data name="Add_Fix_Available_Tags" xml:space="preserve"><value>Este juego tiene {0} parche(s) disponible(s): {1}.</value></data>
+  <data name="Add_Fix_Open" xml:space="preserve"><value>Ver parches</value></data>
   <data name="Add_Released" xml:space="preserve"><value>Lanzado el {0}</value></data>
   <data name="Add_Fetch" xml:space="preserve"><value>Obtener</value></data>
   <data name="Add_Checking" xml:space="preserve"><value>Comprobando…</value></data>

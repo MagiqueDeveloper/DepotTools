@@ -381,11 +381,14 @@
   <data name="Fixes_Toast_CouldntApply" xml:space="preserve"><value>Не вдалося застосувати фікс</value></data>
   <data name="Fixes_Toast_Refreshed_Title" xml:space="preserve"><value>Оновлено</value></data>
   <data name="Fixes_Toast_Refreshed_Body" xml:space="preserve"><value>{0} ігор з фіксами.</value></data>
-  <data name="Add_Title" xml:space="preserve"><value>Ходімо по Lua™!</value></data>
+  <data name="Add_Title" xml:space="preserve"><value>Додати гру</value></data>
   <data name="Add_Subtitle" xml:space="preserve"><value>Введіть App ID, вставте посилання Steam або виконайте пошук за назвою гри</value></data>
   <data name="Add_SearchPlaceholder" xml:space="preserve"><value>Введіть App ID або знайдіть ігри...</value></data>
   <data name="Add_Featured_TopSellers" xml:space="preserve"><value>Бестселери</value></data>
   <data name="Add_Featured_NewReleases" xml:space="preserve"><value>Нові випуски</value></data>
+  <data name="Add_Fix_Available" xml:space="preserve"><value>Для цієї гри є фікси: {0}.</value></data>
+  <data name="Add_Fix_Available_Tags" xml:space="preserve"><value>Для цієї гри є фікси: {0} ({1}).</value></data>
+  <data name="Add_Fix_Open" xml:space="preserve"><value>Відкрити фікси</value></data>
   <data name="Add_Released" xml:space="preserve"><value>Випущено {0}</value></data>
   <data name="Add_Fetch" xml:space="preserve"><value>Отримати</value></data>
   <data name="Add_Checking" xml:space="preserve"><value>Перевірка…</value></data>

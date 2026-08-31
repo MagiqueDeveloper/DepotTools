@@ -381,11 +381,14 @@
   <data name="Fixes_Toast_CouldntApply" xml:space="preserve"><value>修正を適用できませんでした</value></data>
   <data name="Fixes_Toast_Refreshed_Title" xml:space="preserve"><value>更新しました</value></data>
   <data name="Fixes_Toast_Refreshed_Body" xml:space="preserve"><value>修正のあるゲーム {0} 件。</value></data>
-  <data name="Add_Title" xml:space="preserve"><value>Luaを始めよう™！</value></data>
+  <data name="Add_Title" xml:space="preserve"><value>ゲームを追加</value></data>
   <data name="Add_Subtitle" xml:space="preserve"><value>App IDを入力するか、Steamのリンクを貼り付けるか、ゲーム名で検索してください</value></data>
   <data name="Add_SearchPlaceholder" xml:space="preserve"><value>App IDを入力するかゲームを検索...</value></data>
   <data name="Add_Featured_TopSellers" xml:space="preserve"><value>売上トップ</value></data>
   <data name="Add_Featured_NewReleases" xml:space="preserve"><value>新着&amp;注目</value></data>
+  <data name="Add_Fix_Available" xml:space="preserve"><value>このゲームには {0} 件の修正があります。</value></data>
+  <data name="Add_Fix_Available_Tags" xml:space="preserve"><value>このゲームには {0} 件の修正があります：{1}</value></data>
+  <data name="Add_Fix_Open" xml:space="preserve"><value>修正を見る</value></data>
   <data name="Add_Released" xml:space="preserve"><value>リリース日 {0}</value></data>
   <data name="Add_Fetch" xml:space="preserve"><value>取得</value></data>
   <data name="Add_Checking" xml:space="preserve"><value>確認中…</value></data>

@@ -399,11 +399,14 @@
   <data name="Fixes_Toast_Refreshed_Body" xml:space="preserve"><value>{0} 个含修复的游戏。</value></data>
 
   <!-- ── 添加 / 下载页 ── -->
-  <data name="Add_Title" xml:space="preserve"><value>开始添加 Lua 吧！</value></data>
+  <data name="Add_Title" xml:space="preserve"><value>添加游戏</value></data>
   <data name="Add_Subtitle" xml:space="preserve"><value>输入 App ID、粘贴 Steam 链接，或按游戏名称搜索</value></data>
   <data name="Add_SearchPlaceholder" xml:space="preserve"><value>输入 App ID 或搜索游戏…</value></data>
   <data name="Add_Featured_TopSellers" xml:space="preserve"><value>热销商品</value></data>
   <data name="Add_Featured_NewReleases" xml:space="preserve"><value>新品与热门</value></data>
+  <data name="Add_Fix_Available" xml:space="preserve"><value>这款游戏有 {0} 个修复可用。</value></data>
+  <data name="Add_Fix_Available_Tags" xml:space="preserve"><value>这款游戏有 {0} 个修复可用：{1}</value></data>
+  <data name="Add_Fix_Open" xml:space="preserve"><value>查看修复</value></data>
   <data name="Add_Released" xml:space="preserve"><value>发行于 {0}</value></data>
   <data name="Add_Fetch" xml:space="preserve"><value>获取</value></data>
   <data name="Add_Checking" xml:space="preserve"><value>正在检查…</value></data>

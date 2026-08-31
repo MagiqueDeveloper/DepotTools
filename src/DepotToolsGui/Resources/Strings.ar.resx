@@ -404,11 +404,14 @@
   <data name="Fixes_Toast_Refreshed_Body" xml:space="preserve"><value>{0} لعبة تحتوي على إصلاحات.</value></data>
 
   <!-- ── Add / Download page ── -->
-  <data name="Add_Title" xml:space="preserve"><value>هيا نبدأ اللْوَنة™!</value></data>
+  <data name="Add_Title" xml:space="preserve"><value>إضافة لعبة</value></data>
   <data name="Add_Subtitle" xml:space="preserve"><value>أدخِل App ID، أو الصِق رابط Steam، أو ابحث باسم اللعبة</value></data>
   <data name="Add_SearchPlaceholder" xml:space="preserve"><value>أدخِل App ID أو ابحث عن الألعاب...</value></data>
   <data name="Add_Featured_TopSellers" xml:space="preserve"><value>الأكثر مبيعًا</value></data>
   <data name="Add_Featured_NewReleases" xml:space="preserve"><value>إصدارات جديدة</value></data>
+  <data name="Add_Fix_Available" xml:space="preserve"><value>تتوفر لهذه اللعبة {0} إصلاح.</value></data>
+  <data name="Add_Fix_Available_Tags" xml:space="preserve"><value>تتوفر لهذه اللعبة {0} إصلاح: {1}.</value></data>
+  <data name="Add_Fix_Open" xml:space="preserve"><value>عرض الإصلاحات</value></data>
   <data name="Add_Released" xml:space="preserve"><value>صدرت في {0}</value></data>
   <data name="Add_Fetch" xml:space="preserve"><value>جلب</value></data>
   <data name="Add_Checking" xml:space="preserve"><value>جارٍ التحقق…</value></data>

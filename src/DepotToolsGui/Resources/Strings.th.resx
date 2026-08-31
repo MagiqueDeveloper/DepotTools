@@ -381,11 +381,14 @@
   <data name="Fixes_Toast_CouldntApply" xml:space="preserve"><value>ไม่สามารถใช้การแก้ไขได้</value></data>
   <data name="Fixes_Toast_Refreshed_Title" xml:space="preserve"><value>รีเฟรชแล้ว</value></data>
   <data name="Fixes_Toast_Refreshed_Body" xml:space="preserve"><value>{0} เกมที่มีแพตช์แก้ไข</value></data>
-  <data name="Add_Title" xml:space="preserve"><value>ไปหา Lua กันเถอะ™!</value></data>
+  <data name="Add_Title" xml:space="preserve"><value>เพิ่มเกม</value></data>
   <data name="Add_Subtitle" xml:space="preserve"><value>ป้อน App ID วางลิงก์ Steam หรือค้นหาด้วยชื่อเกม</value></data>
   <data name="Add_SearchPlaceholder" xml:space="preserve"><value>ป้อน App ID หรือค้นหาเกม...</value></data>
   <data name="Add_Featured_TopSellers" xml:space="preserve"><value>สินค้าขายดี</value></data>
   <data name="Add_Featured_NewReleases" xml:space="preserve"><value>ออกใหม่</value></data>
+  <data name="Add_Fix_Available" xml:space="preserve"><value>เกมนี้มีการแก้ไข {0} รายการ</value></data>
+  <data name="Add_Fix_Available_Tags" xml:space="preserve"><value>เกมนี้มีการแก้ไข {0} รายการ: {1}</value></data>
+  <data name="Add_Fix_Open" xml:space="preserve"><value>ดูการแก้ไข</value></data>
   <data name="Add_Released" xml:space="preserve"><value>วางจำหน่าย {0}</value></data>
   <data name="Add_Fetch" xml:space="preserve"><value>ดึงข้อมูล</value></data>
   <data name="Add_Checking" xml:space="preserve"><value>กำลังตรวจสอบ…</value></data>

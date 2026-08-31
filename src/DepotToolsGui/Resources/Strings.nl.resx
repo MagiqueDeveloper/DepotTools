@@ -381,11 +381,14 @@ Dit verwijdert de .lua-bestanden uit Steam\config\stplug-in. Herstart Steam daar
   <data name="Fixes_Toast_CouldntApply" xml:space="preserve"><value>Kon fix niet toepassen</value></data>
   <data name="Fixes_Toast_Refreshed_Title" xml:space="preserve"><value>Vernieuwd</value></data>
   <data name="Fixes_Toast_Refreshed_Body" xml:space="preserve"><value>{0} games met fixes.</value></data>
-  <data name="Add_Title" xml:space="preserve"><value>Tijd om te Lua'en™!</value></data>
+  <data name="Add_Title" xml:space="preserve"><value>Spel toevoegen</value></data>
   <data name="Add_Subtitle" xml:space="preserve"><value>Voer een App ID in, plak een Steam-link of zoek op gamenaam</value></data>
   <data name="Add_SearchPlaceholder" xml:space="preserve"><value>Voer een App ID in of zoek games...</value></data>
   <data name="Add_Featured_TopSellers" xml:space="preserve"><value>Bestverkocht</value></data>
   <data name="Add_Featured_NewReleases" xml:space="preserve"><value>Nieuwe releases</value></data>
+  <data name="Add_Fix_Available" xml:space="preserve"><value>Voor dit spel zijn {0} fixes beschikbaar.</value></data>
+  <data name="Add_Fix_Available_Tags" xml:space="preserve"><value>Voor dit spel zijn {0} fixes beschikbaar: {1}.</value></data>
+  <data name="Add_Fix_Open" xml:space="preserve"><value>Fixes bekijken</value></data>
   <data name="Add_Released" xml:space="preserve"><value>Uitgebracht op {0}</value></data>
   <data name="Add_Fetch" xml:space="preserve"><value>Ophalen</value></data>
   <data name="Add_Checking" xml:space="preserve"><value>Controleren…</value></data>

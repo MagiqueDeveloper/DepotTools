@@ -381,11 +381,14 @@ Tím se smažou soubory .lua ze Steam\config\stplug-in. Poté restartujte Steam,
   <data name="Fixes_Toast_CouldntApply" xml:space="preserve"><value>Opravu se nepodařilo použít</value></data>
   <data name="Fixes_Toast_Refreshed_Title" xml:space="preserve"><value>Obnoveno</value></data>
   <data name="Fixes_Toast_Refreshed_Body" xml:space="preserve"><value>{0} her s fixy.</value></data>
-  <data name="Add_Title" xml:space="preserve"><value>Jdeme na Lua™!</value></data>
+  <data name="Add_Title" xml:space="preserve"><value>Přidat hru</value></data>
   <data name="Add_Subtitle" xml:space="preserve"><value>Zadejte App ID, vložte odkaz Steam nebo vyhledejte podle názvu hry</value></data>
   <data name="Add_SearchPlaceholder" xml:space="preserve"><value>Zadejte App ID nebo vyhledejte hry...</value></data>
   <data name="Add_Featured_TopSellers" xml:space="preserve"><value>Nejprodávanější</value></data>
   <data name="Add_Featured_NewReleases" xml:space="preserve"><value>Nově vydané</value></data>
+  <data name="Add_Fix_Available" xml:space="preserve"><value>Pro tuto hru jsou k dispozici opravy: {0}.</value></data>
+  <data name="Add_Fix_Available_Tags" xml:space="preserve"><value>Pro tuto hru jsou k dispozici opravy: {0} ({1}).</value></data>
+  <data name="Add_Fix_Open" xml:space="preserve"><value>Zobrazit opravy</value></data>
   <data name="Add_Released" xml:space="preserve"><value>Vydáno {0}</value></data>
   <data name="Add_Fetch" xml:space="preserve"><value>Načíst</value></data>
   <data name="Add_Checking" xml:space="preserve"><value>Kontrola…</value></data>

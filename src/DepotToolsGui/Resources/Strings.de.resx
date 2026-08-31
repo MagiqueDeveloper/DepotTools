@@ -381,11 +381,14 @@ Dadurch werden die .lua-Dateien aus Steam\config\stplug-in gelöscht. Starte Ste
   <data name="Fixes_Toast_CouldntApply" xml:space="preserve"><value>Fix konnte nicht angewendet werden</value></data>
   <data name="Fixes_Toast_Refreshed_Title" xml:space="preserve"><value>Aktualisiert</value></data>
   <data name="Fixes_Toast_Refreshed_Body" xml:space="preserve"><value>{0} Spiele mit Fixes.</value></data>
-  <data name="Add_Title" xml:space="preserve"><value>Auf geht's zum Luaen™!</value></data>
+  <data name="Add_Title" xml:space="preserve"><value>Spiel hinzufügen</value></data>
   <data name="Add_Subtitle" xml:space="preserve"><value>Gib eine App-ID ein, füge einen Steam-Link ein oder suche nach dem Spielnamen</value></data>
   <data name="Add_SearchPlaceholder" xml:space="preserve"><value>App-ID eingeben oder Spiele suchen...</value></data>
   <data name="Add_Featured_TopSellers" xml:space="preserve"><value>Topseller</value></data>
   <data name="Add_Featured_NewReleases" xml:space="preserve"><value>Neuerscheinungen</value></data>
+  <data name="Add_Fix_Available" xml:space="preserve"><value>Für dieses Spiel gibt es {0} Fixes.</value></data>
+  <data name="Add_Fix_Available_Tags" xml:space="preserve"><value>Für dieses Spiel gibt es {0} Fixes: {1}.</value></data>
+  <data name="Add_Fix_Open" xml:space="preserve"><value>Fixes ansehen</value></data>
   <data name="Add_Released" xml:space="preserve"><value>Veröffentlicht {0}</value></data>
   <data name="Add_Fetch" xml:space="preserve"><value>Abrufen</value></data>
   <data name="Add_Checking" xml:space="preserve"><value>Wird geprüft…</value></data>

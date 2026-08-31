@@ -381,11 +381,14 @@ Bu işlem, .lua dosyalarını Steam\config\stplug-in konumundan siler. Değişik
   <data name="Fixes_Toast_CouldntApply" xml:space="preserve"><value>Düzeltme uygulanamadı</value></data>
   <data name="Fixes_Toast_Refreshed_Title" xml:space="preserve"><value>Yenilendi</value></data>
   <data name="Fixes_Toast_Refreshed_Body" xml:space="preserve"><value>{0} oyunda fix var.</value></data>
-  <data name="Add_Title" xml:space="preserve"><value>Hadi Lua toplayalım™!</value></data>
+  <data name="Add_Title" xml:space="preserve"><value>Oyun ekle</value></data>
   <data name="Add_Subtitle" xml:space="preserve"><value>Bir App ID girin, bir Steam bağlantısı yapıştırın veya oyun adına göre arayın</value></data>
   <data name="Add_SearchPlaceholder" xml:space="preserve"><value>App ID girin veya oyun arayın...</value></data>
   <data name="Add_Featured_TopSellers" xml:space="preserve"><value>En Çok Satanlar</value></data>
   <data name="Add_Featured_NewReleases" xml:space="preserve"><value>Yeni Çıkanlar</value></data>
+  <data name="Add_Fix_Available" xml:space="preserve"><value>Bu oyun için {0} düzeltme mevcut.</value></data>
+  <data name="Add_Fix_Available_Tags" xml:space="preserve"><value>Bu oyun için {0} düzeltme mevcut: {1}.</value></data>
+  <data name="Add_Fix_Open" xml:space="preserve"><value>Düzeltmeleri gör</value></data>
   <data name="Add_Released" xml:space="preserve"><value>Çıkış: {0}</value></data>
   <data name="Add_Fetch" xml:space="preserve"><value>Getir</value></data>
   <data name="Add_Checking" xml:space="preserve"><value>Denetleniyor…</value></data>

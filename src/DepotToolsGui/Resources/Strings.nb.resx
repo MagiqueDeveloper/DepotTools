@@ -381,11 +381,14 @@ Dette sletter .lua-filene fra Steam\config\stplug-in. Start Steam på nytt etter
   <data name="Fixes_Toast_CouldntApply" xml:space="preserve"><value>Kunne ikke bruke fiksen</value></data>
   <data name="Fixes_Toast_Refreshed_Title" xml:space="preserve"><value>Oppdatert</value></data>
   <data name="Fixes_Toast_Refreshed_Body" xml:space="preserve"><value>{0} spill med fixer.</value></data>
-  <data name="Add_Title" xml:space="preserve"><value>La oss hente Lua™!</value></data>
+  <data name="Add_Title" xml:space="preserve"><value>Legg til et spill</value></data>
   <data name="Add_Subtitle" xml:space="preserve"><value>Skriv inn en App ID, lim inn en Steam-lenke, eller søk etter spillnavn</value></data>
   <data name="Add_SearchPlaceholder" xml:space="preserve"><value>Skriv inn App ID eller søk spill...</value></data>
   <data name="Add_Featured_TopSellers" xml:space="preserve"><value>Bestselgere</value></data>
   <data name="Add_Featured_NewReleases" xml:space="preserve"><value>Nye utgivelser</value></data>
+  <data name="Add_Fix_Available" xml:space="preserve"><value>Dette spillet har {0} fikser tilgjengelig.</value></data>
+  <data name="Add_Fix_Available_Tags" xml:space="preserve"><value>Dette spillet har {0} fikser tilgjengelig: {1}.</value></data>
+  <data name="Add_Fix_Open" xml:space="preserve"><value>Se fikser</value></data>
   <data name="Add_Released" xml:space="preserve"><value>Utgitt {0}</value></data>
   <data name="Add_Fetch" xml:space="preserve"><value>Hent</value></data>
   <data name="Add_Checking" xml:space="preserve"><value>Sjekker…</value></data>

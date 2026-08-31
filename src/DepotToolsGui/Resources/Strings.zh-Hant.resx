@@ -381,11 +381,14 @@
   <data name="Fixes_Toast_CouldntApply" xml:space="preserve"><value>無法套用修正</value></data>
   <data name="Fixes_Toast_Refreshed_Title" xml:space="preserve"><value>已重新整理</value></data>
   <data name="Fixes_Toast_Refreshed_Body" xml:space="preserve"><value>{0} 個含修復的遊戲。</value></data>
-  <data name="Add_Title" xml:space="preserve"><value>開始新增 Lua 吧™！</value></data>
+  <data name="Add_Title" xml:space="preserve"><value>新增遊戲</value></data>
   <data name="Add_Subtitle" xml:space="preserve"><value>輸入 App ID、貼上 Steam 連結，或依遊戲名稱搜尋</value></data>
   <data name="Add_SearchPlaceholder" xml:space="preserve"><value>輸入 App ID 或搜尋遊戲...</value></data>
   <data name="Add_Featured_TopSellers" xml:space="preserve"><value>暢銷商品</value></data>
   <data name="Add_Featured_NewReleases" xml:space="preserve"><value>最新與熱門</value></data>
+  <data name="Add_Fix_Available" xml:space="preserve"><value>這款遊戲有 {0} 個修正可用。</value></data>
+  <data name="Add_Fix_Available_Tags" xml:space="preserve"><value>這款遊戲有 {0} 個修正可用：{1}</value></data>
+  <data name="Add_Fix_Open" xml:space="preserve"><value>查看修正</value></data>
   <data name="Add_Released" xml:space="preserve"><value>發行於 {0}</value></data>
   <data name="Add_Fetch" xml:space="preserve"><value>擷取</value></data>
   <data name="Add_Checking" xml:space="preserve"><value>正在檢查…</value></data>

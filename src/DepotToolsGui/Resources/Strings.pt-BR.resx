@@ -381,11 +381,14 @@ Isso exclui os arquivos .lua de Steam\config\stplug-in. Reinicie o Steam depois 
   <data name="Fixes_Toast_CouldntApply" xml:space="preserve"><value>Não foi possível aplicar a correção</value></data>
   <data name="Fixes_Toast_Refreshed_Title" xml:space="preserve"><value>Atualizado</value></data>
   <data name="Fixes_Toast_Refreshed_Body" xml:space="preserve"><value>{0} jogos com fixes.</value></data>
-  <data name="Add_Title" xml:space="preserve"><value>Bora pegar uns Luas™!</value></data>
+  <data name="Add_Title" xml:space="preserve"><value>Adicionar um jogo</value></data>
   <data name="Add_Subtitle" xml:space="preserve"><value>Insira um App ID, cole um link do Steam ou pesquise pelo nome do jogo</value></data>
   <data name="Add_SearchPlaceholder" xml:space="preserve"><value>Insira um App ID ou pesquise jogos...</value></data>
   <data name="Add_Featured_TopSellers" xml:space="preserve"><value>Mais vendidos</value></data>
   <data name="Add_Featured_NewReleases" xml:space="preserve"><value>Lançamentos</value></data>
+  <data name="Add_Fix_Available" xml:space="preserve"><value>Este jogo tem {0} correção(ões) disponível(is).</value></data>
+  <data name="Add_Fix_Available_Tags" xml:space="preserve"><value>Este jogo tem {0} correção(ões) disponível(is): {1}.</value></data>
+  <data name="Add_Fix_Open" xml:space="preserve"><value>Ver correções</value></data>
   <data name="Add_Released" xml:space="preserve"><value>Lançado em {0}</value></data>
   <data name="Add_Fetch" xml:space="preserve"><value>Buscar</value></data>
   <data name="Add_Checking" xml:space="preserve"><value>Verificando…</value></data>

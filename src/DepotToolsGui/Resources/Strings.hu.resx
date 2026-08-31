@@ -381,11 +381,14 @@ Ez törli a .lua fájlokat a Steam\config\stplug-in mappából. Ezután indítsd
   <data name="Fixes_Toast_CouldntApply" xml:space="preserve"><value>A javítást nem sikerült alkalmazni</value></data>
   <data name="Fixes_Toast_Refreshed_Title" xml:space="preserve"><value>Frissítve</value></data>
   <data name="Fixes_Toast_Refreshed_Body" xml:space="preserve"><value>{0} játék fixekkel.</value></data>
-  <data name="Add_Title" xml:space="preserve"><value>Gyűjtsünk Luákat™!</value></data>
+  <data name="Add_Title" xml:space="preserve"><value>Játék hozzáadása</value></data>
   <data name="Add_Subtitle" xml:space="preserve"><value>Adj meg egy App ID-t, illessz be egy Steam-linket, vagy keress játéknév alapján</value></data>
   <data name="Add_SearchPlaceholder" xml:space="preserve"><value>Adj meg egy App ID-t, vagy keress játékokat...</value></data>
   <data name="Add_Featured_TopSellers" xml:space="preserve"><value>Toplista</value></data>
   <data name="Add_Featured_NewReleases" xml:space="preserve"><value>Új megjelenések</value></data>
+  <data name="Add_Fix_Available" xml:space="preserve"><value>Ehhez a játékhoz {0} javítás érhető el.</value></data>
+  <data name="Add_Fix_Available_Tags" xml:space="preserve"><value>Ehhez a játékhoz {0} javítás érhető el: {1}.</value></data>
+  <data name="Add_Fix_Open" xml:space="preserve"><value>Javítások megtekintése</value></data>
   <data name="Add_Released" xml:space="preserve"><value>Megjelent: {0}</value></data>
   <data name="Add_Fetch" xml:space="preserve"><value>Lekérés</value></data>
   <data name="Add_Checking" xml:space="preserve"><value>Ellenőrzés…</value></data>

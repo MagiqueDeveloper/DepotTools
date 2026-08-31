@@ -381,11 +381,14 @@ Thao tác này sẽ xóa các tệp .lua khỏi Steam\config\stplug-in. Sau đó
   <data name="Fixes_Toast_CouldntApply" xml:space="preserve"><value>Không thể áp dụng bản sửa lỗi</value></data>
   <data name="Fixes_Toast_Refreshed_Title" xml:space="preserve"><value>Đã làm mới</value></data>
   <data name="Fixes_Toast_Refreshed_Body" xml:space="preserve"><value>{0} trò chơi có fix.</value></data>
-  <data name="Add_Title" xml:space="preserve"><value>Đi săn Lua nào™!</value></data>
+  <data name="Add_Title" xml:space="preserve"><value>Thêm trò chơi</value></data>
   <data name="Add_Subtitle" xml:space="preserve"><value>Nhập App ID, dán liên kết Steam hoặc tìm theo tên trò chơi</value></data>
   <data name="Add_SearchPlaceholder" xml:space="preserve"><value>Nhập App ID hoặc tìm trò chơi...</value></data>
   <data name="Add_Featured_TopSellers" xml:space="preserve"><value>Bán chạy nhất</value></data>
   <data name="Add_Featured_NewReleases" xml:space="preserve"><value>Phát hành mới</value></data>
+  <data name="Add_Fix_Available" xml:space="preserve"><value>Trò chơi này có {0} bản sửa lỗi.</value></data>
+  <data name="Add_Fix_Available_Tags" xml:space="preserve"><value>Trò chơi này có {0} bản sửa lỗi: {1}.</value></data>
+  <data name="Add_Fix_Open" xml:space="preserve"><value>Xem bản sửa lỗi</value></data>
   <data name="Add_Released" xml:space="preserve"><value>Phát hành {0}</value></data>
   <data name="Add_Fetch" xml:space="preserve"><value>Lấy</value></data>
   <data name="Add_Checking" xml:space="preserve"><value>Đang kiểm tra…</value></data>

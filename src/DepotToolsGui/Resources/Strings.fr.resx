@@ -381,11 +381,14 @@ Cela supprime les fichiers .lua de Steam\config\stplug-in. Redémarrez Steam ens
   <data name="Fixes_Toast_CouldntApply" xml:space="preserve"><value>Impossible d'appliquer le correctif</value></data>
   <data name="Fixes_Toast_Refreshed_Title" xml:space="preserve"><value>Actualisé</value></data>
   <data name="Fixes_Toast_Refreshed_Body" xml:space="preserve"><value>{0} jeux avec fixes.</value></data>
-  <data name="Add_Title" xml:space="preserve"><value>C'est parti pour Luaer™ !</value></data>
+  <data name="Add_Title" xml:space="preserve"><value>Ajouter un jeu</value></data>
   <data name="Add_Subtitle" xml:space="preserve"><value>Saisissez un App ID, collez un lien Steam ou recherchez par nom de jeu</value></data>
   <data name="Add_SearchPlaceholder" xml:space="preserve"><value>Saisir un App ID ou rechercher des jeux...</value></data>
   <data name="Add_Featured_TopSellers" xml:space="preserve"><value>Meilleures ventes</value></data>
   <data name="Add_Featured_NewReleases" xml:space="preserve"><value>Nouveautés</value></data>
+  <data name="Add_Fix_Available" xml:space="preserve"><value>Ce jeu a {0} correctif(s) disponible(s).</value></data>
+  <data name="Add_Fix_Available_Tags" xml:space="preserve"><value>Ce jeu a {0} correctif(s) disponible(s) : {1}.</value></data>
+  <data name="Add_Fix_Open" xml:space="preserve"><value>Voir les correctifs</value></data>
   <data name="Add_Released" xml:space="preserve"><value>Sorti le {0}</value></data>
   <data name="Add_Fetch" xml:space="preserve"><value>Récupérer</value></data>
   <data name="Add_Checking" xml:space="preserve"><value>Vérification…</value></data>
