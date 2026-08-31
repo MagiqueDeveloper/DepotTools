@@ -257,6 +257,7 @@ Annuler - continuer le téléchargement</value></data>
   <data name="Downloads_Status_Paused" xml:space="preserve"><value>En pause</value></data>
   <data name="Downloads_Status_Queued" xml:space="preserve"><value>En attente</value></data>
   <data name="Downloads_Status_Verifying" xml:space="preserve"><value>Vérification…</value></data>
+  <data name="Downloads_SteamAutoCrack" xml:space="preserve"><value>SteamAutoCrack</value></data>
   <data name="Downloads_Title" xml:space="preserve"><value>Téléchargements</value></data>
   <data name="Drop_BrowseFiles" xml:space="preserve"><value>Parcourir les fichiers…</value></data>
   <data name="Drop_Picker_Title" xml:space="preserve"><value>Choisir des fichiers .lua / .manifest / .zip</value></data>

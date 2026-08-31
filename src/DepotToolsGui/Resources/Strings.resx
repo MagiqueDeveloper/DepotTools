@@ -287,6 +287,7 @@ Cancel - keep downloading</value></data>
   <data name="Downloads_Status_Paused" xml:space="preserve"><value>Paused</value></data>
   <data name="Downloads_Status_Queued" xml:space="preserve"><value>Queued</value></data>
   <data name="Downloads_Status_Verifying" xml:space="preserve"><value>Verifying…</value></data>
+  <data name="Downloads_SteamAutoCrack" xml:space="preserve"><value>SteamAutoCrack</value></data>
   <data name="Downloads_Title" xml:space="preserve"><value>Downloads</value></data>
   <data name="Drop_BrowseFiles" xml:space="preserve"><value>Browse files…</value></data>
   <data name="Drop_Picker_Title" xml:space="preserve"><value>Choose .lua / .manifest / .zip files</value></data>

@@ -257,6 +257,7 @@ Avbryt - fortsätt hämta</value></data>
   <data name="Downloads_Status_Paused" xml:space="preserve"><value>Pausad</value></data>
   <data name="Downloads_Status_Queued" xml:space="preserve"><value>I kö</value></data>
   <data name="Downloads_Status_Verifying" xml:space="preserve"><value>Verifierar…</value></data>
+  <data name="Downloads_SteamAutoCrack" xml:space="preserve"><value>SteamAutoCrack</value></data>
   <data name="Downloads_Title" xml:space="preserve"><value>Nedladdningar</value></data>
   <data name="Drop_BrowseFiles" xml:space="preserve"><value>Bläddra bland filer…</value></data>
   <data name="Drop_Picker_Title" xml:space="preserve"><value>Välj .lua- / .manifest- / .zip-filer</value></data>

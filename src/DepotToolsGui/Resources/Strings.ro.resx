@@ -257,6 +257,7 @@ Anulare - continuă descărcarea</value></data>
   <data name="Downloads_Status_Paused" xml:space="preserve"><value>În pauză</value></data>
   <data name="Downloads_Status_Queued" xml:space="preserve"><value>În coadă</value></data>
   <data name="Downloads_Status_Verifying" xml:space="preserve"><value>Se verifică…</value></data>
+  <data name="Downloads_SteamAutoCrack" xml:space="preserve"><value>SteamAutoCrack</value></data>
   <data name="Downloads_Title" xml:space="preserve"><value>Descărcări</value></data>
   <data name="Drop_BrowseFiles" xml:space="preserve"><value>Răsfoiește fișiere…</value></data>
   <data name="Drop_Picker_Title" xml:space="preserve"><value>Alege fișiere .lua / .manifest / .zip</value></data>

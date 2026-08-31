@@ -257,6 +257,7 @@ Hủy - tiếp tục tải</value></data>
   <data name="Downloads_Status_Paused" xml:space="preserve"><value>Đã tạm dừng</value></data>
   <data name="Downloads_Status_Queued" xml:space="preserve"><value>Đang chờ</value></data>
   <data name="Downloads_Status_Verifying" xml:space="preserve"><value>Đang xác minh…</value></data>
+  <data name="Downloads_SteamAutoCrack" xml:space="preserve"><value>SteamAutoCrack</value></data>
   <data name="Downloads_Title" xml:space="preserve"><value>Tải xuống</value></data>
   <data name="Drop_BrowseFiles" xml:space="preserve"><value>Duyệt tệp…</value></data>
   <data name="Drop_Picker_Title" xml:space="preserve"><value>Chọn tệp .lua / .manifest / .zip</value></data>

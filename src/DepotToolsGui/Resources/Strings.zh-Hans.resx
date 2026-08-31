@@ -267,6 +267,7 @@
   <data name="Downloads_Status_Paused" xml:space="preserve"><value>已暂停</value></data>
   <data name="Downloads_Status_Queued" xml:space="preserve"><value>排队中</value></data>
   <data name="Downloads_Status_Verifying" xml:space="preserve"><value>正在校验…</value></data>
+  <data name="Downloads_SteamAutoCrack" xml:space="preserve"><value>SteamAutoCrack</value></data>
   <data name="Downloads_Title" xml:space="preserve"><value>下载</value></data>
   <data name="Drop_BrowseFiles" xml:space="preserve"><value>浏览文件…</value></data>
   <data name="Drop_Picker_Title" xml:space="preserve"><value>选择 .lua / .manifest / .zip 文件</value></data>

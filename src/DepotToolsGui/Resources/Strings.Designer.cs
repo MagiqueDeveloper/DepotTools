@@ -559,6 +559,7 @@ public static class Strings
     public static string Downloads_Status_Paused => Get(nameof(Downloads_Status_Paused));
     public static string Downloads_Status_Queued => Get(nameof(Downloads_Status_Queued));
     public static string Downloads_Status_Verifying => Get(nameof(Downloads_Status_Verifying));
+    public static string Downloads_SteamAutoCrack => Get(nameof(Downloads_SteamAutoCrack));
     public static string Downloads_Title => Get(nameof(Downloads_Title));
 
     // Service error messages, surfaced to the user via toasts / MessageBox.
