@@ -20,12 +20,19 @@ public partial class RuntimeToolViewModel : ObservableObject
     [ObservableProperty] private string _statusText = "";
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(InstallLabel))]
-    [NotifyCanExecuteChanged]
     private bool _isInstalled;
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(InstallLabel))]
-    [NotifyCanExecuteChanged]
     private bool _isBusy;
+
+    // Keep both commands' CanExecute in sync with busy/installed state (CanExecute reads these).
+    partial void OnIsInstalledChanged(bool value) => NotifyCommands();
+    partial void OnIsBusyChanged(bool value) => NotifyCommands();
+    private void NotifyCommands()
+    {
+        InstallCommand.NotifyCanExecuteChanged();
+        RemoveCommand.NotifyCanExecuteChanged();
+    }
 
     public IRelayCommand InstallCommand { get; }
     public IRelayCommand RemoveCommand { get; }
