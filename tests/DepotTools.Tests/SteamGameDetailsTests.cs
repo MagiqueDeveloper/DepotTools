@@ -1,3 +1,4 @@
+using System.IO;
 using DepotToolsGui.Services;
 using Xunit;
 
