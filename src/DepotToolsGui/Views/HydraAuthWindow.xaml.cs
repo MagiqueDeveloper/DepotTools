@@ -26,8 +26,8 @@ public partial class HydraAuthWindow : Window
         catch (Exception ex)
         {
             MessageBox.Show(this,
-                string.Format(Resources.Strings.HydraAuth_WebView2Required, ex.Message),
-                Resources.Strings.HydraAuth_WebView2Unavailable, MessageBoxButton.OK, MessageBoxImage.Error);
+                string.Format(DepotToolsGui.Resources.Strings.HydraAuth_WebView2Required, ex.Message),
+                DepotToolsGui.Resources.Strings.HydraAuth_WebView2Unavailable, MessageBoxButton.OK, MessageBoxImage.Error);
             Close();
         }
     }
@@ -45,7 +45,7 @@ public partial class HydraAuthWindow : Window
         }
         catch (Exception ex)
         {
-            MessageBox.Show(this, ex.Message, Resources.Strings.HydraAuth_SignInFailed, MessageBoxButton.OK, MessageBoxImage.Error);
+            MessageBox.Show(this, ex.Message, DepotToolsGui.Resources.Strings.HydraAuth_SignInFailed, MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }

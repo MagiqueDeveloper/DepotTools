@@ -1,3 +1,4 @@
+using System.IO;
 using Velopack.Sources;
 
 namespace DepotToolsGui.Services;
