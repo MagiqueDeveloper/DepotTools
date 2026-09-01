@@ -88,7 +88,7 @@ public class ToastService
                 secondaryBtn.Click += (_, _) =>
                 {
                     onSecondaryAction();
-                    bar.Hide();
+                    bar.IsShown = false;
                 };
                 actions.Children.Add(secondaryBtn);
             }

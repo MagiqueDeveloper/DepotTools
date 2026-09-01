@@ -44,6 +44,7 @@ PENDING_TRANSLATION: set[str] = {
     "Settings_AppUpdateNotifications_Hint",
     "Update_Available_Title",
     "Update_Available_Body",
+    "Update_Available_Prompt",
     "Update_Available_Action",
     "Update_SkipAction",
     "Settings_Runtime_Install",

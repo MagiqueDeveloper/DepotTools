@@ -152,9 +152,9 @@ public partial class App : Application
                 string.Format(DepotToolsGui.Resources.Strings.Launch_ApplyFailed, result.Error), error: true);
     }
 
-    /// <summary>Check the existing Velopack feeds and offer an explicit update action when a newer
-    /// version is available. Offline and development builds are intentionally silent no-ops.</summary>
-    private async Task CheckForAppUpdateAsync()
+    /// <summary>Check the existing Velopack feeds and surface an explicit update choice when a newer
+    /// version is available. Startup uses a modal; timer and loader checks use a persistent toast.</summary>
+    private async Task CheckForAppUpdateAsync(bool promptOnStartup = false)
     {
         var settings = _host.Services.GetRequiredService<SettingsService>();
         var settingsViewModel = _host.Services.GetRequiredService<SettingsViewModel>();
@@ -178,6 +178,12 @@ public partial class App : Application
                 return;
 
             _promptedUpdateVersion = version;
+            if (promptOnStartup)
+            {
+                Dispatcher.Invoke(() => PromptForAppUpdate(settings, version));
+                return;
+            }
+
             _host.Services.GetRequiredService<ToastService>().ShowAction(
                 DepotToolsGui.Resources.Strings.Update_Available_Title,
                 string.Format(DepotToolsGui.Resources.Strings.Update_Available_Body, version),
@@ -193,7 +199,23 @@ public partial class App : Application
         finally { _updateCheckGate.Release(); }
     }
 
-    /// <summary>Run only from the update prompt's explicit action; failures leave the prompt available
+    /// <summary>Startup's update choice. Declining persists this exact version as skipped while the
+    /// Settings banner remains available for an explicit later install.</summary>
+    private void PromptForAppUpdate(SettingsService settings, string version)
+    {
+        var choice = MessageBox.Show(
+            _host.Services.GetRequiredService<MainWindow>(),
+            string.Format(DepotToolsGui.Resources.Strings.Update_Available_Prompt, version),
+            DepotToolsGui.Resources.Strings.Update_Available_Title,
+            MessageBoxButton.YesNo,
+            MessageBoxImage.Information);
+
+        if (choice == MessageBoxResult.Yes)
+            _ = DownloadAndApplyUpdateAsync();
+        else
+            settings.SkippedUpdateVersion = version;
+    }
+    /// <summary>Run only from an explicit update action; failures leave the Settings banner available
     /// so the user can retry after correcting connectivity.</summary>
     private async Task DownloadAndApplyUpdateAsync()
     {
@@ -300,7 +322,6 @@ public partial class App : Application
         _updateCheckTimer = new DispatcherTimer { Interval = TimeSpan.FromHours(1) };
         _updateCheckTimer.Tick += (_, _) => _ = CheckForAppUpdateAsync();
         _updateCheckTimer.Start();
-        _ = CheckForAppUpdateAsync();
 
         // Language changed → persistent toast offering an immediate relaunch.
         settingsVm.RequestRestartPrompt = () => Dispatcher.Invoke(() =>
@@ -418,6 +439,7 @@ public partial class App : Application
         else
         {
             window.Show();
+            _ = CheckForAppUpdateAsync(promptOnStartup: true);
 
             // First-run onboarding: show the welcome overlay on a fresh install. Skip it (and mark done)
             // when the user is already set up (a managed mode selected AND the plugin installed), so
