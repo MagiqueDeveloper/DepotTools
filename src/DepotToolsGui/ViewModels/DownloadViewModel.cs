@@ -40,6 +40,9 @@ public partial class SourceRowViewModel : ObservableObject
 
     public bool CanDownload => IsAvailable && !IsLocked;
 
+    /// <summary>While this row's download runs its button hides in favor of the busy "Downloading" state.</summary>
+    public bool CanDownloadAndNotDownloading => CanDownload && !IsDownloading;
+
     public SourceRowViewModel(DownloadViewModel parent, string name, string status)
     {
         _parent = parent;
@@ -154,6 +157,10 @@ public partial class DownloadViewModel : ObservableObject
     [NotifyCanExecuteChangedFor(nameof(FetchCommand))]
     private bool _isChecking;
 
+    /// <summary>Fetch button text: "Download" when idle, "Downloading" while the fetch/download runs.
+    /// FastFetch skips the label swap (the source row's own progress bar carries the state).</summary>
+    [ObservableProperty] private string _fetchLabel = Resources.Strings.Add_Download;
+
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(HasSources))]
     [NotifyPropertyChangedFor(nameof(ShowFeatured))]
@@ -174,6 +181,10 @@ public partial class DownloadViewModel : ObservableObject
 
     [ObservableProperty] private bool _isGenerating;
     [ObservableProperty] private double _generateProgress;
+
+    /// <summary>DLC button text: "Download .lua" idle → "Downloading" while generating.</summary>
+    [ObservableProperty] private string _generateLabel = Resources.Strings.Add_DownloadLua;
+
     [ObservableProperty] private string? _error;
 
     [ObservableProperty]
@@ -504,6 +515,7 @@ public partial class DownloadViewModel : ObservableObject
         }
         ResetResults();
         IsChecking = true;
+        if (!FastFetch) FetchLabel = Resources.Strings.Add_Downloading;
         try
         {
             if (Details.IsDlc)
@@ -563,6 +575,7 @@ public partial class DownloadViewModel : ObservableObject
         finally
         {
             IsChecking = false;
+            FetchLabel = Resources.Strings.Add_Download;
         }
     }
 
@@ -755,6 +768,7 @@ public partial class DownloadViewModel : ObservableObject
         InstallStatus = null;
         long appId = Details.AppId;
         IsGenerating = true;
+        GenerateLabel = Resources.Strings.Add_Downloading;
         try
         {
             var download = await _api.GenerateDlcAsync(appId.ToString(), Details.BaseAppId, Details.Name, null);
@@ -776,6 +790,7 @@ public partial class DownloadViewModel : ObservableObject
         finally
         {
             IsGenerating = false;
+            GenerateLabel = Resources.Strings.Add_DownloadLua;
         }
     }
 
@@ -1000,6 +1015,7 @@ public partial class DownloadViewModel : ObservableObject
         Error = null;
         LastDownload = null;
         _fastFetchSource = null;
+        FetchLabel = Resources.Strings.Add_Download;
         FixCount = 0;
         FixTags = "";
     }

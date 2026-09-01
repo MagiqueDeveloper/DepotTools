@@ -320,6 +320,7 @@ public static class Strings
     public static string Add_Released => Get(nameof(Add_Released));
     public static string Add_Fetch => Get(nameof(Add_Fetch));
     public static string Add_Checking => Get(nameof(Add_Checking));
+    public static string Add_Downloading => Get(nameof(Add_Downloading));
     public static string Add_Reveal => Get(nameof(Add_Reveal));
     public static string Add_Supporter => Get(nameof(Add_Supporter));
     public static string Add_Unlimited => Get(nameof(Add_Unlimited));

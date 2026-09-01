@@ -36,6 +36,7 @@ PENDING_TRANSLATION: set[str] = {
     "HydraAuth_WebView2Required",
     "HydraAuth_SignInFailed",
     "Settings_Section_Runtimes",
+    "Add_Downloading",
     "Settings_Runtime_Install",
     "Settings_Runtime_Reinstall",
     "Settings_Runtime_Remove",

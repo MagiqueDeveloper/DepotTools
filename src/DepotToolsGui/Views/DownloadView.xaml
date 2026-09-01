@@ -316,7 +316,7 @@
                 </StackPanel>
             </Border>
 
-            <!-- Fetch button -->
+            <!-- Fetch / Download button: idle → "Download"; fetching → busy ring + "Downloading" -->
             <ui:Button
                 Margin="0,14,0,0"
                 HorizontalAlignment="Stretch"
@@ -326,8 +326,18 @@
                 Visibility="{Binding HasDetails, Converter={StaticResource BoolToVis}}">
                 <ui:Button.Content>
                     <Grid>
-                        <TextBlock Text="{x:Static res:Strings.Add_Fetch}" Visibility="{Binding IsChecking, Converter={StaticResource InverseBoolToVis}}" />
-                        <TextBlock Text="{x:Static res:Strings.Add_Checking}" Visibility="{Binding IsChecking, Converter={StaticResource BoolToVis}}" />
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <ui:ProgressRing
+                            Width="14"
+                            Height="14"
+                            IsIndeterminate="True"
+                            Visibility="{Binding IsChecking, Converter={StaticResource BoolToVis}}" />
+                        <TextBlock
+                            Grid.Column="1"
+                            Text="{Binding FetchLabel, Mode=OneWay}" />
                     </Grid>
                 </ui:Button.Content>
             </ui:Button>
@@ -537,7 +547,22 @@
                                         Command="{Binding DownloadCommand}"
                                         Content="{x:Static res:Strings.Add_Download}"
                                         Icon="{ui:SymbolIcon ArrowDownload24}"
-                                        Visibility="{Binding CanDownload, Converter={StaticResource BoolToVis}}" />
+                                        Visibility="{Binding CanDownloadAndNotDownloading, Converter={StaticResource BoolToVis}}" />
+
+                                    <!-- Row downloading: busy ring + label replace the button -->
+                                    <StackPanel
+                                        Grid.Column="4"
+                                        VerticalAlignment="Center"
+                                        Orientation="Horizontal"
+                                        Visibility="{Binding IsDownloading, Converter={StaticResource BoolToVis}}">
+                                        <ui:ProgressRing Width="13" Height="13" IsIndeterminate="True" />
+                                        <TextBlock
+                                            Margin="6,0,0,0"
+                                            VerticalAlignment="Center"
+                                            FontSize="11.5"
+                                            Foreground="#6b7280"
+                                            Text="{x:Static res:Strings.Add_Downloading}" />
+                                    </StackPanel>
 
                                     <!-- Key-gated and not configured -->
                                     <TextBlock
@@ -698,8 +723,18 @@
                     Visibility="{Binding CanGenerateDlc, Converter={StaticResource BoolToVis}}">
                     <ui:Button.Content>
                         <Grid>
-                            <TextBlock Text="{x:Static res:Strings.Add_DownloadLua}" Visibility="{Binding IsGenerating, Converter={StaticResource InverseBoolToVis}}" />
-                            <TextBlock Text="{x:Static res:Strings.Add_Generating}" Visibility="{Binding IsGenerating, Converter={StaticResource BoolToVis}}" />
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <ui:ProgressRing
+                                Width="14"
+                                Height="14"
+                                IsIndeterminate="True"
+                                Visibility="{Binding IsGenerating, Converter={StaticResource BoolToVis}}" />
+                            <TextBlock
+                                Grid.Column="1"
+                                Text="{Binding GenerateLabel, Mode=OneWay}" />
                         </Grid>
                     </ui:Button.Content>
                 </ui:Button>
