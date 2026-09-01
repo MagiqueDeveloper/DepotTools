@@ -4,8 +4,9 @@ using Velopack.Sources;
 namespace DepotToolsGui.Services;
 
 /// <summary>
-/// Silent background auto-update via Velopack + GitHub Releases. Checks on launch,
-/// downloads the (delta) update in the background, and stages it to apply on next exit.
+/// User-approved application updates through Velopack + GitHub Releases. Checking, downloading, and
+/// applying are deliberately separate so callers can surface an available update before any package is
+/// transferred or the process restarts.
 /// <para>
 /// Resilience is two-layered: (1) <see cref="ProxiedFileDownloader"/> routes each repo's feed + package
 /// downloads through GitHub mirrors for blocked/throttled regions (e.g. China); (2) it tries each repo in
@@ -24,55 +25,70 @@ public class UpdateService
                     downloader: new ProxiedFileDownloader())))
             .ToArray();
 
-    // The manager + info whose repo actually produced the staged update, as one value so a worker
-    // write can never be observed torn by the UI thread's read in ApplyAndRestart.
-    private (UpdateManager? Mgr, UpdateInfo? Info) _staged;
+    // The manager + info whose repo actually produced the available update, as one value so a worker
+    // write can never be observed torn by the UI thread's read before downloading it.
+    private (UpdateManager? Mgr, UpdateInfo? Info) _available;
+    private readonly SemaphoreSlim _gate = new(1, 1);
 
-    /// <summary>True once an update is downloaded and waiting to be applied.</summary>
-    public bool HasStagedUpdate => _staged.Info is not null;
+    /// <summary>True when the latest successful check found an update ready for the user to approve.</summary>
+    public bool HasAvailableUpdate => _available.Info is not null;
 
-    /// <summary>Check for, download, and stage an update. Tries each repo in order until one yields a
-    /// usable update; the first success wins. No-op for un-installed (dev) builds.</summary>
-    public async Task CheckAndStageAsync()
+    /// <summary>The release version found by the latest successful check, or null when none is available.</summary>
+    public string? AvailableVersion => _available.Info?.TargetFullRelease.Version.ToString();
+
+    /// <summary>Check for an update without downloading it. Tries each repo in order until one yields a
+    /// usable result; the first reachable repo wins. No-op for un-installed (development) builds.</summary>
+    public async Task<bool> CheckForUpdateAsync()
     {
-        // IsInstalled is a property of the Velopack install, not the repo, so any manager answers it.
-        if (_managers.Length == 0 || !_managers[0].IsInstalled) return; // `dotnet run` / unpacked builds
-
-        foreach (var mgr in _managers)
+        await _gate.WaitAsync();
+        try
         {
-            try
-            {
-                var info = await mgr.CheckForUpdatesAsync();
-                // A reachable repo returning null means we're already up to date. STOP. Don't fall
-                // through to a backup (it may lag behind the primary and would offer no/older update).
-                // Backups exist for an UNreachable primary, which surfaces as an exception below.
-                if (info is null) return;
+            // IsInstalled is a property of the Velopack install, not the repo, so any manager answers it.
+            if (_managers.Length == 0 || !_managers[0].IsInstalled) return false; // `dotnet run` / unpacked builds
 
-                await mgr.DownloadUpdatesAsync(info);
-                _staged = (mgr, info);
-                return; // staged from this repo. Done
-            }
-            catch
+            foreach (var mgr in _managers)
             {
-                // This repo is unreachable/gone (or a download failed). Fall through to the next backup.
+                try
+                {
+                    var info = await mgr.CheckForUpdatesAsync();
+                    // A reachable repo returning null means we're already up to date. STOP. Don't fall
+                    // through to a backup (it may lag behind the primary and would offer no/older update).
+                    // Backups exist for an UNreachable primary, which surfaces as an exception below.
+                    if (info is null)
+                    {
+                        _available = default;
+                        return false;
+                    }
+
+                    _available = (mgr, info);
+                    return true;
+                }
+                catch
+                {
+                    // This repo is unreachable/gone. Fall through to the next backup.
+                }
             }
+
+            // Every repo failed (offline, or all repos down). Keep a previous available update actionable.
+            return HasAvailableUpdate;
         }
-        // Every repo failed (offline, or all repos down). Fail silently, retry next launch.
+        finally { _gate.Release(); }
     }
 
-    /// <summary>Apply the staged update now and relaunch into the new version. <paramref name="restartArgs"/>
-    /// are passed to the relaunched process (e.g. the loader's --minimized --tray-locked) so the new
-    /// instance keeps its session semantics.</summary>
-    public void ApplyAndRestart(string[]? restartArgs = null)
+    /// <summary>Download the update returned by <see cref="CheckForUpdateAsync"/> and immediately restart
+    /// into it. Returns false when no update is currently available.</summary>
+    public async Task<bool> DownloadAndApplyAsync()
     {
-        if (_staged.Mgr is not null && _staged.Info is not null)
-            _staged.Mgr.ApplyUpdatesAndRestart(_staged.Info, restartArgs);
-    }
+        await _gate.WaitAsync();
+        try
+        {
+            var available = _available;
+            if (available.Mgr is null || available.Info is null) return false;
 
-    /// <summary>Apply the staged update after the app exits (no forced restart).</summary>
-    public void ApplyOnExit()
-    {
-        if (_staged.Mgr is not null && _staged.Info is not null)
-            _staged.Mgr.WaitExitThenApplyUpdates(_staged.Info, silent: true, restart: false);
+            await available.Mgr.DownloadUpdatesAsync(available.Info);
+            available.Mgr.ApplyUpdatesAndRestart(available.Info);
+            return true;
+        }
+        finally { _gate.Release(); }
     }
 }

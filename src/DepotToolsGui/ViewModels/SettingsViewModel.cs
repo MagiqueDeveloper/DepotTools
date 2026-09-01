@@ -205,6 +205,11 @@ public partial class SettingsViewModel : ObservableObject
         if (!value) RequestShowWindow?.Invoke(); // turning it off restores the window if it's hidden in the tray
     }
 
+    /// <summary>Periodically check for DepotTools updates and offer the user an explicit update action.</summary>
+    [ObservableProperty] private bool _updateNotificationsEnabled;
+
+    partial void OnUpdateNotificationsEnabledChanged(bool value) => _settings.UpdateNotificationsEnabled = value;
+
     /// <summary>Set by App: restore the main window from the tray (used when Minimize-to-tray is turned off).</summary>
     public Action? RequestShowWindow { get; set; }
 
@@ -429,6 +434,7 @@ public partial class SettingsViewModel : ObservableObject
         _fastFetch = settings.FastFetch;
         _startWithWindows = settings.StartWithWindows; // default OFF. Init without triggering the registry write
         _minimizeToTray = settings.MinimizeToTray;
+        _updateNotificationsEnabled = settings.UpdateNotificationsEnabled;
         _useApiKey = settings.UseApiKey;
         _depotBoxIsKeyConfigured = ShouldShowDepotBoxStats(settings.UseApiKey, settings.DepotBoxApiKey);
 

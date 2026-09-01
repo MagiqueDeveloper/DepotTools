@@ -96,6 +96,8 @@ public static class Strings
     public static string Settings_StartWithWindows_Hint => Get(nameof(Settings_StartWithWindows_Hint));
     public static string Settings_MinimizeToTray => Get(nameof(Settings_MinimizeToTray));
     public static string Settings_MinimizeToTray_Hint => Get(nameof(Settings_MinimizeToTray_Hint));
+    public static string Settings_AppUpdateNotifications => Get(nameof(Settings_AppUpdateNotifications));
+    public static string Settings_AppUpdateNotifications_Hint => Get(nameof(Settings_AppUpdateNotifications_Hint));
     public static string Tray_Open => Get(nameof(Tray_Open));
     public static string Tray_Exit => Get(nameof(Tray_Exit));
     public static string Settings_SteamNotFound => Get(nameof(Settings_SteamNotFound));
@@ -561,6 +563,11 @@ public static class Strings
     public static string Downloads_Status_Verifying => Get(nameof(Downloads_Status_Verifying));
     public static string Downloads_SteamAutoCrack => Get(nameof(Downloads_SteamAutoCrack));
     public static string Downloads_Title => Get(nameof(Downloads_Title));
+
+    // Application updates.
+    public static string Update_Available_Title => Get(nameof(Update_Available_Title));
+    public static string Update_Available_Body => Get(nameof(Update_Available_Body));
+    public static string Update_Available_Action => Get(nameof(Update_Available_Action));
 
     // Service error messages, surfaced to the user via toasts / MessageBox.
     public static string Err_SteamNotFound => Get(nameof(Err_SteamNotFound));

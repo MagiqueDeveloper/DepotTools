@@ -51,6 +51,10 @@ public class AppSettings
     public bool? FastFetch { get; set; }
 
     public bool? CloudSavesEnabled { get; set; }
+
+    // When true (default), periodically check for and surface DepotTools updates while the app runs.
+    // Nullable keeps existing installations opted in without writing settings until the user changes it.
+    public bool? UpdateNotificationsEnabled { get; set; }
 }
 
 public class SettingsService
@@ -157,6 +161,13 @@ public class SettingsService
         set { _settings.CloudSavesEnabled = value; Save(); }
     }
 
+    /// <summary>When true (default), periodically check for DepotTools updates and show an update prompt.</summary>
+    public bool UpdateNotificationsEnabled
+    {
+        get => _settings.UpdateNotificationsEnabled ?? true;
+        set { _settings.UpdateNotificationsEnabled = value; Save(); }
+    }
+
     private static readonly string TmpPath = FilePath + ".tmp";
     private static readonly string BakPath = FilePath + ".bak";
 
@@ -216,7 +227,8 @@ public class SettingsService
             && _settings.StartWithWindows is null
             && _settings.MinimizeToTray is null
             && _settings.FastFetch is null
-            && _settings.CloudSavesEnabled is null;
+            && _settings.CloudSavesEnabled is null
+            && _settings.UpdateNotificationsEnabled is null;
         if (empty)
         {
             foreach (var p in new[] { FilePath, BakPath, TmpPath })
