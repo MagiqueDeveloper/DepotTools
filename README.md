@@ -20,6 +20,10 @@ DepotTools can search Steam games through DepotBox, manage local manifest and Lu
 
 Download the latest build from the [releases](https://github.com/MagiqueDeveloper/DepotTools/releases/latest) page. The release includes a setup installer and a portable ZIP.
 
+### Nightly builds
+
+The rolling [DepotTools Nightly](https://github.com/MagiqueDeveloper/DepotTools/releases/tag/nightly) prerelease is built from `development` after every commit. It is intended for testing changes before a stable release.
+
 ## Features
 
 - Search Steam games and view DepotBox details, manifests, availability, DLC, and fixes
