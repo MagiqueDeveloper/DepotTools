@@ -45,6 +45,7 @@ PENDING_TRANSLATION: set[str] = {
     "Update_Available_Title",
     "Update_Available_Body",
     "Update_Available_Action",
+    "Update_SkipAction",
     "Settings_Runtime_Install",
     "Settings_Runtime_Reinstall",
     "Settings_Runtime_Remove",

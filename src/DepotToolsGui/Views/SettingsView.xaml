@@ -40,6 +40,45 @@
                 FontSize="22"
                 FontWeight="Bold"
                 Text="{x:Static res:Strings.Settings_Title}" />
+            <!-- Persistent app update action: no dismiss control, so a skipped startup prompt remains actionable. -->
+            <Border
+                Margin="0,16,0,0"
+                Padding="12"
+                Background="#1434d399"
+                BorderBrush="#4034d399"
+                BorderThickness="1"
+                CornerRadius="8"
+                Visibility="{Binding HasAvailableAppUpdate, Converter={StaticResource BoolToVis}}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <ui:SymbolIcon
+                        VerticalAlignment="Center"
+                        Foreground="#34d399"
+                        Symbol="ArrowSync24" />
+                    <StackPanel Grid.Column="1" Margin="10,0">
+                        <TextBlock
+                            FontSize="13"
+                            FontWeight="SemiBold"
+                            Text="{x:Static res:Strings.Update_Available_Title}" />
+                        <TextBlock
+                            Margin="0,3,0,0"
+                            FontSize="12"
+                            Foreground="#a7f3d0"
+                            Text="{Binding AvailableAppUpdateVersion, StringFormat={x:Static res:Strings.Update_Available_Body}}"
+                            TextWrapping="Wrap" />
+                    </StackPanel>
+                    <ui:Button
+                        Grid.Column="2"
+                        Appearance="Primary"
+                        Command="{Binding InstallAppUpdateCommand}"
+                        Content="{x:Static res:Strings.Update_Available_Action}"
+                        Icon="{ui:SymbolIcon ArrowSync24}" />
+                </Grid>
+            </Border>
 
             <!-- DepotBox API key -->
             <TextBlock Style="{StaticResource SectionHeader}" Text="{x:Static res:Strings.Settings_Section_DepotBox}" />

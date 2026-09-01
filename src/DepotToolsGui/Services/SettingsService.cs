@@ -55,6 +55,9 @@ public class AppSettings
     // When true (default), periodically check for and surface DepotTools updates while the app runs.
     // Nullable keeps existing installations opted in without writing settings until the user changes it.
     public bool? UpdateNotificationsEnabled { get; set; }
+
+    // Version explicitly declined from the update prompt. A newer version naturally prompts again.
+    public string? SkippedUpdateVersion { get; set; }
 }
 
 public class SettingsService
@@ -168,6 +171,17 @@ public class SettingsService
         set { _settings.UpdateNotificationsEnabled = value; Save(); }
     }
 
+    /// <summary>Version the user explicitly skipped from the update prompt, or null when no release is skipped.</summary>
+    public string? SkippedUpdateVersion
+    {
+        get => _settings.SkippedUpdateVersion;
+        set
+        {
+            _settings.SkippedUpdateVersion = string.IsNullOrWhiteSpace(value) ? null : value;
+            Save();
+        }
+    }
+
     private static readonly string TmpPath = FilePath + ".tmp";
     private static readonly string BakPath = FilePath + ".bak";
 
@@ -228,7 +242,8 @@ public class SettingsService
             && _settings.MinimizeToTray is null
             && _settings.FastFetch is null
             && _settings.CloudSavesEnabled is null
-            && _settings.UpdateNotificationsEnabled is null;
+            && _settings.UpdateNotificationsEnabled is null
+            && _settings.SkippedUpdateVersion is null;
         if (empty)
         {
             foreach (var p in new[] { FilePath, BakPath, TmpPath })

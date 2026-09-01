@@ -38,10 +38,17 @@ public class ToastService
     }
 
     /// <summary>
-    /// Show a PERSISTENT toast with an action button (no auto-dismiss; user-closable). Used for the
-    /// "update ready" prompt: the action runs <paramref name="onAction"/> (e.g. restart).
+    /// Show a PERSISTENT toast with a primary action and, when supplied, a secondary action. Actions are
+    /// real buttons because this Wpf.Ui version exposes no writable template-button command.
     /// </summary>
-    public void ShowAction(string title, string message, string actionLabel, Action onAction, bool error = false)
+    public void ShowAction(
+        string title,
+        string message,
+        string actionLabel,
+        Action onAction,
+        bool error = false,
+        string? secondaryActionLabel = null,
+        Action? onSecondaryAction = null)
     {
         var dispatcher = Application.Current?.Dispatcher;
         if (dispatcher is null) return;
@@ -60,24 +67,38 @@ public class ToastService
                 IsCloseButtonEnabled = true,
             };
 
-            // Build the body: message + a real action button we fully control (TemplateButtonCommand
-            // is read-only in this Wpf.Ui version, and its label isn't settable, so use our own button).
+            var actions = new StackPanel { Orientation = Orientation.Horizontal };
             var actionBtn = new Wpf.Ui.Controls.Button
             {
                 Content = actionLabel,
                 Appearance = ControlAppearance.Primary,
                 Margin = new Thickness(0, 8, 0, 0),
-                HorizontalAlignment = HorizontalAlignment.Left,
             };
-            // The action (restart) tears down the app anyway; the close button handles manual dismiss.
             actionBtn.Click += (_, _) => onAction();
+            actions.Children.Add(actionBtn);
+
+            if (secondaryActionLabel is not null && onSecondaryAction is not null)
+            {
+                var secondaryBtn = new Wpf.Ui.Controls.Button
+                {
+                    Content = secondaryActionLabel,
+                    Appearance = ControlAppearance.Secondary,
+                    Margin = new Thickness(8, 8, 0, 0),
+                };
+                secondaryBtn.Click += (_, _) =>
+                {
+                    onSecondaryAction();
+                    bar.Hide();
+                };
+                actions.Children.Add(secondaryBtn);
+            }
 
             bar.Content = new StackPanel
             {
                 Children =
                 {
                     new System.Windows.Controls.TextBlock { Text = message, TextWrapping = TextWrapping.Wrap },
-                    actionBtn,
+                    actions,
                 },
             };
             bar.Show();

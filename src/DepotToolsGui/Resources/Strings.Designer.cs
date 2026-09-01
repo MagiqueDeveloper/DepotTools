@@ -568,6 +568,7 @@ public static class Strings
     public static string Update_Available_Title => Get(nameof(Update_Available_Title));
     public static string Update_Available_Body => Get(nameof(Update_Available_Body));
     public static string Update_Available_Action => Get(nameof(Update_Available_Action));
+    public static string Update_SkipAction => Get(nameof(Update_SkipAction));
 
     // Service error messages, surfaced to the user via toasts / MessageBox.
     public static string Err_SteamNotFound => Get(nameof(Err_SteamNotFound));

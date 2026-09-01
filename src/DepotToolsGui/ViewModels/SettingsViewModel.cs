@@ -210,6 +210,19 @@ public partial class SettingsViewModel : ObservableObject
 
     partial void OnUpdateNotificationsEnabledChanged(bool value) => _settings.UpdateNotificationsEnabled = value;
 
+    /// <summary>The available DepotTools version shown by the persistent Settings update banner.</summary>
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(HasAvailableAppUpdate))]
+    private string? _availableAppUpdateVersion;
+
+    public bool HasAvailableAppUpdate => AvailableAppUpdateVersion is not null;
+
+    /// <summary>Set by App so the Settings banner can begin the user-approved update flow.</summary>
+    public Action? RequestAppUpdate { get; set; }
+
+    [RelayCommand]
+    private void InstallAppUpdate() => RequestAppUpdate?.Invoke();
+
     /// <summary>Set by App: restore the main window from the tray (used when Minimize-to-tray is turned off).</summary>
     public Action? RequestShowWindow { get; set; }
 

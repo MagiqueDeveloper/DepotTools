@@ -156,22 +156,35 @@ public partial class App : Application
     /// version is available. Offline and development builds are intentionally silent no-ops.</summary>
     private async Task CheckForAppUpdateAsync()
     {
-        if (!_host.Services.GetRequiredService<SettingsService>().UpdateNotificationsEnabled) return;
+        var settings = _host.Services.GetRequiredService<SettingsService>();
+        var settingsViewModel = _host.Services.GetRequiredService<SettingsViewModel>();
+        if (!settings.UpdateNotificationsEnabled) return;
         if (!_updateCheckGate.Wait(0)) return;
 
         try
         {
-            if (!await Updates.CheckForUpdateAsync()) return;
+            if (!await Updates.CheckForUpdateAsync())
+            {
+                settingsViewModel.AvailableAppUpdateVersion = null;
+                return;
+            }
 
             var version = Updates.AvailableVersion;
-            if (version is null || string.Equals(version, _promptedUpdateVersion, StringComparison.Ordinal)) return;
+            if (version is null) return;
+
+            settingsViewModel.AvailableAppUpdateVersion = version;
+            if (string.Equals(version, _promptedUpdateVersion, StringComparison.Ordinal)
+                || string.Equals(version, settings.SkippedUpdateVersion, StringComparison.Ordinal))
+                return;
 
             _promptedUpdateVersion = version;
             _host.Services.GetRequiredService<ToastService>().ShowAction(
                 DepotToolsGui.Resources.Strings.Update_Available_Title,
                 string.Format(DepotToolsGui.Resources.Strings.Update_Available_Body, version),
                 DepotToolsGui.Resources.Strings.Update_Available_Action,
-                () => _ = DownloadAndApplyUpdateAsync());
+                () => _ = DownloadAndApplyUpdateAsync(),
+                secondaryActionLabel: DepotToolsGui.Resources.Strings.Update_SkipAction,
+                onSecondaryAction: () => settings.SkippedUpdateVersion = version);
         }
         catch
         {
@@ -281,6 +294,8 @@ public partial class App : Application
 
         var toast = _host.Services.GetRequiredService<ToastService>();
         toast.Attach(window.RootSnackbar); // wire the presenter before anything can raise a toast
+        settingsVm.RequestAppUpdate = () => _ = DownloadAndApplyUpdateAsync();
+
 
         _updateCheckTimer = new DispatcherTimer { Interval = TimeSpan.FromHours(1) };
         _updateCheckTimer.Tick += (_, _) => _ = CheckForAppUpdateAsync();
