@@ -110,6 +110,7 @@ jobs:
             gh release edit $tag `
               --title "DepotTools Nightly" `
               --prerelease `
+              --target "${{ github.sha }}" `
               --notes $notes `
               --repo $repo
           }
@@ -117,6 +118,7 @@ jobs:
             gh release create $tag `
               --title "DepotTools Nightly" `
               --prerelease `
+              --target "${{ github.sha }}" `
               --notes $notes `
               --repo $repo
           }
