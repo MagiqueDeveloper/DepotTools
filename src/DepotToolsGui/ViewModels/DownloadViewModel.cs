@@ -217,7 +217,7 @@ public partial class DownloadViewModel : ObservableObject
 
         try
         {
-            Details = await _api.GetDetailsAsync(appId.ToString());
+            Details = await _appInfo.ResolveGameDetailsAsync(appId);
             OnPropertyChanged(nameof(GenresText));
         }
         catch
@@ -261,7 +261,7 @@ public partial class DownloadViewModel : ObservableObject
         Error = null;
         try
         {
-            Details = await _api.GetDetailsAsync(appId.ToString());
+            Details = await _appInfo.ResolveGameDetailsAsync(appId);
             OnPropertyChanged(nameof(GenresText));
         }
         catch
@@ -428,7 +428,8 @@ public partial class DownloadViewModel : ObservableObject
         try
         {
             await Task.Delay(400, cts.Token);
-            Details = await _api.GetDetailsAsync(appid, cts.Token);
+            if (!long.TryParse(appid, out long appId)) return;
+            Details = await _appInfo.ResolveGameDetailsAsync(appId, cts.Token);
             OnPropertyChanged(nameof(GenresText));
         }
         catch (OperationCanceledException) { }
@@ -449,7 +450,7 @@ public partial class DownloadViewModel : ObservableObject
         var cts = _detailsCts = new CancellationTokenSource();
         try
         {
-            Details = await _api.GetDetailsAsync(result.AppId.ToString(), cts.Token);
+            Details = await _appInfo.ResolveGameDetailsAsync(result.AppId, cts.Token);
             OnPropertyChanged(nameof(GenresText));
         }
         catch (OperationCanceledException) { }
@@ -472,7 +473,7 @@ public partial class DownloadViewModel : ObservableObject
         var cts = _detailsCts = new CancellationTokenSource();
         try
         {
-            Details = await _api.GetDetailsAsync(item.AppId.ToString(), cts.Token);
+            Details = await _appInfo.ResolveGameDetailsAsync(item.AppId, cts.Token);
             OnPropertyChanged(nameof(GenresText));
         }
         catch (OperationCanceledException) { }

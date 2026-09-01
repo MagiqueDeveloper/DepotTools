@@ -12,7 +12,6 @@ Releases/
 .claude/
 .hermes
 CLAUDE.md
-AGENTS.md
 .cursor/
 .cursorrules
 .github/copilot-instructions.md
@@ -28,10 +27,6 @@ SteamTools-releases/
 
 # Maintainer-only scratch scripts and release-mirroring workflows
 tools/
-
-# Internal notes, server infrastructure config, and saved copies of third-party docs sites.
-# Kept locally; none of it belongs in the public repo.
-docs/
 
 # Maintainer-only release tooling
 build-release.ps1

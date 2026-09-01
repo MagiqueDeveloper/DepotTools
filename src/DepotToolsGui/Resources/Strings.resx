@@ -135,6 +135,8 @@
   <data name="Settings_StartWithWindows_Hint" xml:space="preserve"><value>Launch DepotTools automatically when Windows starts.</value></data>
   <data name="Settings_MinimizeToTray" xml:space="preserve"><value>Minimize to System Tray</value></data>
   <data name="Settings_MinimizeToTray_Hint" xml:space="preserve"><value>When you close the window, keep DepotTools running in the system tray instead of quitting. Double-click the tray icon to restore.</value></data>
+  <data name="Settings_AppUpdateNotifications" xml:space="preserve"><value>Check for app updates</value></data>
+  <data name="Settings_AppUpdateNotifications_Hint" xml:space="preserve"><value>Check for DepotTools updates hourly while it is running and show an update prompt when one is available.</value></data>
   <data name="Tray_Open" xml:space="preserve"><value>Open DepotTools</value></data>
   <data name="Tray_Exit" xml:space="preserve"><value>Exit</value></data>
   <data name="Settings_SteamNotFound" xml:space="preserve"><value>Steam not found</value></data>
@@ -616,6 +618,13 @@ This deletes the .lua files from Steam\config\stplug-in. Restart Steam afterward
   <data name="Launch_Drift_Title" xml:space="preserve"><value>Launch options were reset</value></data>
   <data name="Launch_Drift_Body" xml:space="preserve"><value>Steam has overwritten your launch options for {0} game(s). Re-applying closes and reopens Steam.</value></data>
   <data name="Launch_Drift_Action" xml:space="preserve"><value>Re-apply</value></data>
+
+  <!-- ── Application updates ── -->
+  <data name="Update_Available_Title" xml:space="preserve"><value>Update is Available</value></data>
+  <data name="Update_Available_Body" xml:space="preserve"><value>DepotTools {0} is ready to install.</value></data>
+  <data name="Update_Available_Prompt" xml:space="preserve"><value>DepotTools {0} is available. Select Yes to update now or No to skip this version.</value></data>
+  <data name="Update_Available_Action" xml:space="preserve"><value>Update now</value></data>
+  <data name="Update_SkipAction" xml:space="preserve"><value>Skip this version</value></data>
 
   <!-- ── Service error messages (surfaced to the user via toasts / MessageBox) ── -->
   <data name="Err_SteamNotFound" xml:space="preserve"><value>Steam location not found. Set it in Settings.</value></data>

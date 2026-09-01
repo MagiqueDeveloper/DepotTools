@@ -80,9 +80,10 @@ public partial class App : Application
 
     private UpdateService Updates => _host.Services.GetRequiredService<UpdateService>();
 
-    // Guards RunUpdateFlowAsync so overlapping triggers (startup + the re-poke a DLL/Steam restart causes)
-    // never run it concurrently. A second caller drops out immediately.
-    private readonly System.Threading.SemaphoreSlim _updateFlowGate = new(1, 1);
+    // Guards periodic, startup, and loader-triggered checks so one available version surfaces one prompt.
+    private readonly System.Threading.SemaphoreSlim _updateCheckGate = new(1, 1);
+    private DispatcherTimer? _updateCheckTimer;
+    private string? _promptedUpdateVersion;
 
     /// <summary>
     /// Warn when Steam has overwritten launch options we'd applied, and offer to put them back.
@@ -151,22 +152,84 @@ public partial class App : Application
                 string.Format(DepotToolsGui.Resources.Strings.Launch_ApplyFailed, result.Error), error: true);
     }
 
-    /// <summary>Set by OnStartup to <see cref="RunUpdateFlowAsync"/> so non-UI callers (e.g. the
-    /// /check-updates HTTP handler) can run the exact same update flow instead of a divergent one.</summary>
-    internal static Func<Task>? RunUpdateFlow;
-
-    /// <summary>Background application update flow. Plugin/loader updates are intentionally not part of
-    /// DepotTools.</summary>
-    private async Task RunUpdateFlowAsync()
+    /// <summary>Check the existing Velopack feeds and surface an explicit update choice when a newer
+    /// version is available. Startup uses a modal; timer and loader checks use a persistent toast.</summary>
+    private async Task CheckForAppUpdateAsync(bool promptOnStartup = false)
     {
-        if (!_updateFlowGate.Wait(0)) return;
+        var settings = _host.Services.GetRequiredService<SettingsService>();
+        var settingsViewModel = _host.Services.GetRequiredService<SettingsViewModel>();
+        if (!settings.UpdateNotificationsEnabled) return;
+        if (!_updateCheckGate.Wait(0)) return;
+
         try
         {
-            try { await Updates.CheckAndStageAsync(); } catch { /* offline / not installed */ }
-            if (Updates.HasStagedUpdate)
-                Dispatcher.Invoke(() => Updates.ApplyAndRestart(new[] { "--minimized" }));
+            if (!await Updates.CheckForUpdateAsync())
+            {
+                settingsViewModel.AvailableAppUpdateVersion = null;
+                return;
+            }
+
+            var version = Updates.AvailableVersion;
+            if (version is null) return;
+
+            settingsViewModel.AvailableAppUpdateVersion = version;
+            if (string.Equals(version, _promptedUpdateVersion, StringComparison.Ordinal)
+                || string.Equals(version, settings.SkippedUpdateVersion, StringComparison.Ordinal))
+                return;
+
+            _promptedUpdateVersion = version;
+            if (promptOnStartup)
+            {
+                Dispatcher.Invoke(() => PromptForAppUpdate(settings, version));
+                return;
+            }
+
+            _host.Services.GetRequiredService<ToastService>().ShowAction(
+                DepotToolsGui.Resources.Strings.Update_Available_Title,
+                string.Format(DepotToolsGui.Resources.Strings.Update_Available_Body, version),
+                DepotToolsGui.Resources.Strings.Update_Available_Action,
+                () => _ = DownloadAndApplyUpdateAsync(),
+                secondaryActionLabel: DepotToolsGui.Resources.Strings.Update_SkipAction,
+                onSecondaryAction: () => settings.SkippedUpdateVersion = version);
         }
-        finally { _updateFlowGate.Release(); }
+        catch
+        {
+            // The update service has already tried every configured feed. Retry on the next interval.
+        }
+        finally { _updateCheckGate.Release(); }
+    }
+
+    /// <summary>Startup's update choice. Declining persists this exact version as skipped while the
+    /// Settings banner remains available for an explicit later install.</summary>
+    private void PromptForAppUpdate(SettingsService settings, string version)
+    {
+        var choice = MessageBox.Show(
+            _host.Services.GetRequiredService<MainWindow>(),
+            string.Format(DepotToolsGui.Resources.Strings.Update_Available_Prompt, version),
+            DepotToolsGui.Resources.Strings.Update_Available_Title,
+            MessageBoxButton.YesNo,
+            MessageBoxImage.Information);
+
+        if (choice == MessageBoxResult.Yes)
+            _ = DownloadAndApplyUpdateAsync();
+        else
+            settings.SkippedUpdateVersion = version;
+    }
+    /// <summary>Run only from an explicit update action; failures leave the Settings banner available
+    /// so the user can retry after correcting connectivity.</summary>
+    private async Task DownloadAndApplyUpdateAsync()
+    {
+        try
+        {
+            await Updates.DownloadAndApplyAsync();
+        }
+        catch
+        {
+            _host.Services.GetRequiredService<ToastService>().Show(
+                DepotToolsGui.Resources.Strings.Update_Available_Title,
+                DepotToolsGui.Resources.Strings.Err_UpdateServerUnreachable,
+                error: true);
+        }
     }
 
     protected override async void OnStartup(StartupEventArgs e)
@@ -243,19 +306,22 @@ public partial class App : Application
                 (_, _) => Program.SessionTrayLock = true,
                 null, System.Threading.Timeout.Infinite, executeOnlyOnce: false);
 
-        // A --tray-locked relaunch (the loader on Steam-open) signals this → re-run the update flow so an
-        // already-running app still updates when the user opens Steam. Guarded internally against overlap.
+        // A --tray-locked relaunch (the loader on Steam-open) asks for a fresh availability check.
+        // The check is still user-controlled: it only shows the normal update prompt.
         if (Program.RecheckUpdatesSignal is not null)
             System.Threading.ThreadPool.RegisterWaitForSingleObject(
                 Program.RecheckUpdatesSignal,
-                (_, _) => _ = RunUpdateFlowAsync(),
+                (_, _) => _ = CheckForAppUpdateAsync(),
                 null, System.Threading.Timeout.Infinite, executeOnlyOnce: false);
-
-        // Expose the same flow to non-UI callers (the /check-updates HTTP handler).
-        RunUpdateFlow = RunUpdateFlowAsync;
 
         var toast = _host.Services.GetRequiredService<ToastService>();
         toast.Attach(window.RootSnackbar); // wire the presenter before anything can raise a toast
+        settingsVm.RequestAppUpdate = () => _ = DownloadAndApplyUpdateAsync();
+
+
+        _updateCheckTimer = new DispatcherTimer { Interval = TimeSpan.FromHours(1) };
+        _updateCheckTimer.Tick += (_, _) => _ = CheckForAppUpdateAsync();
+        _updateCheckTimer.Start();
 
         // Language changed → persistent toast offering an immediate relaunch.
         settingsVm.RequestRestartPrompt = () => Dispatcher.Invoke(() =>
@@ -265,8 +331,8 @@ public partial class App : Application
                 DepotToolsGui.Resources.Strings.Lang_Changed_Restart,
                 () => settingsVm.RequestRestart?.Invoke()));
 
-        // App updates now apply silently via RunUpdateFlowAsync (restart-on-Steam-open, unconditionally
-        // and before any plugin update), so no "Restart" prompt toast.
+        // Application updates are prompted after an availability check; packages are only downloaded when
+        // the user presses the update action.
         var download = _host.Services.GetRequiredService<DownloadViewModel>();
 
         var manage = _host.Services.GetRequiredService<ManageViewModel>();
@@ -373,6 +439,7 @@ public partial class App : Application
         else
         {
             window.Show();
+            _ = CheckForAppUpdateAsync(promptOnStartup: true);
 
             // First-run onboarding: show the welcome overlay on a fresh install. Skip it (and mark done)
             // when the user is already set up (a managed mode selected AND the plugin installed), so
@@ -386,12 +453,8 @@ public partial class App : Application
         if (url is not null)
             HandleProtocolUrl(url);
 
-        // Background, non-blocking Steam-open update flow (app + plugin), but ONLY in the loader context
-        // (--tray-locked). A manual / protocol / silent-install launch skips it, so the app never
-        // auto-updates or restarts mid-manual-use. It only happens when Steam launches us. (Velopack only
-        // updates to a STRICTLY HIGHER version, so every release must bump --packVersion.)
-        if (Program.SessionTrayLock)
-            _ = RunUpdateFlowAsync();
+        // Periodic update checks are started after the toast presenter is attached above. They cover every
+        // running session, not just the Steam loader context.
 
         // Warm the hardware-appid blacklist (refreshes from GitHub if the cache is stale).
         _ = _host.Services.GetRequiredService<HardwareAppIdService>().EnsureFreshAsync();
@@ -399,9 +462,7 @@ public partial class App : Application
 
     protected override async void OnExit(ExitEventArgs e)
     {
-        // If an update was downloaded but not yet applied, stage it for after exit.
-        if (Updates.HasStagedUpdate)
-            Updates.ApplyOnExit();
+        _updateCheckTimer?.Stop();
 
         try
         {
