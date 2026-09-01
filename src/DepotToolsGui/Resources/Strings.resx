@@ -620,7 +620,7 @@ This deletes the .lua files from Steam\config\stplug-in. Restart Steam afterward
   <data name="Launch_Drift_Action" xml:space="preserve"><value>Re-apply</value></data>
 
   <!-- ── Application updates ── -->
-  <data name="Update_Available_Title" xml:space="preserve"><value>Update available</value></data>
+  <data name="Update_Available_Title" xml:space="preserve"><value>Update is Available</value></data>
   <data name="Update_Available_Body" xml:space="preserve"><value>DepotTools {0} is ready to install.</value></data>
   <data name="Update_Available_Prompt" xml:space="preserve"><value>DepotTools {0} is available. Select Yes to update now or No to skip this version.</value></data>
   <data name="Update_Available_Action" xml:space="preserve"><value>Update now</value></data>
