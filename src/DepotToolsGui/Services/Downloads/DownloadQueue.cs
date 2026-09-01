@@ -370,7 +370,7 @@ public class DownloadQueue : IHostedService
         {
             // A pause cancels the same token a real cancel does. Leave the item parked in Paused and
             // keep its bytes: Resume re-enters this method and skips the depots already finished.
-            if (item.PauseRequested) return;
+            if (item.PauseRequested || !ct.Equals(item.Cts.Token)) return;
             if (file is not null) DeleteStaged(file.FilePath);
             await Dispatcher.InvokeAsync(() =>
                 Finish(item, DownloadStatus.Cancelled, Resources.Strings.Err_CancelledByUser, null));

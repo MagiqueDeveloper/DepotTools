@@ -297,14 +297,7 @@ Peruuta - jatka lataamista</value></data>
   <data name="Manage_Action_OpenInSteam" xml:space="preserve"><value>Avaa Steamissa</value></data>
   <data name="Manage_Action_Reveal" xml:space="preserve"><value>Näytä .lua</value></data>
   <data name="Manage_Action_CopyAppId" xml:space="preserve"><value>Kopioi App ID</value></data>
-  <data name="Manage_Action_RemoveDrm" xml:space="preserve"><value>Poista Steam-DRM</value></data>
   <data name="Manage_ActionsHeader" xml:space="preserve"><value>Toiminnot</value></data>
-  <data name="Manage_Steamless_Confirm_Title" xml:space="preserve"><value>Poistetaanko Steam-DRM?</value></data>
-  <data name="Manage_Steamless_Confirm_Body" xml:space="preserve"><value>Tämä suorittaa Steamlessin pelin suoritettavaan tiedostoon SteamStub-DRM:n poistamiseksi. Alkuperäinen .exe varmuuskopioidaan ensin .bak-tiedostoksi. Jotkin pelit voivat vaatia jälkeenpäin tiedostojen vahvistuksen Steamissa. Jatketaanko?</value></data>
-  <data name="Manage_Steamless_Working" xml:space="preserve"><value>Poistetaan Steam-DRM:ää…</value></data>
-  <data name="Manage_Toast_Steamless_Done" xml:space="preserve"><value>{0} käsitelty, {1} ennallaan.</value></data>
-  <data name="Manage_Steamless_NoInstall" xml:space="preserve"><value>Pelikansiota ei löytynyt — onko se asennettu?</value></data>
-  <data name="Manage_Steamless_Failed" xml:space="preserve"><value>DRM:n poistaminen epäonnistui. {0}</value></data>
   <data name="Manage_CopyAppIdTip" xml:space="preserve"><value>Napsauta kopioidaksesi App ID:n</value></data>
   <data name="Manage_LoadingDepotInfo" xml:space="preserve"><value>Ladataan depo-tietoja…</value></data>
   <data name="Manage_MissingHint" xml:space="preserve"><value>Steamissa mutta ei luassasi (usein sensuroituja tai mustalle listalle asetettuja depoja)</value></data>
@@ -617,4 +610,21 @@ Tämä poistaa .lua-tiedostot sijainnista Steam\config\stplug-in. Käynnistä St
   <data name="Settings_HydraCloud_Automatic_Hint" xml:space="preserve"><value>Sync installed Steam game saves when DepotTools starts and while it is running.</value></data>
   <data name="Settings_HydraCloud_Ready" xml:space="preserve"><value>Hydra Cloud is ready.</value></data>
   <data name="Settings_HydraCloud_SubscriptionRequired" xml:space="preserve"><value>An active Hydra Cloud subscription is required.</value></data>
+  <data name="Settings_DepotBox_UseApiKeyTitle" xml:space="preserve"><value>Use API Key</value></data>
+  <data name="Settings_DepotBox_UseApiKeyBody" xml:space="preserve"><value>Use the DepotTools API broker or your own DepotBox API key.</value></data>
+  <data name="HydraAuth_Title" xml:space="preserve"><value>Sign in to Hydra Cloud</value></data>
+  <data name="HydraAuth_WebView2Unavailable" xml:space="preserve"><value>Hydra Cloud sign-in unavailable</value></data>
+  <data name="HydraAuth_WebView2Required" xml:space="preserve"><value>Microsoft Edge WebView2 is required for Hydra Cloud sign-in.
+
+{0}</value></data>
+  <data name="HydraAuth_SignInFailed" xml:space="preserve"><value>Hydra Cloud sign-in failed</value></data>
+  <data name="Settings_Section_Runtimes" xml:space="preserve"><value>RUNTIMES</value></data>
+  <data name="Settings_Runtime_Install" xml:space="preserve"><value>Install</value></data>
+  <data name="Settings_Runtime_Reinstall" xml:space="preserve"><value>Reinstall</value></data>
+  <data name="Settings_Runtime_Remove" xml:space="preserve"><value>Remove</value></data>
+  <data name="Settings_Runtime_NotInstalled" xml:space="preserve"><value>Not installed</value></data>
+  <data name="Settings_Runtime_Version" xml:space="preserve"><value>Version {0}</value></data>
+  <data name="Settings_Runtime_RemoveConfirm" xml:space="preserve"><value>Remove {0}? Anything that needs it will download it again on next use.</value></data>
+  <data name="Settings_Runtime_RemoveFailed" xml:space="preserve"><value>Could not remove {0}. The tool may be running.</value></data>
+  <data name="Settings_Runtime_InstallFailed" xml:space="preserve"><value>Could not install {0}. Check your connection and try again.</value></data>
 </root>

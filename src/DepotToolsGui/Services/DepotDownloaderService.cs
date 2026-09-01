@@ -34,7 +34,7 @@ public record DepotRunResult(bool Ok, string? Error);
 /// <summary>
 /// Runs DepotDownloaderMod to pull raw depot content from Steam's CDN. The tool is downloaded once
 /// (via <see cref="GithubProxy"/>, so blocked regions work) and cached under
-/// %AppData%\DepotToolsGui\depotdownloader, mirroring <see cref="SteamlessService"/>.
+/// %AppData%\DepotToolsGui\depotdownloader.
 /// </summary>
 /// <remarks>
 /// <para><b>No account is ever used.</b> We never pass <c>-username</c> or <c>-qr</c>, so the tool takes
@@ -86,7 +86,10 @@ public partial class DepotDownloaderService(
     private static readonly string ToolDir = Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DepotToolsGui", "depotdownloader");
 
-    private static string ExePath => Path.Combine(ToolDir, "DepotDownloaderMod.exe");
+    public static string ExePath => Path.Combine(ToolDir, "DepotDownloaderMod.exe");
+
+    /// <summary>Installed release tag for the Settings status line (null when unknown).</summary>
+    public string? CachedVersion => cache.DepotDownloaderVersion;
 
     private static readonly JsonSerializerOptions JsonOpts = new() { PropertyNameCaseInsensitive = true };
 
@@ -702,5 +705,21 @@ public partial class DepotDownloaderService(
             else pos++;
         }
         return root;
+    }
+    /// <summary>
+    /// Delete the tool folder and reset the cached version + check timestamp so the next Ensure
+    /// re-downloads and re-checks GitHub. False when the folder can't go (exe locked because the
+    /// tool is running); cached state is then left intact so status stays truthful.
+    /// </summary>
+    public bool Remove()
+    {
+        try
+        {
+            if (Directory.Exists(ToolDir)) Directory.Delete(ToolDir, recursive: true);
+            cache.DepotDownloaderVersion = null;
+            cache.DepotDownloaderCheckedAtMs = 0;
+            return true;
+        }
+        catch { return false; } // exe locked (tool running) → caller surfaces the failure
     }
 }

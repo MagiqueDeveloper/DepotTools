@@ -332,18 +332,11 @@ Cancel - keep downloading</value></data>
   <data name="Manage_Action_OpenInSteam" xml:space="preserve"><value>Open in Steam</value></data>
   <data name="Manage_Action_Reveal" xml:space="preserve"><value>Reveal .lua</value></data>
   <data name="Manage_Action_CopyAppId" xml:space="preserve"><value>Copy App ID</value></data>
-  <data name="Manage_Action_RemoveDrm" xml:space="preserve"><value>Remove Steam DRM</value></data>
   <data name="Manage_Action_ManageBuild" xml:space="preserve"><value>Manage Depots</value></data>
   <data name="Manage_AboutHeader" xml:space="preserve"><value>About</value></data>
   <data name="Manage_Info_Developer" xml:space="preserve"><value>Developer</value></data>
   <data name="Manage_Info_Publisher" xml:space="preserve"><value>Publisher</value></data>
   <data name="Manage_ActionsHeader" xml:space="preserve"><value>Actions</value></data>
-  <data name="Manage_Steamless_Confirm_Title" xml:space="preserve"><value>Remove Steam DRM?</value></data>
-  <data name="Manage_Steamless_Confirm_Body" xml:space="preserve"><value>This runs Steamless on the game's executable to strip SteamStub DRM. The original .exe is backed up to .bak first. Some games may need a Steam file verification afterwards. Continue?</value></data>
-  <data name="Manage_Steamless_Working" xml:space="preserve"><value>Removing Steam DRM…</value></data>
-  <data name="Manage_Toast_Steamless_Done" xml:space="preserve"><value>{0} patched, {1} unchanged.</value></data>
-  <data name="Manage_Steamless_NoInstall" xml:space="preserve"><value>Game folder not found. Is it installed?</value></data>
-  <data name="Manage_Steamless_Failed" xml:space="preserve"><value>Couldn't remove DRM. {0}</value></data>
   <data name="Manage_CopyAppIdTip" xml:space="preserve"><value>Click to copy App ID</value></data>
   <data name="Manage_LoadingDepotInfo" xml:space="preserve"><value>Loading depot info…</value></data>
   <data name="Manage_MissingHint" xml:space="preserve"><value>On Steam but not in your lua (often censored or blacklisted depots)</value></data>
@@ -652,4 +645,21 @@ This deletes the .lua files from Steam\config\stplug-in. Restart Steam afterward
   <data name="DepotBox_Err_LimitReached" xml:space="preserve"><value>Your DepotBox daily limit has been reached.</value></data>
   <data name="DepotBox_Err_NoManifest" xml:space="preserve"><value>No DepotBox manifest is available for this app.</value></data>
   <data name="DepotBox_Err_DownloadFailed" xml:space="preserve"><value>DepotBox download failed ({0}).</value></data>
+  <data name="Settings_DepotBox_UseApiKeyTitle" xml:space="preserve"><value>Use API Key</value></data>
+  <data name="Settings_DepotBox_UseApiKeyBody" xml:space="preserve"><value>Use the DepotTools API broker or your own DepotBox API key.</value></data>
+  <data name="HydraAuth_Title" xml:space="preserve"><value>Sign in to Hydra Cloud</value></data>
+  <data name="HydraAuth_WebView2Unavailable" xml:space="preserve"><value>Hydra Cloud sign-in unavailable</value></data>
+  <data name="HydraAuth_WebView2Required" xml:space="preserve"><value>Microsoft Edge WebView2 is required for Hydra Cloud sign-in.
+
+{0}</value></data>
+  <data name="HydraAuth_SignInFailed" xml:space="preserve"><value>Hydra Cloud sign-in failed</value></data>
+  <data name="Settings_Section_Runtimes" xml:space="preserve"><value>RUNTIMES</value></data>
+  <data name="Settings_Runtime_Install" xml:space="preserve"><value>Install</value></data>
+  <data name="Settings_Runtime_Reinstall" xml:space="preserve"><value>Reinstall</value></data>
+  <data name="Settings_Runtime_Remove" xml:space="preserve"><value>Remove</value></data>
+  <data name="Settings_Runtime_NotInstalled" xml:space="preserve"><value>Not installed</value></data>
+  <data name="Settings_Runtime_Version" xml:space="preserve"><value>Version {0}</value></data>
+  <data name="Settings_Runtime_RemoveConfirm" xml:space="preserve"><value>Remove {0}? Anything that needs it will download it again on next use.</value></data>
+  <data name="Settings_Runtime_RemoveFailed" xml:space="preserve"><value>Could not remove {0}. The tool may be running.</value></data>
+  <data name="Settings_Runtime_InstallFailed" xml:space="preserve"><value>Could not install {0}. Check your connection and try again.</value></data>
 </root>

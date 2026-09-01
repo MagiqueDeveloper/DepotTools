@@ -34,10 +34,10 @@ public enum SacPrepareResult
 /// start without the .NET 10 <i>Desktop</i> runtime. <see cref="EnsureRuntimeAsync"/> installs that on
 /// demand through Velopack's Runtimes API, which we already depend on for updates.</para>
 ///
-/// <para>Update handling mirrors <see cref="DepotDownloaderService"/> and <see cref="SteamlessService"/>:
-/// the installed release tag is recorded, re-checked at most every <see cref="ToolCheckInterval"/>, the
-/// asset digest is verified before extracting, and <b>every failure path falls back to an existing exe
-/// while still recording the attempt</b> so a failing check is not retried on the next click.</para>
+/// <para>Update handling mirrors <see cref="DepotDownloaderService"/>: the installed release tag is
+/// recorded and re-checked at most every <see cref="ToolCheckInterval"/>, the asset digest is
+/// verified before extracting, and <b>every failure path falls back to an existing exe while still
+/// recording the attempt</b> so a failing check is not retried on the next click.</para>
 /// </remarks>
 public class SteamAutoCrackService(
     GithubProxy gh,
@@ -47,7 +47,10 @@ public class SteamAutoCrackService(
     private static readonly string ToolDir = Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DepotToolsGui", "steamautocrack");
 
-    private static string ExePath => Path.Combine(ToolDir, "SteamAutoCrack.exe");
+    public static string ExePath => Path.Combine(ToolDir, "SteamAutoCrack.exe");
+
+    /// <summary>Installed release tag for the Settings status line (null when unknown).</summary>
+    public string? CachedVersion => cache.SteamAutoCrackVersion;
 
     private static readonly JsonSerializerOptions JsonOpts = new() { PropertyNameCaseInsensitive = true };
 
@@ -341,5 +344,21 @@ public class SteamAutoCrackService(
             log.LogDebug(ex, "Launching SteamAutoCrack failed");
             return false;
         }
+    }
+    /// <summary>
+    /// Delete the tool folder and reset the cached version + check timestamp so the next Ensure
+    /// re-downloads and re-checks. False when the folder can't go (exe locked because the tool is
+    /// running); cached state is then left intact so status stays truthful.
+    /// </summary>
+    public bool Remove()
+    {
+        try
+        {
+            if (Directory.Exists(ToolDir)) Directory.Delete(ToolDir, recursive: true);
+            cache.SteamAutoCrackVersion = null;
+            cache.SteamAutoCrackCheckedAtMs = 0;
+            return true;
+        }
+        catch { return false; } // exe locked (tool running) → caller surfaces the failure
     }
 }

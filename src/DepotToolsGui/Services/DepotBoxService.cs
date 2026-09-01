@@ -155,12 +155,20 @@ public class DepotBoxService(SettingsService settings, CoverCache covers)
         if (settings.UseApiKey && string.IsNullOrWhiteSpace(key)) return null;
         using var res = await SendApiAsync(HttpMethod.Get, "/api/usage/stats", ct, settings.UseApiKey ? key : null);
         if (!res.IsSuccessStatusCode) return null;
-        return new DepotBoxUsageRecord
+        try
         {
-            DailyUsage = CurrentMinuteRequests,
-            DailyLimit = 60,
-            CanMakeRequests = CurrentMinuteRequests < 60,
-        };
+            return await ReadJsonAsync<DepotBoxUsageRecord>(res, ct);
+        }
+        catch
+        {
+            // Parse failure → fall back to the old local rate-limiter view rather than showing nothing.
+            return new DepotBoxUsageRecord
+            {
+                DailyUsage = CurrentMinuteRequests,
+                DailyLimit = 60,
+                CanMakeRequests = CurrentMinuteRequests < 60,
+            };
+        }
     }
 
     public async Task<DepotBoxManifestStatus?> CheckStatusAsync(string key, string appid, CancellationToken ct = default)
@@ -306,7 +314,7 @@ public class DepotBoxService(SettingsService settings, CoverCache covers)
     {
         // New request (not via SendAsync) so no Bearer header and the absolute URL isn't prefixed.
         var req = new HttpRequestMessage(HttpMethod.Get, url);
-        var res = await _http.SendAsync(req, HttpCompletionOption.ResponseHeadersRead, ct);
+        using var res = await _http.SendAsync(req, HttpCompletionOption.ResponseHeadersRead, ct);
         if (!res.IsSuccessStatusCode)
             throw new ApiException(string.Format(Resources.Strings.Api_Err_DownloadFailed, (int)res.StatusCode), res.StatusCode);
         return await SaveResponseAsync(res, fallbackName, progress, ct);
@@ -315,27 +323,34 @@ public class DepotBoxService(SettingsService settings, CoverCache covers)
     private async Task<DownloadedFile> SaveResponseAsync(
         HttpResponseMessage res, string fallbackName, IProgress<double?>? progress, CancellationToken ct)
     {
-        string fileName = res.Content.Headers.ContentDisposition?.FileName?.Trim('"') ?? fallbackName;
-        foreach (char c in Path.GetInvalidFileNameChars()) fileName = fileName.Replace(c, '_');
-
-        string folder = InterimDownloadsFolder;
-        Directory.CreateDirectory(folder);
-        string filePath = Path.Combine(folder, fileName);
-
-        long? total = res.Content.Headers.ContentLength;
-        await using var src = await res.Content.ReadAsStreamAsync(ct);
-        await using var dst = File.Create(filePath);
-
-        var buffer = new byte[81920];
-        long written = 0;
-        int read;
-        while ((read = await src.ReadAsync(buffer, ct)) > 0)
+        try
         {
-            await dst.WriteAsync(buffer.AsMemory(0, read), ct);
-            written += read;
-            progress?.Report(total is > 0 ? (double)written / total.Value : null);
-        }
+            string fileName = res.Content.Headers.ContentDisposition?.FileName?.Trim('"') ?? fallbackName;
+            foreach (char c in Path.GetInvalidFileNameChars()) fileName = fileName.Replace(c, '_');
 
-        return new DownloadedFile(filePath, fileName);
+            string folder = InterimDownloadsFolder;
+            Directory.CreateDirectory(folder);
+            string filePath = Path.Combine(folder, fileName);
+
+            long? total = res.Content.Headers.ContentLength;
+            await using var src = await res.Content.ReadAsStreamAsync(ct);
+            await using var dst = File.Create(filePath);
+
+            var buffer = new byte[81920];
+            long written = 0;
+            int read;
+            while ((read = await src.ReadAsync(buffer, ct)) > 0)
+            {
+                await dst.WriteAsync(buffer.AsMemory(0, read), ct);
+                written += read;
+                progress?.Report(total is > 0 ? (double)written / total.Value : null);
+            }
+
+            return new DownloadedFile(filePath, fileName);
+        }
+        finally
+        {
+            res.Dispose();
+        }
     }
 }

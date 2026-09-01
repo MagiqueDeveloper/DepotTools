@@ -297,14 +297,7 @@ Hủy - tiếp tục tải</value></data>
   <data name="Manage_Action_OpenInSteam" xml:space="preserve"><value>Mở trong Steam</value></data>
   <data name="Manage_Action_Reveal" xml:space="preserve"><value>Hiện .lua</value></data>
   <data name="Manage_Action_CopyAppId" xml:space="preserve"><value>Sao chép App ID</value></data>
-  <data name="Manage_Action_RemoveDrm" xml:space="preserve"><value>Gỡ DRM của Steam</value></data>
   <data name="Manage_ActionsHeader" xml:space="preserve"><value>Hành động</value></data>
-  <data name="Manage_Steamless_Confirm_Title" xml:space="preserve"><value>Gỡ DRM của Steam?</value></data>
-  <data name="Manage_Steamless_Confirm_Body" xml:space="preserve"><value>Thao tác này chạy Steamless trên tệp thực thi của trò chơi để loại bỏ DRM SteamStub. Tệp .exe gốc được sao lưu thành .bak trước. Một số trò chơi có thể cần xác minh tệp trên Steam sau đó. Tiếp tục?</value></data>
-  <data name="Manage_Steamless_Working" xml:space="preserve"><value>Đang gỡ DRM của Steam…</value></data>
-  <data name="Manage_Toast_Steamless_Done" xml:space="preserve"><value>Đã xử lý {0}, {1} không đổi.</value></data>
-  <data name="Manage_Steamless_NoInstall" xml:space="preserve"><value>Không tìm thấy thư mục trò chơi — đã cài đặt chưa?</value></data>
-  <data name="Manage_Steamless_Failed" xml:space="preserve"><value>Không thể gỡ DRM. {0}</value></data>
   <data name="Manage_CopyAppIdTip" xml:space="preserve"><value>Nhấp để sao chép App ID</value></data>
   <data name="Manage_LoadingDepotInfo" xml:space="preserve"><value>Đang tải thông tin depot…</value></data>
   <data name="Manage_MissingHint" xml:space="preserve"><value>Có trên Steam nhưng không có trong lua của bạn (thường là các depot bị kiểm duyệt hoặc nằm trong danh sách đen)</value></data>
@@ -617,4 +610,21 @@ Thao tác này sẽ xóa các tệp .lua khỏi Steam\config\stplug-in. Sau đó
   <data name="Settings_HydraCloud_Automatic_Hint" xml:space="preserve"><value>Sync installed Steam game saves when DepotTools starts and while it is running.</value></data>
   <data name="Settings_HydraCloud_Ready" xml:space="preserve"><value>Hydra Cloud is ready.</value></data>
   <data name="Settings_HydraCloud_SubscriptionRequired" xml:space="preserve"><value>An active Hydra Cloud subscription is required.</value></data>
+  <data name="Settings_DepotBox_UseApiKeyTitle" xml:space="preserve"><value>Use API Key</value></data>
+  <data name="Settings_DepotBox_UseApiKeyBody" xml:space="preserve"><value>Use the DepotTools API broker or your own DepotBox API key.</value></data>
+  <data name="HydraAuth_Title" xml:space="preserve"><value>Sign in to Hydra Cloud</value></data>
+  <data name="HydraAuth_WebView2Unavailable" xml:space="preserve"><value>Hydra Cloud sign-in unavailable</value></data>
+  <data name="HydraAuth_WebView2Required" xml:space="preserve"><value>Microsoft Edge WebView2 is required for Hydra Cloud sign-in.
+
+{0}</value></data>
+  <data name="HydraAuth_SignInFailed" xml:space="preserve"><value>Hydra Cloud sign-in failed</value></data>
+  <data name="Settings_Section_Runtimes" xml:space="preserve"><value>RUNTIMES</value></data>
+  <data name="Settings_Runtime_Install" xml:space="preserve"><value>Install</value></data>
+  <data name="Settings_Runtime_Reinstall" xml:space="preserve"><value>Reinstall</value></data>
+  <data name="Settings_Runtime_Remove" xml:space="preserve"><value>Remove</value></data>
+  <data name="Settings_Runtime_NotInstalled" xml:space="preserve"><value>Not installed</value></data>
+  <data name="Settings_Runtime_Version" xml:space="preserve"><value>Version {0}</value></data>
+  <data name="Settings_Runtime_RemoveConfirm" xml:space="preserve"><value>Remove {0}? Anything that needs it will download it again on next use.</value></data>
+  <data name="Settings_Runtime_RemoveFailed" xml:space="preserve"><value>Could not remove {0}. The tool may be running.</value></data>
+  <data name="Settings_Runtime_InstallFailed" xml:space="preserve"><value>Could not install {0}. Check your connection and try again.</value></data>
 </root>

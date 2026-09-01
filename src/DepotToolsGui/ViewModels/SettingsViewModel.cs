@@ -1,5 +1,7 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.IO;
+using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using DepotToolsGui.Services;
@@ -10,10 +12,103 @@ namespace DepotToolsGui.ViewModels;
 
 /// <summary>A selectable UI language. <see cref="Tag"/> is the BCP-47 tag ("en", "zh-Hans") or null for
 /// "follow the system display language".</summary>
+/// <summary>One bundled runtime tool on the Settings → RUNTIMES card: install/reinstall/remove with a
+/// live status line. The tool-specific behavior is injected so this class stays dumb plumbing.</summary>
+public partial class RuntimeToolViewModel : ObservableObject
+{
+    public string Name { get; }
+    [ObservableProperty] private string _statusText = "";
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(InstallLabel))]
+    [NotifyCanExecuteChanged]
+    private bool _isInstalled;
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(InstallLabel))]
+    [NotifyCanExecuteChanged]
+    private bool _isBusy;
+
+    public IRelayCommand InstallCommand { get; }
+    public IRelayCommand RemoveCommand { get; }
+
+    public string InstallLabel => IsInstalled
+        ? Resources.Strings.Settings_Runtime_Reinstall
+        : Resources.Strings.Settings_Runtime_Install;
+
+    private readonly Func<bool> _detectInstalled;
+    private readonly Func<string?> _readVersion;
+    private readonly Func<Task<bool>> _installAsync;
+    private readonly Func<bool> _remove;
+
+    private readonly bool _preRemoveOnReinstall;
+
+    public RuntimeToolViewModel(string name, Func<bool> detectInstalled, Func<string?> readVersion,
+        Func<Task<bool>> installAsync, Func<bool> remove, bool preRemoveOnReinstall = true)
+    {
+        Name = name;
+        _detectInstalled = detectInstalled;
+        _readVersion = readVersion;
+        _installAsync = installAsync;
+        _remove = remove;
+        InstallCommand = new AsyncRelayCommand(InstallAsync, () => !IsBusy);
+        _preRemoveOnReinstall = preRemoveOnReinstall;
+        RemoveCommand = new RelayCommand(Remove, () => !IsBusy && IsInstalled);
+        Refresh();
+    }
+
+    private async Task InstallAsync()
+    {
+        if (IsBusy) return;
+        IsBusy = true;
+        try
+        {
+            bool wasInstalled = IsInstalled;
+            // Reinstall = remove + install for tools whose "install" is a no-op while the exe exists.
+            // SteamAutoCrack opts out (_preRemoveOnReinstall = false): its EnsureToolAsync(force:true)
+            // re-downloads in place, so a locked exe surfaces as a failed install, not a deleted tool.
+            if (wasInstalled && _preRemoveOnReinstall && !_remove()) return; // remove failed (locked?)
+            bool ok = await _installAsync();
+            Refresh(ok);
+            if (!ok)
+                MessageBox.Show(string.Format(Resources.Strings.Settings_Runtime_InstallFailed, Name),
+                    Name, MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
+        finally { IsBusy = false; }
+    }
+
+    private void Remove()
+    {
+        if (IsBusy || !IsInstalled) return;
+        if (MessageBox.Show(string.Format(Resources.Strings.Settings_Runtime_RemoveConfirm, Name),
+                Name, MessageBoxButton.OKCancel, MessageBoxImage.Question) != MessageBoxResult.OK) return;
+
+        if (!_remove())
+        {
+            MessageBox.Show(string.Format(Resources.Strings.Settings_Runtime_RemoveFailed, Name),
+                Name, MessageBoxButton.OK, MessageBoxImage.Warning);
+            return;
+        }
+        Refresh(false);
+    }
+
+    /// <summary>Re-read on-disk state into the status line. Pass the new installed state when known
+    /// (the cache write and the file system can race); null re-detects.</summary>
+    public void Refresh(bool? installed = null)
+    {
+        bool present = installed ?? _detectInstalled();
+        IsInstalled = present;
+        StatusText = present
+            ? string.Format(Resources.Strings.Settings_Runtime_Version, _readVersion() ?? "installed")
+            : Resources.Strings.Settings_Runtime_NotInstalled;
+    }
+}
+
 public record LanguageOption(string Display, string? Tag);
 
 public partial class SettingsViewModel : ObservableObject
 {
+    /// <summary>The three bundled GitHub-fetched tools, managed on the RUNTIMES card.</summary>
+    public ObservableCollection<RuntimeToolViewModel> RuntimeTools { get; } = [];
+
     private readonly SettingsService _settings;
     private readonly AuthService _auth;
     private readonly SteamService _steam;
@@ -304,7 +399,8 @@ public partial class SettingsViewModel : ObservableObject
     public Action? RequestRestartPrompt { get; set; }
 
     public SettingsViewModel(SettingsService settings, AuthService auth, SteamService steam,
-        DepotBoxService depotBox, HydraCloudService hydraCloud, HydraCloudSyncService hydraCloudSync)
+        DepotBoxService depotBox, HydraCloudService hydraCloud, HydraCloudSyncService hydraCloudSync,
+        LudusaviService ludusavi, SteamAutoCrackService sac, DepotDownloaderService depotDownloader)
     {
         _settings = settings;
         _auth = auth;
@@ -333,7 +429,26 @@ public partial class SettingsViewModel : ObservableObject
         _suppressLanguagePrompt = true;
         _selectedLanguage = LanguageOptions.FirstOrDefault(o => o.Tag == settings.Language) ?? LanguageOptions[0];
         _suppressLanguagePrompt = false;
+
+        // ── Runtime tools (Settings → RUNTIMES) ──────────────────────
+        RuntimeTools.Add(new RuntimeToolViewModel("Ludusavi",
+            detectInstalled: () => File.Exists(ludusavi.ExePath),
+            readVersion: () => ludusavi.CachedVersion,
+            installAsync: () => Task.Run(async () => await ludusavi.EnsureAsync(null, CancellationToken.None) is not null),
+            remove: ludusavi.Remove));
+        RuntimeTools.Add(new RuntimeToolViewModel("SteamAutoCrack",
+            detectInstalled: () => File.Exists(SteamAutoCrackService.ExePath),
+            readVersion: () => sac.CachedVersion,
+            installAsync: () => Task.Run(async () => await sac.EnsureToolAsync(null, force: true, CancellationToken.None) is not null),
+            remove: sac.Remove,
+            preRemoveOnReinstall: false));
+        RuntimeTools.Add(new RuntimeToolViewModel("DepotDownloaderMod",
+            detectInstalled: () => File.Exists(DepotDownloaderService.ExePath),
+            readVersion: () => depotDownloader.CachedVersion,
+            installAsync: () => Task.Run(async () => await depotDownloader.EnsureToolAsync(null, CancellationToken.None) is not null),
+            remove: depotDownloader.Remove));
     }
+
 
     private void RefreshSteam()
     {

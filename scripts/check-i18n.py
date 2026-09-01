@@ -28,7 +28,23 @@ PLACEHOLDER_RE = re.compile(r'\{(\d+)\}')
 # This list IS the handoff to the translation pass. When a feature's UI is final: translate its keys
 # across every Strings.<tag>.resx, clear them from here, and this check goes back to demanding full
 # parity. Anything left here is untranslated in all 29 languages.
-PENDING_TRANSLATION: set[str] = set()
+PENDING_TRANSLATION: set[str] = {
+    "Settings_DepotBox_UseApiKeyTitle",
+    "Settings_DepotBox_UseApiKeyBody",
+    "HydraAuth_Title",
+    "HydraAuth_WebView2Unavailable",
+    "HydraAuth_WebView2Required",
+    "HydraAuth_SignInFailed",
+    "Settings_Section_Runtimes",
+    "Settings_Runtime_Install",
+    "Settings_Runtime_Reinstall",
+    "Settings_Runtime_Remove",
+    "Settings_Runtime_NotInstalled",
+    "Settings_Runtime_Version",
+    "Settings_Runtime_RemoveConfirm",
+    "Settings_Runtime_RemoveFailed",
+    "Settings_Runtime_InstallFailed",
+}
 # Empty on purpose: every key is translated in all 29 languages, so the parity check above is
 # unconditional. Add a key here ONLY while its feature's UI is still moving, and clear it again
 # as soon as the translations land. Anything listed is English-only for every user.

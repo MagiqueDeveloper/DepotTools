@@ -26,8 +26,14 @@ public class ProxiedFileDownloader : IFileDownloader
                 return;
             }
             catch (OperationCanceledException) when (cancelToken.IsCancellationRequested) { throw; }
-            catch (Exception ex) { last = ex; }
+            catch (Exception ex)
+            {
+                last = ex;
+            }
         }
+        // Every mirror failed: the last attempt may have left a truncated targetFile behind. Drop it
+        // (best-effort) so no torn package is ever mistaken for a staged update, then propagate.
+        try { File.Delete(targetFile); } catch { }
         throw last ?? new Exception($"Failed to download {url} from GitHub or any mirror.");
     }
 

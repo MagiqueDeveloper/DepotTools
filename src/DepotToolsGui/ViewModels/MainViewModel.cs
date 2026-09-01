@@ -76,7 +76,7 @@ public partial class MainViewModel : ObservableObject
 
     /// <summary>Confirm, then kill + relaunch Steam so newly added/removed luas take effect.</summary>
     [RelayCommand]
-    private void RestartSteam()
+    private async Task RestartSteam()
     {
         var result = MessageBox.Show(
             Resources.Strings.Main_RestartSteam_Ask,
@@ -85,7 +85,9 @@ public partial class MainViewModel : ObservableObject
             MessageBoxImage.Question);
         if (result != MessageBoxResult.OK) return;
 
-        if (!_steam.RestartSteam())
+        // StopSteam waits on Steam's process exits — keep that off the UI thread.
+        bool ok = await Task.Run(_steam.RestartSteam);
+        if (!ok)
             MessageBox.Show(
                 Resources.Strings.Manage_RestartSteam_Failed,
                 Resources.Strings.Manage_RestartSteam_Title,

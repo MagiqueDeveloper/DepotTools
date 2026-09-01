@@ -730,6 +730,10 @@ public partial class DownloadViewModel : ObservableObject
         }
         finally
         {
+            // Headless runs set _silentInstall to skip the overwrite confirm; restore it so later
+            // UI-initiated installs get the diff overlay again (this finally runs after the check
+            // at the confirm site, so silence still holds for the headless run itself).
+            _silentInstall = false;
             source.IsDownloading = false;
             source.Progress = 0;
             source.IsProgressIndeterminate = false;

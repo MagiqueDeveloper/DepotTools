@@ -47,11 +47,11 @@ public class HardwareAppIdService
         try
         {
             using var res = await _gh.SendAsync(AppConfig.HardwareAppIdListUrl);
-            if (res is null || !res.IsSuccessStatusCode) return; // keep the seeded/stale set
+            if (res is null || !res.IsSuccessStatusCode) { _loadTask = null; return; } // keep the seeded/stale set; allow retry
 
             string body = await res.Content.ReadAsStringAsync();
             var entries = JsonSerializer.Deserialize<List<HardwareApp>>(body, JsonOpts);
-            if (entries is null || entries.Count == 0) return; // empty/garbage → don't wipe a good cache
+            if (entries is null || entries.Count == 0) { _loadTask = null; return; } // empty/garbage → don't wipe a good cache; allow retry
 
             var ids = entries.Where(e => e.AppId > 0).Select(e => e.AppId).Distinct().ToList();
             _ids.Clear();
@@ -61,7 +61,9 @@ public class HardwareAppIdService
         catch
         {
             // Offline / all mirrors down / parse error → keep the existing set. Best-effort, like the
-            // other caches; the blacklist is a nicety, never a hard dependency.
+            // other caches; the blacklist is a nicety, never a hard dependency. Forget this attempt so
+            // the next EnsureFreshAsync can retry instead of memoizing the failure all session.
+            _loadTask = null;
         }
     }
 

@@ -101,8 +101,11 @@ public class GithubProxy
                 {
                     await dst.WriteAsync(buffer.AsMemory(0, read), ct);
                     written += read;
-                    progress?.Report(total is > 0 ? (double)written / total.Value : null);
+                    progress?.Report(total is > 0 ? Math.Clamp((double)written / total.Value, 0, 1) : null);
                 }
+                // One final report so the bar always settles at 100% even when the server's
+                // Content-Length disagrees with the body actually written.
+                progress?.Report(1.0);
                 return; // success
             }
             catch (OperationCanceledException) when (ct.IsCancellationRequested)

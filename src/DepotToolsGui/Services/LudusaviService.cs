@@ -26,6 +26,10 @@ public class LudusaviService(GithubProxy gh, CacheService cache, ILogger<Ludusav
     /// <summary>Where ludusavi.exe lives once fetched (the portable win64 zip extracts it at the root).</summary>
     public string ExePath => Path.Combine(ToolDir, "ludusavi.exe");
 
+    /// <summary>Release tag recorded when the tool was fetched, for the Settings status line. Null for
+    /// a copy present on disk from before version tracking (or a failed fetch).</summary>
+    public string? CachedVersion => cache.LudusaviVersion;
+
     /// <summary>
     /// Ensure ludusavi.exe is on disk, fetching it once if not. Null only if it couldn't be obtained.
     /// </summary>
@@ -88,5 +92,21 @@ public class LudusaviService(GithubProxy gh, CacheService cache, ILogger<Ludusav
             return null;
         }
         finally { _gate.Release(); }
+    }
+
+    /// <summary>
+    /// Delete the tool folder and clear its cached version so the next Ensure re-downloads. False when
+    /// the folder can't go (exe locked because the tool is running); the cached version is then left
+    /// intact so status stays truthful.
+    /// </summary>
+    public bool Remove()
+    {
+        try
+        {
+            if (Directory.Exists(ToolDir)) Directory.Delete(ToolDir, recursive: true);
+            cache.LudusaviVersion = null;
+            return true;
+        }
+        catch { return false; } // exe locked (tool running) → caller surfaces the failure
     }
 }

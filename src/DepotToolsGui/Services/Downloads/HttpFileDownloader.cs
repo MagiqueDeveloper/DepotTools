@@ -27,30 +27,39 @@ internal static class HttpFileDownloader
         HttpResponseMessage res, string fallbackName,
         IProgress<DownloadProgress>? progress, CancellationToken ct)
     {
-        string fileName = res.Content.Headers.ContentDisposition?.FileName?.Trim('"') ?? fallbackName;
-        foreach (char c in Path.GetInvalidFileNameChars()) fileName = fileName.Replace(c, '_');
-
-        Directory.CreateDirectory(StagingFolder);
-        string filePath = Path.Combine(StagingFolder, fileName);
-
-        long? total = res.Content.Headers.ContentLength;
-        await using var src = await res.Content.ReadAsStreamAsync(ct);
-        await using var dst = File.Create(filePath);
-
-        var buffer = new byte[81920];
-        long written = 0;
-        int read;
-        while ((read = await src.ReadAsync(buffer, ct)) > 0)
+        try
         {
-            await dst.WriteAsync(buffer.AsMemory(0, read), ct);
-            written += read;
-            progress?.Report(new DownloadProgress(written, total));
+            string fileName = res.Content.Headers.ContentDisposition?.FileName?.Trim('"') ?? fallbackName;
+            foreach (char c in Path.GetInvalidFileNameChars()) fileName = fileName.Replace(c, '_');
+
+            Directory.CreateDirectory(StagingFolder);
+            string filePath = Path.Combine(StagingFolder, fileName);
+
+            long? total = res.Content.Headers.ContentLength;
+            await using var src = await res.Content.ReadAsStreamAsync(ct);
+            await using var dst = File.Create(filePath);
+
+            var buffer = new byte[81920];
+            long written = 0;
+            int read;
+            while ((read = await src.ReadAsync(buffer, ct)) > 0)
+            {
+                await dst.WriteAsync(buffer.AsMemory(0, read), ct);
+                written += read;
+                progress?.Report(new DownloadProgress(written, total));
+            }
+
+            // One final report so a zero-length or single-chunk body still settles the bar at 100%.
+            progress?.Report(new DownloadProgress(written, total ?? written));
+
+            return new DownloadedFile(filePath, fileName);
         }
-
-        // One final report so a zero-length or single-chunk body still settles the bar at 100%.
-        progress?.Report(new DownloadProgress(written, total ?? written));
-
-        return new DownloadedFile(filePath, fileName);
+        finally
+        {
+            // Every caller hands us a live response with no using of its own; dispose here so the
+            // pooled connection is returned no matter how the copy ends.
+            res.Dispose();
+        }
     }
 
     /// <summary>

@@ -52,8 +52,8 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <StackPanel>
-                            <TextBlock FontSize="13" FontWeight="Medium" Text="Use API Key" />
-                            <TextBlock Margin="0,4,0,0" FontSize="12" Foreground="#6b7280" Text="Use the DepotTools API broker or your own DepotBox API key." TextWrapping="Wrap" />
+                            <TextBlock FontSize="13" FontWeight="Medium" Text="{x:Static res:Strings.Settings_DepotBox_UseApiKeyTitle}" />
+                            <TextBlock Margin="0,4,0,0" FontSize="12" Foreground="#6b7280" Text="{x:Static res:Strings.Settings_DepotBox_UseApiKeyBody}" TextWrapping="Wrap" />
                         </StackPanel>
                         <ui:ToggleSwitch Grid.Column="1" Margin="12,0,0,0" VerticalAlignment="Center" IsChecked="{Binding UseApiKey, Mode=TwoWay}" />
                     </Grid>
@@ -293,6 +293,52 @@
                         TextWrapping="Wrap"
                         Visibility="{Binding SteamWarning, Converter={StaticResource NullToCollapsed}}" />
                 </StackPanel>
+            </Border>
+
+            <!-- Runtimes: the bundled GitHub-fetched tools -->
+            <TextBlock Style="{StaticResource SectionHeader}" Text="{x:Static res:Strings.Settings_Section_Runtimes}" />
+            <Border Style="{StaticResource SettingsCard}">
+                <ItemsControl ItemsSource="{Binding RuntimeTools}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="14,12">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel>
+                                        <TextBlock FontSize="13" FontWeight="Bold" Text="{Binding Name}" />
+                                        <TextBlock
+                                            Margin="0,4,0,0"
+                                            FontSize="12"
+                                            Foreground="#6b7280"
+                                            Text="{Binding StatusText, Mode=OneWay}"
+                                            TextWrapping="Wrap" />
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                                        <ui:ProgressRing
+                                            Width="16" Height="16"
+                                            IsIndeterminate="True"
+                                            Visibility="{Binding IsBusy, Converter={StaticResource BoolToVis}}" />
+                                        <ui:Button
+                                            Margin="8,0,0,0"
+                                            Appearance="Secondary"
+                                            Command="{Binding InstallCommand}"
+                                            Content="{Binding InstallLabel, Mode=OneWay}"
+                                            IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBoolToVis}}" />
+                                        <ui:Button
+                                            Margin="8,0,0,0"
+                                            Appearance="Secondary"
+                                            Command="{Binding RemoveCommand}"
+                                            Content="{x:Static res:Strings.Settings_Runtime_Remove}"
+                                            Visibility="{Binding IsInstalled, Converter={StaticResource BoolToVis}}" />
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </Border>
 
             <!-- Startup -->

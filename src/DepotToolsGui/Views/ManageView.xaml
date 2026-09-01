@@ -198,12 +198,6 @@
                                     Header="{x:Static res:Strings.Manage_Action_Update}"
                                     Icon="{ui:SymbolIcon ArrowDownload24}" />
                                 <MenuItem
-                                    Command="{Binding PlacementTarget.Tag.RemoveDrmCommand, RelativeSource={RelativeSource AncestorType=ContextMenu}}"
-                                    CommandParameter="{Binding}"
-                                    Header="{x:Static res:Strings.Manage_Action_RemoveDrm}"
-                                    Icon="{ui:SymbolIcon WrenchScrewdriver24}" />
-                                <Separator />
-                                <MenuItem
                                     Command="{Binding PlacementTarget.Tag.OpenStorePageCommand, RelativeSource={RelativeSource AncestorType=ContextMenu}}"
                                     CommandParameter="{Binding}"
                                     Header="{x:Static res:Strings.Manage_Action_OpenStore}"

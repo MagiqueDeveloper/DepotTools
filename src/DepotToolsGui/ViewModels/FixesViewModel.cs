@@ -332,7 +332,7 @@ public partial class FixesViewModel : PagedListViewModel<FixGameCardVm>
             var file = await api.DownloadDenuvoAsync(fix.Id, slot, fallback, prog);
 
             if (slot == "manifest")
-                InstallManifest(file, appId, game.Name);
+                await InstallManifest(file, appId, game.Name);
             else
                 ApplyFix(file, appId, game.Name);
         }
@@ -352,7 +352,7 @@ public partial class FixesViewModel : PagedListViewModel<FixGameCardVm>
     }
 
     /// <summary>Manifest slot: install into Steam force-LOCKED (Denuvo fixes must stay version-pinned).</summary>
-    private void InstallManifest(DownloadedFile file, long appId, string gameName)
+    private async Task InstallManifest(DownloadedFile file, long appId, string gameName)
     {
         bool isZip = file.FileName.EndsWith(".zip", StringComparison.OrdinalIgnoreCase);
         var result = isZip
@@ -368,7 +368,8 @@ public partial class FixesViewModel : PagedListViewModel<FixGameCardVm>
             return;
         }
 
-        bool restarted = steam.RestartSteam();
+        // RestartSteam stops and waits on Steam's process exits — keep that wait off the UI thread.
+        bool restarted = await Task.Run(steam.RestartSteam);
         toast.Show(Resources.Strings.Fixes_Toast_FixInstalled, restarted
             ? string.Format(Resources.Strings.Fixes_Toast_FixInstalled_Restarting, gameName)
             : string.Format(Resources.Strings.Fixes_Toast_FixInstalled_Restart, gameName));
@@ -392,7 +393,7 @@ public partial class FixesViewModel : PagedListViewModel<FixGameCardVm>
             foreach (var entry in archive.Entries)
             {
                 if (string.IsNullOrEmpty(entry.Name)) continue; // directory entry
-                string dest = Path.Combine(installDir, entry.FullName);
+                string dest = HydraCloudSyncService.SafeCombine(installDir, entry.FullName);
                 try
                 {
                     Directory.CreateDirectory(Path.GetDirectoryName(dest)!);
