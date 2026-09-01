@@ -51,11 +51,8 @@ and reference it. That way the later pass only touches the `Strings.<tag>.resx` 
    - Stored filter/sort dropdown values. They're English keys the code compares against in
      switch/equality, and what the user sees is localized separately by
      `FilterOptionDisplayConverter`. Translating the stored value breaks the filter.
-3. **Keep the brand puns playful.** `"Let's get Luing™!"` is a pun on **DepotTools** ("Lua" as a verb).
-   Don't translate it literally; render the same upbeat "let's go add some Luas" spirit in your language,
-   and keep the ™. ("Lua" stays as-is; it's the brand.)
-4. **Match the tone.** Short labels stay short. The Mode descriptions are casual/jokey, so keep that voice.
-5. **Escape XML:** `&` → `&amp;`, `<` → `&lt;`, `>` → `&gt;`. The parity check will fail on malformed
+3. **Match the tone.** Short labels stay short. The Mode descriptions are casual/jokey, so keep that voice.
+4. **Escape XML:** `&` → `&amp;`, `<` → `&lt;`, `>` → `&gt;`. The parity check will fail on malformed
    XML, so run it before opening a PR (see "Checking your work" below).
 
 ## Adding a brand-new language (incl. extras beyond Steam's set)

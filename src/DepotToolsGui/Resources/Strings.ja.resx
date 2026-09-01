@@ -64,6 +64,7 @@
   <data name="Nav_Add" xml:space="preserve"><value>追加</value></data>
   <data name="Nav_Manage" xml:space="preserve"><value>管理</value></data>
   <data name="Nav_Mode" xml:space="preserve"><value>モード</value></data>
+  <data name="Nav_Downloads" xml:space="preserve"><value>ダウンロード</value></data>
   <data name="Nav_Fixes" xml:space="preserve"><value>修正</value></data>
   <data name="Nav_RestartSteam" xml:space="preserve"><value>Steamを再起動</value></data>
   <data name="Nav_Settings" xml:space="preserve"><value>設定</value></data>
@@ -197,6 +198,67 @@
   <data name="Mode_Toast_InstallFailed" xml:space="preserve"><value>インストール失敗</value></data>
   <data name="Mode_Toast_InstallFailed_Body" xml:space="preserve"><value>問題が発生しました。</value></data>
   <data name="Drop_Title" xml:space="preserve"><value>.lua、.manifest、.zip ファイルをここにドロップ</value></data>
+  <data name="Depot_Cancel_Body" xml:space="preserve"><value>すでに {0} が次の場所に書き込まれています:
+{1}
+
+はい - 停止してファイルを削除
+いいえ - 停止するがファイルは残す
+キャンセル - ダウンロードを続行</value></data>
+  <data name="Depot_Cancel_DeleteFailed" xml:space="preserve"><value>ダウンロード済みファイルを削除できませんでした。{0} に残っています。</value></data>
+  <data name="Depot_Cancel_Title" xml:space="preserve"><value>ダウンロードを取消</value></data>
+  <data name="Depot_Err_BadKey" xml:space="preserve"><value>depot {0} の復号キーが正しくありません。</value></data>
+  <data name="Depot_Err_Failed" xml:space="preserve"><value>デポ {0} が失敗しました: {1}</value></data>
+  <data name="Depot_Err_NoKeyFor" xml:space="preserve"><value>Lua に depot {0} の復号キーがありません。</value></data>
+  <data name="Depot_Err_NoKeys" xml:space="preserve"><value>このゲームの復号キーが見つかりません。</value></data>
+  <data name="Depot_Err_NoManifest" xml:space="preserve"><value>このデポの manifest を取得できませんでした。</value></data>
+  <data name="Depot_Err_NoSpace" xml:space="preserve"><value>ディスク容量が足りません: {0} 必要ですが、空きは {1} だけです。</value></data>
+  <data name="Depot_Err_Tool" xml:space="preserve"><value>デポダウンローダーを取得できませんでした。</value></data>
+  <data name="Depot_Status_Done" xml:space="preserve"><value>{0} 個のデポを {1} にダウンロードしました。</value></data>
+  <data name="Downloads_ActionRequired" xml:space="preserve"><value>操作が必要です</value></data>
+  <data name="Downloads_Action_Cancel" xml:space="preserve"><value>キャンセル</value></data>
+  <data name="Downloads_Action_ClearHistory" xml:space="preserve"><value>履歴を消去</value></data>
+  <data name="Downloads_Action_MoveDown" xml:space="preserve"><value>下へ</value></data>
+  <data name="Downloads_Action_MoveUp" xml:space="preserve"><value>上へ</value></data>
+  <data name="Downloads_Action_Pause" xml:space="preserve"><value>一時停止</value></data>
+  <data name="Downloads_Action_Remove" xml:space="preserve"><value>削除</value></data>
+  <data name="Downloads_Action_Resume" xml:space="preserve"><value>再開</value></data>
+  <data name="Downloads_Action_Retry" xml:space="preserve"><value>再試行</value></data>
+  <data name="Downloads_Action_Review" xml:space="preserve"><value>確認</value></data>
+  <data name="Downloads_ClearHistory_Confirm" xml:space="preserve"><value>ダウンロード履歴から {0} 件すべてを削除しますか？ダウンロード済みのファイルには影響しません。</value></data>
+  <data name="Downloads_Depot_FetchingManifest" xml:space="preserve"><value>manifest を取得中</value></data>
+  <data name="Downloads_Depot_PreAllocating" xml:space="preserve"><value>ファイルを確保中</value></data>
+  <data name="Downloads_Depot_Validating" xml:space="preserve"><value>既存ファイルを検証中</value></data>
+  <data name="Downloads_Depots_GettingTool" xml:space="preserve"><value>ダウンローダーを取得中</value></data>
+  <data name="Downloads_Depots_Preparing" xml:space="preserve"><value>準備中 · {0} / {1}</value></data>
+  <data name="Downloads_Depots_Progress" xml:space="preserve"><value>デポ · {1} 件中 {0} 件</value></data>
+  <data name="Downloads_Empty" xml:space="preserve"><value>現在ダウンロードはありません。何かダウンロードしてみましょう！</value></data>
+  <data name="Downloads_Err_Interrupted" xml:space="preserve"><value>アプリ終了時に中断されました。</value></data>
+  <data name="Downloads_Eta" xml:space="preserve"><value>残り {0}</value></data>
+  <data name="Downloads_Kind_Depot" xml:space="preserve"><value>デポファイル</value></data>
+  <data name="Downloads_Kind_Dlc" xml:space="preserve"><value>DLC のアンロック</value></data>
+  <data name="Downloads_Kind_Tool" xml:space="preserve"><value>ツール</value></data>
+  <data name="Downloads_Of" xml:space="preserve"><value>{0} / {1}</value></data>
+  <data name="Downloads_SAC_Err_Launch" xml:space="preserve"><value>SteamAutoCrack を起動できませんでした。</value></data>
+  <data name="Downloads_SAC_Err_Restart" xml:space="preserve"><value>.NET ランタイムはインストールされましたが、SteamAutoCrack を実行するには Windows の再起動が必要です。</value></data>
+  <data name="Downloads_SAC_Err_Runtime" xml:space="preserve"><value>SteamAutoCrack に必要な .NET ランタイムをインストールできませんでした。</value></data>
+  <data name="Downloads_SAC_Err_Tool" xml:space="preserve"><value>SteamAutoCrack をダウンロードできませんでした。</value></data>
+  <data name="Downloads_SAC_GettingRuntime" xml:space="preserve"><value>.NET ランタイムを確認中</value></data>
+  <data name="Downloads_SAC_GettingTool" xml:space="preserve"><value>SteamAutoCrack を取得中</value></data>
+  <data name="Downloads_SAC_Launched" xml:space="preserve"><value>SteamAutoCrack を開きました。</value></data>
+  <data name="Downloads_SAC_Updated" xml:space="preserve"><value>SteamAutoCrack を更新しました。</value></data>
+  <data name="Downloads_Section_Active" xml:space="preserve"><value>キュー</value></data>
+  <data name="Downloads_Section_History" xml:space="preserve"><value>履歴</value></data>
+  <data name="Downloads_Status_AwaitingConfirm" xml:space="preserve"><value>確認待ち</value></data>
+  <data name="Downloads_Status_Cancelled" xml:space="preserve"><value>キャンセル済み</value></data>
+  <data name="Downloads_Status_Completed" xml:space="preserve"><value>完了</value></data>
+  <data name="Downloads_Status_Downloading" xml:space="preserve"><value>ダウンロード中</value></data>
+  <data name="Downloads_Status_Failed" xml:space="preserve"><value>失敗</value></data>
+  <data name="Downloads_Status_Installing" xml:space="preserve"><value>インストール中</value></data>
+  <data name="Downloads_Status_Paused" xml:space="preserve"><value>一時停止中</value></data>
+  <data name="Downloads_Status_Queued" xml:space="preserve"><value>待機中</value></data>
+  <data name="Downloads_Status_Verifying" xml:space="preserve"><value>検証中…</value></data>
+  <data name="Downloads_SteamAutoCrack" xml:space="preserve"><value>SteamAutoCrack</value></data>
+  <data name="Downloads_Title" xml:space="preserve"><value>ダウンロード</value></data>
   <data name="Drop_BrowseFiles" xml:space="preserve"><value>ファイルを参照…</value></data>
   <data name="Drop_Picker_Title" xml:space="preserve"><value>.lua / .manifest / .zip ファイルを選択</value></data>
   <data name="Drop_Picker_Filter" xml:space="preserve"><value>Lua / manifest / zip|*.lua;*.manifest;*.zip|すべてのファイル|*.*</value></data>
@@ -210,6 +272,7 @@
   <data name="Drop_Result_Failed" xml:space="preserve"><value> {0} 個のファイルが失敗しました — Steamを閉じて再試行してください。</value></data>
   <data name="Drop_Result_RestartApply" xml:space="preserve"><value> 適用するにはSteamを再起動してください。</value></data>
   <data name="Common_SearchPlaceholder" xml:space="preserve"><value>名前またはApp IDで検索...</value></data>
+  <data name="Common_CopyAppId" xml:space="preserve"><value>App ID をコピー</value></data>
   <data name="Common_Loading" xml:space="preserve"><value>読み込み中…</value></data>
   <data name="Common_AppId" xml:space="preserve"><value>App ID: {0}</value></data>
   <data name="Common_AppFallback" xml:space="preserve"><value>アプリ {0}</value></data>
@@ -234,14 +297,7 @@
   <data name="Manage_Action_OpenInSteam" xml:space="preserve"><value>Steamで開く</value></data>
   <data name="Manage_Action_Reveal" xml:space="preserve"><value>.lua を表示</value></data>
   <data name="Manage_Action_CopyAppId" xml:space="preserve"><value>App IDをコピー</value></data>
-  <data name="Manage_Action_RemoveDrm" xml:space="preserve"><value>Steam DRM を削除</value></data>
   <data name="Manage_ActionsHeader" xml:space="preserve"><value>アクション</value></data>
-  <data name="Manage_Steamless_Confirm_Title" xml:space="preserve"><value>Steam DRM を削除しますか？</value></data>
-  <data name="Manage_Steamless_Confirm_Body" xml:space="preserve"><value>ゲームの実行ファイルに Steamless を実行して SteamStub DRM を除去します。元の .exe は先に .bak としてバックアップされます。一部のゲームでは後で Steam のファイル整合性確認が必要になる場合があります。続行しますか？</value></data>
-  <data name="Manage_Steamless_Working" xml:space="preserve"><value>Steam DRM を削除中…</value></data>
-  <data name="Manage_Toast_Steamless_Done" xml:space="preserve"><value>{0} 件処理、{1} 件変更なし。</value></data>
-  <data name="Manage_Steamless_NoInstall" xml:space="preserve"><value>ゲームフォルダーが見つかりません。インストールされていますか？</value></data>
-  <data name="Manage_Steamless_Failed" xml:space="preserve"><value>DRM を削除できませんでした。{0}</value></data>
   <data name="Manage_CopyAppIdTip" xml:space="preserve"><value>クリックしてApp IDをコピー</value></data>
   <data name="Manage_LoadingDepotInfo" xml:space="preserve"><value>デポ情報を読み込み中…</value></data>
   <data name="Manage_MissingHint" xml:space="preserve"><value>Steamにはあるがあなたのluaにはありません（多くは検閲済みまたはブラックリスト入りのデポ）</value></data>
@@ -318,11 +374,14 @@
   <data name="Fixes_Toast_CouldntApply" xml:space="preserve"><value>修正を適用できませんでした</value></data>
   <data name="Fixes_Toast_Refreshed_Title" xml:space="preserve"><value>更新しました</value></data>
   <data name="Fixes_Toast_Refreshed_Body" xml:space="preserve"><value>修正のあるゲーム {0} 件。</value></data>
-  <data name="Add_Title" xml:space="preserve"><value>Luaを始めよう™！</value></data>
+  <data name="Add_Title" xml:space="preserve"><value>ゲームを追加</value></data>
   <data name="Add_Subtitle" xml:space="preserve"><value>App IDを入力するか、Steamのリンクを貼り付けるか、ゲーム名で検索してください</value></data>
   <data name="Add_SearchPlaceholder" xml:space="preserve"><value>App IDを入力するかゲームを検索...</value></data>
   <data name="Add_Featured_TopSellers" xml:space="preserve"><value>売上トップ</value></data>
   <data name="Add_Featured_NewReleases" xml:space="preserve"><value>新着&amp;注目</value></data>
+  <data name="Add_Fix_Available" xml:space="preserve"><value>このゲームには {0} 件の修正があります。</value></data>
+  <data name="Add_Fix_Available_Tags" xml:space="preserve"><value>このゲームには {0} 件の修正があります：{1}</value></data>
+  <data name="Add_Fix_Open" xml:space="preserve"><value>修正を見る</value></data>
   <data name="Add_Released" xml:space="preserve"><value>リリース日 {0}</value></data>
   <data name="Add_Fetch" xml:space="preserve"><value>取得</value></data>
   <data name="Add_Checking" xml:space="preserve"><value>確認中…</value></data>
@@ -358,6 +417,7 @@
   <data name="Confirm_OpenSteamDb" xml:space="preserve"><value>SteamDBで開く</value></data>
   <data name="Confirm_Shared" xml:space="preserve"><value>共有</value></data>
   <data name="Confirm_ReviewChanges" xml:space="preserve"><value>これは、インストール済みのluaを置き換えます。変更内容を確認してください：</value></data>
+  <data name="Common_ShowInFolder" xml:space="preserve"><value>フォルダーに表示</value></data>
   <data name="Confirm_Adding" xml:space="preserve"><value>追加中 ({0})</value></data>
   <data name="Confirm_Removing" xml:space="preserve"><value>削除中 ({0})</value></data>
   <data name="Confirm_Skip" xml:space="preserve"><value>スキップ</value></data>
@@ -438,9 +498,20 @@
   <data name="Builds_PinDisabled" xml:space="preserve"><value>固定オフ（自動更新）</value></data>
   <data name="Builds_Meta_Depots" xml:space="preserve"><value>デポ {0} 個 · DLC {1} 個</value></data>
   <data name="Builds_Meta_Unsaved" xml:space="preserve"><value>未保存</value></data>
+  <data name="Builds_Select_All" xml:space="preserve"><value>すべて選択</value></data>
+  <data name="Builds_Select_ChooseFolder" xml:space="preserve"><value>デポファイルの保存先を選択</value></data>
+  <data name="Builds_Select_Confirm" xml:space="preserve"><value>{0} 個のデポをダウンロード ({1})</value></data>
+  <data name="Builds_Select_NoKey" xml:space="preserve"><value>Lua に この depot の復号キーがありません。</value></data>
+  <data name="Builds_Select_NoManifest" xml:space="preserve"><value>このデポにはダウンロードできるバージョンがありません。</value></data>
+  <data name="Builds_Select_None" xml:space="preserve"><value>デポが選択されていません</value></data>
+  <data name="Builds_Select_SaveTo" xml:space="preserve"><value>保存先</value></data>
+  <data name="Builds_Select_SharedHint" xml:space="preserve"><value>共有ランタイム — 通常はインストール済みです。必要ならチェックしてください。</value></data>
+  <data name="Builds_Select_Space" xml:space="preserve"><value>{0} 必要 · {2} の空き {1}</value></data>
+  <data name="Builds_Select_Title" xml:space="preserve"><value>ダウンロードするデポを選択</value></data>
   <data name="Builds_Source" xml:space="preserve"><value>提供元: {0}</value></data>
   <data name="Builds_Action_Apply" xml:space="preserve"><value>適用</value></data>
   <data name="Builds_Action_Rename" xml:space="preserve"><value>名前を変更</value></data>
+  <data name="Builds_Action_Download" xml:space="preserve"><value>ダウンロード</value></data>
   <data name="Builds_Action_Edit" xml:space="preserve"><value>編集</value></data>
   <data name="Builds_Action_Delete" xml:space="preserve"><value>削除</value></data>
   <data name="Builds_Action_Save" xml:space="preserve"><value>保存</value></data>
@@ -504,10 +575,12 @@
   <data name="Err_UpdateServerUnreachable" xml:space="preserve"><value>更新サーバーに接続できませんでした。接続を確認して再試行してください。</value></data>
   <data name="Err_Cancelled" xml:space="preserve"><value>キャンセルしました。</value></data>
   <data name="Err_CancelledByUser" xml:space="preserve"><value>ユーザーによりキャンセルされました</value></data>
+  <data name="Err_PathMissing" xml:space="preserve"><value>{0} を開けません — 移動または削除された可能性があります。</value></data>
   <data name="Err_ReleaseMissingDownload" xml:space="preserve"><value>リリースに必要なダウンロードファイルがありません。</value></data>
   <data name="Err_ReleaseMissingFile" xml:space="preserve"><value>リリースに {0} がありません。</value></data>
   <data name="Err_VerifyFailed" xml:space="preserve"><value>ダウンロードの検証に失敗しました (sha256 不一致)。</value></data>
   <data name="Err_VerifyFailedFile" xml:space="preserve"><value>{0} の検証に失敗しました (sha256 不一致)。</value></data>
+  <data name="Err_ClipboardBusy" xml:space="preserve"><value>コピーできません — 他のアプリがクリップボードを使用中です。</value></data>
   <data name="Err_DownloadMissingFiles" xml:space="preserve"><value>ダウンロードに不足があります: {0}。</value></data>
   <data name="Err_WriteFailedCount" xml:space="preserve"><value>{0} 個のファイルを書き込めませんでした。Steam を終了して再試行してください。</value></data>
   <data name="Err_WriteFailedFile" xml:space="preserve"><value>{0} を書き込めませんでした。Steam を終了して再試行してください。</value></data>
@@ -537,4 +610,22 @@
   <data name="Settings_HydraCloud_Automatic_Hint" xml:space="preserve"><value>Sync installed Steam game saves when DepotTools starts and while it is running.</value></data>
   <data name="Settings_HydraCloud_Ready" xml:space="preserve"><value>Hydra Cloud is ready.</value></data>
   <data name="Settings_HydraCloud_SubscriptionRequired" xml:space="preserve"><value>An active Hydra Cloud subscription is required.</value></data>
+  <data name="Settings_DepotBox_UseApiKeyTitle" xml:space="preserve"><value>Use API Key</value></data>
+  <data name="Settings_DepotBox_UseApiKeyBody" xml:space="preserve"><value>Use the DepotTools API broker or your own DepotBox API key.</value></data>
+  <data name="HydraAuth_Title" xml:space="preserve"><value>Sign in to Hydra Cloud</value></data>
+  <data name="HydraAuth_WebView2Unavailable" xml:space="preserve"><value>Hydra Cloud sign-in unavailable</value></data>
+  <data name="HydraAuth_WebView2Required" xml:space="preserve"><value>Microsoft Edge WebView2 is required for Hydra Cloud sign-in.
+
+{0}</value></data>
+  <data name="HydraAuth_SignInFailed" xml:space="preserve"><value>Hydra Cloud sign-in failed</value></data>
+  <data name="Settings_Section_Runtimes" xml:space="preserve"><value>RUNTIMES</value></data>
+  <data name="Settings_Runtime_Install" xml:space="preserve"><value>Install</value></data>
+  <data name="Settings_Runtime_Reinstall" xml:space="preserve"><value>Reinstall</value></data>
+  <data name="Settings_Runtime_Remove" xml:space="preserve"><value>Remove</value></data>
+  <data name="Settings_Runtime_NotInstalled" xml:space="preserve"><value>Not installed</value></data>
+  <data name="Settings_Runtime_Version" xml:space="preserve"><value>Version {0}</value></data>
+  <data name="Settings_Runtime_RemoveConfirm" xml:space="preserve"><value>Remove {0}? Anything that needs it will download it again on next use.</value></data>
+  <data name="Settings_Runtime_RemoveFailed" xml:space="preserve"><value>Could not remove {0}. The tool may be running.</value></data>
+  <data name="Settings_Runtime_InstallFailed" xml:space="preserve"><value>Could not install {0}. Check your connection and try again.</value></data>
+  <data name="Add_Downloading" xml:space="preserve"><value>Downloading</value></data>
 </root>

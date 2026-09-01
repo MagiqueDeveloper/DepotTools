@@ -64,6 +64,7 @@
   <data name="Nav_Add" xml:space="preserve"><value>Добавить</value></data>
   <data name="Nav_Manage" xml:space="preserve"><value>Управление</value></data>
   <data name="Nav_Mode" xml:space="preserve"><value>Режим</value></data>
+  <data name="Nav_Downloads" xml:space="preserve"><value>Загрузки</value></data>
   <data name="Nav_Fixes" xml:space="preserve"><value>Фиксы</value></data>
   <data name="Nav_RestartSteam" xml:space="preserve"><value>Перезапустить Steam</value></data>
   <data name="Nav_Settings" xml:space="preserve"><value>Настройки</value></data>
@@ -197,6 +198,67 @@
   <data name="Mode_Toast_InstallFailed" xml:space="preserve"><value>Ошибка установки</value></data>
   <data name="Mode_Toast_InstallFailed_Body" xml:space="preserve"><value>Что-то пошло не так.</value></data>
   <data name="Drop_Title" xml:space="preserve"><value>Перетащите сюда файлы .lua, .manifest или .zip</value></data>
+  <data name="Depot_Cancel_Body" xml:space="preserve"><value>Уже записано {0} в:
+{1}
+
+Да - остановить и удалить эти файлы
+Нет - остановить, но оставить
+Отмена - продолжить загрузку</value></data>
+  <data name="Depot_Cancel_DeleteFailed" xml:space="preserve"><value>Не удалось удалить загруженные файлы. Они остались в {0}.</value></data>
+  <data name="Depot_Cancel_Title" xml:space="preserve"><value>Отменить загрузку</value></data>
+  <data name="Depot_Err_BadKey" xml:space="preserve"><value>Ключ расшифровки для depot {0} неверен.</value></data>
+  <data name="Depot_Err_Failed" xml:space="preserve"><value>Депо {0} не удалось: {1}</value></data>
+  <data name="Depot_Err_NoKeyFor" xml:space="preserve"><value>В Lua нет ключа расшифровки для depot {0}.</value></data>
+  <data name="Depot_Err_NoKeys" xml:space="preserve"><value>Ключи расшифровки для этой игры не найдены.</value></data>
+  <data name="Depot_Err_NoManifest" xml:space="preserve"><value>Не удалось получить manifest этого депо.</value></data>
+  <data name="Depot_Err_NoSpace" xml:space="preserve"><value>Недостаточно места на диске: нужно {0}, свободно только {1}.</value></data>
+  <data name="Depot_Err_Tool" xml:space="preserve"><value>Не удалось получить загрузчик депо.</value></data>
+  <data name="Depot_Status_Done" xml:space="preserve"><value>Загружено депо: {0} в {1}.</value></data>
+  <data name="Downloads_ActionRequired" xml:space="preserve"><value>Требуется действие</value></data>
+  <data name="Downloads_Action_Cancel" xml:space="preserve"><value>Отменить</value></data>
+  <data name="Downloads_Action_ClearHistory" xml:space="preserve"><value>Очистить историю</value></data>
+  <data name="Downloads_Action_MoveDown" xml:space="preserve"><value>Вниз</value></data>
+  <data name="Downloads_Action_MoveUp" xml:space="preserve"><value>Вверх</value></data>
+  <data name="Downloads_Action_Pause" xml:space="preserve"><value>Пауза</value></data>
+  <data name="Downloads_Action_Remove" xml:space="preserve"><value>Удалить</value></data>
+  <data name="Downloads_Action_Resume" xml:space="preserve"><value>Продолжить</value></data>
+  <data name="Downloads_Action_Retry" xml:space="preserve"><value>Повторить</value></data>
+  <data name="Downloads_Action_Review" xml:space="preserve"><value>Просмотреть</value></data>
+  <data name="Downloads_ClearHistory_Confirm" xml:space="preserve"><value>Удалить все записи ({0}) из истории загрузок? Загруженные файлы не затрагиваются.</value></data>
+  <data name="Downloads_Depot_FetchingManifest" xml:space="preserve"><value>получение manifest</value></data>
+  <data name="Downloads_Depot_PreAllocating" xml:space="preserve"><value>выделение файлов</value></data>
+  <data name="Downloads_Depot_Validating" xml:space="preserve"><value>проверка имеющихся файлов</value></data>
+  <data name="Downloads_Depots_GettingTool" xml:space="preserve"><value>Загрузка загрузчика</value></data>
+  <data name="Downloads_Depots_Preparing" xml:space="preserve"><value>Подготовка · {0} из {1}</value></data>
+  <data name="Downloads_Depots_Progress" xml:space="preserve"><value>Депо · {0} из {1}</value></data>
+  <data name="Downloads_Empty" xml:space="preserve"><value>Сейчас ничего не загружается. Скачайте уже что-нибудь!</value></data>
+  <data name="Downloads_Err_Interrupted" xml:space="preserve"><value>Прервано при закрытии приложения.</value></data>
+  <data name="Downloads_Eta" xml:space="preserve"><value>Осталось {0}</value></data>
+  <data name="Downloads_Kind_Depot" xml:space="preserve"><value>Файлы депо</value></data>
+  <data name="Downloads_Kind_Dlc" xml:space="preserve"><value>Разблокировка DLC</value></data>
+  <data name="Downloads_Kind_Tool" xml:space="preserve"><value>Инструмент</value></data>
+  <data name="Downloads_Of" xml:space="preserve"><value>{0} из {1}</value></data>
+  <data name="Downloads_SAC_Err_Launch" xml:space="preserve"><value>Не удалось запустить SteamAutoCrack.</value></data>
+  <data name="Downloads_SAC_Err_Restart" xml:space="preserve"><value>Среда .NET установлена, но перед запуском SteamAutoCrack нужно перезагрузить Windows.</value></data>
+  <data name="Downloads_SAC_Err_Runtime" xml:space="preserve"><value>Не удалось установить среду .NET, необходимую SteamAutoCrack.</value></data>
+  <data name="Downloads_SAC_Err_Tool" xml:space="preserve"><value>Не удалось загрузить SteamAutoCrack.</value></data>
+  <data name="Downloads_SAC_GettingRuntime" xml:space="preserve"><value>Проверка среды .NET</value></data>
+  <data name="Downloads_SAC_GettingTool" xml:space="preserve"><value>Загрузка SteamAutoCrack</value></data>
+  <data name="Downloads_SAC_Launched" xml:space="preserve"><value>SteamAutoCrack открыт.</value></data>
+  <data name="Downloads_SAC_Updated" xml:space="preserve"><value>SteamAutoCrack обновлён.</value></data>
+  <data name="Downloads_Section_Active" xml:space="preserve"><value>Очередь</value></data>
+  <data name="Downloads_Section_History" xml:space="preserve"><value>История</value></data>
+  <data name="Downloads_Status_AwaitingConfirm" xml:space="preserve"><value>Ожидает вашего решения</value></data>
+  <data name="Downloads_Status_Cancelled" xml:space="preserve"><value>Отменено</value></data>
+  <data name="Downloads_Status_Completed" xml:space="preserve"><value>Готово</value></data>
+  <data name="Downloads_Status_Downloading" xml:space="preserve"><value>Загрузка</value></data>
+  <data name="Downloads_Status_Failed" xml:space="preserve"><value>Ошибка</value></data>
+  <data name="Downloads_Status_Installing" xml:space="preserve"><value>Установка</value></data>
+  <data name="Downloads_Status_Paused" xml:space="preserve"><value>Приостановлено</value></data>
+  <data name="Downloads_Status_Queued" xml:space="preserve"><value>В очереди</value></data>
+  <data name="Downloads_Status_Verifying" xml:space="preserve"><value>Проверка…</value></data>
+  <data name="Downloads_SteamAutoCrack" xml:space="preserve"><value>SteamAutoCrack</value></data>
+  <data name="Downloads_Title" xml:space="preserve"><value>Загрузки</value></data>
   <data name="Drop_BrowseFiles" xml:space="preserve"><value>Обзор файлов…</value></data>
   <data name="Drop_Picker_Title" xml:space="preserve"><value>Выберите файлы .lua / .manifest / .zip</value></data>
   <data name="Drop_Picker_Filter" xml:space="preserve"><value>Lua / manifest / zip|*.lua;*.manifest;*.zip|Все файлы|*.*</value></data>
@@ -210,6 +272,7 @@
   <data name="Drop_Result_Failed" xml:space="preserve"><value> Не удалось обработать {0} файл(ов) — закройте Steam и повторите.</value></data>
   <data name="Drop_Result_RestartApply" xml:space="preserve"><value> Перезапустите Steam, чтобы применить.</value></data>
   <data name="Common_SearchPlaceholder" xml:space="preserve"><value>Поиск по имени или App ID...</value></data>
+  <data name="Common_CopyAppId" xml:space="preserve"><value>Копировать App ID</value></data>
   <data name="Common_Loading" xml:space="preserve"><value>Загрузка…</value></data>
   <data name="Common_AppId" xml:space="preserve"><value>App ID: {0}</value></data>
   <data name="Common_AppFallback" xml:space="preserve"><value>Приложение {0}</value></data>
@@ -234,14 +297,7 @@
   <data name="Manage_Action_OpenInSteam" xml:space="preserve"><value>Открыть в Steam</value></data>
   <data name="Manage_Action_Reveal" xml:space="preserve"><value>Показать .lua</value></data>
   <data name="Manage_Action_CopyAppId" xml:space="preserve"><value>Скопировать App ID</value></data>
-  <data name="Manage_Action_RemoveDrm" xml:space="preserve"><value>Удалить DRM Steam</value></data>
   <data name="Manage_ActionsHeader" xml:space="preserve"><value>Действия</value></data>
-  <data name="Manage_Steamless_Confirm_Title" xml:space="preserve"><value>Удалить DRM Steam?</value></data>
-  <data name="Manage_Steamless_Confirm_Body" xml:space="preserve"><value>Будет запущен Steamless для исполняемого файла игры, чтобы удалить DRM SteamStub. Оригинальный .exe сначала сохраняется как .bak. Некоторым играм затем может потребоваться проверка файлов в Steam. Продолжить?</value></data>
-  <data name="Manage_Steamless_Working" xml:space="preserve"><value>Удаление DRM Steam…</value></data>
-  <data name="Manage_Toast_Steamless_Done" xml:space="preserve"><value>{0} обработано, {1} без изменений.</value></data>
-  <data name="Manage_Steamless_NoInstall" xml:space="preserve"><value>Папка игры не найдена — она установлена?</value></data>
-  <data name="Manage_Steamless_Failed" xml:space="preserve"><value>Не удалось удалить DRM. {0}</value></data>
   <data name="Manage_CopyAppIdTip" xml:space="preserve"><value>Нажмите, чтобы скопировать App ID</value></data>
   <data name="Manage_LoadingDepotInfo" xml:space="preserve"><value>Загрузка информации о депо…</value></data>
   <data name="Manage_MissingHint" xml:space="preserve"><value>Есть в Steam, но нет в вашем lua (часто цензурированные или внесённые в чёрный список депо)</value></data>
@@ -318,11 +374,14 @@
   <data name="Fixes_Toast_CouldntApply" xml:space="preserve"><value>Не удалось применить фикс</value></data>
   <data name="Fixes_Toast_Refreshed_Title" xml:space="preserve"><value>Обновлено</value></data>
   <data name="Fixes_Toast_Refreshed_Body" xml:space="preserve"><value>{0} игр с фиксами.</value></data>
-  <data name="Add_Title" xml:space="preserve"><value>Погнали за Lua™!</value></data>
+  <data name="Add_Title" xml:space="preserve"><value>Добавить игру</value></data>
   <data name="Add_Subtitle" xml:space="preserve"><value>Введите App ID, вставьте ссылку Steam или выполните поиск по названию игры</value></data>
   <data name="Add_SearchPlaceholder" xml:space="preserve"><value>Введите App ID или найдите игры...</value></data>
   <data name="Add_Featured_TopSellers" xml:space="preserve"><value>Бестселлеры</value></data>
   <data name="Add_Featured_NewReleases" xml:space="preserve"><value>Новинки</value></data>
+  <data name="Add_Fix_Available" xml:space="preserve"><value>Для этой игры есть фиксы: {0}.</value></data>
+  <data name="Add_Fix_Available_Tags" xml:space="preserve"><value>Для этой игры есть фиксы: {0} ({1}).</value></data>
+  <data name="Add_Fix_Open" xml:space="preserve"><value>Открыть фиксы</value></data>
   <data name="Add_Released" xml:space="preserve"><value>Выпущено {0}</value></data>
   <data name="Add_Fetch" xml:space="preserve"><value>Получить</value></data>
   <data name="Add_Checking" xml:space="preserve"><value>Проверка…</value></data>
@@ -358,6 +417,7 @@
   <data name="Confirm_OpenSteamDb" xml:space="preserve"><value>Открыть в SteamDB</value></data>
   <data name="Confirm_Shared" xml:space="preserve"><value>ОБЩИЙ</value></data>
   <data name="Confirm_ReviewChanges" xml:space="preserve"><value>Это заменит установленный lua. Просмотрите, что изменится:</value></data>
+  <data name="Common_ShowInFolder" xml:space="preserve"><value>Показать в папке</value></data>
   <data name="Confirm_Adding" xml:space="preserve"><value>Добавление ({0})</value></data>
   <data name="Confirm_Removing" xml:space="preserve"><value>Удаление ({0})</value></data>
   <data name="Confirm_Skip" xml:space="preserve"><value>Пропустить</value></data>
@@ -438,9 +498,20 @@
   <data name="Builds_PinDisabled" xml:space="preserve"><value>закрепление выключено (автообновление)</value></data>
   <data name="Builds_Meta_Depots" xml:space="preserve"><value>{0} депо · {1} DLC</value></data>
   <data name="Builds_Meta_Unsaved" xml:space="preserve"><value>не сохранено</value></data>
+  <data name="Builds_Select_All" xml:space="preserve"><value>Выбрать все</value></data>
+  <data name="Builds_Select_ChooseFolder" xml:space="preserve"><value>Выберите, куда сохранить файлы депо</value></data>
+  <data name="Builds_Select_Confirm" xml:space="preserve"><value>Скачать {0} депо ({1})</value></data>
+  <data name="Builds_Select_NoKey" xml:space="preserve"><value>В Lua нет ключа расшифровки для этого depot.</value></data>
+  <data name="Builds_Select_NoManifest" xml:space="preserve"><value>Это депо не объявляет версию для загрузки.</value></data>
+  <data name="Builds_Select_None" xml:space="preserve"><value>Депо не выбраны</value></data>
+  <data name="Builds_Select_SaveTo" xml:space="preserve"><value>Сохранить в</value></data>
+  <data name="Builds_Select_SharedHint" xml:space="preserve"><value>Общая среда выполнения — обычно уже установлена. Отметьте, чтобы всё равно скачать.</value></data>
+  <data name="Builds_Select_Space" xml:space="preserve"><value>Нужно {0} · свободно {1} на {2}</value></data>
+  <data name="Builds_Select_Title" xml:space="preserve"><value>Выберите депо для загрузки</value></data>
   <data name="Builds_Source" xml:space="preserve"><value>из {0}</value></data>
   <data name="Builds_Action_Apply" xml:space="preserve"><value>Применить</value></data>
   <data name="Builds_Action_Rename" xml:space="preserve"><value>Переименовать</value></data>
+  <data name="Builds_Action_Download" xml:space="preserve"><value>Скачать</value></data>
   <data name="Builds_Action_Edit" xml:space="preserve"><value>Изменить</value></data>
   <data name="Builds_Action_Delete" xml:space="preserve"><value>Удалить</value></data>
   <data name="Builds_Action_Save" xml:space="preserve"><value>Сохранить</value></data>
@@ -504,10 +575,12 @@
   <data name="Err_UpdateServerUnreachable" xml:space="preserve"><value>Не удалось связаться с сервером обновлений. Проверьте подключение и повторите попытку.</value></data>
   <data name="Err_Cancelled" xml:space="preserve"><value>Отменено.</value></data>
   <data name="Err_CancelledByUser" xml:space="preserve"><value>Отменено пользователем</value></data>
+  <data name="Err_PathMissing" xml:space="preserve"><value>Не удалось открыть {0} — возможно, он перемещён или удалён.</value></data>
   <data name="Err_ReleaseMissingDownload" xml:space="preserve"><value>В релизе отсутствует нужный файл.</value></data>
   <data name="Err_ReleaseMissingFile" xml:space="preserve"><value>В релизе отсутствует {0}.</value></data>
   <data name="Err_VerifyFailed" xml:space="preserve"><value>Загрузка не прошла проверку (несовпадение sha256).</value></data>
   <data name="Err_VerifyFailedFile" xml:space="preserve"><value>{0} не прошёл проверку (несовпадение sha256).</value></data>
+  <data name="Err_ClipboardBusy" xml:space="preserve"><value>Не удалось скопировать — буфер обмена занят другим приложением.</value></data>
   <data name="Err_DownloadMissingFiles" xml:space="preserve"><value>В загрузке отсутствует: {0}.</value></data>
   <data name="Err_WriteFailedCount" xml:space="preserve"><value>Не удалось записать файлов: {0}. Закройте Steam и повторите попытку.</value></data>
   <data name="Err_WriteFailedFile" xml:space="preserve"><value>Не удалось записать {0}. Закройте Steam и повторите попытку.</value></data>
@@ -537,4 +610,22 @@
   <data name="Settings_HydraCloud_Automatic_Hint" xml:space="preserve"><value>Sync installed Steam game saves when DepotTools starts and while it is running.</value></data>
   <data name="Settings_HydraCloud_Ready" xml:space="preserve"><value>Hydra Cloud is ready.</value></data>
   <data name="Settings_HydraCloud_SubscriptionRequired" xml:space="preserve"><value>An active Hydra Cloud subscription is required.</value></data>
+  <data name="Settings_DepotBox_UseApiKeyTitle" xml:space="preserve"><value>Use API Key</value></data>
+  <data name="Settings_DepotBox_UseApiKeyBody" xml:space="preserve"><value>Use the DepotTools API broker or your own DepotBox API key.</value></data>
+  <data name="HydraAuth_Title" xml:space="preserve"><value>Sign in to Hydra Cloud</value></data>
+  <data name="HydraAuth_WebView2Unavailable" xml:space="preserve"><value>Hydra Cloud sign-in unavailable</value></data>
+  <data name="HydraAuth_WebView2Required" xml:space="preserve"><value>Microsoft Edge WebView2 is required for Hydra Cloud sign-in.
+
+{0}</value></data>
+  <data name="HydraAuth_SignInFailed" xml:space="preserve"><value>Hydra Cloud sign-in failed</value></data>
+  <data name="Settings_Section_Runtimes" xml:space="preserve"><value>RUNTIMES</value></data>
+  <data name="Settings_Runtime_Install" xml:space="preserve"><value>Install</value></data>
+  <data name="Settings_Runtime_Reinstall" xml:space="preserve"><value>Reinstall</value></data>
+  <data name="Settings_Runtime_Remove" xml:space="preserve"><value>Remove</value></data>
+  <data name="Settings_Runtime_NotInstalled" xml:space="preserve"><value>Not installed</value></data>
+  <data name="Settings_Runtime_Version" xml:space="preserve"><value>Version {0}</value></data>
+  <data name="Settings_Runtime_RemoveConfirm" xml:space="preserve"><value>Remove {0}? Anything that needs it will download it again on next use.</value></data>
+  <data name="Settings_Runtime_RemoveFailed" xml:space="preserve"><value>Could not remove {0}. The tool may be running.</value></data>
+  <data name="Settings_Runtime_InstallFailed" xml:space="preserve"><value>Could not install {0}. Check your connection and try again.</value></data>
+  <data name="Add_Downloading" xml:space="preserve"><value>Downloading</value></data>
 </root>

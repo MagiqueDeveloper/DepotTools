@@ -17,7 +17,7 @@ public class DenuvoGameListing
     [JsonPropertyName("fixes")] public List<DenuvoFix> Fixes { get; set; } = [];
     [JsonIgnore] public int FixCount => Fixes.Count;
     [JsonIgnore] public List<DenuvoTag> Tags => Fixes
-        .SelectMany(f => f.Tags.Select(tag => new DenuvoTag { Id = tag, Name = tag, Slug = tag }))
+        .SelectMany(f => f.Tags.Select(tag => new DenuvoTag { Id = tag, Name = FixTagNames.DisplayName(tag), Slug = tag }))
         .GroupBy(t => t.Id, StringComparer.OrdinalIgnoreCase)
         .Select(g => g.First())
         .ToList();
@@ -56,4 +56,38 @@ public class DenuvoFix
 public class DenuvoDownloadResponse
 {
     [JsonPropertyName("url")] public string Url { get; set; } = "";
+}
+
+/// <summary>Known fix tags and their display names. The API returns lowercase slugs ("online",
+/// "bypass", "hypervisor"); this maps them to proper names and fixes the filter order.</summary>
+public static class FixTagNames
+{
+    public const string Online = "online";
+    public const string Bypass = "bypass";
+    public const string Hypervisor = "hypervisor";
+
+    /// <summary>The filter pills in display order: Bypass → Hypervisor → Online Fix.</summary>
+    public static readonly (string Id, string Display)[] OrderedPills =
+    [
+        (Bypass, "Bypass"),
+        (Hypervisor, "Hypervisor"),
+        (Online, "Online Fix"),
+    ];
+
+    /// <summary>Display name for a raw tag id: "online" → "Online Fix", "bypass" → "Bypass". Unknown
+    /// tags are title-cased as a fallback.</summary>
+    public static string DisplayName(string id)
+    {
+        foreach (var (pid, display) in OrderedPills)
+            if (string.Equals(pid, id, StringComparison.OrdinalIgnoreCase)) return display;
+        return string.IsNullOrEmpty(id) ? id : char.ToUpperInvariant(id[0]) + id[1..];
+    }
+
+    /// <summary>Sort key matching <see cref="OrderedPills"/> (unknown tags sort last).</summary>
+    public static int Order(string id)
+    {
+        for (var i = 0; i < OrderedPills.Length; i++)
+            if (string.Equals(OrderedPills[i].Id, id, StringComparison.OrdinalIgnoreCase)) return i;
+        return int.MaxValue;
+    }
 }

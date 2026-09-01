@@ -64,6 +64,7 @@
   <data name="Nav_Add" xml:space="preserve"><value>添加</value></data>
   <data name="Nav_Manage" xml:space="preserve"><value>管理</value></data>
   <data name="Nav_Mode" xml:space="preserve"><value>模式</value></data>
+  <data name="Nav_Downloads" xml:space="preserve"><value>下载</value></data>
   <data name="Nav_Fixes" xml:space="preserve"><value>修复</value></data>
   <data name="Nav_RestartSteam" xml:space="preserve"><value>重启 Steam</value></data>
   <data name="Nav_Settings" xml:space="preserve"><value>设置</value></data>
@@ -207,6 +208,67 @@
 
   <!-- ── 拖放区 ── -->
   <data name="Drop_Title" xml:space="preserve"><value>将 .lua、.manifest 或 .zip 文件拖放到此处</value></data>
+  <data name="Depot_Cancel_Body" xml:space="preserve"><value>已写入 {0} 到：
+{1}
+
+是 - 停止并删除这些文件
+否 - 停止但保留文件
+取消 - 继续下载</value></data>
+  <data name="Depot_Cancel_DeleteFailed" xml:space="preserve"><value>无法删除已下载的文件。它们仍在 {0}。</value></data>
+  <data name="Depot_Cancel_Title" xml:space="preserve"><value>取消下载</value></data>
+  <data name="Depot_Err_BadKey" xml:space="preserve"><value>depot {0} 的解密密钥不正确。</value></data>
+  <data name="Depot_Err_Failed" xml:space="preserve"><value>仓库 {0} 失败：{1}</value></data>
+  <data name="Depot_Err_NoKeyFor" xml:space="preserve"><value>Lua 中没有 depot {0} 的解密密钥。</value></data>
+  <data name="Depot_Err_NoKeys" xml:space="preserve"><value>未找到该游戏的解密密钥。</value></data>
+  <data name="Depot_Err_NoManifest" xml:space="preserve"><value>无法获取该仓库的 manifest。</value></data>
+  <data name="Depot_Err_NoSpace" xml:space="preserve"><value>磁盘空间不足：需要 {0}，仅剩 {1}。</value></data>
+  <data name="Depot_Err_Tool" xml:space="preserve"><value>无法获取仓库下载器。</value></data>
+  <data name="Depot_Status_Done" xml:space="preserve"><value>已将 {0} 个仓库下载到 {1}。</value></data>
+  <data name="Downloads_ActionRequired" xml:space="preserve"><value>需要操作</value></data>
+  <data name="Downloads_Action_Cancel" xml:space="preserve"><value>取消</value></data>
+  <data name="Downloads_Action_ClearHistory" xml:space="preserve"><value>清空历史记录</value></data>
+  <data name="Downloads_Action_MoveDown" xml:space="preserve"><value>下移</value></data>
+  <data name="Downloads_Action_MoveUp" xml:space="preserve"><value>上移</value></data>
+  <data name="Downloads_Action_Pause" xml:space="preserve"><value>暂停</value></data>
+  <data name="Downloads_Action_Remove" xml:space="preserve"><value>移除</value></data>
+  <data name="Downloads_Action_Resume" xml:space="preserve"><value>继续</value></data>
+  <data name="Downloads_Action_Retry" xml:space="preserve"><value>重试</value></data>
+  <data name="Downloads_Action_Review" xml:space="preserve"><value>查看</value></data>
+  <data name="Downloads_ClearHistory_Confirm" xml:space="preserve"><value>要从下载历史中移除全部 {0} 条记录吗？已下载的文件不会受影响。</value></data>
+  <data name="Downloads_Depot_FetchingManifest" xml:space="preserve"><value>正在获取 manifest</value></data>
+  <data name="Downloads_Depot_PreAllocating" xml:space="preserve"><value>正在分配文件</value></data>
+  <data name="Downloads_Depot_Validating" xml:space="preserve"><value>正在校验已有文件</value></data>
+  <data name="Downloads_Depots_GettingTool" xml:space="preserve"><value>正在获取下载器</value></data>
+  <data name="Downloads_Depots_Preparing" xml:space="preserve"><value>准备中 · {0} / {1}</value></data>
+  <data name="Downloads_Depots_Progress" xml:space="preserve"><value>仓库 · 第 {0} 个，共 {1} 个</value></data>
+  <data name="Downloads_Empty" xml:space="preserve"><value>当前没有下载。快去下载点什么吧！</value></data>
+  <data name="Downloads_Err_Interrupted" xml:space="preserve"><value>应用关闭时被中断。</value></data>
+  <data name="Downloads_Eta" xml:space="preserve"><value>剩余 {0}</value></data>
+  <data name="Downloads_Kind_Depot" xml:space="preserve"><value>仓库文件</value></data>
+  <data name="Downloads_Kind_Dlc" xml:space="preserve"><value>DLC 解锁</value></data>
+  <data name="Downloads_Kind_Tool" xml:space="preserve"><value>工具</value></data>
+  <data name="Downloads_Of" xml:space="preserve"><value>{0} / {1}</value></data>
+  <data name="Downloads_SAC_Err_Launch" xml:space="preserve"><value>无法启动 SteamAutoCrack。</value></data>
+  <data name="Downloads_SAC_Err_Restart" xml:space="preserve"><value>.NET 运行时已安装，但需要重启 Windows 后 SteamAutoCrack 才能运行。</value></data>
+  <data name="Downloads_SAC_Err_Runtime" xml:space="preserve"><value>无法安装 SteamAutoCrack 所需的 .NET 运行时。</value></data>
+  <data name="Downloads_SAC_Err_Tool" xml:space="preserve"><value>无法下载 SteamAutoCrack。</value></data>
+  <data name="Downloads_SAC_GettingRuntime" xml:space="preserve"><value>正在检查 .NET 运行时</value></data>
+  <data name="Downloads_SAC_GettingTool" xml:space="preserve"><value>正在获取 SteamAutoCrack</value></data>
+  <data name="Downloads_SAC_Launched" xml:space="preserve"><value>已打开 SteamAutoCrack。</value></data>
+  <data name="Downloads_SAC_Updated" xml:space="preserve"><value>SteamAutoCrack 已更新。</value></data>
+  <data name="Downloads_Section_Active" xml:space="preserve"><value>队列</value></data>
+  <data name="Downloads_Section_History" xml:space="preserve"><value>历史记录</value></data>
+  <data name="Downloads_Status_AwaitingConfirm" xml:space="preserve"><value>等待你确认</value></data>
+  <data name="Downloads_Status_Cancelled" xml:space="preserve"><value>已取消</value></data>
+  <data name="Downloads_Status_Completed" xml:space="preserve"><value>已完成</value></data>
+  <data name="Downloads_Status_Downloading" xml:space="preserve"><value>下载中</value></data>
+  <data name="Downloads_Status_Failed" xml:space="preserve"><value>失败</value></data>
+  <data name="Downloads_Status_Installing" xml:space="preserve"><value>安装中</value></data>
+  <data name="Downloads_Status_Paused" xml:space="preserve"><value>已暂停</value></data>
+  <data name="Downloads_Status_Queued" xml:space="preserve"><value>排队中</value></data>
+  <data name="Downloads_Status_Verifying" xml:space="preserve"><value>正在校验…</value></data>
+  <data name="Downloads_SteamAutoCrack" xml:space="preserve"><value>SteamAutoCrack</value></data>
+  <data name="Downloads_Title" xml:space="preserve"><value>下载</value></data>
   <data name="Drop_BrowseFiles" xml:space="preserve"><value>浏览文件…</value></data>
   <data name="Drop_Picker_Title" xml:space="preserve"><value>选择 .lua / .manifest / .zip 文件</value></data>
   <data name="Drop_Picker_Filter" xml:space="preserve"><value>Lua / manifest / zip|*.lua;*.manifest;*.zip|所有文件|*.*</value></data>
@@ -222,6 +284,7 @@
 
   <!-- ── 通用 ── -->
   <data name="Common_SearchPlaceholder" xml:space="preserve"><value>按名称或 App ID 搜索…</value></data>
+  <data name="Common_CopyAppId" xml:space="preserve"><value>复制 App ID</value></data>
   <data name="Common_Loading" xml:space="preserve"><value>加载中…</value></data>
   <data name="Common_AppId" xml:space="preserve"><value>App ID：{0}</value></data>
   <data name="Common_AppFallback" xml:space="preserve"><value>应用 {0}</value></data>
@@ -248,14 +311,7 @@
   <data name="Manage_Action_OpenInSteam" xml:space="preserve"><value>在 Steam 中打开</value></data>
   <data name="Manage_Action_Reveal" xml:space="preserve"><value>显示 .lua</value></data>
   <data name="Manage_Action_CopyAppId" xml:space="preserve"><value>复制 App ID</value></data>
-  <data name="Manage_Action_RemoveDrm" xml:space="preserve"><value>移除 Steam DRM</value></data>
   <data name="Manage_ActionsHeader" xml:space="preserve"><value>操作</value></data>
-  <data name="Manage_Steamless_Confirm_Title" xml:space="preserve"><value>移除 Steam DRM？</value></data>
-  <data name="Manage_Steamless_Confirm_Body" xml:space="preserve"><value>这将对游戏的可执行文件运行 Steamless 以移除 SteamStub DRM。原始 .exe 会先备份为 .bak。某些游戏之后可能需要在 Steam 中验证文件。是否继续？</value></data>
-  <data name="Manage_Steamless_Working" xml:space="preserve"><value>正在移除 Steam DRM…</value></data>
-  <data name="Manage_Toast_Steamless_Done" xml:space="preserve"><value>已处理 {0} 个，{1} 个未更改。</value></data>
-  <data name="Manage_Steamless_NoInstall" xml:space="preserve"><value>未找到游戏文件夹——是否已安装？</value></data>
-  <data name="Manage_Steamless_Failed" xml:space="preserve"><value>无法移除 DRM。{0}</value></data>
   <data name="Manage_CopyAppIdTip" xml:space="preserve"><value>点击复制 App ID</value></data>
   <data name="Manage_LoadingDepotInfo" xml:space="preserve"><value>正在加载仓库信息…</value></data>
   <data name="Manage_MissingHint" xml:space="preserve"><value>Steam 上有但你的 lua 中没有（通常是被审查或列入黑名单的仓库）</value></data>
@@ -336,11 +392,14 @@
   <data name="Fixes_Toast_Refreshed_Body" xml:space="preserve"><value>{0} 个含修复的游戏。</value></data>
 
   <!-- ── 添加 / 下载页 ── -->
-  <data name="Add_Title" xml:space="preserve"><value>开始添加 Lua 吧！</value></data>
+  <data name="Add_Title" xml:space="preserve"><value>添加游戏</value></data>
   <data name="Add_Subtitle" xml:space="preserve"><value>输入 App ID、粘贴 Steam 链接，或按游戏名称搜索</value></data>
   <data name="Add_SearchPlaceholder" xml:space="preserve"><value>输入 App ID 或搜索游戏…</value></data>
   <data name="Add_Featured_TopSellers" xml:space="preserve"><value>热销商品</value></data>
   <data name="Add_Featured_NewReleases" xml:space="preserve"><value>新品与热门</value></data>
+  <data name="Add_Fix_Available" xml:space="preserve"><value>这款游戏有 {0} 个修复可用。</value></data>
+  <data name="Add_Fix_Available_Tags" xml:space="preserve"><value>这款游戏有 {0} 个修复可用：{1}</value></data>
+  <data name="Add_Fix_Open" xml:space="preserve"><value>查看修复</value></data>
   <data name="Add_Released" xml:space="preserve"><value>发行于 {0}</value></data>
   <data name="Add_Fetch" xml:space="preserve"><value>获取</value></data>
   <data name="Add_Checking" xml:space="preserve"><value>正在检查…</value></data>
@@ -378,6 +437,7 @@
   <data name="Confirm_OpenSteamDb" xml:space="preserve"><value>在 SteamDB 中打开</value></data>
   <data name="Confirm_Shared" xml:space="preserve"><value>共享</value></data>
   <data name="Confirm_ReviewChanges" xml:space="preserve"><value>这将替换已安装的 lua。请查看更改内容：</value></data>
+  <data name="Common_ShowInFolder" xml:space="preserve"><value>在文件夹中显示</value></data>
   <data name="Confirm_Adding" xml:space="preserve"><value>新增 ({0})</value></data>
   <data name="Confirm_Removing" xml:space="preserve"><value>移除 ({0})</value></data>
   <data name="Confirm_Skip" xml:space="preserve"><value>跳过</value></data>
@@ -458,9 +518,20 @@
   <data name="Builds_PinDisabled" xml:space="preserve"><value>锁定已关闭（自动更新）</value></data>
   <data name="Builds_Meta_Depots" xml:space="preserve"><value>{0} 个仓库 · {1} 个 DLC</value></data>
   <data name="Builds_Meta_Unsaved" xml:space="preserve"><value>未保存</value></data>
+  <data name="Builds_Select_All" xml:space="preserve"><value>全选</value></data>
+  <data name="Builds_Select_ChooseFolder" xml:space="preserve"><value>选择仓库文件的保存位置</value></data>
+  <data name="Builds_Select_Confirm" xml:space="preserve"><value>下载 {0} 个仓库（{1}）</value></data>
+  <data name="Builds_Select_NoKey" xml:space="preserve"><value>Lua 中没有此 depot 的解密密钥。</value></data>
+  <data name="Builds_Select_NoManifest" xml:space="preserve"><value>该仓库未声明可下载的版本。</value></data>
+  <data name="Builds_Select_None" xml:space="preserve"><value>未选择仓库</value></data>
+  <data name="Builds_Select_SaveTo" xml:space="preserve"><value>保存到</value></data>
+  <data name="Builds_Select_SharedHint" xml:space="preserve"><value>共享运行库 — 通常已安装。如仍需下载请勾选。</value></data>
+  <data name="Builds_Select_Space" xml:space="preserve"><value>需要 {0} · {2} 剩余 {1}</value></data>
+  <data name="Builds_Select_Title" xml:space="preserve"><value>选择要下载的仓库</value></data>
   <data name="Builds_Source" xml:space="preserve"><value>来自 {0}</value></data>
   <data name="Builds_Action_Apply" xml:space="preserve"><value>应用</value></data>
   <data name="Builds_Action_Rename" xml:space="preserve"><value>重命名</value></data>
+  <data name="Builds_Action_Download" xml:space="preserve"><value>下载</value></data>
   <data name="Builds_Action_Edit" xml:space="preserve"><value>编辑</value></data>
   <data name="Builds_Action_Delete" xml:space="preserve"><value>删除</value></data>
   <data name="Builds_Action_Save" xml:space="preserve"><value>保存</value></data>
@@ -524,10 +595,12 @@
   <data name="Err_UpdateServerUnreachable" xml:space="preserve"><value>无法连接更新服务器。请检查网络连接后重试。</value></data>
   <data name="Err_Cancelled" xml:space="preserve"><value>已取消。</value></data>
   <data name="Err_CancelledByUser" xml:space="preserve"><value>用户已取消</value></data>
+  <data name="Err_PathMissing" xml:space="preserve"><value>无法打开 {0} — 可能已被移动或删除。</value></data>
   <data name="Err_ReleaseMissingDownload" xml:space="preserve"><value>该版本缺少所需的下载文件。</value></data>
   <data name="Err_ReleaseMissingFile" xml:space="preserve"><value>该版本缺少 {0}。</value></data>
   <data name="Err_VerifyFailed" xml:space="preserve"><value>下载未通过校验（sha256 不匹配）。</value></data>
   <data name="Err_VerifyFailedFile" xml:space="preserve"><value>{0} 未通过校验（sha256 不匹配）。</value></data>
+  <data name="Err_ClipboardBusy" xml:space="preserve"><value>无法复制 — 另一个应用正占用剪贴板。</value></data>
   <data name="Err_DownloadMissingFiles" xml:space="preserve"><value>下载内容缺少：{0}。</value></data>
   <data name="Err_WriteFailedCount" xml:space="preserve"><value>有 {0} 个文件无法写入。请关闭 Steam 后重试。</value></data>
   <data name="Err_WriteFailedFile" xml:space="preserve"><value>无法写入 {0}。请关闭 Steam 后重试。</value></data>
@@ -557,4 +630,22 @@
   <data name="Settings_HydraCloud_Automatic_Hint" xml:space="preserve"><value>Sync installed Steam game saves when DepotTools starts and while it is running.</value></data>
   <data name="Settings_HydraCloud_Ready" xml:space="preserve"><value>Hydra Cloud is ready.</value></data>
   <data name="Settings_HydraCloud_SubscriptionRequired" xml:space="preserve"><value>An active Hydra Cloud subscription is required.</value></data>
+  <data name="Settings_DepotBox_UseApiKeyTitle" xml:space="preserve"><value>Use API Key</value></data>
+  <data name="Settings_DepotBox_UseApiKeyBody" xml:space="preserve"><value>Use the DepotTools API broker or your own DepotBox API key.</value></data>
+  <data name="HydraAuth_Title" xml:space="preserve"><value>Sign in to Hydra Cloud</value></data>
+  <data name="HydraAuth_WebView2Unavailable" xml:space="preserve"><value>Hydra Cloud sign-in unavailable</value></data>
+  <data name="HydraAuth_WebView2Required" xml:space="preserve"><value>Microsoft Edge WebView2 is required for Hydra Cloud sign-in.
+
+{0}</value></data>
+  <data name="HydraAuth_SignInFailed" xml:space="preserve"><value>Hydra Cloud sign-in failed</value></data>
+  <data name="Settings_Section_Runtimes" xml:space="preserve"><value>RUNTIMES</value></data>
+  <data name="Settings_Runtime_Install" xml:space="preserve"><value>Install</value></data>
+  <data name="Settings_Runtime_Reinstall" xml:space="preserve"><value>Reinstall</value></data>
+  <data name="Settings_Runtime_Remove" xml:space="preserve"><value>Remove</value></data>
+  <data name="Settings_Runtime_NotInstalled" xml:space="preserve"><value>Not installed</value></data>
+  <data name="Settings_Runtime_Version" xml:space="preserve"><value>Version {0}</value></data>
+  <data name="Settings_Runtime_RemoveConfirm" xml:space="preserve"><value>Remove {0}? Anything that needs it will download it again on next use.</value></data>
+  <data name="Settings_Runtime_RemoveFailed" xml:space="preserve"><value>Could not remove {0}. The tool may be running.</value></data>
+  <data name="Settings_Runtime_InstallFailed" xml:space="preserve"><value>Could not install {0}. Check your connection and try again.</value></data>
+  <data name="Add_Downloading" xml:space="preserve"><value>Downloading</value></data>
 </root>

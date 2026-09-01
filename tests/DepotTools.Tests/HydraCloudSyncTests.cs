@@ -24,6 +24,7 @@ public sealed class HydraCloudSyncTests
     [InlineData("/absolute.dat")]
     [InlineData("C:/absolute.dat")]
     [InlineData("folder//file.dat")]
+    [InlineData("..\\escape.dat")] // backslash variant: guards the fix-zip entry use in ApplyFix
     public void RestorePath_RejectsUnsafeRelativePaths(string relative)
     {
         Assert.Throws<InvalidDataException>(() =>

@@ -133,6 +133,9 @@ public partial class MainWindow : Wpf.Ui.Controls.FluentWindow
     /// <summary>Switch to Mode (used by Home's mode status row).</summary>
     public void NavigateToMode() => RootNavigation.Navigate(typeof(ModeView));
 
+    /// <summary>Switch to Downloads (used after a depot download is queued).</summary>
+    public void NavigateToDownloads() => RootNavigation.Navigate(typeof(DownloadsView));
+
     // "Restart Steam" is an action, not a page: run the command, don't leave it selected.
     private void RestartSteam_Click(object sender, RoutedEventArgs e)
     {

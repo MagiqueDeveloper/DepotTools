@@ -25,6 +25,7 @@ Download the latest build from the [releases](https://github.com/MagiqueDevelope
 - Search Steam games and view DepotBox details, manifests, availability, DLC, and fixes
 - Install and manage local Lua files
 - Manage Steam manifest files and DLC configuration
+- Download game depot content from Steam's CDN and launch SteamAutoCrack (fetched at runtime)
 - Choose between supported Steam tool modes or use a custom unlocker
 - Sync supported Steam game saves with Hydra Cloud using Ludusavi
 - Drag and drop supported files into the app
@@ -35,6 +36,9 @@ Download the latest build from the [releases](https://github.com/MagiqueDevelope
 - [LuaTools](https://github.com/madoiscool/LuaTools): original Windows application and codebase that DepotTools was reworked from
 - [DepotBox](https://depotbox.org/): external service for Steam game data, manifests, availability, and fixes
 - [Hydra Launcher](https://github.com/hydralauncher/hydra): Hydra Cloud client integration reference
+- [Ludusavi](https://github.com/mtkennerly/ludusavi): save-game backup engine
+- [DepotDownloaderMod](https://github.com/SteamAutoCracks/DepotDownloaderMod): depot content downloader
+- [SteamAutoCrack](https://github.com/SteamAutoCracks/Steam-auto-crack): launched from the Downloads page
 
 DepotTools is not affiliated with LuaTools, DepotBox, or Hydra.
 

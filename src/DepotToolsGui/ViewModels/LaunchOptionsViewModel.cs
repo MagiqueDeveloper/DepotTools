@@ -164,6 +164,12 @@ public partial class LaunchOptionsViewModel : ObservableObject
         var current = Entries.Select(e => e.ToOption()).ToList();
         LaunchOption.Renumber(current);
         IsDirty = LaunchModStore.Differs(_baseline, current);
+
+        // A failed save leaves Error set, which disables Save forever. Clear exactly that validation
+        // error once every entry has a usable executable again (mirrors Save()'s own check via ToOption()).
+        if (Error == Resources.Strings.Launch_ExecutableRequired
+            && Entries.All(e => !string.IsNullOrWhiteSpace(e.ToOption().Executable)))
+            Error = null;
     }
 
     /// <summary>Load a game's launch entries. Indexing the 373 MB cache takes a couple of seconds, so

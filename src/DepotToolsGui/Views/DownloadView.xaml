@@ -316,18 +316,50 @@
                 </StackPanel>
             </Border>
 
-            <!-- Fetch button -->
+            <!-- Fetch / Download button: one icon slot swaps between the arrow and busy ring. -->
             <ui:Button
                 Margin="0,14,0,0"
                 HorizontalAlignment="Stretch"
                 Appearance="Primary"
                 Command="{Binding FetchCommand}"
-                Icon="{ui:SymbolIcon ArrowDownload24}"
                 Visibility="{Binding HasDetails, Converter={StaticResource BoolToVis}}">
                 <ui:Button.Content>
-                    <Grid>
-                        <TextBlock Text="{x:Static res:Strings.Add_Fetch}" Visibility="{Binding IsChecking, Converter={StaticResource InverseBoolToVis}}" />
-                        <TextBlock Text="{x:Static res:Strings.Add_Checking}" Visibility="{Binding IsChecking, Converter={StaticResource BoolToVis}}" />
+                    <Grid HorizontalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="16" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid Width="16" Height="16">
+                            <ui:SymbolIcon
+                                Width="16"
+                                Height="16"
+                                Symbol="ArrowDownload24"
+                                Visibility="{Binding IsChecking, Converter={StaticResource InverseBoolToVis}}" />
+                            <ui:ProgressRing
+                                Width="14"
+                                Height="14"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                IsIndeterminate="True"
+                                Visibility="{Binding IsChecking, Converter={StaticResource BoolToVis}}" />
+                        </Grid>
+                        <Grid
+                            x:Name="FetchStatusHost"
+                            Grid.Column="1"
+                            Height="18"
+                            Margin="6,0,0,0"
+                            VerticalAlignment="Center"
+                            ClipToBounds="True">
+                            <TextBlock
+                                x:Name="FetchStatusFront"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center" />
+                            <TextBlock
+                                x:Name="FetchStatusIncoming"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Opacity="0" />
+                        </Grid>
                     </Grid>
                 </ui:Button.Content>
             </ui:Button>
@@ -340,6 +372,42 @@
                 Text="{Binding Error}"
                 TextWrapping="Wrap"
                 Visibility="{Binding Error, Converter={StaticResource NullToCollapsed}}" />
+
+            <!-- Fix banner: shown after a Fetch when the game has published fixes. Purple, so it reads
+                 as an offer rather than a result (green) or a problem (amber). -->
+            <Border
+                Margin="0,12,0,0"
+                Padding="12,9"
+                Background="#14a78bfa"
+                BorderBrush="#40a78bfa"
+                BorderThickness="1"
+                CornerRadius="8"
+                Visibility="{Binding HasFix, Converter={StaticResource BoolToVis}}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <ui:SymbolIcon
+                        VerticalAlignment="Center"
+                        Foreground="#a78bfa"
+                        Symbol="ShieldTask24" />
+                    <TextBlock
+                        Grid.Column="1"
+                        Margin="10,0"
+                        VerticalAlignment="Center"
+                        FontSize="13"
+                        Text="{Binding FixBannerText}"
+                        TextWrapping="Wrap" />
+                    <ui:Button
+                        Grid.Column="2"
+                        Appearance="Primary"
+                        Command="{Binding OpenFixesCommand}"
+                        Content="{x:Static res:Strings.Add_Fix_Open}"
+                        Icon="{ui:SymbolIcon ShieldTask24}" />
+                </Grid>
+            </Border>
 
             <!-- Install result banner (green on success, amber on partial/failed) -->
             <Border
@@ -501,7 +569,22 @@
                                         Command="{Binding DownloadCommand}"
                                         Content="{x:Static res:Strings.Add_Download}"
                                         Icon="{ui:SymbolIcon ArrowDownload24}"
-                                        Visibility="{Binding CanDownload, Converter={StaticResource BoolToVis}}" />
+                                        Visibility="{Binding CanDownloadAndNotDownloading, Converter={StaticResource BoolToVis}}" />
+
+                                    <!-- Row downloading: busy ring + label replace the button -->
+                                    <StackPanel
+                                        Grid.Column="4"
+                                        VerticalAlignment="Center"
+                                        Orientation="Horizontal"
+                                        Visibility="{Binding IsDownloading, Converter={StaticResource BoolToVis}}">
+                                        <ui:ProgressRing Width="13" Height="13" IsIndeterminate="True" />
+                                        <TextBlock
+                                            Margin="6,0,0,0"
+                                            VerticalAlignment="Center"
+                                            FontSize="11.5"
+                                            Foreground="#6b7280"
+                                            Text="{x:Static res:Strings.Add_Downloading}" />
+                                    </StackPanel>
 
                                     <!-- Key-gated and not configured -->
                                     <TextBlock
@@ -662,8 +745,18 @@
                     Visibility="{Binding CanGenerateDlc, Converter={StaticResource BoolToVis}}">
                     <ui:Button.Content>
                         <Grid>
-                            <TextBlock Text="{x:Static res:Strings.Add_DownloadLua}" Visibility="{Binding IsGenerating, Converter={StaticResource InverseBoolToVis}}" />
-                            <TextBlock Text="{x:Static res:Strings.Add_Generating}" Visibility="{Binding IsGenerating, Converter={StaticResource BoolToVis}}" />
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <ui:ProgressRing
+                                Width="14"
+                                Height="14"
+                                IsIndeterminate="True"
+                                Visibility="{Binding IsGenerating, Converter={StaticResource BoolToVis}}" />
+                            <TextBlock
+                                Grid.Column="1"
+                                Text="{Binding GenerateLabel, Mode=OneWay}" />
                         </Grid>
                     </ui:Button.Content>
                 </ui:Button>

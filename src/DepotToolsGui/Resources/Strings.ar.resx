@@ -64,6 +64,7 @@
   <data name="Nav_Add" xml:space="preserve"><value>إضافة</value></data>
   <data name="Nav_Manage" xml:space="preserve"><value>إدارة</value></data>
   <data name="Nav_Mode" xml:space="preserve"><value>الوضع</value></data>
+  <data name="Nav_Downloads" xml:space="preserve"><value>التنزيلات</value></data>
   <data name="Nav_Fixes" xml:space="preserve"><value>الإصلاحات</value></data>
   <data name="Nav_RestartSteam" xml:space="preserve"><value>إعادة تشغيل Steam</value></data>
   <data name="Nav_Settings" xml:space="preserve"><value>الإعدادات</value></data>
@@ -208,6 +209,67 @@
 
   <!-- ── Drop zone ── -->
   <data name="Drop_Title" xml:space="preserve"><value>أفلِت ملفات ‎.lua أو ‎.manifest أو ‎.zip هنا</value></data>
+  <data name="Depot_Cancel_Body" xml:space="preserve"><value>تمت كتابة {0} بالفعل إلى:
+{1}
+
+نعم - إيقاف وحذف تلك الملفات
+لا - إيقاف مع الاحتفاظ بها
+إلغاء - متابعة التنزيل</value></data>
+  <data name="Depot_Cancel_DeleteFailed" xml:space="preserve"><value>تعذّر حذف الملفات التي تم تنزيلها. لا تزال في {0}.</value></data>
+  <data name="Depot_Cancel_Title" xml:space="preserve"><value>إلغاء التنزيل</value></data>
+  <data name="Depot_Err_BadKey" xml:space="preserve"><value>مفتاح فك التشفير الخاص بالـ depot ‏{0} غير صحيح.</value></data>
+  <data name="Depot_Err_Failed" xml:space="preserve"><value>فشل المستودع {0}: {1}</value></data>
+  <data name="Depot_Err_NoKeyFor" xml:space="preserve"><value>لا يوجد مفتاح فك تشفير في ملف Lua للـ depot ‏{0}.</value></data>
+  <data name="Depot_Err_NoKeys" xml:space="preserve"><value>لم يتم العثور على مفاتيح فك تشفير لهذه اللعبة.</value></data>
+  <data name="Depot_Err_NoManifest" xml:space="preserve"><value>تعذّر الحصول على ملف manifest لهذا المستودع.</value></data>
+  <data name="Depot_Err_NoSpace" xml:space="preserve"><value>لا توجد مساحة كافية على القرص: يحتاج {0}، والمتاح {1} فقط.</value></data>
+  <data name="Depot_Err_Tool" xml:space="preserve"><value>تعذّر الحصول على أداة تنزيل المستودعات.</value></data>
+  <data name="Depot_Status_Done" xml:space="preserve"><value>تم تنزيل {0} مستودع إلى {1}.</value></data>
+  <data name="Downloads_ActionRequired" xml:space="preserve"><value>مطلوب إجراء</value></data>
+  <data name="Downloads_Action_Cancel" xml:space="preserve"><value>إلغاء</value></data>
+  <data name="Downloads_Action_ClearHistory" xml:space="preserve"><value>مسح السجل</value></data>
+  <data name="Downloads_Action_MoveDown" xml:space="preserve"><value>تحريك لأسفل</value></data>
+  <data name="Downloads_Action_MoveUp" xml:space="preserve"><value>تحريك لأعلى</value></data>
+  <data name="Downloads_Action_Pause" xml:space="preserve"><value>إيقاف مؤقت</value></data>
+  <data name="Downloads_Action_Remove" xml:space="preserve"><value>إزالة</value></data>
+  <data name="Downloads_Action_Resume" xml:space="preserve"><value>استئناف</value></data>
+  <data name="Downloads_Action_Retry" xml:space="preserve"><value>إعادة المحاولة</value></data>
+  <data name="Downloads_Action_Review" xml:space="preserve"><value>مراجعة</value></data>
+  <data name="Downloads_ClearHistory_Confirm" xml:space="preserve"><value>هل تريد إزالة كل الإدخالات ({0}) من سجل التنزيلات؟ لن تتأثر الملفات التي تم تنزيلها.</value></data>
+  <data name="Downloads_Depot_FetchingManifest" xml:space="preserve"><value>جارٍ جلب الملف</value></data>
+  <data name="Downloads_Depot_PreAllocating" xml:space="preserve"><value>تخصيص الملفات</value></data>
+  <data name="Downloads_Depot_Validating" xml:space="preserve"><value>فحص الملفات الموجودة</value></data>
+  <data name="Downloads_Depots_GettingTool" xml:space="preserve"><value>جارٍ إحضار أداة التنزيل</value></data>
+  <data name="Downloads_Depots_Preparing" xml:space="preserve"><value>جارٍ التحضير · {0} من {1}</value></data>
+  <data name="Downloads_Depots_Progress" xml:space="preserve"><value>المستودعات · {0} من {1}</value></data>
+  <data name="Downloads_Empty" xml:space="preserve"><value>لا توجد تنزيلات الآن. ابدأ بتنزيل شيء ما!</value></data>
+  <data name="Downloads_Err_Interrupted" xml:space="preserve"><value>توقّف عند إغلاق التطبيق.</value></data>
+  <data name="Downloads_Eta" xml:space="preserve"><value>يتبقى {0}</value></data>
+  <data name="Downloads_Kind_Depot" xml:space="preserve"><value>ملفات المستودع</value></data>
+  <data name="Downloads_Kind_Dlc" xml:space="preserve"><value>فتح DLC</value></data>
+  <data name="Downloads_Kind_Tool" xml:space="preserve"><value>أداة</value></data>
+  <data name="Downloads_Of" xml:space="preserve"><value>{0} من {1}</value></data>
+  <data name="Downloads_SAC_Err_Launch" xml:space="preserve"><value>تعذّر تشغيل SteamAutoCrack.</value></data>
+  <data name="Downloads_SAC_Err_Restart" xml:space="preserve"><value>تم تثبيت بيئة تشغيل ‎.NET، لكن يجب إعادة تشغيل Windows قبل أن يعمل SteamAutoCrack.</value></data>
+  <data name="Downloads_SAC_Err_Runtime" xml:space="preserve"><value>تعذّر تثبيت بيئة تشغيل ‎.NET التي يحتاجها SteamAutoCrack.</value></data>
+  <data name="Downloads_SAC_Err_Tool" xml:space="preserve"><value>تعذّر تنزيل SteamAutoCrack.</value></data>
+  <data name="Downloads_SAC_GettingRuntime" xml:space="preserve"><value>جارٍ فحص بيئة تشغيل ‎.NET</value></data>
+  <data name="Downloads_SAC_GettingTool" xml:space="preserve"><value>جارٍ إحضار SteamAutoCrack</value></data>
+  <data name="Downloads_SAC_Launched" xml:space="preserve"><value>تم فتح SteamAutoCrack.</value></data>
+  <data name="Downloads_SAC_Updated" xml:space="preserve"><value>تم تحديث SteamAutoCrack.</value></data>
+  <data name="Downloads_Section_Active" xml:space="preserve"><value>قائمة الانتظار</value></data>
+  <data name="Downloads_Section_History" xml:space="preserve"><value>السجل</value></data>
+  <data name="Downloads_Status_AwaitingConfirm" xml:space="preserve"><value>بانتظارك</value></data>
+  <data name="Downloads_Status_Cancelled" xml:space="preserve"><value>أُلغي</value></data>
+  <data name="Downloads_Status_Completed" xml:space="preserve"><value>تم</value></data>
+  <data name="Downloads_Status_Downloading" xml:space="preserve"><value>جارٍ التنزيل</value></data>
+  <data name="Downloads_Status_Failed" xml:space="preserve"><value>فشل</value></data>
+  <data name="Downloads_Status_Installing" xml:space="preserve"><value>جارٍ التثبيت</value></data>
+  <data name="Downloads_Status_Paused" xml:space="preserve"><value>متوقف مؤقتًا</value></data>
+  <data name="Downloads_Status_Queued" xml:space="preserve"><value>في الانتظار</value></data>
+  <data name="Downloads_Status_Verifying" xml:space="preserve"><value>جارٍ التحقق…</value></data>
+  <data name="Downloads_SteamAutoCrack" xml:space="preserve"><value>SteamAutoCrack</value></data>
+  <data name="Downloads_Title" xml:space="preserve"><value>التنزيلات</value></data>
   <data name="Drop_BrowseFiles" xml:space="preserve"><value>تصفّح الملفات…</value></data>
   <data name="Drop_Picker_Title" xml:space="preserve"><value>اختر ملفات ‎.lua / ‎.manifest / ‎.zip</value></data>
   <data name="Drop_Picker_Filter" xml:space="preserve"><value>Lua / manifest / zip|*.lua;*.manifest;*.zip|All files|*.*</value></data>
@@ -224,6 +286,7 @@
 
   <!-- ── Common ── -->
   <data name="Common_SearchPlaceholder" xml:space="preserve"><value>ابحث بالاسم أو App ID...</value></data>
+  <data name="Common_CopyAppId" xml:space="preserve"><value>نسخ App ID</value></data>
   <data name="Common_Loading" xml:space="preserve"><value>جارٍ التحميل…</value></data>
   <data name="Common_AppId" xml:space="preserve"><value>App ID: {0}</value></data>
   <data name="Common_AppFallback" xml:space="preserve"><value>التطبيق {0}</value></data>
@@ -250,14 +313,7 @@
   <data name="Manage_Action_OpenInSteam" xml:space="preserve"><value>فتح في Steam</value></data>
   <data name="Manage_Action_Reveal" xml:space="preserve"><value>إظهار ملف .lua</value></data>
   <data name="Manage_Action_CopyAppId" xml:space="preserve"><value>نسخ App ID</value></data>
-  <data name="Manage_Action_RemoveDrm" xml:space="preserve"><value>إزالة حماية Steam DRM</value></data>
   <data name="Manage_ActionsHeader" xml:space="preserve"><value>الإجراءات</value></data>
-  <data name="Manage_Steamless_Confirm_Title" xml:space="preserve"><value>إزالة حماية Steam DRM؟</value></data>
-  <data name="Manage_Steamless_Confirm_Body" xml:space="preserve"><value>سيؤدي ذلك إلى تشغيل Steamless على ملف اللعبة التنفيذي لإزالة حماية SteamStub. يُنسخ ملف .exe الأصلي احتياطيًا إلى .bak أولًا. قد تحتاج بعض الألعاب إلى التحقق من الملفات في Steam بعد ذلك. هل تريد المتابعة؟</value></data>
-  <data name="Manage_Steamless_Working" xml:space="preserve"><value>جارٍ إزالة حماية Steam DRM…</value></data>
-  <data name="Manage_Toast_Steamless_Done" xml:space="preserve"><value>تمت معالجة {0}، و{1} دون تغيير.</value></data>
-  <data name="Manage_Steamless_NoInstall" xml:space="preserve"><value>لم يُعثر على مجلد اللعبة — هل هي مثبَتة؟</value></data>
-  <data name="Manage_Steamless_Failed" xml:space="preserve"><value>تعذّرت إزالة الحماية. {0}</value></data>
   <data name="Manage_CopyAppIdTip" xml:space="preserve"><value>انقر لنسخ App ID</value></data>
   <data name="Manage_LoadingDepotInfo" xml:space="preserve"><value>جارٍ تحميل معلومات المستودع…</value></data>
   <data name="Manage_MissingHint" xml:space="preserve"><value>موجودة على Steam لكن ليست في ملف lua الخاص بك (غالبًا مستودعات خاضعة للرقابة أو محظورة)</value></data>
@@ -341,11 +397,14 @@
   <data name="Fixes_Toast_Refreshed_Body" xml:space="preserve"><value>{0} لعبة تحتوي على إصلاحات.</value></data>
 
   <!-- ── Add / Download page ── -->
-  <data name="Add_Title" xml:space="preserve"><value>هيا نبدأ اللْوَنة™!</value></data>
+  <data name="Add_Title" xml:space="preserve"><value>إضافة لعبة</value></data>
   <data name="Add_Subtitle" xml:space="preserve"><value>أدخِل App ID، أو الصِق رابط Steam، أو ابحث باسم اللعبة</value></data>
   <data name="Add_SearchPlaceholder" xml:space="preserve"><value>أدخِل App ID أو ابحث عن الألعاب...</value></data>
   <data name="Add_Featured_TopSellers" xml:space="preserve"><value>الأكثر مبيعًا</value></data>
   <data name="Add_Featured_NewReleases" xml:space="preserve"><value>إصدارات جديدة</value></data>
+  <data name="Add_Fix_Available" xml:space="preserve"><value>تتوفر لهذه اللعبة {0} إصلاح.</value></data>
+  <data name="Add_Fix_Available_Tags" xml:space="preserve"><value>تتوفر لهذه اللعبة {0} إصلاح: {1}.</value></data>
+  <data name="Add_Fix_Open" xml:space="preserve"><value>عرض الإصلاحات</value></data>
   <data name="Add_Released" xml:space="preserve"><value>صدرت في {0}</value></data>
   <data name="Add_Fetch" xml:space="preserve"><value>جلب</value></data>
   <data name="Add_Checking" xml:space="preserve"><value>جارٍ التحقق…</value></data>
@@ -384,6 +443,7 @@
   <data name="Confirm_OpenSteamDb" xml:space="preserve"><value>فتح في SteamDB</value></data>
   <data name="Confirm_Shared" xml:space="preserve"><value>مشترك</value></data>
   <data name="Confirm_ReviewChanges" xml:space="preserve"><value>سيؤدي ذلك إلى استبدال ملف lua المثبَّت. راجع ما سيتغيّر:</value></data>
+  <data name="Common_ShowInFolder" xml:space="preserve"><value>إظهار في المجلد</value></data>
   <data name="Confirm_Adding" xml:space="preserve"><value>إضافة ({0})</value></data>
   <data name="Confirm_Removing" xml:space="preserve"><value>إزالة ({0})</value></data>
   <data name="Confirm_Skip" xml:space="preserve"><value>تخطٍّ</value></data>
@@ -464,9 +524,20 @@
   <data name="Builds_PinDisabled" xml:space="preserve"><value>التثبيت متوقف (تحديث تلقائي)</value></data>
   <data name="Builds_Meta_Depots" xml:space="preserve"><value>{0} مستودعات · {1} DLC</value></data>
   <data name="Builds_Meta_Unsaved" xml:space="preserve"><value>غير محفوظ</value></data>
+  <data name="Builds_Select_All" xml:space="preserve"><value>تحديد الكل</value></data>
+  <data name="Builds_Select_ChooseFolder" xml:space="preserve"><value>اختر مكان حفظ ملفات المستودع</value></data>
+  <data name="Builds_Select_Confirm" xml:space="preserve"><value>تنزيل {0} مستودع ({1})</value></data>
+  <data name="Builds_Select_NoKey" xml:space="preserve"><value>لا يوجد مفتاح فك تشفير في ملف Lua لهذا الـ depot.</value></data>
+  <data name="Builds_Select_NoManifest" xml:space="preserve"><value>هذا المستودع لا يعلن عن أي إصدار للتنزيل.</value></data>
+  <data name="Builds_Select_None" xml:space="preserve"><value>لم يتم اختيار أي مستودع</value></data>
+  <data name="Builds_Select_SaveTo" xml:space="preserve"><value>حفظ في</value></data>
+  <data name="Builds_Select_SharedHint" xml:space="preserve"><value>بيئة تشغيل مشتركة — مثبّتة غالبًا بالفعل. حدّدها للتنزيل على أي حال.</value></data>
+  <data name="Builds_Select_Space" xml:space="preserve"><value>يحتاج {0} · متاح {1} على {2}</value></data>
+  <data name="Builds_Select_Title" xml:space="preserve"><value>اختر المستودعات المراد تنزيلها</value></data>
   <data name="Builds_Source" xml:space="preserve"><value>من {0}</value></data>
   <data name="Builds_Action_Apply" xml:space="preserve"><value>تطبيق</value></data>
   <data name="Builds_Action_Rename" xml:space="preserve"><value>إعادة تسمية</value></data>
+  <data name="Builds_Action_Download" xml:space="preserve"><value>تنزيل</value></data>
   <data name="Builds_Action_Edit" xml:space="preserve"><value>تحرير</value></data>
   <data name="Builds_Action_Delete" xml:space="preserve"><value>حذف</value></data>
   <data name="Builds_Action_Save" xml:space="preserve"><value>حفظ</value></data>
@@ -530,10 +601,12 @@
   <data name="Err_UpdateServerUnreachable" xml:space="preserve"><value>تعذّر الوصول إلى خادم التحديثات. تحقّق من اتصالك وحاول مجددًا.</value></data>
   <data name="Err_Cancelled" xml:space="preserve"><value>تم الإلغاء.</value></data>
   <data name="Err_CancelledByUser" xml:space="preserve"><value>ألغاه المستخدم</value></data>
+  <data name="Err_PathMissing" xml:space="preserve"><value>تعذّر فتح {0} — ربما تم نقله أو حذفه.</value></data>
   <data name="Err_ReleaseMissingDownload" xml:space="preserve"><value>الإصدار ينقصه ملف التنزيل المطلوب.</value></data>
   <data name="Err_ReleaseMissingFile" xml:space="preserve"><value>الإصدار ينقصه {0}.</value></data>
   <data name="Err_VerifyFailed" xml:space="preserve"><value>فشل التحقق من التنزيل (عدم تطابق sha256).</value></data>
   <data name="Err_VerifyFailedFile" xml:space="preserve"><value>فشل التحقق من {0} (عدم تطابق sha256).</value></data>
+  <data name="Err_ClipboardBusy" xml:space="preserve"><value>تعذّر النسخ — تطبيق آخر يستخدم الحافظة.</value></data>
   <data name="Err_DownloadMissingFiles" xml:space="preserve"><value>ناقص من التنزيل: {0}.</value></data>
   <data name="Err_WriteFailedCount" xml:space="preserve"><value>تعذّرت كتابة {0} من الملفات. أغلق Steam وحاول مجددًا.</value></data>
   <data name="Err_WriteFailedFile" xml:space="preserve"><value>تعذّرت كتابة {0}. أغلق Steam وحاول مجددًا.</value></data>
@@ -563,4 +636,22 @@
   <data name="Settings_HydraCloud_Automatic_Hint" xml:space="preserve"><value>Sync installed Steam game saves when DepotTools starts and while it is running.</value></data>
   <data name="Settings_HydraCloud_Ready" xml:space="preserve"><value>Hydra Cloud is ready.</value></data>
   <data name="Settings_HydraCloud_SubscriptionRequired" xml:space="preserve"><value>An active Hydra Cloud subscription is required.</value></data>
+  <data name="Settings_DepotBox_UseApiKeyTitle" xml:space="preserve"><value>Use API Key</value></data>
+  <data name="Settings_DepotBox_UseApiKeyBody" xml:space="preserve"><value>Use the DepotTools API broker or your own DepotBox API key.</value></data>
+  <data name="HydraAuth_Title" xml:space="preserve"><value>Sign in to Hydra Cloud</value></data>
+  <data name="HydraAuth_WebView2Unavailable" xml:space="preserve"><value>Hydra Cloud sign-in unavailable</value></data>
+  <data name="HydraAuth_WebView2Required" xml:space="preserve"><value>Microsoft Edge WebView2 is required for Hydra Cloud sign-in.
+
+{0}</value></data>
+  <data name="HydraAuth_SignInFailed" xml:space="preserve"><value>Hydra Cloud sign-in failed</value></data>
+  <data name="Settings_Section_Runtimes" xml:space="preserve"><value>RUNTIMES</value></data>
+  <data name="Settings_Runtime_Install" xml:space="preserve"><value>Install</value></data>
+  <data name="Settings_Runtime_Reinstall" xml:space="preserve"><value>Reinstall</value></data>
+  <data name="Settings_Runtime_Remove" xml:space="preserve"><value>Remove</value></data>
+  <data name="Settings_Runtime_NotInstalled" xml:space="preserve"><value>Not installed</value></data>
+  <data name="Settings_Runtime_Version" xml:space="preserve"><value>Version {0}</value></data>
+  <data name="Settings_Runtime_RemoveConfirm" xml:space="preserve"><value>Remove {0}? Anything that needs it will download it again on next use.</value></data>
+  <data name="Settings_Runtime_RemoveFailed" xml:space="preserve"><value>Could not remove {0}. The tool may be running.</value></data>
+  <data name="Settings_Runtime_InstallFailed" xml:space="preserve"><value>Could not install {0}. Check your connection and try again.</value></data>
+  <data name="Add_Downloading" xml:space="preserve"><value>Downloading</value></data>
 </root>

@@ -4,6 +4,9 @@ using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using DepotToolsGui.Services;
+using System.Text.RegularExpressions;
+using DepotToolsGui.Services.Downloads;
+using Microsoft.Win32;
 
 namespace DepotToolsGui.ViewModels;
 
@@ -35,6 +38,16 @@ public record DepotRow(
     /// declares the DLC APP id rather than the depot id, and that's the line that has to change.
     /// </summary>
     public long ToggleId { get; init; }
+
+    public long Size { get; init; }
+
+    public string? Os { get; init; }
+
+    public string? Language { get; init; }
+
+    public long? FromAppId { get; init; }
+
+    public long LuaSize { get; init; }
 
     /// <summary>
     /// Free-text match for the depot search box: name, depot id, DLC app id, manifest ids, and the
@@ -80,6 +93,48 @@ public record DepotRow(
             : null;
 
     public bool IsOutdated => OutdatedLabel is not null;
+}
+
+/// <summary>
+/// One selectable depot in the "Download depots" picker. Lifted from the Builds page breakdown: it adds
+/// the download-only state (selected, blocked) on top of what <see cref="DepotRow"/> already carries.
+/// </summary>
+public partial class DepotPickRow : ObservableObject
+{
+    public required long DepotId { get; init; }
+    public required string Title { get; init; }
+    public required string Meta { get; init; }
+    public required long Size { get; init; }
+    public string? ManifestId { get; init; }
+
+    /// <summary>Path to the depot's manifest in Steam's depotcache, or null when Steam doesn't have it
+    /// yet. Null is no longer a blocker: the tool fetches the manifest itself at download time.</summary>
+    public string? ManifestPath { get; init; }
+
+    /// <summary>True when the manifest isn't on disk and the tool will have to fetch it.</summary>
+    public bool NeedsFetch => ManifestPath is null;
+
+    /// <summary>Set when this depot can't be downloaded, saying why. Null means it can.</summary>
+    public string? BlockReason { get; init; }
+
+    public bool CanDownload => BlockReason is null;
+
+    public string? Os { get; init; }
+
+    public string? Language { get; init; }
+
+    /// <summary>A depot built for another platform (macOS/Linux). Still tickable, but not by default.</summary>
+    public bool IsOtherPlatform =>
+        Os is { Length: > 0 } && !Os.Contains("windows", StringComparison.OrdinalIgnoreCase);
+
+    /// <summary>A shared redistributable owned by another app. Not ticked by default.</summary>
+    public bool IsShared => FromAppId is not null;
+
+    public bool IsDlc { get; init; }
+
+    public long? FromAppId { get; init; }
+
+    [ObservableProperty] private bool _isSelected;
 }
 
 /// <summary>
@@ -154,6 +209,9 @@ public partial class BuildsViewModel : PagedListViewModel<LuaTileViewModel>
     private readonly SteamDepotInfo _depotInfo;
     private readonly ToastService _toast;
     private readonly SettingsService _settings;
+    private readonly DepotDownloaderService _depotTool;
+    private readonly DownloadQueue _queue;
+    private readonly ManifestJobFactory _jobs;
 
     private List<LuaTileViewModel> _allGames = [];
 
@@ -162,7 +220,8 @@ public partial class BuildsViewModel : PagedListViewModel<LuaTileViewModel>
 
     public BuildsViewModel(SteamService steam, LuaVault vault, SteamAppListCache appList,
         SteamAppInfoCache appInfo, CoverCache covers, SteamDepotInfo depotInfo, ToastService toast,
-        SettingsService settings)
+        SettingsService settings, DepotDownloaderService depotTool, DownloadQueue queue,
+        ManifestJobFactory jobs)
     {
         _steam = steam;
         _vault = vault;
@@ -172,6 +231,9 @@ public partial class BuildsViewModel : PagedListViewModel<LuaTileViewModel>
         _depotInfo = depotInfo;
         _toast = toast;
         _settings = settings;
+        _depotTool = depotTool;
+        _queue = queue;
+        _jobs = jobs;
 
         // The base offers 12/24/48/All, sized for the full-width Manage and Fixes grids. This list is a
         // narrow sidebar of single-line rows, so it gets its own steps. PageSizeOptions is a per-instance
@@ -1048,6 +1110,10 @@ public partial class BuildsViewModel : PagedListViewModel<LuaTileViewModel>
             if (!depotDlcIds.Contains(dlcId))
                 items.Add(new ContentDepot(dlcId, 0, dlcId, IsShared: false, Os: null, Language: null));
 
+        // Depots the lua declares that Steam's app info omitted (token-gated apps often return no depot
+        // list) still have to appear — and stay downloadable.
+        AddDeclaredButUnlisted(items, declared, baseAppId, depotDlcIds);
+
         bool DlcNameKnown(long dlcId) =>
             _appList.GetName(dlcId) is not null || _appInfo.GetCached(dlcId)?.Name is not null || luaNames.ContainsKey(dlcId);
 
@@ -1082,7 +1148,7 @@ public partial class BuildsViewModel : PagedListViewModel<LuaTileViewModel>
                 IsEnabled: active.Contains(declId),
                 CanToggle: inLua,   // anything the lua declares can be switched, in any variant
                 IsBaseApp: declId == baseAppId)
-            { ToggleId = declId };
+            { ToggleId = declId, Size = d.Size, Os = d.Os, Language = d.Language, FromAppId = d.FromAppId, LuaSize = entry?.SizeOnDisk ?? 0 };
         }
 
         // In lua = the lua declares this id (a keyed depot OR a keyless DLC entitlement) or its DLC app
@@ -1108,6 +1174,277 @@ public partial class BuildsViewModel : PagedListViewModel<LuaTileViewModel>
         "linux" => "Linux",
         _ => os
     };
+
+    // ── Depot download picker ────────────────────────────────────────
+
+    /// <summary>True while the depot table is in "pick what to download" mode.</summary>
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsBrowseMode))]
+    private bool _isSelectMode;
+
+    /// <summary>Inverse of <see cref="IsSelectMode"/>, for collapsing the normal table.</summary>
+    public bool IsBrowseMode => !IsSelectMode;
+
+    [ObservableProperty] private IReadOnlyList<DepotPickRow> _depotPicks = [];
+
+    /// <summary>"Download 4 depots (8.2 GB)" — recomputed as boxes are ticked.</summary>
+    public string DownloadConfirmLabel => string.Format(
+        Resources.Strings.Builds_Select_Confirm,
+        DepotPicks.Count(p => p.IsSelected),
+        Services.Downloads.ByteFormat.Size(DepotPicks.Where(p => p.IsSelected).Sum(p => p.Size)));
+
+    public bool HasDepotSelection => DepotPicks.Any(p => p.IsSelected);
+
+    /// <summary>Where the selected depots will be written. Chosen per download, before committing, so the
+    /// space warning can report against the drive that will actually receive the files.</summary>
+    [ObservableProperty] private string _depotOutDir = "";
+
+    /// <summary>Free bytes on the volume holding <see cref="DepotOutDir"/>, cached (a syscall, re-read only
+    /// when the folder or the selection changes).</summary>
+    [ObservableProperty] private long? _freeBytes;
+
+    partial void OnDepotOutDirChanged(string value)
+    {
+        FreeBytes = DepotDownloaderService.FreeSpaceFor(value);
+        RaiseSpaceProps();
+    }
+
+    /// <summary>Total bytes the ticked (and downloadable) depots will need.</summary>
+    public long RequiredBytes =>
+        DepotPicks.Where(p => p is { IsSelected: true, CanDownload: true }).Sum(p => p.Size);
+
+    /// <summary>False only when we KNOW the drive is short. An unreadable drive is not a warning.</summary>
+    public bool HasEnoughSpace => FreeBytes is not { } free || free >= RequiredBytes;
+
+    /// <summary>"Needs 110 GB · 4.3 GB free on C:\" — turns red via the view when short.</summary>
+    public string SpaceLabel => FreeBytes is not { } free
+        ? ""
+        : string.Format(Resources.Strings.Builds_Select_Space,
+            Services.Downloads.ByteFormat.Size(RequiredBytes),
+            Services.Downloads.ByteFormat.Size(free),
+            DepotDownloaderService.DriveOf(DepotOutDir));
+
+    private void RaiseSpaceProps()
+    {
+        OnPropertyChanged(nameof(RequiredBytes));
+        OnPropertyChanged(nameof(HasEnoughSpace));
+        OnPropertyChanged(nameof(SpaceLabel));
+    }
+
+    /// <summary>Pick a different destination without leaving select mode or losing the ticks.</summary>
+    [RelayCommand]
+    private void ChangeDepotFolder()
+    {
+        var dialog = new OpenFolderDialog
+        {
+            Title = Resources.Strings.Builds_Select_ChooseFolder,
+            InitialDirectory = DepotOutDir,
+        };
+        if (dialog.ShowDialog() == true) DepotOutDir = dialog.FolderName;
+    }
+
+    private void OnPickChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName != nameof(DepotPickRow.IsSelected)) return;
+        OnPropertyChanged(nameof(DownloadConfirmLabel));
+        OnPropertyChanged(nameof(HasDepotSelection));
+        RaiseSpaceProps();
+    }
+
+    /// <summary>Enter select mode. Every content depot the lua declares becomes a row, ticked by default.</summary>
+    [RelayCommand]
+    private void StartDepotDownload()
+    {
+        if (ActiveGame is not { } game) return;
+
+        foreach (var old in DepotPicks) old.PropertyChanged -= OnPickChanged;
+
+        // Read once per picker open rather than cached.
+        string? steamLanguage = SteamService.SteamLanguage;
+        var keys = _depotTool.ResolveKeys(game.AppId);
+
+        var picks = _allInLua
+            .Where(r => !r.IsDlc || r.Size > 0)
+            .Select(r =>
+            {
+                // An ACTIVE pin wins outright; otherwise take what Steam ships today, falling back to the
+                // commented pin as the sole version we know of.
+                string? mid = r.ManifestId ?? r.PublicManifestId ?? r.CommentedManifestId;
+                string? path = mid is null ? null : _depotTool.ResolveManifestPath(r.Id, mid);
+
+                long size =
+                    ManifestFile.TryRead(path) is { SizeOnDisk: > 0 } mf ? mf.SizeOnDisk
+                    : r.ManifestId is not null && r.LuaSize > 0 ? r.LuaSize
+                    : r.Size > 0 ? r.Size
+                    : r.LuaSize;
+
+                // A depot needs a declared version (its own, or from its owning app) and a decryption key.
+                // A missing local manifest is NOT a blocker — the tool fetches it itself.
+                string? blocked =
+                    mid is null && r.FromAppId is null ? Resources.Strings.Builds_Select_NoManifest
+                    : !keys.ContainsKey(r.Id) ? Resources.Strings.Builds_Select_NoKey
+                    : null;
+
+                var pick = new DepotPickRow
+                {
+                    DepotId = r.Id,
+                    Title = r.Title,
+                    Meta = r.Meta,
+                    Size = size,
+                    ManifestId = mid,
+                    ManifestPath = path,
+                    Os = r.Os,
+                    Language = r.Language,
+                    IsDlc = r.IsDlc,
+                    FromAppId = r.FromAppId,
+                    BlockReason = blocked,
+                };
+                pick.IsSelected = pick.CanDownload && !pick.IsOtherPlatform && !pick.IsShared
+                                  && WantedLanguage(pick.Language, steamLanguage);
+                return pick;
+            })
+            .ToList();
+
+        ApplyNoLanguageMatchFallback(picks);
+
+        foreach (var p in picks) p.PropertyChanged += OnPickChanged;
+        DepotPicks = picks;
+
+        string defaultRoot = Path.Combine(DownloadsFolder(), "DepotTools Depots", game.AppId.ToString());
+        try { Directory.CreateDirectory(defaultRoot); } catch { /* the Change picker still opens */ }
+        DepotOutDir = defaultRoot;
+
+        IsSelectMode = true;
+        OnPropertyChanged(nameof(DownloadConfirmLabel));
+        OnPropertyChanged(nameof(HasDepotSelection));
+        RaiseSpaceProps();
+    }
+
+    [RelayCommand]
+    private void CancelDepotDownload()
+    {
+        foreach (var p in DepotPicks) p.PropertyChanged -= OnPickChanged;
+        DepotPicks = [];
+        IsSelectMode = false;
+    }
+
+    private static bool WantedLanguage(string? depotLanguage, string? steamLanguage) =>
+        depotLanguage is null
+        || depotLanguage.Equals("english", StringComparison.OrdinalIgnoreCase)
+        || (steamLanguage is not null
+            && depotLanguage.Equals(steamLanguage, StringComparison.OrdinalIgnoreCase));
+
+    /// <summary>Fall back to every language depot when the rule ticked none (an all-language release whose
+    /// Steam language is not offered).</summary>
+    private static void ApplyNoLanguageMatchFallback(IReadOnlyList<DepotPickRow> picks)
+    {
+        if (picks.Any(p => p.IsSelected && !p.IsDlc)) return;
+        var languageDepots = picks.Where(p => p.Language is not null).ToList();
+        if (languageDepots.Count == 0) return;
+        foreach (var p in languageDepots)
+            p.IsSelected = p.CanDownload && !p.IsOtherPlatform && !p.IsShared;
+    }
+
+    [RelayCommand]
+    private void SelectAllDepots()
+    {
+        foreach (var p in DepotPicks) p.IsSelected = p.CanDownload;
+    }
+
+    /// <summary>The user's Downloads folder, honouring a relocated one (via the Known Folder registry
+    /// value — %DOWNLOADS% has no env var and Environment.SpecialFolder has no Downloads member).</summary>
+    private static string DownloadsFolder()
+    {
+        const string DownloadsGuid = "{374DE290-123F-4565-9164-39C4925E467B}";
+        try
+        {
+            using var key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(
+                @"Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders");
+            if (key?.GetValue(DownloadsGuid) is string raw && raw.Length > 0)
+            {
+                string expanded = Environment.ExpandEnvironmentVariables(raw);
+                if (Directory.Exists(expanded)) return expanded;
+            }
+        }
+        catch { /* fall through to the profile-relative guess */ }
+
+        string profile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+        string guess = Path.Combine(profile, "Downloads");
+        return Directory.Exists(guess) ? guess : profile;
+    }
+
+    /// <summary>Queue ONE item covering the whole selection, then jump to Downloads.</summary>
+    [RelayCommand]
+    private void ConfirmDepotDownload()
+    {
+        if (ActiveGame is not { } game) return;
+
+        var selections = DepotPicks
+            .Where(p => p is { IsSelected: true, CanDownload: true })
+            .Select(p => new DepotSelection(p.DepotId, p.ManifestId, p.ManifestPath, p.Size)
+            {
+                FromAppId = p.FromAppId,
+            })
+            .ToList();
+        if (selections.Count == 0) return;
+
+        string outDir = DepotOutDir;
+        string name = string.IsNullOrWhiteSpace(game.Name) ? game.AppId.ToString() : game.Name;
+        _queue.Enqueue(_jobs.CreateDepotJob(game.AppId, name, selections, outDir));
+        CancelDepotDownload();
+        RequestShowDownloads?.Invoke();
+    }
+
+    /// <summary>Set by App: navigate to the Downloads page once a depot job is queued.</summary>
+    public Action? RequestShowDownloads { get; set; }
+
+    // ── Depot key/ownership helpers (from the lua, for Steam-withheld app info) ──
+
+    private static readonly HashSet<string> SteamLanguageCodes = new(StringComparer.OrdinalIgnoreCase)
+    {
+        "arabic", "bulgarian", "schinese", "tchinese", "czech", "danish", "dutch", "english", "finnish",
+        "french", "german", "greek", "hungarian", "indonesian", "italian", "japanese", "koreana",
+        "norwegian", "polish", "portuguese", "brazilian", "romanian", "russian", "spanish", "latam",
+        "swedish", "thai", "turkish", "ukrainian", "vietnamese",
+    };
+
+    private static string? LanguageFromComment(string? comment)
+    {
+        if (string.IsNullOrWhiteSpace(comment)) return null;
+        foreach (string word in comment.Split([' ', '	', '(', ')', ',', '-', ':'],
+                     StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
+            if (SteamLanguageCodes.TryGetValue(word, out string? code)) return code.ToLowerInvariant();
+        return null;
+    }
+
+    private static long? SharedOwnerFromComment(string? comment) =>
+        comment is not null && SharedFromAppRegex().Match(comment) is { Success: true } m
+        && long.TryParse(m.Groups[1].Value, out long owner)
+            ? owner
+            : null;
+
+    [GeneratedRegex(@"Shared\s+from\s+App\s+(\d+)", RegexOptions.IgnoreCase)]
+    private static partial Regex SharedFromAppRegex();
+
+    /// <summary>Add depots the lua declares that Steam's app info omitted (token-gated apps often return no
+    /// depot list, or omit a single depot), so they still appear — and stay downloadable.</summary>
+    private static void AddDeclaredButUnlisted(
+        List<ContentDepot> items, Dictionary<long, LuaEntry> declared, long baseAppId,
+        HashSet<long> depotDlcIds)
+    {
+        var known = items.Select(d => d.Id).ToHashSet();
+        foreach (var (id, entry) in declared)
+        {
+            if (known.Contains(id) || depotDlcIds.Contains(id)) continue;
+            if (id == baseAppId) continue; // the app's own addappid is the key, not a depot
+            bool isDepot = entry.HasKey;
+            long? fromAppId = isDepot ? SharedOwnerFromComment(entry.Comment) : null;
+            items.Add(new ContentDepot(id, entry.SizeOnDisk ?? 0, isDepot ? null : id,
+                fromAppId is not null,
+                Os: null, Language: isDepot ? LanguageFromComment(entry.Comment) : null)
+            { FromAppId = fromAppId });
+        }
+    }
 
     private static string FormatSize(long bytes)
     {

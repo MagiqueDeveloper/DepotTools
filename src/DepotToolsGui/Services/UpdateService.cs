@@ -24,15 +24,12 @@ public class UpdateService
                     downloader: new ProxiedFileDownloader())))
             .ToArray();
 
-    // The manager whose repo actually produced the staged update. Apply against this same one.
-    private UpdateManager? _stagedMgr;
-    private UpdateInfo? _staged;
-
-    /// <summary>Raised on the thread pool when an update has finished downloading and is ready.</summary>
-    public event Action? UpdateReady;
+    // The manager + info whose repo actually produced the staged update, as one value so a worker
+    // write can never be observed torn by the UI thread's read in ApplyAndRestart.
+    private (UpdateManager? Mgr, UpdateInfo? Info) _staged;
 
     /// <summary>True once an update is downloaded and waiting to be applied.</summary>
-    public bool HasStagedUpdate => _staged is not null;
+    public bool HasStagedUpdate => _staged.Info is not null;
 
     /// <summary>Check for, download, and stage an update. Tries each repo in order until one yields a
     /// usable update; the first success wins. No-op for un-installed (dev) builds.</summary>
@@ -52,9 +49,7 @@ public class UpdateService
                 if (info is null) return;
 
                 await mgr.DownloadUpdatesAsync(info);
-                _stagedMgr = mgr;
-                _staged = info;
-                UpdateReady?.Invoke();
+                _staged = (mgr, info);
                 return; // staged from this repo. Done
             }
             catch
@@ -70,14 +65,14 @@ public class UpdateService
     /// instance keeps its session semantics.</summary>
     public void ApplyAndRestart(string[]? restartArgs = null)
     {
-        if (_stagedMgr is not null && _staged is not null)
-            _stagedMgr.ApplyUpdatesAndRestart(_staged, restartArgs);
+        if (_staged.Mgr is not null && _staged.Info is not null)
+            _staged.Mgr.ApplyUpdatesAndRestart(_staged.Info, restartArgs);
     }
 
     /// <summary>Apply the staged update after the app exits (no forced restart).</summary>
     public void ApplyOnExit()
     {
-        if (_stagedMgr is not null && _staged is not null)
-            _stagedMgr.WaitExitThenApplyUpdates(_staged, silent: true, restart: false);
+        if (_staged.Mgr is not null && _staged.Info is not null)
+            _staged.Mgr.WaitExitThenApplyUpdates(_staged.Info, silent: true, restart: false);
     }
 }

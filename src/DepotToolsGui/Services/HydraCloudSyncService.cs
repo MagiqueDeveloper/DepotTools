@@ -22,17 +22,25 @@ public sealed class HydraCloudSyncService : IDisposable
     private readonly SemaphoreSlim _gate = new(1, 1);
     private readonly System.Threading.Timer _timer;
     private readonly string _ludusaviPath;
+    private readonly LudusaviService _ludusavi;
     private readonly string _statePath;
     private bool _started;
+    // Pre-signed R2/S3 URLs are absolute and must not go through _cloud.SendAsync (it prefixes the
+    // base address), so they get their own client. Shared + static: one per request leaked sockets.
+    private static readonly HttpClient SignedUrlClient = new() { Timeout = TimeSpan.FromMinutes(5) };
 
     public event Action<string>? StatusChanged;
 
-    public HydraCloudSyncService(HydraCloudService cloud, SteamLibraryService steamLibrary, SettingsService settings)
+    public HydraCloudSyncService(HydraCloudService cloud, SteamLibraryService steamLibrary,
+        SettingsService settings, LudusaviService ludusavi)
     {
         _cloud = cloud;
         _steamLibrary = steamLibrary;
         _settings = settings;
-        _ludusaviPath = Path.Combine(AppContext.BaseDirectory, "ludusavi", "ludusavi.exe");
+        _ludusavi = ludusavi;
+        _ludusaviPath = Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+            "DepotToolsGui", "ludusavi", "ludusavi.exe");
         _statePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DepotToolsGui", "hydra-cloud-sync.json");
         _timer = new System.Threading.Timer(_ => _ = SyncAllAsync("periodic"), null, Timeout.Infinite, Timeout.Infinite);
     }
@@ -47,27 +55,34 @@ public sealed class HydraCloudSyncService : IDisposable
 
     public async Task<IReadOnlyList<HydraCloudSyncResult>> SyncAllAsync(string trigger, CancellationToken ct = default)
     {
-        if (!_settings.CloudSavesEnabled || !_cloud.HasActiveSubscription || !File.Exists(_ludusaviPath))
-            return [];
+        if (!_settings.CloudSavesEnabled || !_cloud.HasActiveSubscription) return [];
+        if (await _ludusavi.EnsureAsync(null, ct) is null) return [];
         if (!await _gate.WaitAsync(0, ct)) return [];
-        try
-        {
-            var results = new List<HydraCloudSyncResult>();
-            foreach (long appId in _steamLibrary.GetInstalledAppIds())
-            {
-                ct.ThrowIfCancellationRequested();
-                try { results.Add(await SyncGameAsync(appId, ct)); }
-                catch (Exception ex) { results.Add(new(appId, "error", ex.Message)); }
-            }
-            return results;
-        }
+        try { return await SyncAllCoreAsync(trigger, ct); }
         finally { _gate.Release(); }
     }
 
     public async Task StopAndSyncAsync(CancellationToken ct = default)
     {
         _timer.Change(Timeout.Infinite, Timeout.Infinite);
-        if (_started) await SyncAllAsync("shutdown", ct);
+        if (!_started) return;
+        // Shutdown must not be dropped the way periodic/startup syncs are: wait for the gate instead
+        // of skipping when a sync is already running, bounded by the caller's ct.
+        await _gate.WaitAsync(ct);
+        try { await SyncAllCoreAsync("shutdown", ct); }
+        finally { _gate.Release(); }
+    }
+
+    private async Task<IReadOnlyList<HydraCloudSyncResult>> SyncAllCoreAsync(string trigger, CancellationToken ct)
+    {
+        var results = new List<HydraCloudSyncResult>();
+        foreach (long appId in _steamLibrary.GetInstalledAppIds())
+        {
+            ct.ThrowIfCancellationRequested();
+            try { results.Add(await SyncGameAsync(appId, ct)); }
+            catch (Exception ex) { results.Add(new(appId, "error", ex.Message)); }
+        }
+        return results;
     }
 
     private async Task<HydraCloudSyncResult> SyncGameAsync(long appId, CancellationToken ct)
@@ -101,7 +116,15 @@ public sealed class HydraCloudSyncService : IDisposable
             bool remoteUnchanged = state is not null && state.RemoteHash == remote.AggregateHash;
             if (localUnchanged && !remoteUnchanged)
             {
-                await RestoreSnapshotAsync(appId, remote, temp, ct);
+                try { await RestoreSnapshotAsync(appId, remote, temp, ct); }
+                catch
+                {
+                    // A mid-restore throw may have left local saves half-overwritten. The pre-sync
+                    // backup in `temp` is still intact (SyncGameAsync only deletes it in `finally`),
+                    // so roll the local copies back from it before propagating.
+                    try { await RunLudusaviAsync("restore", appId, temp, ct); } catch { /* best-effort rollback */ }
+                    throw;
+                }
                 SaveState(appId, remote.AggregateHash, remote.AggregateHash);
                 return new(appId, "restored");
             }
@@ -151,7 +174,7 @@ public sealed class HydraCloudSyncService : IDisposable
             upload.Headers.TryAddWithoutValidation("Content-Length", source.SizeBytes.ToString());
             upload.Headers.TryAddWithoutValidation("x-amz-checksum-sha256", Convert.ToBase64String(Convert.FromHexString(source.Hash)));
             upload.Content = new StreamContent(File.OpenRead(source.AbsolutePath));
-            using var result = await new HttpClient { Timeout = TimeSpan.FromMinutes(5) }.SendAsync(upload, ct);
+            using var result = await SignedUrlClient.SendAsync(upload, ct);
             result.EnsureSuccessStatusCode();
         }
 
@@ -182,7 +205,7 @@ public sealed class HydraCloudSyncService : IDisposable
         {
             var target = SafeCombine(temp, file.RelativePath);
             Directory.CreateDirectory(Path.GetDirectoryName(target)!);
-            using var response = await new HttpClient { Timeout = TimeSpan.FromMinutes(5) }.GetAsync(file.DownloadUrl, ct);
+            using var response = await SignedUrlClient.GetAsync(file.DownloadUrl, ct);
             response.EnsureSuccessStatusCode();
             await using var output = File.Create(target);
             await response.Content.CopyToAsync(output, ct);
@@ -200,9 +223,13 @@ public sealed class HydraCloudSyncService : IDisposable
         psi.ArgumentList.Add(command); psi.ArgumentList.Add(appId.ToString()); psi.ArgumentList.Add("--path"); psi.ArgumentList.Add(path);
         psi.ArgumentList.Add("--force"); psi.ArgumentList.Add("--api"); psi.ArgumentList.Add("--no-cloud-sync"); psi.ArgumentList.Add("--format"); psi.ArgumentList.Add("simple");
         using var process = Process.Start(psi) ?? throw new InvalidOperationException("Unable to start Ludusavi.");
+        // Read stdout/stderr concurrently with waiting: awaiting exit first deadlocks once ludusavi's
+        // redirected pipe fills (real with --api JSON output).
+        var stdoutTask = process.StandardOutput.ReadToEndAsync(ct);
+        var stderrTask = process.StandardError.ReadToEndAsync(ct);
         await process.WaitForExitAsync(ct);
-        string stdout = await process.StandardOutput.ReadToEndAsync(ct);
-        string stderr = await process.StandardError.ReadToEndAsync(ct);
+        string stdout = await stdoutTask;
+        string stderr = await stderrTask;
         if (process.ExitCode == 0) return true;
         if (command == "backup" && stdout.Contains("\"unknownGames\"", StringComparison.Ordinal)) return false;
         throw new InvalidOperationException(stderr.Trim());
@@ -235,7 +262,7 @@ public sealed class HydraCloudSyncService : IDisposable
         if (string.IsNullOrWhiteSpace(value.Id) || value.Version < 1 || value.FileCount < 0 || value.TotalSizeBytes < 0 || value.AggregateHash.Length != 64) throw new InvalidDataException("Invalid Hydra snapshot summary.");
         return value;
     }
-    private static string SafeCombine(string root, string relative)
+    internal static string SafeCombine(string root, string relative)
     {
         if (string.IsNullOrWhiteSpace(relative) || Path.IsPathRooted(relative) || relative.Split('/').Any(x => x is "" or "." or "..")) throw new InvalidDataException("Unsafe Hydra save path.");
         string full = Path.GetFullPath(Path.Combine(root, relative.Replace('/', Path.DirectorySeparatorChar)));

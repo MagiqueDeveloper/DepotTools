@@ -10,7 +10,7 @@
     <AssemblyName>DepotTools</AssemblyName>
     <AssemblyTitle>DepotTools</AssemblyTitle>
     <Product>DepotTools</Product>
-    <Version>1.1.8</Version>
+    <Version>1.2.2</Version>
     <ApplicationIcon>icon.ico</ApplicationIcon>
     <!-- Velopack needs a custom Main (Program.Main) that runs before WPF -->
     <StartupObject>DepotToolsGui.Program</StartupObject>
@@ -38,10 +38,10 @@
   <!-- Embed icon.ico as a resource so the Window Icon="icon.ico" can resolve it at runtime -->
   <ItemGroup>
     <Resource Include="icon.ico" />
-    <Content Include="..\..\third_party\ludusavi\ludusavi.exe" Link="ludusavi\ludusavi.exe" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
   </ItemGroup>
 
-  <!-- Public source tree. No plugin frontend, injected browser code, or downloaded executable assets are bundled. -->
+  <!-- Public source tree. Third-party tools (Ludusavi, DepotDownloaderMod, SteamAutoCrack) are fetched at
+       runtime and cached under %AppData%\DepotToolsGui; no executable assets are bundled. -->
 
 
   <!-- Localization RESX. We hand-maintain Strings.Designer.cs (works under dotnet watch), so disable the

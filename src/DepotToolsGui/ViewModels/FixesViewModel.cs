@@ -55,7 +55,7 @@ public partial class FixItemVm(DenuvoFix f) : ObservableObject
     public string Title { get; } = f.Title;
     public string? Description { get; } = f.Description;
     public IReadOnlyList<DenuvoTag> Tags { get; } = f.Tags
-        .Select(tag => new DenuvoTag { Id = tag, Name = tag, Slug = tag })
+        .Select(tag => new DenuvoTag { Id = tag, Name = FixTagNames.DisplayName(tag), Slug = tag })
         .ToList();
     public bool HasManifest { get; } = f.HasManifest;
     public bool HasFix { get; } = f.HasFix;
@@ -165,8 +165,12 @@ public partial class FixesViewModel : PagedListViewModel<FixGameCardVm>
 
             _allGames = data.Games.Select(g => new FixGameCardVm(g)).ToList();
             Tags.Clear();
+            foreach (var (id, display) in FixTagNames.OrderedPills)
+                if (data.Tags.Any(t => string.Equals(t, id, StringComparison.OrdinalIgnoreCase)))
+                    Tags.Add(new TagPillVm(new DenuvoTag { Id = id, Name = display, Slug = id }));
             foreach (var tag in data.Tags)
-                Tags.Add(new TagPillVm(new DenuvoTag { Id = tag, Name = tag, Slug = tag }));
+                if (!FixTagNames.OrderedPills.Any(p => string.Equals(p.Id, tag, StringComparison.OrdinalIgnoreCase)))
+                    Tags.Add(new TagPillVm(new DenuvoTag { Id = tag, Name = FixTagNames.DisplayName(tag), Slug = tag }));
             ApplyFilter();
             if (_allGames.Count == 0) EmptyMessage = Resources.Strings.Fixes_Empty_None;
         }
@@ -202,13 +206,19 @@ public partial class FixesViewModel : PagedListViewModel<FixGameCardVm>
     {
         string q = SearchText.Trim();
         IEnumerable<FixGameCardVm> shown = _allGames;
-        if (SelectedTagId is { } tag) shown = shown.Where(g => g.TagIds.Contains(tag));
+        if (SelectedTagId is { } tag)
+            shown = shown.Where(g => HasTag(g, tag));
+        else
+            shown = shown.Where(g => !HasTag(g, FixTagNames.Online)); // hide Online Fix by default
         if (q.Length > 0) shown = shown.Where(g => g.Matches(q));
 
         // Hand the filtered list to the base: it slices the visible page and (via OnPageSliced) warms
         // that page's covers.
         SetFiltered(shown);
     }
+
+    private static bool HasTag(FixGameCardVm g, string tagId) =>
+        g.TagIds.Any(id => string.Equals(id, tagId, StringComparison.OrdinalIgnoreCase));
 
     // ── Detail flyout ───────────────────────────────────────────────
 
@@ -253,7 +263,7 @@ public partial class FixesViewModel : PagedListViewModel<FixGameCardVm>
                 // But only when there's more than one (a single tag is no filter).
                 var distinct = _allFixes.SelectMany(f => f.Tags)
                     .GroupBy(t => t.Id).Select(g => g.First())
-                    .OrderBy(t => t.Name).ToList();
+                    .OrderBy(t => FixTagNames.Order(t.Id)).ToList();
                 if (distinct.Count > 1)
                     foreach (var t in distinct) FixTags.Add(new TagPillVm(t));
 
@@ -322,7 +332,7 @@ public partial class FixesViewModel : PagedListViewModel<FixGameCardVm>
             var file = await api.DownloadDenuvoAsync(fix.Id, slot, fallback, prog);
 
             if (slot == "manifest")
-                InstallManifest(file, appId, game.Name);
+                await InstallManifest(file, appId, game.Name);
             else
                 ApplyFix(file, appId, game.Name);
         }
@@ -342,7 +352,7 @@ public partial class FixesViewModel : PagedListViewModel<FixGameCardVm>
     }
 
     /// <summary>Manifest slot: install into Steam force-LOCKED (Denuvo fixes must stay version-pinned).</summary>
-    private void InstallManifest(DownloadedFile file, long appId, string gameName)
+    private async Task InstallManifest(DownloadedFile file, long appId, string gameName)
     {
         bool isZip = file.FileName.EndsWith(".zip", StringComparison.OrdinalIgnoreCase);
         var result = isZip
@@ -358,7 +368,8 @@ public partial class FixesViewModel : PagedListViewModel<FixGameCardVm>
             return;
         }
 
-        bool restarted = steam.RestartSteam();
+        // RestartSteam stops and waits on Steam's process exits — keep that wait off the UI thread.
+        bool restarted = await Task.Run(steam.RestartSteam);
         toast.Show(Resources.Strings.Fixes_Toast_FixInstalled, restarted
             ? string.Format(Resources.Strings.Fixes_Toast_FixInstalled_Restarting, gameName)
             : string.Format(Resources.Strings.Fixes_Toast_FixInstalled_Restart, gameName));
@@ -382,7 +393,7 @@ public partial class FixesViewModel : PagedListViewModel<FixGameCardVm>
             foreach (var entry in archive.Entries)
             {
                 if (string.IsNullOrEmpty(entry.Name)) continue; // directory entry
-                string dest = Path.Combine(installDir, entry.FullName);
+                string dest = HydraCloudSyncService.SafeCombine(installDir, entry.FullName);
                 try
                 {
                     Directory.CreateDirectory(Path.GetDirectoryName(dest)!);

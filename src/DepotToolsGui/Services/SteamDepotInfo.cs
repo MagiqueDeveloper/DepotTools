@@ -14,6 +14,9 @@ public record ContentDepot(long Id, long Size, long? DlcAppId, bool IsShared, st
     string? PublicManifestId = null)
 {
     public bool IsDlc => DlcAppId is not null;
+
+    /// <summary>Owning app for a shared redistributable depot, else null.</summary>
+    public long? FromAppId { get; init; }
 }
 
 /// <summary>
@@ -102,8 +105,15 @@ public class SteamDepotInfo
                     if (entry.Value.ValueKind != JsonValueKind.Object) continue;
                     var v = entry.Value;
 
-                    // Shared redistributable (VC++, DirectX, …). Belongs to another app. Keep it, flagged.
-                    bool isShared = v.TryGetProperty("depotfromapp", out _);
+                    // Shared redistributable (VC++, DirectX, …). Belongs to another app. Keep it, flagged,
+                    // and carry the owning app id: its manifest is resolved there at download time.
+                    bool isShared = v.TryGetProperty("depotfromapp", out var fromEl);
+                    long? fromAppId = null;
+                    if (isShared)
+                    {
+                        if (fromEl.ValueKind == JsonValueKind.Number && fromEl.TryGetInt64(out long fa)) fromAppId = fa;
+                        else if (fromEl.ValueKind == JsonValueKind.String && long.TryParse(fromEl.GetString(), out long fs)) fromAppId = fs;
+                    }
 
                     long? dlcAppId = v.TryGetProperty("dlcappid", out var dlcEl) && long.TryParse(dlcEl.GetString(), out long dlc)
                         ? dlc : null;
@@ -117,7 +127,7 @@ public class SteamDepotInfo
                     }
 
                     depots.Add(new ContentDepot(depotId, ReadPublicSize(v), dlcAppId, isShared, os, lang,
-                        ReadPublicManifestId(v)));
+                        ReadPublicManifestId(v)) { FromAppId = fromAppId });
                 }
             }
 

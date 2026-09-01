@@ -1,5 +1,6 @@
 using System.IO;
 using System.Text.Json;
+using DepotToolsGui.Services.Downloads;
 
 namespace DepotToolsGui.Services;
 
@@ -19,6 +20,18 @@ public class CacheData
     // Appids whose decryption keys have already been donated. The backend accepts each depot only
     // once per IP, so this is permanent. A donated appid is never re-sent.
     public List<string> DonatedAppIds { get; set; } = [];
+
+    // ── Download tool fingerprints + history ─────────────────────────
+    public string? DepotDownloaderVersion { get; set; }
+    public long DepotDownloaderCheckedAtMs { get; set; }
+    public string? SteamAutoCrackVersion { get; set; }
+    public long SteamAutoCrackCheckedAtMs { get; set; }
+    public string? LudusaviVersion { get; set; }
+    public long LudusaviCheckedAtMs { get; set; }
+
+    /// <summary>Finished download records (newest first). A <see cref="DownloadJob"/> holds delegates and
+    /// can't be serialized, so history persists only the flat <see cref="DownloadHistoryRecord"/>.</summary>
+    public List<DownloadHistoryRecord> DownloadHistory { get; set; } = [];
 
     // ── Hardware appid blacklist (refreshed from GitHub, ~14-day TTL) ──
     // Steam "hardware" appids (Deck, Index, controllers, VR) to hide from featured/search.
@@ -135,6 +148,48 @@ public class CacheService
         set { _cache.OnboardingComplete = value; Save(); }
     }
 
+    // ── Download tool fingerprints + history ────────────────────────
+
+    public string? DepotDownloaderVersion
+    {
+        get => _cache.DepotDownloaderVersion;
+        set { _cache.DepotDownloaderVersion = value; Save(); }
+    }
+    public long DepotDownloaderCheckedAtMs
+    {
+        get => _cache.DepotDownloaderCheckedAtMs;
+        set { _cache.DepotDownloaderCheckedAtMs = value; Save(); }
+    }
+    public string? SteamAutoCrackVersion
+    {
+        get => _cache.SteamAutoCrackVersion;
+        set { _cache.SteamAutoCrackVersion = value; Save(); }
+    }
+    public long SteamAutoCrackCheckedAtMs
+    {
+        get => _cache.SteamAutoCrackCheckedAtMs;
+        set { _cache.SteamAutoCrackCheckedAtMs = value; Save(); }
+    }
+    public string? LudusaviVersion
+    {
+        get => _cache.LudusaviVersion;
+        set { _cache.LudusaviVersion = value; Save(); }
+    }
+    public long LudusaviCheckedAtMs
+    {
+        get => _cache.LudusaviCheckedAtMs;
+        set { _cache.LudusaviCheckedAtMs = value; Save(); }
+    }
+
+    /// <summary>Finished downloads (newest first), shown in the Downloads history list.</summary>
+    public IReadOnlyList<DownloadHistoryRecord> GetDownloadHistory() => _cache.DownloadHistory;
+
+    public void SaveDownloadHistory(IEnumerable<DownloadHistoryRecord> records)
+    {
+        _cache.DownloadHistory = records.ToList();
+        Save();
+    }
+
     private void Load()
     {
         try
@@ -157,6 +212,13 @@ public class CacheService
             && _cache.HardwareAppIds.Count == 0
             && _cache.HardwareAppIdsFetchedAtMs == 0
             && _cache.LoadedAppIds.Count == 0
+            && _cache.DownloadHistory.Count == 0
+            && _cache.DepotDownloaderVersion is null
+            && _cache.DepotDownloaderCheckedAtMs == 0
+            && _cache.SteamAutoCrackVersion is null
+            && _cache.SteamAutoCrackCheckedAtMs == 0
+            && _cache.LudusaviVersion is null
+            && _cache.LudusaviCheckedAtMs == 0
             && !_cache.OnboardingComplete;
         if (empty)
         {

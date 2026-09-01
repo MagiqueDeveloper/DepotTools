@@ -41,9 +41,18 @@ public partial class App : Application
                 services.AddSingleton<AuthService>();
                 services.AddSingleton<GithubProxy>();
                 services.AddSingleton<DepotBoxService>();
+                services.AddSingleton<FixLookupService>();
                 services.AddSingleton<HydraCloudService>();
                 services.AddSingleton<HydraCloudSyncService>();
                 services.AddSingleton<UpdateService>();
+                services.AddSingleton<SteamAutoCrackService>();
+                services.AddSingleton<DepotDownloaderService>();
+                services.AddSingleton<LudusaviService>();
+                // Central download queue: one instance shared by every entry point. The hosted lifetime
+                // runs the scheduler pump; view models resolve the same instance to enqueue and observe.
+                services.AddSingleton<Services.Downloads.DownloadQueue>();
+                services.AddHostedService(sp => sp.GetRequiredService<Services.Downloads.DownloadQueue>());
+                services.AddSingleton<Services.Downloads.ManifestJobFactory>();
                 services.AddSingleton<DownloadViewModel>();
                 services.AddSingleton<SettingsViewModel>();
                 services.AddSingleton<ManageViewModel>();
@@ -52,6 +61,7 @@ public partial class App : Application
                 services.AddSingleton<HomeViewModel>();
                 services.AddSingleton<ModeViewModel>();
                 services.AddSingleton<FixesViewModel>();
+                services.AddSingleton<DownloadsViewModel>();
                 services.AddSingleton<OnboardingViewModel>();
                 services.AddSingleton<MainViewModel>();
                 // Pages resolved by NavigationView via the DI service provider.
@@ -59,6 +69,7 @@ public partial class App : Application
                 services.AddSingleton<DownloadView>();
                 services.AddSingleton<ManageView>();
                 services.AddSingleton<BuildsView>();
+                services.AddSingleton<DownloadsView>();
                 services.AddSingleton<ModeView>();
                 services.AddSingleton<FixesView>();
                 services.AddSingleton<SettingsView>();
@@ -269,6 +280,9 @@ public partial class App : Application
         manage.NavigateToBuilds = appId =>
             Dispatcher.Invoke(() => { window.NavigateToBuilds(); _ = builds.SelectAppAsync(appId); });
 
+        // Builds "Download" → navigate to Downloads once a depot job is queued.
+        builds.RequestShowDownloads = () => Dispatcher.Invoke(window.NavigateToDownloads);
+
         // Manage flyout "Launch options…" → modal editor over Steam's appinfo cache.
         manage.OpenLaunchOptions = (appId, name) => Dispatcher.Invoke(() =>
         {
@@ -288,6 +302,13 @@ public partial class App : Application
         var home = _host.Services.GetRequiredService<HomeViewModel>();
         home.NavigateToGame = openInManage;
         download.NavigateToGame = openInManage;
+
+        // Add page → the post-fetch "this game has a fix" banner opens it straight in the Fixes page.
+        download.OpenFixesForGame = appId => Dispatcher.Invoke(() =>
+        {
+            window.NavigateToFixes();
+            _ = _host.Services.GetRequiredService<FixesViewModel>().OpenForAppIdAsync(appId);
+        });
         builds.NavigateToManage = openInManage; // Builds "Manage" button: the reverse of "Manage Build"
 
         // Dragging a SteamDB / Steam store link onto either drop box installs that appid. Routed through

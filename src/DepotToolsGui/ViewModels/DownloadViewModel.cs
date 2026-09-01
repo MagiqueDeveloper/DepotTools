@@ -40,6 +40,9 @@ public partial class SourceRowViewModel : ObservableObject
 
     public bool CanDownload => IsAvailable && !IsLocked;
 
+    /// <summary>While this row's download runs its button hides in favor of the busy "Downloading" state.</summary>
+    public bool CanDownloadAndNotDownloading => CanDownload && !IsDownloading;
+
     public SourceRowViewModel(DownloadViewModel parent, string name, string status)
     {
         _parent = parent;
@@ -80,6 +83,7 @@ public partial class DownloadViewModel : ObservableObject
     private readonly SteamAppInfoCache _appInfo;
     private readonly SteamDepotInfo _depotInfo;
     private readonly HardwareAppIdService _hardware;
+    private readonly FixLookupService _fixes;
     private CancellationTokenSource? _searchCts;
     private CancellationTokenSource? _detailsCts;
 
@@ -88,6 +92,9 @@ public partial class DownloadViewModel : ObservableObject
 
     /// <summary>Set by App: navigate to Manage and open this appid's detail (the install banner's "Reveal").</summary>
     public Action<long>? NavigateToGame { get; set; }
+
+    /// <summary>Set by App: navigate to Fixes and open this appid's fixes (the post-fetch banner).</summary>
+    public Action<long>? OpenFixesForGame { get; set; }
 
     public ObservableCollection<SteamSearchResult> SearchResults { get; } = [];
     public ObservableCollection<SourceRowViewModel> Sources { get; } = [];
@@ -123,9 +130,35 @@ public partial class DownloadViewModel : ObservableObject
     public bool HasDetails => Details is not null;
     public string GenresText => Details is null ? "" : string.Join(", ", Details.Genres);
 
+    /// <summary>
+    /// Number of published fixes for the fetched game, filled in by <see cref="CheckFixesAsync"/> after
+    /// a Fetch. 0 hides the banner, which is also what a failed lookup leaves behind.
+    /// </summary>
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(HasFix))]
+    [NotifyPropertyChangedFor(nameof(FixBannerText))]
+    private int _fixCount;
+
+    /// <summary>What kind of fixes they are ("Online Fix", "Bypass", …), straight from the listing.</summary>
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(FixBannerText))]
+    private string _fixTags = "";
+
+    public bool HasFix => FixCount > 0;
+
+    /// <summary>The banner sentence. Kinds are named when the listing gives them, because "a fix" says
+    /// little: the same listing spans Online Fixes, Bypass and Hypervisor fixes, and telling the user
+    /// which one is waiting is the point of the banner.</summary>
+    public string FixBannerText => FixTags.Length > 0
+        ? string.Format(Resources.Strings.Add_Fix_Available_Tags, FixCount, FixTags)
+        : string.Format(Resources.Strings.Add_Fix_Available, FixCount);
+
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(FetchCommand))]
     private bool _isChecking;
+
+    /// <summary>Fetch button status shown while the current server lookup or FastFetch transfer runs.</summary>
+    [ObservableProperty] private string _fetchStatusText = Resources.Strings.Add_Download;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(HasSources))]
@@ -147,6 +180,10 @@ public partial class DownloadViewModel : ObservableObject
 
     [ObservableProperty] private bool _isGenerating;
     [ObservableProperty] private double _generateProgress;
+
+    /// <summary>DLC button text: "Download .lua" idle → "Downloading" while generating.</summary>
+    [ObservableProperty] private string _generateLabel = Resources.Strings.Add_DownloadLua;
+
     [ObservableProperty] private string? _error;
 
     [ObservableProperty]
@@ -291,7 +328,7 @@ public partial class DownloadViewModel : ObservableObject
     public DownloadViewModel(DepotBoxService api, DepotBoxService depotbox, SettingsService settings,
         AuthService auth, LuaInstaller installer,
         SteamAppListCache appList, SteamAppInfoCache appInfo, SteamDepotInfo depotInfo,
-        HardwareAppIdService hardware, DropInstallViewModel drop)
+        HardwareAppIdService hardware, FixLookupService fixes, DropInstallViewModel drop)
     {
         _api = api;
         _depotBox = depotbox;
@@ -302,6 +339,7 @@ public partial class DownloadViewModel : ObservableObject
         _appInfo = appInfo;
         _depotInfo = depotInfo;
         _hardware = hardware;
+        _fixes = fixes;
         Drop = drop;
         _fastFetch = settings.FastFetch;
     }
@@ -476,6 +514,7 @@ public partial class DownloadViewModel : ObservableObject
         }
         ResetResults();
         IsChecking = true;
+        FetchStatusText = Resources.Strings.Add_Status_ContactingServer;
         try
         {
             if (Details.IsDlc)
@@ -493,8 +532,14 @@ public partial class DownloadViewModel : ObservableObject
             }
             else
             {
+
+                // Independent of the source check, and deliberately not awaited: whether the game has
+                // fixes has no bearing on fetching its manifest sources, and the banner showing a moment
+                // later is better than holding up the fetch.
+                _ = CheckFixesAsync(Details.AppId);
                 var statuses = new Dictionary<string, string>();
                 await AddDepotBoxSourceAsync(statuses, Details.AppId.ToString());
+                FetchStatusText = Resources.Strings.Add_Status_FindingManifest;
 
                 foreach (var (name, status) in statuses)
                     Sources.Add(new SourceRowViewModel(this, name, status));
@@ -510,6 +555,7 @@ public partial class DownloadViewModel : ObservableObject
                         return;
                     }
                     _fastFetchSource = best.DisplayName;
+                    FetchStatusText = Resources.Strings.Add_Status_DownloadingManifest;
                     await DownloadFromSourceAsync(best);
                 }
                 else
@@ -530,7 +576,37 @@ public partial class DownloadViewModel : ObservableObject
         finally
         {
             IsChecking = false;
+            FetchStatusText = Resources.Strings.Add_Download;
         }
+    }
+
+    /// <summary>
+    /// Look up how many fixes exist for the game that was just fetched, and surface the banner.
+    /// The result is dropped if the user has moved on to another game in the meantime: the lookup can
+    /// outlive the fetch that started it, and a banner advertising the previous game's fixes would be
+    /// worse than no banner at all.
+    /// </summary>
+    private async Task CheckFixesAsync(long appId)
+    {
+        try
+        {
+            var summary = await _fixes.GetFixSummaryAsync(appId);
+            if (Details?.AppId != appId) return; // user moved on. Drop it
+
+            FixCount = summary?.Count ?? 0;
+            FixTags = summary is null ? "" : string.Join(", ", summary.Tags);
+        }
+        catch
+        {
+            // Offline / API down. The banner just doesn't appear.
+        }
+    }
+
+    /// <summary>Banner action: jump to the Fixes page with this game already open.</summary>
+    [RelayCommand]
+    private void OpenFixes()
+    {
+        if (Details is { } details) OpenFixesForGame?.Invoke(details.AppId);
     }
 
     /// <summary>The DepotBox source name as the website/source-meta keys it.</summary>
@@ -668,6 +744,10 @@ public partial class DownloadViewModel : ObservableObject
         }
         finally
         {
+            // Headless runs set _silentInstall to skip the overwrite confirm; restore it so later
+            // UI-initiated installs get the diff overlay again (this finally runs after the check
+            // at the confirm site, so silence still holds for the headless run itself).
+            _silentInstall = false;
             source.IsDownloading = false;
             source.Progress = 0;
             source.IsProgressIndeterminate = false;
@@ -689,6 +769,7 @@ public partial class DownloadViewModel : ObservableObject
         InstallStatus = null;
         long appId = Details.AppId;
         IsGenerating = true;
+        GenerateLabel = Resources.Strings.Add_Downloading;
         try
         {
             var download = await _api.GenerateDlcAsync(appId.ToString(), Details.BaseAppId, Details.Name, null);
@@ -710,6 +791,7 @@ public partial class DownloadViewModel : ObservableObject
         finally
         {
             IsGenerating = false;
+            GenerateLabel = Resources.Strings.Add_DownloadLua;
         }
     }
 
@@ -934,6 +1016,9 @@ public partial class DownloadViewModel : ObservableObject
         Error = null;
         LastDownload = null;
         _fastFetchSource = null;
+        FetchStatusText = Resources.Strings.Add_Download;
+        FixCount = 0;
+        FixTags = "";
     }
 
     /// <summary>

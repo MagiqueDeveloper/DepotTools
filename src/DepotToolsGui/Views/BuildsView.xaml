@@ -614,11 +614,24 @@
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
 
-                        <ui:TextBox
-                            Margin="0,0,12,0"
-                            Icon="{ui:SymbolIcon Search24}"
-                            PlaceholderText="{x:Static res:Strings.Builds_Depot_Search}"
-                            Text="{Binding DepotSearchText, UpdateSourceTrigger=PropertyChanged}" />
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <ui:TextBox
+                                Icon="{ui:SymbolIcon Search24}"
+                                PlaceholderText="{x:Static res:Strings.Builds_Depot_Search}"
+                                Text="{Binding DepotSearchText, UpdateSourceTrigger=PropertyChanged}" />
+                            <ui:Button
+                                Grid.Column="1"
+                                Margin="8,0,0,0"
+                                Command="{Binding StartDepotDownloadCommand}"
+                                Content="{x:Static res:Strings.Builds_Action_Download}"
+                                Icon="{ui:SymbolIcon ArrowDownload24}"
+                                IsEnabled="{Binding HasSelection}"
+                                Visibility="{Binding IsBrowseMode, Converter={StaticResource BoolToVis}}" />
+                        </Grid>
 
                         <TextBlock
                             Grid.Row="1"
@@ -756,6 +769,116 @@
                             </StackPanel>
                         </StackPanel>
                     </ScrollViewer>
+                    <!-- Select-depots mode. Overlays the depot table; a game usually ships several depots,
+                         so the Download button opens this rather than guessing which one. -->
+                    <Grid
+                        Grid.Row="0"
+                        Grid.RowSpan="2"
+                        Background="#1c1c22"
+                        Visibility="{Binding IsSelectMode, Converter={StaticResource BoolToVis}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Grid>
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                FontSize="13"
+                                FontWeight="SemiBold"
+                                Text="{x:Static res:Strings.Builds_Select_Title}" />
+                            <ui:Button
+                                HorizontalAlignment="Right"
+                                Appearance="Secondary"
+                                Command="{Binding SelectAllDepotsCommand}"
+                                Content="{x:Static res:Strings.Builds_Select_All}" />
+                        </Grid>
+
+                        <ScrollViewer
+                            Grid.Row="1"
+                            Margin="0,10,0,0"
+                            VerticalScrollBarVisibility="Auto">
+                            <!-- Right margin keeps the scrollbar in its own lane instead of sitting on the rows. -->
+                            <ItemsControl Margin="0,0,12,0" ItemsSource="{Binding DepotPicks}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border
+                                            Margin="0,0,0,6"
+                                            Padding="10,8"
+                                            Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                                            CornerRadius="6">
+                                            <StackPanel>
+                                                <CheckBox
+                                                    IsChecked="{Binding IsSelected, Mode=TwoWay}"
+                                                    IsEnabled="{Binding CanDownload}">
+                                                    <StackPanel>
+                                                        <!-- Same DLC/SHARED tags as the browse table, so a shared
+                                                             runtime still says why it isn't ticked by default. -->
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="Auto" />
+                                                                <ColumnDefinition Width="Auto" />
+                                                                <ColumnDefinition Width="*" />
+                                                            </Grid.ColumnDefinitions>
+                                                            <TextBlock FontSize="12.5" Text="{Binding Title}" TextTrimming="CharacterEllipsis" />
+                                                            <Border Grid.Column="1" Margin="6,0,0,0" Padding="5,1" VerticalAlignment="Center" Background="#2a2440" CornerRadius="4" Visibility="{Binding IsDlc, Converter={StaticResource BoolToVis}}">
+                                                                <TextBlock FontSize="9.5" FontWeight="SemiBold" Foreground="#c4b5fd" Text="DLC" />
+                                                            </Border>
+                                                            <Border Grid.Column="1" Margin="6,0,0,0" Padding="5,1" VerticalAlignment="Center" Background="#3a3320" CornerRadius="4" Visibility="{Binding IsShared, Converter={StaticResource BoolToVis}}">
+                                                                <TextBlock FontSize="9.5" FontWeight="SemiBold" Foreground="#d6b36b" Text="{x:Static res:Strings.Confirm_Shared}" />
+                                                            </Border>
+                                                        </Grid>
+                                                        <TextBlock FontSize="11" Foreground="#6b7280" Text="{Binding Meta}" />
+                                                        <TextBlock Margin="0,2,0,0" FontSize="10.5" Foreground="#6b7280" Text="{x:Static res:Strings.Builds_Select_SharedHint}" TextWrapping="Wrap" Visibility="{Binding IsShared, Converter={StaticResource BoolToVis}}" />
+                                                    </StackPanel>
+                                                </CheckBox>
+                                                <!-- Shown inline rather than as a tooltip: WPF suppresses
+                                                     tooltips on disabled controls. -->
+                                                <TextBlock
+                                                    Margin="0,4,0,0"
+                                                    FontSize="10.5"
+                                                    Foreground="#f0b48b"
+                                                    Text="{Binding BlockReason}"
+                                                    TextWrapping="Wrap"
+                                                    Visibility="{Binding CanDownload, Converter={StaticResource InverseBoolToVis}}" />
+                                            </StackPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+
+                        <StackPanel Grid.Row="2" Margin="0,10,0,0">
+                            <!-- Destination is picked here so the space line reports against the right drive. -->
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock VerticalAlignment="Center" FontSize="11.5" Foreground="#6b7280" Text="{x:Static res:Strings.Builds_Select_SaveTo}" />
+                                <TextBlock MaxWidth="420" Margin="6,0,0,0" VerticalAlignment="Center" FontSize="11.5" Foreground="{DynamicResource TextFillColorSecondaryBrush}" Text="{Binding DepotOutDir}" TextTrimming="CharacterEllipsis" ToolTip="{Binding DepotOutDir}" />
+                                <ui:Button Margin="8,0,0,0" Padding="8,2" Command="{Binding ChangeDepotFolderCommand}" Content="{x:Static res:Strings.Settings_Change}" FontSize="11" />
+                            </StackPanel>
+
+                            <!-- Grey when it fits, red when it doesn't. Does NOT disable Download. -->
+                            <TextBlock Margin="0,6,0,0" FontSize="11.5" Text="{Binding SpaceLabel}" TextWrapping="Wrap">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Foreground" Value="#6b7280" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding HasEnoughSpace}" Value="False">
+                                                <Setter Property="Foreground" Value="#f87171" />
+                                                <Setter Property="FontWeight" Value="SemiBold" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+
+                            <StackPanel Margin="0,10,0,0" HorizontalAlignment="Right" Orientation="Horizontal">
+                                <TextBlock Margin="0,0,10,0" VerticalAlignment="Center" FontSize="11.5" Foreground="#6b7280" Text="{x:Static res:Strings.Builds_Select_None}" Visibility="{Binding HasDepotSelection, Converter={StaticResource InverseBoolToVis}}" />
+                                <ui:Button Command="{Binding CancelDepotDownloadCommand}" Content="{x:Static res:Strings.Builds_Action_Cancel}" />
+                                <ui:Button Margin="8,0,0,0" Appearance="Primary" Command="{Binding ConfirmDepotDownloadCommand}" Content="{Binding DownloadConfirmLabel}" Icon="{ui:SymbolIcon ArrowDownload24}" IsEnabled="{Binding HasDepotSelection}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
                     </Grid>
                 </Grid>
             </Grid>

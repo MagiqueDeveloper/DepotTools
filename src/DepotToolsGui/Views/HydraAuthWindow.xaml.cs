@@ -26,8 +26,8 @@ public partial class HydraAuthWindow : Window
         catch (Exception ex)
         {
             MessageBox.Show(this,
-                "Microsoft Edge WebView2 is required for Hydra Cloud sign-in.\n\n" + ex.Message,
-                "Hydra Cloud sign-in unavailable", MessageBoxButton.OK, MessageBoxImage.Error);
+                string.Format(DepotToolsGui.Resources.Strings.HydraAuth_WebView2Required, ex.Message),
+                DepotToolsGui.Resources.Strings.HydraAuth_WebView2Unavailable, MessageBoxButton.OK, MessageBoxImage.Error);
             Close();
         }
     }
@@ -45,7 +45,7 @@ public partial class HydraAuthWindow : Window
         }
         catch (Exception ex)
         {
-            MessageBox.Show(this, ex.Message, "Hydra Cloud sign-in failed", MessageBoxButton.OK, MessageBoxImage.Error);
+            MessageBox.Show(this, ex.Message, DepotToolsGui.Resources.Strings.HydraAuth_SignInFailed, MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }
