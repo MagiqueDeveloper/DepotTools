@@ -15,7 +15,7 @@ public class ApiException(string message, HttpStatusCode? status = null) : Excep
 public record DownloadedFile(string FilePath, string FileName);
 
 /// <summary>Typed client for the DepotBox API. API keys are supplied by the user and never compiled in.</summary>
-public class DepotBoxService(SettingsService settings, CoverCache covers)
+public class DepotBoxService(SettingsService settings)
 {
     // Interim staging destination: downloads land here, get installed into Steam, then are deleted.
     // Under %TEMP% (not the user's Downloads) so nothing accumulates in a user-visible folder.
@@ -114,29 +114,6 @@ public class DepotBoxService(SettingsService settings, CoverCache covers)
         catch { return ([], []); }
     }
 
-    /// <summary>Public endpoint, no auth required.</summary>
-    /// <summary>Game metadata straight from Steam's appdetails (cached to details\&lt;appid&gt;.json via the
-    /// throttle, interactive priority), no DepotBox proxy. ANY fetch path funnels through here (normal /
-    /// DLC / fast / plugin add), so this is also where the header image gets warmed into covers\.</summary>
-    public async Task<GameDetails?> GetDetailsAsync(string appid, CancellationToken ct = default)
-    {
-        if (!long.TryParse(appid, out long id) || settings.UseApiKey && string.IsNullOrWhiteSpace(settings.DepotBoxApiKey)) return null;
-        using var res = await SendApiAsync(HttpMethod.Get, $"/api/games/{id}", ct);
-        if (!res.IsSuccessStatusCode) return null;
-        var envelope = await ReadJsonAsync<DepotBoxGameDetailsResponse>(res, ct);
-        var d = envelope?.Data;
-        if (d is null) return null;
-        var details = new GameDetails
-        {
-            AppId = d.AppId,
-            Name = d.Name,
-            Type = d.IsDlc ? "dlc" : "game",
-            HeaderImage = d.HeaderImageUrl,
-        };
-        if (details.HeaderImage is { Length: > 0 } img)
-            _ = covers.EnsureAsync(id, img, CancellationToken.None);
-        return details;
-    }
 
     /// <summary>Source name → "available" | "unavailable" | other status.</summary>
     public async Task<Dictionary<string, string>> CheckSourcesAsync(string appid, CancellationToken ct = default)

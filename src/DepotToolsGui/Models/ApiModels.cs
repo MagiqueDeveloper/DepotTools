@@ -16,10 +16,6 @@ public class DepotBoxGame
     [JsonPropertyName("is_dlc")] public bool IsDlc { get; set; }
 }
 
-public class DepotBoxGameDetailsResponse
-{
-    [JsonPropertyName("data")] public DepotBoxGame? Data { get; set; }
-}
 
 public class DepotBoxAvailabilityResponse
 {
