@@ -438,6 +438,9 @@ This deletes the .lua files from Steam\config\stplug-in. Restart Steam afterward
   <data name="Add_Discord" xml:space="preserve"><value>Discord</value></data>
   <data name="Add_JoinDiscord" xml:space="preserve"><value>Join this source's Discord</value></data>
   <data name="Add_Download" xml:space="preserve"><value>Download</value></data>
+  <data name="Add_Status_ContactingServer" xml:space="preserve"><value>Contacting Server</value></data>
+  <data name="Add_Status_FindingManifest" xml:space="preserve"><value>Finding Manifest</value></data>
+  <data name="Add_Status_DownloadingManifest" xml:space="preserve"><value>Downloading Manifest</value></data>
   <data name="Add_NeedsDepotBoxKey" xml:space="preserve"><value>Needs DepotBox key</value></data>
   <data name="Add_NeedsDepotBoxKey_Tip" xml:space="preserve"><value>Set your DepotBox API key in Settings to unlock this source</value></data>
   <data name="Add_Depots" xml:space="preserve"><value>DEPOTS</value></data>

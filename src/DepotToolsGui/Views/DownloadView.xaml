@@ -316,28 +316,50 @@
                 </StackPanel>
             </Border>
 
-            <!-- Fetch / Download button: idle → "Download"; fetching → busy ring + "Downloading" -->
+            <!-- Fetch / Download button: one icon slot swaps between the arrow and busy ring. -->
             <ui:Button
                 Margin="0,14,0,0"
                 HorizontalAlignment="Stretch"
                 Appearance="Primary"
                 Command="{Binding FetchCommand}"
-                Icon="{ui:SymbolIcon ArrowDownload24}"
                 Visibility="{Binding HasDetails, Converter={StaticResource BoolToVis}}">
                 <ui:Button.Content>
-                    <Grid>
+                    <Grid HorizontalAlignment="Center">
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="16" />
                             <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <ui:ProgressRing
-                            Width="14"
-                            Height="14"
-                            IsIndeterminate="True"
-                            Visibility="{Binding IsChecking, Converter={StaticResource BoolToVis}}" />
-                        <TextBlock
+                        <Grid Width="16" Height="16">
+                            <ui:SymbolIcon
+                                Width="16"
+                                Height="16"
+                                Symbol="ArrowDownload24"
+                                Visibility="{Binding IsChecking, Converter={StaticResource InverseBoolToVis}}" />
+                            <ui:ProgressRing
+                                Width="14"
+                                Height="14"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                IsIndeterminate="True"
+                                Visibility="{Binding IsChecking, Converter={StaticResource BoolToVis}}" />
+                        </Grid>
+                        <Grid
+                            x:Name="FetchStatusHost"
                             Grid.Column="1"
-                            Text="{Binding FetchLabel, Mode=OneWay}" />
+                            Height="18"
+                            Margin="6,0,0,0"
+                            VerticalAlignment="Center"
+                            ClipToBounds="True">
+                            <TextBlock
+                                x:Name="FetchStatusFront"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center" />
+                            <TextBlock
+                                x:Name="FetchStatusIncoming"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Opacity="0" />
+                        </Grid>
                     </Grid>
                 </ui:Button.Content>
             </ui:Button>

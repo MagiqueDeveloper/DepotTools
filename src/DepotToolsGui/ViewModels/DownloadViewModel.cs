@@ -157,9 +157,8 @@ public partial class DownloadViewModel : ObservableObject
     [NotifyCanExecuteChangedFor(nameof(FetchCommand))]
     private bool _isChecking;
 
-    /// <summary>Fetch button text: "Download" when idle, "Downloading" while the fetch/download runs.
-    /// FastFetch skips the label swap (the source row's own progress bar carries the state).</summary>
-    [ObservableProperty] private string _fetchLabel = Resources.Strings.Add_Download;
+    /// <summary>Fetch button status shown while the current server lookup or FastFetch transfer runs.</summary>
+    [ObservableProperty] private string _fetchStatusText = Resources.Strings.Add_Download;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(HasSources))]
@@ -515,7 +514,7 @@ public partial class DownloadViewModel : ObservableObject
         }
         ResetResults();
         IsChecking = true;
-        if (!FastFetch) FetchLabel = Resources.Strings.Add_Downloading;
+        FetchStatusText = Resources.Strings.Add_Status_ContactingServer;
         try
         {
             if (Details.IsDlc)
@@ -540,6 +539,7 @@ public partial class DownloadViewModel : ObservableObject
                 _ = CheckFixesAsync(Details.AppId);
                 var statuses = new Dictionary<string, string>();
                 await AddDepotBoxSourceAsync(statuses, Details.AppId.ToString());
+                FetchStatusText = Resources.Strings.Add_Status_FindingManifest;
 
                 foreach (var (name, status) in statuses)
                     Sources.Add(new SourceRowViewModel(this, name, status));
@@ -555,6 +555,7 @@ public partial class DownloadViewModel : ObservableObject
                         return;
                     }
                     _fastFetchSource = best.DisplayName;
+                    FetchStatusText = Resources.Strings.Add_Status_DownloadingManifest;
                     await DownloadFromSourceAsync(best);
                 }
                 else
@@ -575,7 +576,7 @@ public partial class DownloadViewModel : ObservableObject
         finally
         {
             IsChecking = false;
-            FetchLabel = Resources.Strings.Add_Download;
+            FetchStatusText = Resources.Strings.Add_Download;
         }
     }
 
@@ -1015,7 +1016,7 @@ public partial class DownloadViewModel : ObservableObject
         Error = null;
         LastDownload = null;
         _fastFetchSource = null;
-        FetchLabel = Resources.Strings.Add_Download;
+        FetchStatusText = Resources.Strings.Add_Download;
         FixCount = 0;
         FixTags = "";
     }

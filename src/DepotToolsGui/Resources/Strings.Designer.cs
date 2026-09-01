@@ -328,6 +328,9 @@ public static class Strings
     public static string Add_Discord => Get(nameof(Add_Discord));
     public static string Add_JoinDiscord => Get(nameof(Add_JoinDiscord));
     public static string Add_Download => Get(nameof(Add_Download));
+    public static string Add_Status_ContactingServer => Get(nameof(Add_Status_ContactingServer));
+    public static string Add_Status_FindingManifest => Get(nameof(Add_Status_FindingManifest));
+    public static string Add_Status_DownloadingManifest => Get(nameof(Add_Status_DownloadingManifest));
     public static string Add_NeedsDepotBoxKey => Get(nameof(Add_NeedsDepotBoxKey));
     public static string Add_NeedsDepotBoxKey_Tip => Get(nameof(Add_NeedsDepotBoxKey_Tip));
     public static string Add_Depots => Get(nameof(Add_Depots));
