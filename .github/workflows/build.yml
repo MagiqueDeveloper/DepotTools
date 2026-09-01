@@ -14,6 +14,9 @@ permissions:
 
 jobs:
   build:
+    # Rolling prereleases use the `nightly` tag, which cannot be packaged as a stable Velopack version.
+    # Their dedicated workflow below builds and publishes them; stable release tags retain this path.
+    if: github.event_name != 'release' || startsWith(github.event.release.tag_name, 'v')
     name: Build and test
     runs-on: windows-latest
 

@@ -1,0 +1,126 @@
+name: Publish DepotTools Nightly
+
+on:
+  push:
+    branches: [development]
+
+permissions:
+  contents: write
+
+# Every development commit gets its own build. Serialization prevents two runs from racing while they
+# move the rolling `nightly` tag and replace its single prerelease.
+concurrency:
+  group: depottools-nightly
+  cancel-in-progress: false
+
+jobs:
+  nightly:
+    name: Build and publish nightly
+    runs-on: windows-latest
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install .NET 8 SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore dependencies
+        run: dotnet restore DepotToolsGui.sln
+
+      - name: Build Release
+        run: dotnet build DepotToolsGui.sln --configuration Release --no-restore
+
+      - name: Run tests
+        run: dotnet test DepotToolsGui.sln --configuration Release --no-build --no-restore --verbosity normal
+
+      - name: Publish Windows build
+        run: >-
+          dotnet publish src/DepotToolsGui/DepotToolsGui.csproj
+          --configuration Release
+          --framework net8.0-windows
+          --runtime win-x64
+          --self-contained false
+          --output ${{ runner.temp }}/DepotTools-publish
+
+      - name: Install Velopack CLI
+        run: dotnet tool install --global vpk --version 1.2.0
+
+      - name: Build nightly portable ZIP and setup installer
+        id: package
+        shell: pwsh
+        run: |
+          [xml]$project = Get-Content "src/DepotToolsGui/DepotToolsGui.csproj"
+          $baseVersion = $project.Project.PropertyGroup.Version | Select-Object -First 1
+          if ([string]::IsNullOrWhiteSpace($baseVersion)) { throw "DepotToolsGui.csproj has no Version." }
+
+          $version = "$baseVersion-nightly.${{ github.run_number }}"
+          $output = "${{ runner.temp }}/DepotTools-nightly"
+          New-Item -ItemType Directory -Force -Path $output | Out-Null
+          & "$env:USERPROFILE/.dotnet/tools/vpk.exe" pack `
+            --packId DepotTools `
+            --packVersion $version `
+            --packDir "${{ runner.temp }}/DepotTools-publish" `
+            --mainExe DepotTools.exe `
+            --packTitle DepotTools `
+            --packAuthors "DepotTools contributors" `
+            --runtime win-x64 `
+            --framework net8-x64-desktop `
+            --outputDir $output
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          "output=$output" >> $env:GITHUB_OUTPUT
+
+      - name: Move rolling nightly tag
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: pwsh
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag --force nightly "${{ github.sha }}"
+          git push origin "refs/tags/nightly" --force
+
+      - name: Replace DepotTools Nightly prerelease
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: pwsh
+        run: |
+          $tag = "nightly"
+          $repo = "${{ github.repository }}"
+          $output = "${{ steps.package.outputs.output }}"
+          $notes = @'
+          Rolling prerelease built from the latest `development` commit.
+
+          Commit: `${{ github.sha }}`
+          Run: ${{ github.run_number }}
+          '@
+
+          $assets = Get-ChildItem -Path $output -File | Select-Object -ExpandProperty FullName
+          gh release view $tag --repo $repo 2>$null
+          if ($LASTEXITCODE -eq 0) {
+            $oldAssets = gh release view $tag --json assets --jq '.assets[].name' --repo $repo
+            foreach ($asset in $oldAssets) {
+              gh release delete-asset $tag $asset --yes --repo $repo
+              if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+            }
+            gh release edit $tag `
+              --title "DepotTools Nightly" `
+              --prerelease `
+              --notes $notes `
+              --repo $repo
+          }
+          else {
+            gh release create $tag `
+              --title "DepotTools Nightly" `
+              --prerelease `
+              --notes $notes `
+              --repo $repo
+          }
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+          gh release upload $tag $assets --clobber --repo $repo
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
