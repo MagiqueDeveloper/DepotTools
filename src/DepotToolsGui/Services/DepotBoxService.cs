@@ -157,7 +157,14 @@ public class DepotBoxService(SettingsService settings, CoverCache covers)
         if (!res.IsSuccessStatusCode) return null;
         try
         {
-            return await ReadJsonAsync<DepotBoxUsageRecord>(res, ct);
+            var record = await ReadJsonAsync<DepotBoxUsageRecord>(res, ct);
+            // The broker serves camelCase (dailyUsage/dailyLimit/canMakeRequests) while the model maps
+            // snake_case, so a straight deserialize silently yields all defaults — never throw. Treat
+            // "limit didn't land" as a parse failure and keep showing the old local rate-limiter view;
+            // otherwise the row would lock (CanMakeRequests=false) and FastFetch would find no source.
+            if (record is null || record.DailyLimit <= 0)
+                throw new InvalidDataException("Usage stats payload did not match the expected shape.");
+            return record;
         }
         catch
         {

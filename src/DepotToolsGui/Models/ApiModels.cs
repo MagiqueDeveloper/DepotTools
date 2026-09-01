@@ -122,7 +122,10 @@ public class DlcInfo
     [JsonPropertyName("depots")] public List<DlcDepot> Depots { get; set; } = [];
 }
 
-/// <summary>DepotBox (depotboxmanifest.com) <c>/api/v1/user/stats</c> response. Usage for the user's own key.</summary>
+/// <summary>Usage stats. DepotBox's own <c>/api/v1/user/stats</c> serves snake_case; the DepotTools
+/// broker's <c>/api/usage/stats</c> serves the same fields in camelCase. Both aliases are mapped so
+/// either payload deserializes (first match wins; unmatched fields keep their defaults, and
+/// <see cref="DailyLimit"/> is validated by the caller to detect a total mismatch).</summary>
 public class DepotBoxUsageRecord
 {
     [JsonPropertyName("user_id")] public string UserId { get; set; } = "";
@@ -130,6 +133,12 @@ public class DepotBoxUsageRecord
     [JsonPropertyName("daily_limit")] public int DailyLimit { get; set; }
     [JsonPropertyName("can_make_requests")] public bool CanMakeRequests { get; set; }
     [JsonPropertyName("api_key_expires_at")] public string? ApiKeyExpiresAt { get; set; }
+
+    // camelCase aliases (broker payload)
+    [JsonPropertyName("dailyUsage")] public int DailyUsageAlt { set => DailyUsage = value; }
+    [JsonPropertyName("dailyLimit")] public int DailyLimitAlt { set => DailyLimit = value; }
+    [JsonPropertyName("canMakeRequests")] public bool CanMakeRequestsAlt { set => CanMakeRequests = value; }
+    [JsonPropertyName("apiKeyExpiresAt")] public string? ApiKeyExpiresAtAlt { set => ApiKeyExpiresAt = value; }
 }
 
 /// <summary>DepotBox <c>/api/v1/status/{appid}</c> response. Whether a manifest exists (free, no usage count).</summary>
