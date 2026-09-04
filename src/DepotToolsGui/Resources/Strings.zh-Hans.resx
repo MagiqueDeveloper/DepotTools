@@ -455,7 +455,7 @@
   <data name="Add_FastFetch_NoSource" xml:space="preserve"><value>未找到此游戏的可用源</value></data>
   <data name="Add_FastFetch_Via" xml:space="preserve"><value>· 来源：{0}</value></data>
   <data name="Plugin_Title" xml:space="preserve"><value>DepotTools 插件</value></data>
-  <data name="Plugin_Subtitle" xml:space="preserve"><value>DepotTools 的 Steam 插件！ — 现已改用 LuaLoader 代替 Shittenium</value></data>
+  <data name="Plugin_Subtitle" xml:space="preserve"><value>The DepotTools Steam Plugin! Now using LuaLoader instead of the previous plugin.</value></data>
   <data name="Plugin_CardTitle" xml:space="preserve"><value>状态</value></data>
   <data name="Plugin_Badge_UpdateAvailable" xml:space="preserve"><value>有可用更新</value></data>
   <data name="Plugin_Row_InstalledVersion" xml:space="preserve"><value>已安装版本</value></data>

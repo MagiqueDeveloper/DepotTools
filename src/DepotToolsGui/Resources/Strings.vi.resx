@@ -435,7 +435,7 @@ Thao tác này sẽ xóa các tệp .lua khỏi Steam\config\stplug-in. Sau đó
   <data name="Add_FastFetch_NoSource" xml:space="preserve"><value>Không tìm thấy nguồn khả dụng cho trò chơi này</value></data>
   <data name="Add_FastFetch_Via" xml:space="preserve"><value>· qua {0}</value></data>
   <data name="Plugin_Title" xml:space="preserve"><value>Plugin DepotTools</value></data>
-  <data name="Plugin_Subtitle" xml:space="preserve"><value>Plugin DepotTools cho Steam! — Giờ đây dùng LuaLoader thay cho Shittenium</value></data>
+  <data name="Plugin_Subtitle" xml:space="preserve"><value>The DepotTools Steam Plugin! Now using LuaLoader instead of the previous plugin.</value></data>
   <data name="Plugin_CardTitle" xml:space="preserve"><value>Trạng thái</value></data>
   <data name="Plugin_Badge_UpdateAvailable" xml:space="preserve"><value>Có bản cập nhật</value></data>
   <data name="Plugin_Row_InstalledVersion" xml:space="preserve"><value>Phiên bản đã cài</value></data>

@@ -435,7 +435,7 @@ Questo elimina i file .lua da Steam\config\stplug-in. Riavvia Steam in seguito a
   <data name="Add_FastFetch_NoSource" xml:space="preserve"><value>Nessuna fonte disponibile trovata per questo gioco</value></data>
   <data name="Add_FastFetch_Via" xml:space="preserve"><value>· tramite {0}</value></data>
   <data name="Plugin_Title" xml:space="preserve"><value>Plugin DepotTools</value></data>
-  <data name="Plugin_Subtitle" xml:space="preserve"><value>Il plugin DepotTools per Steam! — Ora usa LuaLoader invece di Merdennium</value></data>
+  <data name="Plugin_Subtitle" xml:space="preserve"><value>The DepotTools Steam Plugin! Now using LuaLoader instead of the previous plugin.</value></data>
   <data name="Plugin_CardTitle" xml:space="preserve"><value>Stato</value></data>
   <data name="Plugin_Badge_UpdateAvailable" xml:space="preserve"><value>Aggiornamento disponibile</value></data>
   <data name="Plugin_Row_InstalledVersion" xml:space="preserve"><value>Versione installata</value></data>

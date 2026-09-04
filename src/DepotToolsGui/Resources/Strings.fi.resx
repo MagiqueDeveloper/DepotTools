@@ -435,7 +435,7 @@ Tämä poistaa .lua-tiedostot sijainnista Steam\config\stplug-in. Käynnistä St
   <data name="Add_FastFetch_NoSource" xml:space="preserve"><value>Tälle pelille ei löytynyt saatavilla olevia lähteitä</value></data>
   <data name="Add_FastFetch_Via" xml:space="preserve"><value>· kautta {0}</value></data>
   <data name="Plugin_Title" xml:space="preserve"><value>DepotTools-laajennus</value></data>
-  <data name="Plugin_Subtitle" xml:space="preserve"><value>DepotTools-Steam-laajennus! — Käyttää nyt LuaLoaderia Shitteniumin sijaan</value></data>
+  <data name="Plugin_Subtitle" xml:space="preserve"><value>The DepotTools Steam Plugin! Now using LuaLoader instead of the previous plugin.</value></data>
   <data name="Plugin_CardTitle" xml:space="preserve"><value>Tila</value></data>
   <data name="Plugin_Badge_UpdateAvailable" xml:space="preserve"><value>Päivitys saatavilla</value></data>
   <data name="Plugin_Row_InstalledVersion" xml:space="preserve"><value>Asennettu versio</value></data>

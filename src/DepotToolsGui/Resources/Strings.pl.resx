@@ -435,7 +435,7 @@ Spowoduje to usunięcie plików .lua z Steam\config\stplug-in. Następnie urucho
   <data name="Add_FastFetch_NoSource" xml:space="preserve"><value>Nie znaleziono dostępnych źródeł dla tej gry</value></data>
   <data name="Add_FastFetch_Via" xml:space="preserve"><value>· przez {0}</value></data>
   <data name="Plugin_Title" xml:space="preserve"><value>Wtyczka DepotTools</value></data>
-  <data name="Plugin_Subtitle" xml:space="preserve"><value>Wtyczka DepotTools do Steam! — Teraz używa LuaLoader zamiast Shittenium</value></data>
+  <data name="Plugin_Subtitle" xml:space="preserve"><value>The DepotTools Steam Plugin! Now using LuaLoader instead of the previous plugin.</value></data>
   <data name="Plugin_CardTitle" xml:space="preserve"><value>Stan</value></data>
   <data name="Plugin_Badge_UpdateAvailable" xml:space="preserve"><value>Dostępna aktualizacja</value></data>
   <data name="Plugin_Row_InstalledVersion" xml:space="preserve"><value>Zainstalowana wersja</value></data>

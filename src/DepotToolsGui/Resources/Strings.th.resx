@@ -435,7 +435,7 @@
   <data name="Add_FastFetch_NoSource" xml:space="preserve"><value>ไม่พบแหล่งที่พร้อมใช้งานสำหรับเกมนี้</value></data>
   <data name="Add_FastFetch_Via" xml:space="preserve"><value>· ผ่าน {0}</value></data>
   <data name="Plugin_Title" xml:space="preserve"><value>ปลั๊กอิน DepotTools</value></data>
-  <data name="Plugin_Subtitle" xml:space="preserve"><value>ปลั๊กอิน DepotTools สำหรับ Steam! — ตอนนี้ใช้ LuaLoader แทน Shittenium</value></data>
+  <data name="Plugin_Subtitle" xml:space="preserve"><value>The DepotTools Steam Plugin! Now using LuaLoader instead of the previous plugin.</value></data>
   <data name="Plugin_CardTitle" xml:space="preserve"><value>สถานะ</value></data>
   <data name="Plugin_Badge_UpdateAvailable" xml:space="preserve"><value>มีอัปเดต</value></data>
   <data name="Plugin_Row_InstalledVersion" xml:space="preserve"><value>เวอร์ชันที่ติดตั้ง</value></data>

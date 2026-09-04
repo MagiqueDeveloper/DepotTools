@@ -183,7 +183,7 @@
   <data name="Mode_Desc_Ost" xml:space="preserve"><value>Nightly build of OpenSteamTools from the latest source. Newest fixes, but may be less stable.</value></data>
   <data name="Mode_Name_Custom" xml:space="preserve"><value>Custom Unlocker</value></data>
   <data name="Mode_Desc_Custom" xml:space="preserve"><value>Use your own unlocking solution, we will not mess with it.</value></data>
-  <data name="Mode_UserManaged" xml:space="preserve"><value>You're on your own</value></data>
+  <data name="Mode_UserManaged" xml:space="preserve"><value>User-managed</value></data>
   <data name="Mode_Experimental" xml:space="preserve"><value>EXPERIMENTAL</value></data>
   <data name="Mode_CloudRedirectSupport" xml:space="preserve"><value>CLOUDREDIRECT SUPPORT</value></data>
   <data name="Mode_CloudRedirect_AddonDesc" xml:space="preserve"><value>Brings back native Steam Cloud support via third-party storage providers such as Google Drive / OneDrive / Cloudflare R2 + more. Only compatible with OpenSteamTools / BetterSteamTools at the moment. Don't forget to configure it by clicking "Manage" after enabling, then restart Steam!</value></data>
@@ -263,7 +263,7 @@ Cancel - keep downloading</value></data>
   <data name="Downloads_Depots_GettingTool" xml:space="preserve"><value>Getting the downloader</value></data>
   <data name="Downloads_Depots_Preparing" xml:space="preserve"><value>Preparing · {0} of {1}</value></data>
   <data name="Downloads_Depots_Progress" xml:space="preserve"><value>Depots · {0} of {1}</value></data>
-  <data name="Downloads_Empty" xml:space="preserve"><value>Nothing downloading right now. Start downloading some shit!</value></data>
+  <data name="Downloads_Empty" xml:space="preserve"><value>Nothing is downloading right now. Start a download to begin.</value></data>
   <data name="Downloads_Err_Interrupted" xml:space="preserve"><value>Interrupted when the app closed.</value></data>
   <data name="Downloads_Eta" xml:space="preserve"><value>{0} left</value></data>
   <data name="Downloads_Kind_Depot" xml:space="preserve"><value>Depot files</value></data>
@@ -370,7 +370,7 @@ Cancel - keep downloading</value></data>
   <data name="Manage_DepotError" xml:space="preserve"><value>Couldn't load depot info (offline or unknown app).</value></data>
   <data name="Manage_Toggle_InLua" xml:space="preserve"><value>In lua</value></data>
   <data name="Manage_Toggle_Missing" xml:space="preserve"><value>Missing depots / DLC</value></data>
-  <data name="Manage_Toggle_Unknown" xml:space="preserve"><value>Unknown shit</value></data>
+  <data name="Manage_Toggle_Unknown" xml:space="preserve"><value>Unknown items</value></data>
   <data name="Manage_Depot" xml:space="preserve"><value>Depot</value></data>
   <data name="Manage_SharedDepot" xml:space="preserve"><value>Shared depot</value></data>
   <data name="Manage_DlcName" xml:space="preserve"><value>DLC {0}</value></data>
@@ -481,7 +481,7 @@ This deletes the .lua files from Steam\config\stplug-in. Restart Steam afterward
   <data name="Confirm_Skip" xml:space="preserve"><value>Skip</value></data>
   <data name="Confirm_Replace" xml:space="preserve"><value>Replace</value></data>
   <data name="Plugin_Title" xml:space="preserve"><value>DepotTools Plugin</value></data>
-  <data name="Plugin_Subtitle" xml:space="preserve"><value>The DepotTools Steam Plugin! Now using LuaLoader instead of Shittenium</value></data>
+  <data name="Plugin_Subtitle" xml:space="preserve"><value>The DepotTools Steam Plugin! Now using LuaLoader instead of the previous plugin.</value></data>
   <data name="Plugin_CardTitle" xml:space="preserve"><value>Status</value></data>
   <data name="Plugin_Badge_UpdateAvailable" xml:space="preserve"><value>Update available</value></data>
   <data name="Plugin_Row_InstalledVersion" xml:space="preserve"><value>Installed version</value></data>

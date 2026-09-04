@@ -435,7 +435,7 @@
   <data name="Add_FastFetch_NoSource" xml:space="preserve"><value>Для этой игры не найдено доступных источников</value></data>
   <data name="Add_FastFetch_Via" xml:space="preserve"><value>· через {0}</value></data>
   <data name="Plugin_Title" xml:space="preserve"><value>Плагин DepotTools</value></data>
-  <data name="Plugin_Subtitle" xml:space="preserve"><value>Плагин DepotTools для Steam! — Теперь использует LuaLoader вместо Shittenium</value></data>
+  <data name="Plugin_Subtitle" xml:space="preserve"><value>The DepotTools Steam Plugin! Now using LuaLoader instead of the previous plugin.</value></data>
   <data name="Plugin_CardTitle" xml:space="preserve"><value>Статус</value></data>
   <data name="Plugin_Badge_UpdateAvailable" xml:space="preserve"><value>Доступно обновление</value></data>
   <data name="Plugin_Row_InstalledVersion" xml:space="preserve"><value>Установленная версия</value></data>

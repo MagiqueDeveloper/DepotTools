@@ -435,7 +435,7 @@ Esto borra los archivos .lua de Steam\config\stplug-in. Reinicia Steam después 
   <data name="Add_FastFetch_NoSource" xml:space="preserve"><value>No se encontraron fuentes disponibles para este juego</value></data>
   <data name="Add_FastFetch_Via" xml:space="preserve"><value>· a través de {0}</value></data>
   <data name="Plugin_Title" xml:space="preserve"><value>Complemento DepotTools</value></data>
-  <data name="Plugin_Subtitle" xml:space="preserve"><value>¡El plugin de DepotTools para Steam! — Ahora usa LuaLoader en lugar de Shittenium</value></data>
+  <data name="Plugin_Subtitle" xml:space="preserve"><value>The DepotTools Steam Plugin! Now using LuaLoader instead of the previous plugin.</value></data>
   <data name="Plugin_CardTitle" xml:space="preserve"><value>Estado</value></data>
   <data name="Plugin_Badge_UpdateAvailable" xml:space="preserve"><value>Actualización disponible</value></data>
   <data name="Plugin_Row_InstalledVersion" xml:space="preserve"><value>Versión instalada</value></data>

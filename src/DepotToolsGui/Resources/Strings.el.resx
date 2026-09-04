@@ -435,7 +435,7 @@
   <data name="Add_FastFetch_NoSource" xml:space="preserve"><value>Δεν βρέθηκαν διαθέσιμες πηγές για αυτό το παιχνίδι</value></data>
   <data name="Add_FastFetch_Via" xml:space="preserve"><value>· μέσω {0}</value></data>
   <data name="Plugin_Title" xml:space="preserve"><value>Πρόσθετο DepotTools</value></data>
-  <data name="Plugin_Subtitle" xml:space="preserve"><value>Το πρόσθετο DepotTools για το Steam! — Χρησιμοποιεί πλέον LuaLoader αντί για Shittenium</value></data>
+  <data name="Plugin_Subtitle" xml:space="preserve"><value>The DepotTools Steam Plugin! Now using LuaLoader instead of the previous plugin.</value></data>
   <data name="Plugin_CardTitle" xml:space="preserve"><value>Κατάσταση</value></data>
   <data name="Plugin_Badge_UpdateAvailable" xml:space="preserve"><value>Διαθέσιμη ενημέρωση</value></data>
   <data name="Plugin_Row_InstalledVersion" xml:space="preserve"><value>Εγκατεστημένη έκδοση</value></data>

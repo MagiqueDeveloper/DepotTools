@@ -435,7 +435,7 @@ Ez törli a .lua fájlokat a Steam\config\stplug-in mappából. Ezután indítsd
   <data name="Add_FastFetch_NoSource" xml:space="preserve"><value>Nem található elérhető forrás ehhez a játékhoz</value></data>
   <data name="Add_FastFetch_Via" xml:space="preserve"><value>· innen: {0}</value></data>
   <data name="Plugin_Title" xml:space="preserve"><value>DepotTools bővítmény</value></data>
-  <data name="Plugin_Subtitle" xml:space="preserve"><value>A DepotTools Steam bővítmény! — Mostantól LuaLoader a Shittenium helyett</value></data>
+  <data name="Plugin_Subtitle" xml:space="preserve"><value>The DepotTools Steam Plugin! Now using LuaLoader instead of the previous plugin.</value></data>
   <data name="Plugin_CardTitle" xml:space="preserve"><value>Állapot</value></data>
   <data name="Plugin_Badge_UpdateAvailable" xml:space="preserve"><value>Frissítés érhető el</value></data>
   <data name="Plugin_Row_InstalledVersion" xml:space="preserve"><value>Telepített verzió</value></data>

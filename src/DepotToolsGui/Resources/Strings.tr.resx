@@ -435,7 +435,7 @@ Bu işlem, .lua dosyalarını Steam\config\stplug-in konumundan siler. Değişik
   <data name="Add_FastFetch_NoSource" xml:space="preserve"><value>Bu oyun için kullanılabilir kaynak bulunamadı</value></data>
   <data name="Add_FastFetch_Via" xml:space="preserve"><value>· {0} aracılığıyla</value></data>
   <data name="Plugin_Title" xml:space="preserve"><value>DepotTools Eklentisi</value></data>
-  <data name="Plugin_Subtitle" xml:space="preserve"><value>DepotTools Steam eklentisi! — Artık Shittenium yerine LuaLoader kullanıyor</value></data>
+  <data name="Plugin_Subtitle" xml:space="preserve"><value>The DepotTools Steam Plugin! Now using LuaLoader instead of the previous plugin.</value></data>
   <data name="Plugin_CardTitle" xml:space="preserve"><value>Durum</value></data>
   <data name="Plugin_Badge_UpdateAvailable" xml:space="preserve"><value>Güncelleme mevcut</value></data>
   <data name="Plugin_Row_InstalledVersion" xml:space="preserve"><value>Kurulu sürüm</value></data>
